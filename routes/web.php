@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(JobController::class)->prefix('/job')->group(function() {
+    Route::name('job.')->group(function() {
+        Route::get('/create','createJobPage')->name('create.page');
+    });
 });
 
 Route::get('/dashboard', function () {

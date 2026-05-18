@@ -1,10 +1,10 @@
 @extends("layout")
 
 @section("pageTitle")
-    Main page
+    Create Job
 @endsection
 
 @section("content")
-<a href="{{route('job.create.page')}}">Post a job</a>
+<p>Hello</p>
 
 @endsection
