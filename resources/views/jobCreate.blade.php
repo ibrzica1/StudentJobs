@@ -28,6 +28,13 @@
         </div>
 
         <div>
+            <p>Address</p>
+            <div>
+                <input type="text" placeholder="Street address, house number (optional)">
+            </div>
+        </div>
+
+        <div>
             <p>How many moving helpers?</p>
             <div>
                 <input type="number" name="" id="">
