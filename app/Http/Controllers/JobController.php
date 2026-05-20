@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    public function createJobPage()
+    public function createJobHelperPage()
     {
         return view("jobCreate");
+    }
+
+    public function createJobHelper()
+    {
+        
     }
 }

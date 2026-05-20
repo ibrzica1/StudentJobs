@@ -10,7 +10,8 @@ Route::get('/', function () {
 
 Route::controller(JobController::class)->prefix('/job')->group(function() {
     Route::name('job.')->group(function() {
-        Route::get('/create','createJobPage')->name('create.page');
+        Route::get('/helper-create-page','createJobHelperPage')->name('helper.create.page');
+        Route::post('/helper-create','createJobHelper')->name('helper.create');
     });
 });
 
