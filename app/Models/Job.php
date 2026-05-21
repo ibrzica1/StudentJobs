@@ -12,7 +12,7 @@ class Job extends Model
 
     protected $fillable = [
         'title','employer_id','location_id','address','setting_type',
-        'weekly_hours','employee_amount','wage','start_date','duration',
+        'weekly_hours','employee_amount','wage','start_date','from','to','duration',
         'urgent','description','tasks','expectetion','offer'
     ];
 

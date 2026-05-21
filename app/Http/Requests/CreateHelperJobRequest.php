@@ -21,11 +21,18 @@ class CreateHelperJobRequest extends FormRequest
             'location_id' => [
                 'required',
                 'numeric',
-                new Location()
+                'exists:locations,id'
             ],
-            'address' => "string",
+            'address' => "nullable|string",
             'employee_amount' => "required|numeric",
-            'wage' => 'required|numeric'
+            'wage' => 'required|numeric',
+            'start_date' => 'required|date|after_or_equal:today',
+            'from' => 'required|date_format:H:i',
+            'to' => 'required|date_format:H:i|after:from',
+            'description' => 'required|string',
+            'tasks' => 'nullable|string',
+            'expectetion' => 'nullable|string'
+
         ];
     }
 }

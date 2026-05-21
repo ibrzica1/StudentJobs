@@ -16,51 +16,51 @@
         <div>
             <p>Title / Your booking</p>
             <div>
-                <input type="text" placeholder="Job Title">
+                <input type="text" name="title" placeholder="Job Title">
             </div>
         </div>
 
         <div>
             <p>Location</p>
             <div>
-                <input type="text" placeholder="City">
+                <input type="number" name="location_id" placeholder="City">
             </div>
         </div>
 
         <div>
             <p>Address</p>
             <div>
-                <input type="text" placeholder="Street address, house number (optional)">
+                <input type="text" name="address" placeholder="Street address, house number (optional)">
             </div>
         </div>
 
         <div>
             <p>How many moving helpers?</p>
             <div>
-                <input type="number" name="" id="">
+                <input type="number" name="employee_amount" id="">
             </div>
         </div>
 
         <div>
             <p>Helper wage per person</p>
             <div>
-                <input type="number" name="" id="">
+                <input type="number" name="wage" id="">
             </div>
         </div>
 
         <div>
             <p>Deployment date</p>
             <div>
-                <input type="date" name="" id="">
+                <input type="date" name="start_date" id="">
             </div>
         </div>
 
         <div>
             <p>Deployment time</p>
             <p>From</p>
-            <input type="time" name="" id="">
+            <input type="time" name="from" id="">
             <p>To</p>
-            <input type="time">
+            <input type="time" name="to">
         </div>
     </div>
 
@@ -69,19 +69,21 @@
 
         <div>
             <p>Description</p>
-            <textarea name="" id="" cols="50" rows="5"></textarea>
+            <textarea name="description" id="" cols="50" rows="5"></textarea>
         </div>
 
         <div>
             <p>Tasks</p>
-            <textarea name="" id="" cols="50" rows="5"></textarea>
+            <textarea name="tasks" id="" cols="50" rows="5"></textarea>
         </div>
 
         <div>
-            <p>Requirements</p>
-            <textarea name="" id="" cols="50" rows="5"></textarea>
+            <p>Expectetion</p>
+            <textarea name="expectetion" id="" cols="50" rows="5"></textarea>
         </div>
     </div>
+
+    <button type="submit">Submit</button>
 </form>
 
 @endsection
