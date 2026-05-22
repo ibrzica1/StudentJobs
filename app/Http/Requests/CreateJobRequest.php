@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Foundation\Http\FormRequest;
+
+class CreateJobRequest extends FormRequest
+{
+    
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'title' => "required|string",
+            'location_id' => [
+                'required',
+                'numeric',
+                'exists:locations,id'
+            ],
+            'setting_type' => "required|string",
+            'weekly_hours' => "required|numeric",
+            'start_date' => 'required|date|after_or_equal:today',
+            'duration' => 'required|string',
+            'description' => 'required|string',
+            'expectation' => 'nullable|string',
+            'offer' => 'nullable|string',
+        ];
+    }
+}

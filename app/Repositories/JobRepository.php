@@ -14,9 +14,10 @@ class JobRepository
        $this->jobModel = new Job();
     }
 
-    public function createNew($request)
+    public function createHelperJob($request)
     {
         $job = $this->jobModel->create([
+            'type' => $this->jobModel::HELPER_JOB,
             'title' => $request['title'],
             'employer_id' => Auth::id(),
             'location_id' => $request['location_id'],
@@ -28,7 +29,26 @@ class JobRepository
             'to' => $request['to'],
             'description' => $request['description'],
             'tasks' => $request['tasks'],
-            'expectetion' => $request['expectetion'],
+            'expectation' => $request['expectation'],
+        ]);
+
+        return $job;
+    }
+
+    public function createJob($request)
+    {
+        $job = $this->jobModel->create([
+            'type' => $this->jobModel::JOB,
+            'title' => $request['title'],
+            'employer_id' => Auth::id(),
+            'location_id' => $request['location_id'],
+            'setting_type' => $request['setting_type'],
+            'weekly_hours' => $request['weekly_hours'],
+            'start_date' => $request['start_date'],
+            'duration' => $request['duration'],
+            'description' => $request['description'],
+            'expectation' => $request['expectation'],
+            'offer' => $request['offer'],
         ]);
 
         return $job;

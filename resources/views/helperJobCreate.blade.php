@@ -5,7 +5,7 @@
 @endsection
 
 @section("content")
-<form action="{{route('job.create')}}" method="post">
+<form action="{{route('job.helper.create')}}" method="post">
     @if($errors->any())
         <p>Error: {{$errors->first()}}</p>
     @endif
@@ -27,49 +27,59 @@
             </div>
         </div>
 
-
         <div>
-            <p>Setting Type</p>
+            <p>Address</p>
             <div>
-                <input type="text" name="setting_type" id="">
+                <input type="text" name="address" placeholder="Street address, house number (optional)">
             </div>
         </div>
 
         <div>
-            <p>Weekly hours</p>
+            <p>How many moving helpers?</p>
             <div>
-                <input type="number" name="weekly_hours" id="">
+                <input type="number" name="employee_amount" id="">
             </div>
         </div>
 
         <div>
-            <p>Date of hiring</p>
+            <p>Helper wage per person</p>
+            <div>
+                <input type="number" name="wage" id="">
+            </div>
+        </div>
+
+        <div>
+            <p>Deployment date</p>
             <div>
                 <input type="date" name="start_date" id="">
             </div>
         </div>
 
         <div>
-            <p>Duration</p>
-            <input type="number" name="duration" id="">
+            <p>Deployment time</p>
+            <p>From</p>
+            <input type="time" name="from" id="">
+            <p>To</p>
+            <input type="time" name="to">
         </div>
     </div>
 
     <div>
+        <p>Job Details</p>
 
         <div>
-            <p>Job description</p>
+            <p>Description</p>
             <textarea name="description" id="" cols="50" rows="5"></textarea>
         </div>
 
         <div>
-            <p>Expectation</p>
-            <textarea name="expectation" id="" cols="50" rows="5"></textarea>
+            <p>Tasks</p>
+            <textarea name="tasks" id="" cols="50" rows="5"></textarea>
         </div>
 
         <div>
-            <p>Offer</p>
-            <textarea name="offer" id="" cols="50" rows="5"></textarea>
+            <p>Expectetion</p>
+            <textarea name="expectetion" id="" cols="50" rows="5"></textarea>
         </div>
     </div>
 
