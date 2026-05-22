@@ -31,7 +31,7 @@ class CreateHelperJobRequest extends FormRequest
             'to' => 'required|date_format:H:i|after:from',
             'description' => 'required|string',
             'tasks' => 'nullable|string',
-            'expectetion' => 'nullable|string'
+            'expectation' => 'nullable|string'
 
         ];
     }
