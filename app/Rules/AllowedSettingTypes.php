@@ -9,6 +9,8 @@ use Illuminate\Translation\PotentiallyTranslatedString;
 
 class AllowedSettingTypes implements ValidationRule
 {
+    // Custom rule that checks if entered setting type exist
+    // in allowed setting types
     
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {

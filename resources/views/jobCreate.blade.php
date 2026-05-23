@@ -5,6 +5,10 @@
 @endsection
 
 @section("content")
+@php
+    use App\Models\Job;
+@endphp
+
 <form action="{{route('job.create')}}" method="post">
     @if($errors->any())
         <p>Error: {{$errors->first()}}</p>
@@ -30,9 +34,11 @@
 
         <div>
             <p>Setting Type</p>
-            <div>
-                <input type="text" name="setting_type" id="">
-            </div>
+            <select name="setting_type" id="">
+                @foreach (Job::ALLOWED_SETTING_TYPES as $type)
+                    <option>{{$type}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div>
