@@ -57,7 +57,12 @@
 
         <div>
             <p>Duration</p>
-            <input type="number" name="duration" id="">
+            <select name="duration">
+                @foreach (Job::ALLOWED_DURATION_TYPES as $type)
+                    <option>{{$type}}</option>
+                @endforeach
+            </select>
+            
         </div>
     </div>
 

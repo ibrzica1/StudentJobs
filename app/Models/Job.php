@@ -26,6 +26,10 @@ class Job extends Model
     const ALLOWED_SETTING_TYPES = [
         self::FULL_TIME, self::PART_TIME, self::MINI_JOB
     ];
+    const ALLOWED_DURATION_TYPES = [
+        "indefinite","1-4 weeks","1 month","2 months",
+        "3-5 months","6 months","1 year","2 years","3 years"
+    ];
 
     public function employer(): BelongsTo
     {

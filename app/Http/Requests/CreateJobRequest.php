@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AllowedDurationTypes;
 use App\Rules\AllowedSettingTypes;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,7 +31,11 @@ class CreateJobRequest extends FormRequest
             ],
             'weekly_hours' => "required|numeric",
             'start_date' => 'required|date|after_or_equal:today',
-            'duration' => 'required|string',
+            'duration' => [
+                'required',
+                'string',
+                new AllowedDurationTypes()
+            ],
             'description' => 'required|string',
             'expectation' => 'nullable|string',
             'offer' => 'nullable|string',
