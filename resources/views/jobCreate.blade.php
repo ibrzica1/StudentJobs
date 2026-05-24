@@ -26,9 +26,7 @@
 
         <div>
             <p>Location</p>
-            <div>
-                <input type="number" name="location_id" placeholder="City">
-            </div>
+            <livewire:location-search />
         </div>
 
 
@@ -62,7 +60,6 @@
                     <option>{{$type}}</option>
                 @endforeach
             </select>
-            
         </div>
     </div>
 
