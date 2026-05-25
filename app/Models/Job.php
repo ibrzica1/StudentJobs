@@ -19,12 +19,27 @@ class Job extends Model
 
     const JOB = "job";
     const HELPER_JOB = "helper-job";
-    const FULL_TIME = "Full Time";
-    const PART_TIME = "Part Time";
-    const MINI_JOB = "Mini Job";
+    const CONSTRUCTION_HELPER = "Construction Helper";
+    const MOVING_HELPER = "Moving Helper";
+    const DECLUTTER_HELPER = "Declutter Helper";
+    const EVENT_HELPER = "Event Helper";
+    const LOGISTIK_HELPER = "Logistik Helper";
+    const OFFICE_HELPER = "Office Helper";
+    const TUTOR_HELPER = "Tutor Helper";
+    const IT_HELPER = "It Helper";
+    const BABYSITTER_HELPER = "Babysitter Helper";
+    const DRIVER_HELPER = "Driver Helper";
+    const OTHER = "Other";
+
+    const ALLOWED_HELPER_TYPES = [
+        self::CONSTRUCTION_HELPER, self::MOVING_HELPER, self::DECLUTTER_HELPER,
+        self::EVENT_HELPER, self::LOGISTIK_HELPER, self::OFFICE_HELPER,
+        self::TUTOR_HELPER, self::IT_HELPER, self::BABYSITTER_HELPER,
+        self::DRIVER_HELPER, self::OTHER
+    ];
 
     const ALLOWED_SETTING_TYPES = [
-        self::FULL_TIME, self::PART_TIME, self::MINI_JOB
+        "Full Time", "Part Time", "Mini Job"
     ];
     const ALLOWED_DURATION_TYPES = [
         "indefinite","1-4 weeks","1 month","2 months",

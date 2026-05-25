@@ -15,9 +15,7 @@
 
         <div>
             <p>Title / Your booking</p>
-            <div>
-                <input type="text" name="title" placeholder="Job Title">
-            </div>
+            <livewire:helper-type-search />
         </div>
 
         <div>
