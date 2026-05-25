@@ -22,9 +22,7 @@
 
         <div>
             <p>Location</p>
-            <div>
-                <input type="number" name="location_id" placeholder="City">
-            </div>
+            <livewire:location-search />
         </div>
 
         <div>
@@ -43,9 +41,7 @@
 
         <div>
             <p>Helper wage per person</p>
-            <div>
-                <input type="number" name="wage" id="">
-            </div>
+            <livewire:wage-range />
         </div>
 
         <div>
