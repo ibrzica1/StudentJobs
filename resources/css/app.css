@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu-link {
+    transition: all 0.2s ease;
+}
+
+.menu-link:hover {
+    background-color: white;
+    transform: translateX(3px);
+}
+
+.home-hover:hover {
+    background-color: #c4eccd;
+}
+.menu-hover:hover {
+    background-color: #f4bdbd;
+}
