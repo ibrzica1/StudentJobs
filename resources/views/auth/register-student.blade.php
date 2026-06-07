@@ -1,121 +1,114 @@
 @extends('layout')
 
-@section('pageTitle')
-    Register
-@endsection
+@section('pageTitle', 'Register Student')
 
 @section('content')
 
-<div class="container mt-5">
+<style>
+    /* Prilagođeni border za inpute */
+    .custom-input {
+        border: 1px solid #f00505 !important;
+    }
+    .custom-input:focus {
+        box-shadow: 0 0 0 0.25rem rgba(240, 5, 5, 0.25);
+    }
+    .input-group-text {
+        background-color: #fff;
+        border: 1px solid #f00505;
+        border-right: none;
+    }
+</style>
+
+<div class="container-fluid bg-light py-5">
     <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
 
-        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-5">
 
-            <div class="card shadow border-0">
-                <div class="card-body p-4">
-
-                    <h2 class="text-center mb-4">
-                        Create Account
+                    <h2 class="text-end fw-bold mb-4">
+                        New Account / <span class="text-primary">Student</span>
                     </h2>
+                    <hr class="mb-4">
 
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
+                        <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">Account Information</h6>
+                        
                         <div class="mb-3">
-                            <label for="name" class="form-label">
-                                Name
-                            </label>
-
-                            <input
-                                id="name"
-                                type="text"
-                                name="name"
-                                value="{{ old('name') }}"
-                                class="form-control @error('name') is-invalid @enderror"
-                                required
-                                autofocus>
-
-                            @error('name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <label for="email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><img src="{{ asset('storage/images/icons/mail.svg') }}" style="width: 20px;"></span>
+                                <input type="email" id="email" name="email" value="{{ old('email') }}" 
+                                       class="form-control custom-input @error('email') is-invalid @enderror" required>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">
-                                Email
-                            </label>
-
-                            <input
-                                id="email"
-                                type="email"
-                                name="email"
-                                value="{{ old('email') }}"
-                                class="form-control @error('email') is-invalid @enderror"
-                                required>
-
-                            @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><img src="{{ asset('storage/images/icons/password.svg') }}" style="width: 20px;"></span>
+                                    <input type="password" id="password" name="password" class="form-control custom-input" required>
                                 </div>
-                            @enderror
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="password_confirmation" class="form-label">Confirm</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><img src="{{ asset('storage/images/icons/password.svg') }}" style="width: 20px;"></span>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control custom-input" required>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="password" class="form-label">
-                                Password
-                            </label>
-
-                            <input
-                                id="password"
-                                type="password"
-                                name="password"
-                                class="form-control @error('password') is-invalid @enderror"
-                                required>
-
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                        <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">Personal Details</h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><img src="{{ asset('storage/images/icons/usr-info.svg') }}" style="width: 20px;"></span>
+                                    <input type="text" id="firstName" name="firstName" class="form-control custom-input" required>
                                 </div>
-                            @enderror
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><img src="{{ asset('storage/images/icons/usr-info.svg') }}" style="width: 20px;"></span>
+                                    <input type="text" id="lastName" name="lastName" class="form-control custom-input" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">Contact Details</h6>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <livewire:location-search />
                         </div>
 
                         <div class="mb-4">
-                            <label for="password_confirmation" class="form-label">
-                                Confirm Password
-                            </label>
-
-                            <input
-                                id="password_confirmation"
-                                type="password"
-                                name="password_confirmation"
-                                class="form-control"
-                                required>
+                            <label for="telephone" class="form-label">Telephone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><img src="{{ asset('storage/images/icons/telephone.svg') }}" style="width: 20px;"></span>
+                                <input type="tel" name="telephone" id="telephone" class="form-control custom-input">
+                            </div>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="mb-4">
+                            <label for="imageStudent" class="form-label">Profile Picture (optional)</label>
+                            <input type="file" name="imageStudent" id="imageStudent" class="form-control">
+                        </div>
 
-                            <a href="{{ route('login') }}"
-                               class="text-decoration-none">
-                                Already registered?
-                            </a>
-
-                            <button type="submit"
-                                    class="btn btn-success">
-                                Register
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-success btn-lg w-100 py-3 shadow-sm">
+                                CREATE ACCOUNT
                             </button>
-
                         </div>
-
                     </form>
 
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
-
 @endsection
