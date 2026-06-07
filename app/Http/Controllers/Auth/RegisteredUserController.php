@@ -24,6 +24,22 @@ class RegisteredUserController extends Controller
     }
 
     /**
+     * Display the registration employer view.
+     */
+    public function createEmployer(): View
+    {
+        return view('auth.register-employer');
+    }
+
+     /**
+     * Display the registration student view.
+     */
+    public function createStudent(): View
+    {
+        return view('auth.register-student');
+    }
+
+    /**
      * Handle an incoming registration request.
      *
      * @throws ValidationException
