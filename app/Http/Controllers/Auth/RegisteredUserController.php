@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\StoreEmployerRequest;
+use App\Http\Requests\StoreStudentRequest;
 use App\Repositories\CompanyRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -44,9 +45,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws ValidationException
+     * Store an Employer and company if its entered
      */
     public function storeEmployer(StoreEmployerRequest $request): RedirectResponse
     {
@@ -73,6 +72,32 @@ class RegisteredUserController extends Controller
             Auth::login($user);
 
         });
+        return redirect(route('dashboard', absolute: false));
+    }
+
+    public function storeStudent(StoreStudentRequest $request)
+    {
+        $avatar = null;
+
+        if($request->imageStudent){
+            $path = $request->imageStudent->store('images/user_avatar','public');
+            $avatar = basename($path);
+        }
+
+        $user = User::create([
+            'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'location_id' => $request->location_id,
+                'telephone' => $request->telephone,
+                'role' => 'student',
+                'profile_picture' => $avatar,
+        ]);
+        event(new Registered($user));
+
+        Auth::login($user);
+
         return redirect(route('dashboard', absolute: false));
     }
 }

@@ -31,7 +31,7 @@
                     </h2>
                     <hr class="mb-4">
 
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('store.student') }}" enctype="multipart/form-data">
                         @csrf
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">Account Information</h6>
