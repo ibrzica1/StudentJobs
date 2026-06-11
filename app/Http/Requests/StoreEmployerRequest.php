@@ -24,6 +24,7 @@ class StoreEmployerRequest extends FormRequest
             'lastName' => ['required', 'string', 'max:255'],
             'location_id' => ['required','numeric','exists:locations,id'],
             'telephone' => ['required', 'string', 'max:20'],
+            'imageCompany' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:4096'],
             'companyName' => ['required', 'string', 'max:255'],
             
         ];

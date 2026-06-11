@@ -16,12 +16,21 @@ class CompanyRepository
 
    public function store($request, $userId)
    {
+        $logo = null;
+
+        if($request['imageCompany']){
+            $path = $request['imageCompany']->store('images/company_logo','public');
+            $logo = basename($path);
+        }
+
         $company = $this->companyModel::create([
            'name' => $request['companyName'],
-           'logo' => $request['logo'],
+           'logo' => $logo,
            'user_id' => $userId,
        ]);
 
        return $company;
    }
+
+
 }
