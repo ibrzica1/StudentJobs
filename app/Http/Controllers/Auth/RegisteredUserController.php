@@ -65,10 +65,8 @@ class RegisteredUserController extends Controller
 
             if($request->companyName !== null){
                 $companyRepository = new CompanyRepository();
-                $companyRepository->store($request);
+                $companyRepository->store($request, $user->id);
             }
-
-            
 
             event(new Registered($user));
 
