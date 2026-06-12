@@ -75,7 +75,10 @@ class RegisteredUserController extends Controller
         return redirect(route('dashboard', absolute: false));
     }
 
-    public function storeStudent(StoreStudentRequest $request)
+    /**
+     * Store an Student
+     */
+    public function storeStudent(StoreStudentRequest $request): RedirectResponse
     {
         $avatar = null;
 
