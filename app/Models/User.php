@@ -28,6 +28,8 @@ class User extends Authenticatable
         'telephone',
         'role',
         'profile_picture',
+        'street',
+        'house_number',
     ];
 
     /**
