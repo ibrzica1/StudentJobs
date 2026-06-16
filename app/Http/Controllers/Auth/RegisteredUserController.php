@@ -58,6 +58,8 @@ class RegisteredUserController extends Controller
                 'firstName' => $request->firstName,
                 'lastName' => $request->lastName,
                 'location_id' => $request->location_id,
+                'street' => $request->street,
+                'house_number' => $request->house_number,
                 'telephone' => $request->telephone,
                 'role' => 'employer',
             ]);
@@ -93,6 +95,8 @@ class RegisteredUserController extends Controller
                 'firstName' => $request->firstName,
                 'lastName' => $request->lastName,
                 'location_id' => $request->location_id,
+                'street' => $request->street,
+                'house_number' => $request->house_number,
                 'telephone' => $request->telephone,
                 'role' => 'student',
                 'profile_picture' => $avatar,

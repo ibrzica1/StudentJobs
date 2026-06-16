@@ -87,9 +87,8 @@
                     </h2>
 
                     <form
-                        action="{{ route('store.student') }}"
+                        action="{{route('profile.update.user-info')}}"
                         method="POST"
-                        enctype="multipart/form-data"
                     >
                         @csrf
                         @method('PATCH')
@@ -198,16 +197,15 @@
 
                     </form>
                     <form
-                        action="{{ route('store.student') }}"
+                        action="{{ route('profile.update.user-address') }}"
                         method="POST"
-                        enctype="multipart/form-data"
                     >
                         @csrf
                         @method('PATCH')
 
                         <hr class="my-4">
 
-                        {{-- CONTACT DETAILS --}}
+                        {{-- ADDRESS --}}
                         <h6 class="text-uppercase text-muted fw-bold mb-3">
                             Address
                         </h6>

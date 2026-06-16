@@ -23,6 +23,8 @@ class StoreEmployerRequest extends FormRequest
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
             'location_id' => ['required','numeric','exists:locations,id'],
+            'street' => ['required', 'string', 'max:255'],
+            'house_number' => ['required', 'string', 'max:4'],
             'telephone' => ['required', 'string', 'max:20'],
             'imageCompany' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:4096'],
             'companyName' => ['required', 'string', 'max:255'],
