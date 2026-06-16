@@ -277,7 +277,7 @@
                                 type="submit"
                                 class="btn btn-success btn-lg w-100 py-3"
                             >
-                                SAVE CHANGES
+                                CHANGE AVATAR
                             </button>
 
                        </form>

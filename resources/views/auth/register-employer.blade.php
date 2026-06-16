@@ -101,6 +101,7 @@
                             <label class="form-label">City</label>
                             <livewire:location-search />
                         </div>
+                        
 
                         <div class="mb-4">
                             <label for="telephone" class="form-label">Telephone Number</label>
