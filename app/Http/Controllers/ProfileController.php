@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileAddressUpdateRequest;
+use App\Http\Requests\ProfileAvatarUpdateRequest;
 use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Company;
@@ -10,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -44,6 +46,21 @@ class ProfileController extends Controller
     public function updateUserAddress(ProfileAddressUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
+        
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+     /**
+     * Update the user's avatar information.
+     */
+    public function updateUserAvatar(ProfileAvatarUpdateRequest $request): RedirectResponse
+    {
+        Storage::disk('public')->delete('images/user_avatar/'. $request->user()->profile_picture);
+        $path = $request->profilePicture->store('images/user_avatar','public');
+        $avatar = basename($path);
+        $request->user()->fill(['profile_picture' => $avatar,]);
         
         $request->user()->save();
 

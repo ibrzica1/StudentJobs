@@ -250,25 +250,37 @@
                         </button>
                        </form>
 
-                        <hr class="my-4">
+                       <form
+                        action="{{ route('profile.update.user-avatar') }}"
+                        method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
 
-                        {{-- PROFILE PICTURE --}}
-                        <h6 class="text-uppercase text-muted fw-bold mb-3">
-                            Profile Picture
-                        </h6>
+                            <hr class="my-4">
 
-                        <div class="mb-4">
+                            {{-- PROFILE PICTURE --}}
+                            <h6 class="text-uppercase text-muted fw-bold mb-3">
+                                Profile Picture
+                            </h6>
 
-                            <input
-                                type="file"
-                                name="imageStudent"
-                                id="imageStudent"
-                                class="form-control"
+                            <div class="mb-4">
+                                <input
+                                    type="file"
+                                    name="profilePicture"
+                                    id="imageStudent"
+                                    class="form-control"
+                                >
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg w-100 py-3"
                             >
+                                SAVE CHANGES
+                            </button>
 
-                        </div>
-
-                       
+                       </form>
 
                     
 
