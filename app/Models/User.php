@@ -14,11 +14,6 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'email',
         'password',
@@ -40,6 +35,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    const STUDENT = 'student';
+    const EMPLOYER = 'employer';
+    const ADMIN = 'admin';
+
+    const ALLOWED_ROLES = [
+        self::STUDENT, self::EMPLOYER, self::ADMIN
     ];
 
     /**
