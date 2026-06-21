@@ -11,8 +11,8 @@
         <div class="absolute top-full left-0 px-3 py-4 bg-[#f4bdbd] rounded-br-[10px] z-50" 
              wire:show="showMenu"
              wire:click.outside="showMenu = false">
-            <a href="{{route('job.create.page')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find an employee</a>
-            <a href="{{route('job.helper.create.page')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find a helper</a>
+                <a href="{{route('job.create.page')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find an employee</a>
+                <a href="{{route('job.helper.create.page')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find a helper</a>
         </div>
         
         <a href="/" class="p-0 m-0">
@@ -33,14 +33,20 @@
         <div class="absolute top-full right-0 px-3 py-4 bg-[#c4eccd] rounded-bl-[10px] z-50"
              wire:show="showProfile"
              wire:click.outside="showProfile = false">
-            <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">Profile & Account</a>
-            <a href="#" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">My Ads</a>
-            <a href="#" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">My Bills</a>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-red-600">
-                    Logout</button>
-            </form>
+             @if ($user)
+                <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">Profile & Account</a>
+                <a href="#" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">My Ads</a>
+                <a href="#" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">My Bills</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-red-600">
+                        Logout</button>
+                </form>
+             @else
+                <a href="{{route('login')}}" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">Login</a>
+                <a href="{{route('register')}}" class="block p-2 px-4 hover:bg-white/50 rounded transition-colors text-gray-800">Register</a>
+             @endif
+            
             
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class NavigationLivewire extends Component
@@ -21,6 +22,10 @@ class NavigationLivewire extends Component
 
     public function render()
     {
-        return view('livewire.navigation-livewire');
+        $user = Auth::user();
+        
+        return view('livewire.navigation-livewire', [
+            'user' => $user
+        ]);
     }
 }
