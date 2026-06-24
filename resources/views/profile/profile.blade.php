@@ -244,8 +244,7 @@
 
                          <button
                             type="submit"
-                            class="btn btn-success btn-lg w-100 py-3"
-                        >
+                            class="btn btn-success btn-lg w-100 py-3">
                             SAVE CHANGES
                         </button>
                        </form>
@@ -282,7 +281,93 @@
 
                        </form>
 
-                    
+                    @if ($user->role === 'employer')
+                        
+                        @if ($companies !== null)
+                            
+                            @foreach ($companies as $company)
+                                
+                                <form action=""
+                                    method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    {{-- COMPANY LOGO --}}
+                                    <h6 class="text-uppercase text-muted fw-bold mb-3">
+                                        Company Logo
+                                    </h6>
+
+                                    @if ($company->logo)
+                                        <img 
+                                        src="{{ asset('storage/images/company_logo/'.$company->logo) }}"
+                                        alt="Company Logo"
+                                        class="rounded-circle shadow-sm mb-3 d-block mx-auto"
+                                        width="150"
+                                        height="150"
+                                        style="object-fit: cover;">
+                                    @else
+                                        <img 
+                                        src="{{ asset('storage/images/company_logo/default.png') }}"
+                                        alt="Company Logo"
+                                        class="rounded-circle shadow-sm mb-3 d-block mx-auto"
+                                        width="150"
+                                        height="150"
+                                        style="object-fit: cover;">
+                                    @endif
+
+                                    <div class="mb-4">
+                                        <input
+                                            type="file"
+                                            name="companyLogo"
+                                            class="form-control"
+                                        >
+                                    </div>
+
+                                    
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-success btn-lg w-100 py-3">
+                                        CHANGE LOGO
+                                    </button>
+                                    
+
+                                </form>
+
+                                <form action="" method="post">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    {{-- COMPANY INFO--}}
+                                    <h6 class="text-uppercase text-muted fw-bold mb-3">
+                                        Company Info
+                                    </h6>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label for="companyName" class="form-label">Company Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><img src="{{ asset('storage/images/icons/company.svg') }}" style="width: 20px;"></span>
+                                            <input type="text" 
+                                            id="companyName" 
+                                            name="companyName" 
+                                            value="{{ $company->name }}" 
+                                            class="form-control custom-input" required>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-success btn-lg w-100 py-3">
+                                        SAVE CHANGES
+                                    </button>
+                                </form>
+
+                            @endforeach
+
+                        @endif
+
+                    @endif
 
                 </div>
 
