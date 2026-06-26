@@ -287,7 +287,7 @@
                             
                             @foreach ($companies as $company)
                                 
-                                <form action=""
+                                <form action="{{route('profile.update.company-logo')}}"
                                     method="post"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -317,14 +317,13 @@
                                     @endif
 
                                     <div class="mb-4">
+                                        <input type="hidden" name="companyId" value="{{$company->id}}">
                                         <input
                                             type="file"
                                             name="companyLogo"
                                             class="form-control"
                                         >
                                     </div>
-
-                                    
 
                                     <button
                                         type="submit"

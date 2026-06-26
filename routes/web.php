@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/update/user-info', [ProfileController::class, 'updateUserInfo'])->name('profile.update.user-info');
     Route::patch('/profile/update/user-address', [ProfileController::class, 'updateUserAddress'])->name('profile.update.user-address');
     Route::patch('/profile/update/user-avatar', [ProfileController::class, 'updateUserAvatar'])->name('profile.update.user-avatar');
+    Route::patch('/profile/update/company-logo', [CompanyController::class, 'updateLogo'])->name('profile.update.company-logo');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

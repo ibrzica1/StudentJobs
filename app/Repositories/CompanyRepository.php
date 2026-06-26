@@ -14,6 +14,12 @@ class CompanyRepository
         $this->companyModel = new Company();
     }
 
+   public function getCompany(int $id)
+   {
+        return $this->companyModel->whereId($id)->first();
+
+   }
+
    public function store($request, $userId)
    {
         $logo = null;
@@ -30,6 +36,13 @@ class CompanyRepository
        ]);
 
        return $company;
+   }
+
+   public function updateLogo(string $logo, int $id)
+   {
+        $this->companyModel->where('user_id',$id)->update([
+            'logo' => $logo,
+        ]);
    }
 
 
