@@ -38,6 +38,15 @@ class CompanyRepository
        return $company;
    }
 
+   public function updateInfo(object $request)
+   {
+        $this->companyModel
+        ->whereId($request->companyId)
+        ->update([
+            'name' => $request->companyName
+        ]);
+   }
+
    public function updateLogo(string $logo, int $id)
    {
         $this->companyModel->where('user_id',$id)->update([

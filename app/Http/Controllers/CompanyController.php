@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CompanyInfoUpdateRequest;
 use App\Http\Requests\CompanyLogoUpdateRequest;
 use App\Models\Company;
 use App\Repositories\CompanyRepository;
@@ -28,6 +29,11 @@ class CompanyController extends Controller
         $logo = basename($path);
         $this->companyRepo->updateLogo($logo,$request->user()->id);
         return Redirect::route('profile.edit')->with('status', 'logo-updated');
+    }
 
+    public function updateCompanyInfo(CompanyInfoUpdateRequest $request): RedirectResponse
+    {
+        $this->companyRepo->updateInfo($request);
+        return Redirect::route('profile.edit')->with('status', 'company-info-updated');
     }
 }

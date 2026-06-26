@@ -334,7 +334,7 @@
 
                                 </form>
 
-                                <form action="" method="post">
+                                <form action="{{route('profile.update.company-info')}}" method="post">
                                     @csrf
                                     @method('PATCH')
 
@@ -342,6 +342,15 @@
                                     <h6 class="text-uppercase text-muted fw-bold mb-3">
                                         Company Info
                                     </h6>
+
+                                    <div class="mb-4">
+                                        <input type="hidden" name="companyId" value="{{$company->id}}">
+                                        <input
+                                            type="file"
+                                            name="companyLogo"
+                                            class="form-control"
+                                        >
+                                    </div>
 
                                     <div class="col-md-4 mb-3">
                                         <label for="companyName" class="form-label">Company Name</label>
