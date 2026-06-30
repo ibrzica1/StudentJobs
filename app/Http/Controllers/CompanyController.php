@@ -36,4 +36,10 @@ class CompanyController extends Controller
         $this->companyRepo->updateInfo($request);
         return Redirect::route('profile.edit')->with('status', 'company-info-updated');
     }
+
+    public function deleteCompany(Company $company): RedirectResponse
+    {
+        $this->companyRepo->deleteCompany($company);
+        return Redirect::route('profile.edit')->with('status', 'company-deleted');
+    }
 }

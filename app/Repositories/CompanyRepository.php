@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Company;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class CompanyRepository
@@ -54,5 +55,8 @@ class CompanyRepository
         ]);
    }
 
-
+   public function deleteCompany(Model $company): void
+   {
+        $company->delete();
+   }
 }

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/update/company-logo', [CompanyController::class, 'updateLogo'])->name('profile.update.company-logo');
     Route::patch('/profile/update/company-info', [CompanyController::class, 'updateCompanyInfo'])->name('profile.update.company-info');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/company/delete/{company}', [CompanyController::class, 'deleteCompany'])->name('company.delete');
 });
 
 require __DIR__.'/auth.php';
