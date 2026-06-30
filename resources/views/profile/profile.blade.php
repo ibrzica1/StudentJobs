@@ -81,6 +81,9 @@
             <div class="card shadow-sm border-0">
 
                 <div class="card-body p-4">
+                    @if($errors->any())
+                        <div class="alert alert-danger">{{$errors->first()}}</div>
+                    @endif
 
                     <h2 class="fw-bold mb-4">
                         Edit Information
@@ -383,7 +386,9 @@
                             @endforeach
 
                         @endif
-
+                        
+                            <livewire:profile-livewire />
+                        
                     @endif
 
                 </div>

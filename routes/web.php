@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/update/company-info', [CompanyController::class, 'updateCompanyInfo'])->name('profile.update.company-info');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::delete('/company/delete/{company}', [CompanyController::class, 'deleteCompany'])->name('company.delete');
+    Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
 });
 
 require __DIR__.'/auth.php';
