@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::controller(JobController::class)->prefix('/job')->group(function() {
     Route::name('job.')->group(function() {

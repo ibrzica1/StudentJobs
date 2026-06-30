@@ -5,7 +5,11 @@
 @endsection
 
 @section("content")
-<a href="{{route('job.helper.create.page')}}">Post a helper job</a>
-<a href="{{route('job.create.page')}}">Post a job</a>
+
+@foreach ($jobs as $job)
+    <p>{{$job->title}}</p>
+@endforeach
+
+<div>{{$jobs->links()}}</div>
 
 @endsection

@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
-    public function view()
+    public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::latest('created_at')->paginate();
+        
+        return view('welcome',['jobs' => $jobs]);
     }
 }
