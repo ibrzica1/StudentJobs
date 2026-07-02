@@ -56,6 +56,24 @@
                             <livewire:location-search />
                         </div>
 
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Company</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <img src="{{ asset('storage/images/icons/company.svg') }}" width="20">
+                                </span>
+                                <select name="company_id" class="form-select custom-input">
+                                    <option value="">NONE</option>
+                                    @foreach ($companies as $company)
+                                        <option value="{{$company->id}}">
+                                            {{$company->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Setting Type</label>

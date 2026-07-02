@@ -24,6 +24,11 @@ class CreateJobRequest extends FormRequest
                 'numeric',
                 'exists:locations,id'
             ],
+            'company_id' => [
+                'nullable',
+                'numeric',
+                'exists:companies,id'
+            ],
             'setting_type' => [
                 'required',
                 'string',

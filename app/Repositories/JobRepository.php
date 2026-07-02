@@ -42,6 +42,7 @@ class JobRepository
             'title' => $request['title'],
             'employer_id' => Auth::id(),
             'location_id' => $request['location_id'],
+            'company_id' => $request['company_id'],
             'setting_type' => $request['setting_type'],
             'weekly_hours' => $request['weekly_hours'],
             'start_date' => $request['start_date'],

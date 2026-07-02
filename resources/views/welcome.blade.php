@@ -7,7 +7,21 @@
 @section("content")
 
 @foreach ($jobs as $job)
-    <p>{{$job->title}}</p>
+    <div>
+        <div></div>
+
+        <div>
+
+            <div></div>
+            <div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
+        </div>
+    </div>
 @endforeach
 
 <div>{{$jobs->links()}}</div>

@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
+use App\Repositories\CompanyRepository;
 use App\Repositories\JobRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
     private $jobRepository;
+    private $companyRepository;
 
     public function __construct()
     {
         $this->jobRepository = new JobRepository();
+        $this->companyRepository = new CompanyRepository();
     }
 
     public function createJobHelperPage()
@@ -29,7 +33,8 @@ class JobController extends Controller
 
     public function createJobPage()
     {
-        return view("jobCreate");
+        $companies = $this->companyRepository->getUserCompanies(Auth::id());
+        return view('jobCreate',['companies' => $companies]);
     }
 
     public function createJob(CreateJobRequest $request)

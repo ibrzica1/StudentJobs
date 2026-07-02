@@ -18,7 +18,11 @@ class CompanyRepository
    public function getCompany(int $id)
    {
         return $this->companyModel->whereId($id)->first();
+   }
 
+   public function getUserCompanies(int $userId)
+   {
+        return $this->companyModel->where('user_id',$userId)->get();
    }
 
    public function store($request, $userId)
