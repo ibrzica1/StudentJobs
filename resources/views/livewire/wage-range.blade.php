@@ -10,6 +10,6 @@
         wire:show="showHappy">
     </div>
     <input type="range" wire:input="updateWage($event.target.value)"
-     name="range" min=14 max=29 value={{$wage}} step="0.5">
+     name="wage" min=14 max=29 value={{$wage}} step="0.5">
     <p>{{$wage}} euros per hour</p>
 </div>

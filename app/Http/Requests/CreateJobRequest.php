@@ -29,6 +29,7 @@ class CreateJobRequest extends FormRequest
                 'numeric',
                 'exists:companies,id'
             ],
+            'wage' => 'required|numeric',
             'setting_type' => [
                 'required',
                 'string',
