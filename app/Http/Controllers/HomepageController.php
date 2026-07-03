@@ -10,7 +10,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $jobs = Job::latest('created_at')->paginate();
+        $jobs = Job::with('company','location')->latest('created_at')->paginate();
         
         return view('welcome',['jobs' => $jobs]);
     }
