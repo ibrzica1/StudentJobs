@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
 class Job extends Model
 {
@@ -48,6 +49,11 @@ class Job extends Model
         "indefinite","1-4 weeks","1 month","2 months",
         "3-5 months","6 months","1 year","2 years","3 years"
     ];
+
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
+    }
 
     public function employer(): BelongsTo
     {

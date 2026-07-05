@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Company;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,6 @@ class CompanyRepository
    public function store($request, $userId)
    {
         $logo = null;
-
         if($request['imageCompany']){
             $path = $request['imageCompany']->store('images/company_logo','public');
             $logo = basename($path);

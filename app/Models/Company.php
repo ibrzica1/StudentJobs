@@ -19,8 +19,8 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function company(): HasMany
+    public function jobs(): HasMany
     {
-        return $this->hasMany(Company::class);
+        return $this->hasMany(Job::class);
     }
 }
