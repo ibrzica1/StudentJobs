@@ -18,7 +18,7 @@
 </div>
 
 @foreach ($jobs as $job)
-    <a href="" class="container d-flex mx-6 my-4
+    <a href="{{route('job.show',['job' => $job->id])}}" class="container d-flex mx-6 my-4
      p-4 bg-white column-gap-3 rounded shadow">
         <div class="col-3">
             @if ($job->company === null)
