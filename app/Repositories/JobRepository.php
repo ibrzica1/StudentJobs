@@ -55,4 +55,9 @@ class JobRepository
 
         return $job;
     }
+
+    public function latestJobs(int $limit)
+    {
+        return $this->jobModel->latest()->take($limit)->get();
+    }
 }

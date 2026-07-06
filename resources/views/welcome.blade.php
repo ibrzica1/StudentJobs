@@ -88,7 +88,8 @@
                         <div class="text-center">{{Carbon::parse($job->start_date)->year}}</div>
                     </div>
                     <div>
-                        <div class="fw-bold text-center">{{Carbon::parse($job->from)->format('H:i')}} - {{Carbon::parse($job->to)->format('H:i')}}</div>
+                        <div class="fw-bold text-center">{{Carbon::parse($job->from)->format('H:i')}}
+                             - {{Carbon::parse($job->to)->format('H:i')}}</div>
                         <div class="text-center">{{$time->durationHours($job->from,$job->to)}} hours</div>
                     </div>
                 </div>
