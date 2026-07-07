@@ -29,8 +29,9 @@ class JobController extends Controller
         return view("showJob",['job' => $job],['latestJobs' => $latestJobs]);
     }
 
-    public function createJobHelperPage()
+    public function createJobHelperPage($category)
     {
+        
         return view("helperJobCreate");
     }
 
@@ -48,5 +49,10 @@ class JobController extends Controller
     public function createJob(CreateJobRequest $request)
     {
         $this->jobRepository->createJob($request);
+    }
+
+    public function helperCategories()
+    {
+        return view('helperCategories');
     }
 }

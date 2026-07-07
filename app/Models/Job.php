@@ -23,23 +23,22 @@ class Job extends Model
 
     const JOB = "job";
     const HELPER_JOB = "helper-job";
-    const CONSTRUCTION_HELPER = "Construction Helper";
-    const MOVING_HELPER = "Moving Helper";
-    const DECLUTTER_HELPER = "Declutter Helper";
-    const EVENT_HELPER = "Event Helper";
-    const LOGISTIK_HELPER = "Logistik Helper";
-    const OFFICE_HELPER = "Office Helper";
-    const TUTOR_HELPER = "Tutor Helper";
-    const IT_HELPER = "It Helper";
-    const BABYSITTER_HELPER = "Babysitter Helper";
-    const DRIVER_HELPER = "Driver Helper";
-    const OTHER = "Other";
+    const CONSTRUCTION_HELPER = "Construction";
+    const MOVING_HELPER = "Moving";
+    const DECLUTTER_HELPER = "Declutter";
+    const EVENT_HELPER = "Event";
+    const LOGISTICS_HELPER = "Logistics";
+    const OFFICE_HELPER = "Office";
+    const TUTOR_HELPER = "Tutor";
+    const IT_HELPER = "It";
+    const BABYSITTER_HELPER = "Babysitter";
+    const DRIVER_HELPER = "Driver";
 
     const ALLOWED_HELPER_TYPES = [
         self::CONSTRUCTION_HELPER, self::MOVING_HELPER, self::DECLUTTER_HELPER,
-        self::EVENT_HELPER, self::LOGISTIK_HELPER, self::OFFICE_HELPER,
+        self::EVENT_HELPER, self::LOGISTICS_HELPER, self::OFFICE_HELPER,
         self::TUTOR_HELPER, self::IT_HELPER, self::BABYSITTER_HELPER,
-        self::DRIVER_HELPER, self::OTHER
+        self::DRIVER_HELPER
     ];
 
     const ALLOWED_SETTING_TYPES = [

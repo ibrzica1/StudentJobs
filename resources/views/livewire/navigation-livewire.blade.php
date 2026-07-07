@@ -11,8 +11,8 @@
         <div class="absolute top-full left-0 px-3 py-4 bg-[#f4bdbd] rounded-br-[10px] z-50" 
              wire:show="showMenu"
              wire:click.outside="showMenu = false">
-                <a href="{{route('job.create.page')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find an employee</a>
-                <a href="{{route('job.helper.create.page')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find a helper</a>
+                <a href="{{route('job.helper.categories')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find an employee</a>
+                <a href="{{route('job.helper.categories')}}" class="block px-4 py-2 hover:bg-white/50 rounded transition-colors text-gray-800">Find a helper</a>
         </div>
         
         <a href="/" class="p-0 m-0">
