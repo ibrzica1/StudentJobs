@@ -49,6 +49,148 @@ class Job extends Model
         "3-5 months","6 months","1 year","2 years","3 years"
     ];
 
+    const ROLES = [
+        'Construction' => [
+            'TITLE' => 'Construction',
+            'EXPECTATIONS' => [
+                'Previous construction experience',
+                'Physical fitness',
+                'Reliability and punctuality',
+                'Safety awareness',
+                'Teamwork skills',
+                'Safety shoes and work clothes',
+                'Driving licence',
+                'Ability to lift heavy objects',
+            ],
+        ],
+
+        'Moving' => [
+            'TITLE' => 'Moving',
+            'EXPECTATIONS' => [
+                'Physically fit',
+                'Able to lift heavy objects',
+                'Reliable and punctual',
+                'Team player',
+                'Customer-friendly',
+                'Flexible working hours',
+                'Driving licence is an advantage',
+                'Positive attitude',
+            ],
+        ],
+
+        'Declutter' => [
+            'TITLE' => 'Declutter',
+            'EXPECTATIONS' => [
+                'Physically fit',
+                'Reliable and punctual',
+                'Organized and detail-oriented',
+                'Team player',
+                "Respectful of clients' belongings",
+                'Basic English or German',
+                'Positive attitude',
+                'Previous experience is a plus',
+            ],
+        ],
+
+        'Event' => [
+            'TITLE' => 'Event',
+            'EXPECTATIONS' => [
+                'Reliable and punctual',
+                'Physically fit',
+                'Team player',
+                'Good communication skills',
+                'Customer-friendly attitude',
+                'Willingness to work flexible hours',
+                'Ability to follow instructions',
+                'Positive attitude',
+            ],
+        ],
+
+        'Logistics' => [
+            'TITLE' => 'Logistics',
+            'EXPECTATIONS' => [
+                'Reliable and punctual',
+                'Physically fit',
+                'Team player',
+                'Willingness to work flexible hours',
+                'Ability to follow instructions',
+                'Safety awareness',
+                'Forklift driving licence',
+                'Good organizational skills',
+            ],
+        ],
+
+        'Office' => [
+            'TITLE' => 'Office',
+            'EXPECTATIONS' => [
+                'Reliable and punctual',
+                'Proficiency in basic office software (Word, Excel, Email)',
+                'Good organizational and administrative skills',
+                'Professional communication skills',
+                'Attention to detail',
+                'Ability to handle confidential information',
+                'Proactive and efficient in multi-tasking',
+                'Positive attitude',
+            ],
+        ],
+
+        'Tutor' => [
+            'TITLE' => 'Tutor',
+            'EXPECTATIONS' => [
+                'Strong knowledge of the subject matter',
+                'Patience and empathetic approach',
+                'Excellent communication and teaching skills',
+                'Reliable and punctual',
+                'Ability to adapt teaching style to individual needs',
+                'Encouraging and motivating personality',
+                'Previous teaching or tutoring experience is a plus',
+                'Reliable internet connection (if remote)',
+            ],
+        ],
+
+        'It' => [
+            'TITLE' => 'IT',
+            'EXPECTATIONS' => [
+                'Solid understanding of hardware/software troubleshooting',
+                'Problem-solving mindset',
+                'Ability to explain technical concepts simply',
+                'Reliable and punctual',
+                'Continuous learner (keeping up with tech trends)',
+                'Attention to detail and security awareness',
+                'Customer-friendly attitude',
+                'Relevant certifications or technical education is a plus',
+            ],
+        ],
+
+        'Babysitter' => [
+            'TITLE' => 'Babysitter',
+            'EXPECTATIONS' => [
+                'Proven experience with childcare',
+                'Patience, responsibility, and reliability',
+                'Safety-conscious and attentive',
+                'Ability to engage children in educational/fun activities',
+                'Clean criminal record (background check)',
+                'Clear and kind communication with parents',
+                'Basic First Aid knowledge is a plus',
+                'Positive and nurturing personality',
+            ],
+        ],
+
+        'Driver' => [
+            'TITLE' => 'Driver',
+            'EXPECTATIONS' => [
+                'Valid driving licence (clean driving record)',
+                'Excellent knowledge of local traffic rules and routes',
+                'Reliable and punctual',
+                'Safety-oriented driving habits',
+                'Ability to handle vehicle maintenance checks',
+                'Customer-friendly and professional',
+                'Ability to stay calm in stressful traffic conditions',
+                'Flexible working hours',
+            ],
+        ],
+    ];
+
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
