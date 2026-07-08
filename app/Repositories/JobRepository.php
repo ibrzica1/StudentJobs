@@ -58,8 +58,13 @@ class JobRepository
         return $job;
     }
 
-    public function latestJobs(int $limit)
+    public function similarJobs(int $limit, string $category, int $id)
     {
-        return $this->jobModel->latest()->take($limit)->get();
+        return $this->jobModel
+        ->where('category',$category)
+        ->latest()
+        ->take($limit)
+        ->get()
+        ->except($id);
     }
 }

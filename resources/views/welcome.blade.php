@@ -64,7 +64,7 @@
 
                 
                 @if ($job->type === 'job')
-                <div>
+                <div class="m-2 column-gap-3">
                     <div class="d-flex column-gap-2 mb-2">
                         <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
                         <p>{{$job->start_date}}</p>

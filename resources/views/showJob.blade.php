@@ -177,9 +177,9 @@
 </div>
 
 <div class="container mt-4">
-    <h4 class="text-end h4">Other interesting jobs</h4>
+    <h4 class="text-end h4">Other similar jobs</h4>
 
-    @foreach ($latestJobs as $job)
+    @foreach ($similarJobs as $job)
         <a href="{{route('job.show',['job' => $job->id])}}" class="container d-flex mx-6 my-4
      p-4 bg-white column-gap-3 rounded shadow">
         <div class="col-3">

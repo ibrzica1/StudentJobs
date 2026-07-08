@@ -26,8 +26,8 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $job->load('location','company');
-        $latestJobs = $this->jobRepository->latestJobs(10);
-        return view("showJob",['job' => $job],['latestJobs' => $latestJobs]);
+        $similarJobs = $this->jobRepository->similarJobs(10,$job->category,$job->id);
+        return view("showJob",['job' => $job],['similarJobs' => $similarJobs]);
     }
 
     public function createJobHelperPage($category)
