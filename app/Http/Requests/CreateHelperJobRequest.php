@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Location;
+use App\Rules\AllowedCategoryTypes;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -18,6 +19,11 @@ class CreateHelperJobRequest extends FormRequest
     {
         return [
             'title' => "required|string",
+            'category' => [
+                'nullable',
+                'string',
+                new AllowedCategoryTypes()
+            ],
             'location_id' => [
                 'required',
                 'numeric',

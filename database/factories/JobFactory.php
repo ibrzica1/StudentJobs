@@ -17,6 +17,7 @@ class JobFactory extends Factory
     {
         return [
             'type' => Job::JOB,
+            'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
             'title' => fake()->text(20),
             'employer_id' => User::factory(),
             'location_id' => fake()->randomElement(Location::pluck('id')),
@@ -43,6 +44,7 @@ class JobFactory extends Factory
         return $this->state(function ($array, $attributes) {
             return [
                 'type' => Job::HELPER_JOB,
+                'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
                 'title' => fake()->text(20),
                 'employer_id' => User::factory(),
                 'location_id' => fake()->randomElement(Location::pluck('id')),

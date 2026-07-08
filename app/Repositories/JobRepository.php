@@ -18,6 +18,7 @@ class JobRepository
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::HELPER_JOB,
+            'category' => $request['category'],
             'title' => $request['title'],
             'employer_id' => Auth::id(),
             'location_id' => $request['location_id'],
@@ -39,6 +40,7 @@ class JobRepository
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::JOB,
+            'category' => $request['category'],
             'title' => $request['title'],
             'employer_id' => Auth::id(),
             'location_id' => $request['location_id'],

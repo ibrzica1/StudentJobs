@@ -15,7 +15,7 @@ Route::controller(JobController::class)->prefix('/job')->group(function() {
         Route::get('/create-page/{category}','createJobPage')->name('create.page');
         Route::post('/create','createJob')->name('create');
         Route::get('/show/{job}','show')->name('show');
-        Route::get('/categories/{type}','categories')->name('categories');
+        Route::get('/categories/{jobType}','categories')->name('categories');
     });
 });
 

@@ -34,7 +34,7 @@ use App\Models\Job;
 <div class="container">
     <div class="d-flex justify-content-center align-items-center
                 mt-4 mb-1 ">
-        @if ($type === 'helper')
+        @if ($jobType === 'helper')
         <a href="{{route('job.helper.create.page',['category' => "none"])}}"
             class="btn bg-info col-6 shadow py-4">
             Continue with your own category
@@ -51,7 +51,8 @@ use App\Models\Job;
         @foreach (Job::ALLOWED_HELPER_TYPES as $helperType)
         <div class="btn col-6 col-sm-4 
                 bg-white my-4 mx-2 py-2 shadow">
-            @if ($type === 'helper')
+                
+            @if($jobType === 'helper')
                 <a href="{{route('job.helper.create.page',['category' => $helperType])}}">
                     {{$helperType}}
                 </a>

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\AllowedDurationTypes;
 use App\Rules\AllowedSettingTypes;
+use App\Rules\AllowedCategoryTypes;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -19,6 +20,11 @@ class CreateJobRequest extends FormRequest
     {
         return [
             'title' => "required|string",
+            'category' => [
+                'nullable',
+                'string',
+                new AllowedCategoryTypes()
+            ],
             'location_id' => [
                 'required',
                 'numeric',

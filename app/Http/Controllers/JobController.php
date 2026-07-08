@@ -8,6 +8,7 @@ use App\Http\Requests\CreateJobRequest;
 use App\Models\Job;
 use App\Repositories\CompanyRepository;
 use App\Repositories\JobRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,9 +35,10 @@ class JobController extends Controller
         return view('helperJobCreate',['category' => $category]);
     }
 
-    public function createJobHelper(CreateHelperJobRequest $request)
+    public function createJobHelper(CreateHelperJobRequest $request): RedirectResponse
     {
         $this->jobRepository->createHelperJob($request);
+        return redirect()->route('homepage');
     }
 
     public function createJobPage($category)
@@ -45,13 +47,14 @@ class JobController extends Controller
         return view('jobCreate',['companies' => $companies, 'category' => $category]);
     }
 
-    public function createJob(CreateJobRequest $request)
+    public function createJob(CreateJobRequest $request): RedirectResponse
     {
         $this->jobRepository->createJob($request);
+        return redirect()->route('homepage');
     }
 
-    public function categories($type)
+    public function categories($jobType)
     {
-        return view('categories',['type' => $type]);
+        return view('categories',['jobType' => $jobType]);
     }
 }

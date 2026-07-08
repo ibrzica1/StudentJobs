@@ -16,7 +16,7 @@ class Job extends Model
     protected $table = 'jobs';
 
     protected $fillable = [
-        'type','title','employer_id','location_id','company_id','address','setting_type',
+        'type','category','title','employer_id','location_id','company_id','address','setting_type',
         'weekly_hours','employee_amount','wage','start_date','from','to','duration',
         'urgent','description','tasks','expectation','offer'
     ];

@@ -42,6 +42,7 @@ use App\Models\Job;
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">Booking details</h6>
 
+                        <input type="hidden" name="category" value="{{$category}}">
                         <div class="mb-3">
                             <label class="form-label">Title / Your booking</label>
                             <div class="input-group">
@@ -118,11 +119,11 @@ use App\Models\Job;
                         <div class="mb-4">
                             <label class="form-label">Expectation</label>
                             @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
-                                <textarea name="expectetion" class="form-control custom-input" rows="8">
+                                <textarea name="expectation" class="form-control custom-input" rows="8">
                                 {{Job::ROLES[$category]['EXPECTATIONS']}}
                                 </textarea>
                             @else
-                                <textarea name="expectetion" class="form-control custom-input" rows="3"></textarea>
+                                <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
                             @endif
                             
                         </div>
