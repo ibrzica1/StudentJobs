@@ -31,8 +31,7 @@ class JobController extends Controller
 
     public function createJobHelperPage($category)
     {
-        
-        return view("helperJobCreate");
+        return view('helperJobCreate',['category' => $category]);
     }
 
     public function createJobHelper(CreateHelperJobRequest $request)
@@ -40,10 +39,10 @@ class JobController extends Controller
         $this->jobRepository->createHelperJob($request);
     }
 
-    public function createJobPage()
+    public function createJobPage($category)
     {
         $companies = $this->companyRepository->getUserCompanies(Auth::id());
-        return view('jobCreate',['companies' => $companies]);
+        return view('jobCreate',['companies' => $companies, 'category' => $category]);
     }
 
     public function createJob(CreateJobRequest $request)
@@ -51,8 +50,8 @@ class JobController extends Controller
         $this->jobRepository->createJob($request);
     }
 
-    public function helperCategories()
+    public function categories($type)
     {
-        return view('helperCategories');
+        return view('categories',['type' => $type]);
     }
 }

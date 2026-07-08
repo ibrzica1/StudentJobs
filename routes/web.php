@@ -12,10 +12,10 @@ Route::controller(JobController::class)->prefix('/job')->group(function() {
     Route::name('job.')->group(function() {
         Route::get('/helper-create-page/{category}','createJobHelperPage')->name('helper.create.page');
         Route::post('/helper-create','createJobHelper')->name('helper.create');
-        Route::get('/create-page','createJobPage')->name('create.page');
+        Route::get('/create-page/{category}','createJobPage')->name('create.page');
         Route::post('/create','createJob')->name('create');
         Route::get('/show/{job}','show')->name('show');
-        Route::get('/helper-categories','helperCategories')->name('helper.categories');
+        Route::get('/categories/{type}','categories')->name('categories');
     });
 });
 

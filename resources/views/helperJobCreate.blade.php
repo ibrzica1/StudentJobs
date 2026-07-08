@@ -4,6 +4,10 @@
 
 @section("content")
 
+<?php 
+use App\Models\Job;
+?>
+
 <style>
     .custom-input {
         border: 1px solid #f00505 !important;
@@ -42,9 +46,15 @@
                             <label class="form-label">Title / Your booking</label>
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
-                                <div class="flex-grow-1">
-                                    <livewire:helper-type-search />
-                                </div>
+                                @if (isset(Job::ROLES[$category]['TITLE']))
+                                    <input type="text" name="title" 
+                                    value="{{Job::ROLES[$category]['TITLE']}} Helper Needed"
+                                    class="form-control custom-input">
+                                @else
+                                    <div class="flex-grow-1">
+                                        <livewire:helper-type-search />
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -96,12 +106,25 @@
 
                         <div class="mb-3">
                             <label class="form-label">Tasks</label>
-                            <textarea name="tasks" class="form-control custom-input" rows="3"></textarea>
+                            @if (isset(Job::ROLES[$category]['TASKS']))
+                                <textarea name="tasks" class="form-control custom-input" rows="8">
+                                {{Job::ROLES[$category]['TASKS']}}
+                                </textarea>
+                            @else
+                               <textarea name="tasks" class="form-control custom-input" rows="3"></textarea>
+                            @endif
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Expectation</label>
-                            <textarea name="expectetion" class="form-control custom-input" rows="3"></textarea>
+                            @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
+                                <textarea name="expectetion" class="form-control custom-input" rows="8">
+                                {{Job::ROLES[$category]['EXPECTATIONS']}}
+                                </textarea>
+                            @else
+                                <textarea name="expectetion" class="form-control custom-input" rows="3"></textarea>
+                            @endif
+                            
                         </div>
 
                         <div class="mt-4">

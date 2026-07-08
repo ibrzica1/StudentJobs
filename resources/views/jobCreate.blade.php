@@ -47,7 +47,14 @@
                                 <span class="input-group-text">
                                     <img src="{{ asset('storage/images/icons/title.svg') }}" width="20">
                                 </span>
-                               <input type="text" name="title" class="form-control custom-input" placeholder="Job Title" required>
+                                @if (isset(Job::ROLES[$category]['TITLE']))
+                                    <input type="text" name="title" 
+                                    value="{{Job::ROLES[$category]['TITLE']}} Employee Needed"
+                                    class="form-control custom-input">
+                                @else
+                                  <input type="text" name="title" class="form-control custom-input" placeholder="Job Title" required>
+                                @endif
+                                
                             </div>
                         </div>
 
@@ -141,7 +148,13 @@
 
                         <div class="mb-3">
                             <label class="form-label">Expectation</label>
-                            <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
+                            @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
+                                <textarea name="expectetion" class="form-control custom-input" rows="8">
+                                {{Job::ROLES[$category]['EXPECTATIONS']}}
+                                </textarea>
+                            @else
+                                <textarea name="expectetion" class="form-control custom-input" rows="3"></textarea>
+                            @endif
                         </div>
 
                         <div class="mb-4">
