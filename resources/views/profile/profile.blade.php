@@ -47,32 +47,49 @@
                         Student Profile
                     </p>
 
+                    
+                    @if ($user->role === 'student')
                     <div class="row text-center mb-4">
-
                         <div class="col">
                             <h4 class="fw-bold mb-0">0</h4>
                             <small class="text-muted">
-                                BOOKINGS
+                                TOTAL APPLICATIONS
                             </small>
                         </div>
 
                         <div class="col">
                             <h4 class="fw-bold mb-0">0</h4>
                             <small class="text-muted">
-                                INVOICES
+                                JOBS RECIEVED
                             </small>
                         </div>
-
                     </div>
+                        <a href="#" class="btn btn-success w-100">
+                            FIND JOB
+                        </a>
+                    </div>
+                    @else
+                    <div class="row text-center mb-4">
+                        <div class="col">
+                                <h4 class="fw-bold mb-0">0</h4>
+                                <small class="text-muted">
+                                    BOOKINGS
+                                </small>
+                            </div>
 
-                    <a href="#" class="btn btn-success w-100">
-                        BOOK STUDENTS
-                    </a>
-
-                </div>
-
+                            <div class="col">
+                                <h4 class="fw-bold mb-0">0</h4>
+                                <small class="text-muted">
+                                    INVOICES
+                                </small>
+                            </div>
+                        </div>
+                            <a href="#" class="btn btn-success w-100">
+                                BOOK STUDENTS
+                            </a>
+                        </div>
+                     @endif
             </div>
-
         </div>
 
         {{-- EDIT PROFILE --}}
