@@ -25,6 +25,11 @@ class User extends Authenticatable
         'profile_picture',
         'street',
         'house_number',
+        'car_available',
+        'truck_licence',
+        'car_licence',
+        'university',
+        'certificates',
     ];
 
     /**
