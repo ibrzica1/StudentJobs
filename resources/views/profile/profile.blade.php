@@ -408,6 +408,30 @@
                         
                     @endif
 
+                    @if ($user->role === 'student')
+                        <form
+                        action="{{ route('profile.update.user-address') }}"
+                        method="POST"
+                    >
+                        @csrf
+                        @method('PATCH')
+
+                        <hr class="my-4">
+
+                        {{-- MOBILITY --}}
+                        <h6 class="text-uppercase text-muted fw-bold mb-3">
+                            Mobility
+                        </h6>
+
+                        <livewire:mobility/>
+
+                         <button
+                            type="submit"
+                            class="btn btn-success btn-lg w-100 py-3">
+                            SAVE CHANGES
+                        </button>
+                       </form>
+                    @endif
                 </div>
 
             </div>
