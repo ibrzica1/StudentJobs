@@ -12,13 +12,13 @@
         <div class="input-group column-gap-3 mb-2">
             <input type="hidden" wire:model="car_licence">
             <button type="button"
-                    wire:click=uppdateCarLicense(true)
+                    wire:click=uppdateCarLicense(1)
                     class="{{$car_licence ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 YES
             </button>    
             <button type="button"
-                    wire:click=uppdateCarLicense(false)
+                    wire:click=uppdateCarLicense(0)
                     class="{{$car_licence === 0 ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 NO
@@ -29,13 +29,13 @@
         <div class="input-group column-gap-3 mb-2">
             <input type="hidden" wire:model="car_available">
             <button type="button"
-                    wire:click=uppdateCarAvailable(true)
+                    wire:click=uppdateCarAvailable(1)
                     class="{{$car_available ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 YES
             </button>    
             <button type="button"
-                    wire:click=uppdateCarAvailable(false)
+                    wire:click=uppdateCarAvailable(0)
                     class="{{$car_available === 0 ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 NO
@@ -46,13 +46,13 @@
         <div class="input-group column-gap-3 mb-2">
             <input type="hidden" wire:model="truck_licence">
             <button type="button"
-                    wire:click=uppdateTruckLicense(true)
+                    wire:click=uppdateTruckLicense(1)
                     class="{{$truck_licence ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 YES
             </button>    
             <button type="button"
-                    wire:click=uppdateTruckLicense(false)
+                    wire:click=uppdateTruckLicense(0)
                     class="{{$truck_licence === 0 ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 NO

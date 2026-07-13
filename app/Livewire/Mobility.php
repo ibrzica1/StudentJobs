@@ -35,17 +35,17 @@ class Mobility extends Component
         $this->redirect(route('profile.edit'));
     }
 
-    public function uppdateCarLicense(bool $state)
+    public function uppdateCarLicense($state)
     {
         $this->car_licence = $state;
     }
 
-    public function uppdateCarAvailable(bool $state)
+    public function uppdateCarAvailable($state)
     {
         $this->car_available = $state;
     }
 
-    public function uppdateTruckLicense(bool $state)
+    public function uppdateTruckLicense($state)
     {
         $this->truck_licence = $state;
     }
