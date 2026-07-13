@@ -411,7 +411,7 @@
                     @if ($user->role === 'student')
                           <livewire:mobility/>
 
-                        <form action="{{route('profile.update.company-info')}}" method="post">
+                        <form action="{{route('profile.update.user-education')}}" method="post">
                         @csrf
                         @method('PATCH')
 
@@ -423,15 +423,13 @@
                         <div class="mb-3">
                             <label class="form-label">University</label>
                             <textarea name="university" class="form-control
-                             custom-input" rows="8" placeholder="{{$user->university}}">
-                            </textarea>
+                             custom-input" rows="8">{{$user->university}}</textarea>
                         </div>
 
                          <div class="mb-3">
                             <label class="form-label">Certificates</label>
                             <textarea name="certificates" class="form-control
-                             custom-input" rows="8" placeholder="{{$user->certificates}}">
-                            </textarea>
+                             custom-input" rows="8">{{$user->certificates}}</textarea>
                         </div>
 
                         <button

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileAddressUpdateRequest;
 use App\Http\Requests\ProfileAvatarUpdateRequest;
+use App\Http\Requests\ProfileEducationUpdateRequest;
 use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileMobilityUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -62,6 +63,18 @@ class ProfileController extends Controller
         $path = $request->profilePicture->store('images/user_avatar','public');
         $avatar = basename($path);
         $request->user()->fill(['profile_picture' => $avatar,]);
+        
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    public function updateUserEducation(ProfileEducationUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->update([
+            'university' => $request['university'],
+            'certificates' => $request['certificates'],
+        ]);
         
         $request->user()->save();
 
