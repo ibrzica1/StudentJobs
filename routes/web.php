@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::delete('/company/delete/{company}', [CompanyController::class, 'deleteCompany'])->name('company.delete');
     Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
+    Route::get('/application/create/{job}', [ApplicationController::class, 'create'])->name('application.create');
 });
 
 require __DIR__.'/auth.php';
