@@ -168,8 +168,11 @@
         <div class="p-4">{{$job->tasks}}</div>
     </div>
     <div class="justify-content-end">
-        <button class="btn bg-success text-white
-        px-8 fw-bold">Apply now</button>
+        <a href="{{route('application.create',['job' => $job->id])}}"
+        class="btn bg-success text-white
+        px-8 fw-bold">
+            Apply now
+        </a>
     </div>
 </div>    
 @endif
