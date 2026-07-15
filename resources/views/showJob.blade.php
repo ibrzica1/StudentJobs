@@ -92,8 +92,11 @@
         <div class="p-4">{{$job->offer}}</div>
     </div>
     <div class="justify-content-end align-item-end">
-        <button class="btn bg-success text-white
-        px-8 fw-bold">Apply now</button>
+        <a href="{{route('application.create',['job' => $job->id])}}"
+        class="btn bg-success text-white
+        px-8 fw-bold">
+            Apply now
+        </a>
     </div>
     
 </div>
