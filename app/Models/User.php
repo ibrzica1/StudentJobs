@@ -23,6 +23,7 @@ class User extends Authenticatable
         'telephone',
         'role',
         'profile_picture',
+        'cv',
         'street',
         'house_number',
         'car_available',

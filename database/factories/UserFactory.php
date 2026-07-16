@@ -35,6 +35,7 @@ class UserFactory extends Factory
             'telephone' => fake()->numberBetween(100000000,999999999),
             'role' => fake()->randomElement(['employer','student']),
             'profile_picture' => null,
+            'cv' => null,
             'street' => fake()->streetAddress(),
             'house_number' => strval(fake()->numberBetween(1,100)),
             'remember_token' => Str::random(10),
