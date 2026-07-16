@@ -9,6 +9,9 @@
     $time = new TimeService();
 
 ?>
+<style>
+
+</style>
 <body class="bg-body-secondary">
 <div class="container p-5">
 
@@ -126,4 +129,54 @@
     @endif
 </div>
 </div>
+
+<div class="container row bg-white p-2 rounded shadow h-100 mw-75 mt-3">
+    <p class="text-end text-secondary">COVER LETTER</p>
+
+    <p class="fw-bold">Application text</p>
+    <p>Below is your application text for this job</p>
+
+    <textarea name=""
+    class="form-control custom-input mt-2 text-secondary" rows="8">
+Dear Mr./Mrs. {{$job->employer->lastName}}
+
+
+   
+Thank you for considering my application.
+Sincerly,
+{{$user->firstName}} {{$user->lastName}}
+    </textarea>
+</div>
+
+@if ($user->profile_picture)
+    <div class="container justify-content-center bg-white 
+    py-2  px-4 rounded shadow h-100 mw-75 mt-3">
+        <p class="text-end text-secondary">APPLICATION PHOTO</p>
+        <div class="d-flex">
+            <img
+                src="{{ asset('storage/images/user_avatar/'.$user->profile_picture) }}"
+                alt="Profile Picture"
+                class="rounded-circle shadow-sm mb-3 d-block mx-auto"
+                width="150"
+                height="150"
+                style="object-fit: cover;"
+            >
+            <a href="{{route('profile.edit')}}"
+                class="btn w-25 h-25 bg-success shadow text-white mt-9 px-2">
+                CHANGE AVATAR
+            </a>
+        </div>
+        
+    </div>
+@else
+    <div class="d-flex row justify-content-center bg-white 
+    py-2  px-4 rounded shadow mw-75 mt-3"
+    style="height: 150px;">
+        <p class="text-end text-secondary h-25">APPLICATION PHOTO</p>
+        <div class="w-100 h-75 d-flex justify-content-center align-items-center
+        border rounded">
+            <input id="file-upload" type="file"/>
+        </div>
+    </div>
+@endif
 @endsection

@@ -11,7 +11,7 @@ class ApplicationController extends Controller
 {
     public function create(Job $job)
     {
-        $job->load('location','company');
+        $job->load('location','company','employer');
         $user = Auth::user();
         return view('applicationCreate',['job' => $job],['user' => $user]);
     }

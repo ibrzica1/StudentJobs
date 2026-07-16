@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/update/user-education', [ProfileController::class, 'updateUserEducation'])->name('profile.update.user-education');
     Route::patch('/profile/update/company-logo', [CompanyController::class, 'updateLogo'])->name('profile.update.company-logo');
     Route::patch('/profile/update/company-info', [CompanyController::class, 'updateCompanyInfo'])->name('profile.update.company-info');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::delete('/company/delete/{company}', [CompanyController::class, 'deleteCompany'])->name('company.delete');
     Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
     Route::get('/application/create/{job}', [ApplicationController::class, 'create'])->name('application.create');
