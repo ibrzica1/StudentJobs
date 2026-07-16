@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/update/user-info', [ProfileController::class, 'updateUserInfo'])->name('profile.update.user-info');
     Route::patch('/profile/update/user-address', [ProfileController::class, 'updateUserAddress'])->name('profile.update.user-address');
     Route::patch('/profile/update/user-avatar', [ProfileController::class, 'updateUserAvatar'])->name('profile.update.user-avatar');
+    Route::patch('/profile/update/user-cv', [ProfileController::class, 'updateUserCv'])->name('profile.update.user-cv');
     Route::patch('/profile/update/user-mobility', [ProfileController::class, 'updateUserMobility'])->name('profile.update.user-mobility');
     Route::patch('/profile/update/user-education', [ProfileController::class, 'updateUserEducation'])->name('profile.update.user-education');
     Route::patch('/profile/update/company-logo', [CompanyController::class, 'updateLogo'])->name('profile.update.company-logo');

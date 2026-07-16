@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileAddressUpdateRequest;
 use App\Http\Requests\ProfileAvatarUpdateRequest;
+use App\Http\Requests\ProfileCvUpdateRequest;
 use App\Http\Requests\ProfileEducationUpdateRequest;
 use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileMobilityUpdateRequest;
@@ -48,6 +49,21 @@ class ProfileController extends Controller
     public function updateUserAddress(ProfileAddressUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
+        
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+     /**
+     * Update the user's cv.
+     */
+    public function updateUserCv(ProfileCvUpdateRequest $request): RedirectResponse
+    {
+        Storage::disk('public')->delete('documents/cv/'. $request->user()->cv);
+        $path = $request->cv->store('documents/cv/','public');
+        $cv = basename($path);
+        $request->user()->fill(['cv' => $cv,]);
         
         $request->user()->save();
 
