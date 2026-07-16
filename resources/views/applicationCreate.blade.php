@@ -129,14 +129,21 @@
     @endif
 </div>
 </div>
+<form action="" 
+method="post"
+enctype="multipart/form-data">
+@csrf
 
+<input type="hidden" name="jobId" value="{{$job->id}}">
 <div class="container row bg-white p-2 rounded shadow h-100 mw-75 mt-3">
     <p class="text-end text-secondary">COVER LETTER</p>
 
-    <p class="fw-bold">Application text</p>
-    <p>Below is your application text for this job</p>
+    <p class="text-end fw-bold">Application text</p>
+    <p class="text-end text-secondary"
+    style="font-size: 14px">
+        Below is your application text for this job</p>
 
-    <textarea name=""
+    <textarea name="applicationText"
     class="form-control custom-input mt-2 text-secondary" rows="8">
 Dear Mr./Mrs. {{$job->employer->lastName}}
 
@@ -171,14 +178,64 @@ Sincerly,
 @else
     <div class="d-flex row justify-content-center bg-white 
     py-2  px-4 rounded shadow mw-75 mt-3"
-    style="height: 150px;">
-        <p class="text-end text-secondary h-25">APPLICATION PHOTO</p>
+    style="height: 210px;">
+        <p class="text-end fw-bold">APPLICATION PHOTO</p>
+        <p class="text-end text-secondary"
+        style="font-size: 14px">
+            Please upload your application photo here.</p>
         <div class="w-100 h-75 d-flex justify-content-center align-items-center
-        border rounded">
-            <input id="file-upload" type="file"/>
+        border rounded mb-2">
+            <input name="profilePicture" type="file"/>
         </div>
     </div>
 @endif
 
+@if ($user->cv)
+    <div class="container justify-content-center bg-white 
+    py-2  px-4 rounded shadow h-100 mw-75 mt-3">
+        <p class="text-end text-secondary">CV</p>
+        <div class="d-flex row justify-content-center"
+        style="height: 150px;">
+            <div class="d-flex h-50 justify-content-center align-items-center
+            column-gap-3 border rounded mt-2">
+                <img
+                    src="{{ asset('storage/images/icons/file.svg') }}"
+                    width="30"
+                    height="30"
+                >
+                <p>{{$user->cv}}</p>
+            </div>
+            <a href="{{route('profile.edit')}}"
+                class="btn w-25 h-25 bg-success shadow text-white px-2">
+                CHANGE CV
+            </a>
+        </div>
+        
+    </div>
+@else
+    <div class="d-flex row justify-content-center bg-white 
+    py-2  px-4 rounded shadow mw-75 mt-3"
+    style="height: 200px;">
+        <p class="text-end fw-bold">CV</p>
+        <p class="text-end text-secondary"
+        style="font-size: 14px">
+            Please upload your CV here.</p>
+        <div class="w-100 h-75 d-flex justify-content-center align-items-center
+        border rounded">
+            <input name="cv" type="file"/>
+        </div>
+    </div>
+@endif
+
+<div class="container d-flex row justify-content-center bg-white 
+    py-2  px-4 rounded shadow h-100 mw-75 mt-3">
+    <p class=" text-center text-secondary" 
+    style="font-size: 14px">
+        Please note that after you submit your application, your data will be submited to the employer
+    </p>
+    <button type="submit" class="btn btn-info text-white m-3">
+        Submit application</button>
+</div>
+</form>
 
 @endsection
