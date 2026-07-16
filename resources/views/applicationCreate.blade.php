@@ -156,20 +156,22 @@ Sincerly,
 </div>
 
 @if ($user->profile_picture)
-    <div class="container justify-content-center bg-white 
+    <div class="container d-flex flex-column justify-content-center bg-white 
     py-2  px-4 rounded shadow h-100 mw-75 mt-3">
         <p class="text-end text-secondary">APPLICATION PHOTO</p>
-        <div class="d-flex">
+        <div class="d-flex flex-column justify-content-center
+        align-items-center"
+        >
             <img
                 src="{{ asset('storage/images/user_avatar/'.$user->profile_picture) }}"
                 alt="Profile Picture"
-                class="rounded-circle shadow-sm mb-3 d-block mx-auto"
-                width="150"
-                height="150"
+                class="rounded h-50 shadow-sm mb-3 d-block mx-auto"
+                width="130"
+                height="130"
                 style="object-fit: cover;"
             >
             <a href="{{route('profile.edit')}}"
-                class="btn w-25 h-25 bg-success shadow text-white mt-9 px-2">
+                class="btn w-25 h-25 bg-success shadow text-white my-2 px-2">
                 CHANGE AVATAR
             </a>
         </div>
