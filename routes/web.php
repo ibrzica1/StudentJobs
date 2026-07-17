@@ -6,6 +6,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
+use App\Http\Middleware\StudentCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
@@ -50,7 +51,7 @@ Route::controller(CompanyController::class)->prefix('/company')->name('company.'
 Route::controller(ApplicationController::class)->prefix('/application')->name('application.')
 ->group(function() {
     Route::get('/create/{job}','create')
-    ->middleware(['auth'])->name('create');
+    ->middleware(['auth',StudentCheckMiddleware::class])->name('create');
 });
 
 require __DIR__.'/auth.php';
