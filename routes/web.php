@@ -6,45 +6,51 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
-Route::controller(JobController::class)->prefix('/job')->group(function() {
-    Route::name('job.')->group(function() {
-        Route::get('/helper-create-page/{category}','createJobHelperPage')
-        ->middleware(['auth',EmployerCheckMiddleware::class])->name('helper.create.page');
-        Route::post('/helper-create','createJobHelper')
-        ->middleware(['auth',EmployerCheckMiddleware::class])->name('helper.create');
-        Route::get('/create-page/{category}','createJobPage')
-        ->middleware(['auth',EmployerCheckMiddleware::class])->name('create.page');
-        Route::post('/create','createJob')
-        ->middleware(['auth',EmployerCheckMiddleware::class])->name('create');
-        Route::get('/show/{job}','show')->name('show');
-        Route::get('/categories/{jobType}','categories')
-        ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
-    });
+Route::controller(JobController::class)->prefix('/job')
+->name('job.')->group(function() {
+    Route::get('/helper-create/{category}','createJobHelper')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('helper.create');
+    Route::post('/helper-store','storeJobHelper')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('helper.store');
+    Route::get('/create/{category}','createJob')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('create');
+    Route::post('/store','storeJob')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('store');
+    Route::get('/show/{job}','show')->name('show');
+    Route::get('/categories/{jobType}','categories')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::controller(ProfileController::class)
+->middleware('auth')->prefix('/profile')->name('profile')->group(function() {
+    Route::get('/','edit')->name('edit');
+    Route::patch('/update/user-info','updateUserInfo')->name('update.user-info');
+    Route::patch('/update/user-address','updateUserAddress')->name('update.user-address');
+    Route::patch('/update/user-avatar','updateUserAvatar')->name('update.user-avatar');
+    Route::patch('/update/user-cv','updateUserCv')->name('update.user-cv');
+    Route::patch('/update/user-mobility','updateUserMobility')->name('update.user-mobility');
+    Route::patch('/update/user-education','updateUserEducation')->name('update.user-education');
+    Route::patch('/update/company-logo','updateLogo')->name('update.company-logo');
+    Route::patch('/update/company-info','updateCompanyInfo')->name('update.company-info');
+    Route::delete('/destroy','destroy')->name('destroy');
+});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile/update/user-info', [ProfileController::class, 'updateUserInfo'])->name('profile.update.user-info');
-    Route::patch('/profile/update/user-address', [ProfileController::class, 'updateUserAddress'])->name('profile.update.user-address');
-    Route::patch('/profile/update/user-avatar', [ProfileController::class, 'updateUserAvatar'])->name('profile.update.user-avatar');
-    Route::patch('/profile/update/user-cv', [ProfileController::class, 'updateUserCv'])->name('profile.update.user-cv');
-    Route::patch('/profile/update/user-mobility', [ProfileController::class, 'updateUserMobility'])->name('profile.update.user-mobility');
-    Route::patch('/profile/update/user-education', [ProfileController::class, 'updateUserEducation'])->name('profile.update.user-education');
-    Route::patch('/profile/update/company-logo', [CompanyController::class, 'updateLogo'])->name('profile.update.company-logo');
-    Route::patch('/profile/update/company-info', [CompanyController::class, 'updateCompanyInfo'])->name('profile.update.company-info');
-    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::delete('/company/delete/{company}', [CompanyController::class, 'deleteCompany'])->name('company.delete');
-    Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
-    Route::get('/application/create/{job}', [ApplicationController::class, 'create'])->name('application.create');
+Route::controller(CompanyController::class)->prefix('/company')->name('company.')
+->group(function() {
+    Route::delete('/delete/{company}','deleteCompany')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('delete');
+    Route::post('/store','store')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('store');
+});
+
+Route::controller(ApplicationController::class)->prefix('/application')->name('application.')
+->group(function() {
+    Route::get('/create/{job}','create')
+    ->middleware(['auth'])->name('create');
 });
 
 require __DIR__.'/auth.php';

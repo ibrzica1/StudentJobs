@@ -14,7 +14,7 @@ class JobRepository
        $this->jobModel = new Job();
     }
 
-    public function createHelperJob($request)
+    public function storeHelperJob($request)
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::HELPER_JOB,
@@ -36,7 +36,7 @@ class JobRepository
         return $job;
     }
 
-    public function createJob($request)
+    public function storeJob($request)
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::JOB,

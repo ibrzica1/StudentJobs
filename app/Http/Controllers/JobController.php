@@ -30,26 +30,26 @@ class JobController extends Controller
         return view("showJob",['job' => $job],['similarJobs' => $similarJobs]);
     }
 
-    public function createJobHelperPage($category)
+    public function createJobHelper($category)
     {
         return view('helperJobCreate',['category' => $category]);
     }
 
-    public function createJobHelper(CreateHelperJobRequest $request): RedirectResponse
+    public function storeJobHelper(CreateHelperJobRequest $request): RedirectResponse
     {
-        $this->jobRepository->createHelperJob($request);
+        $this->jobRepository->storeHelperJob($request);
         return redirect()->route('homepage');
     }
 
-    public function createJobPage($category)
+    public function createJob($category)
     {
         $companies = $this->companyRepository->getUserCompanies(Auth::id());
         return view('jobCreate',['companies' => $companies, 'category' => $category]);
     }
 
-    public function createJob(CreateJobRequest $request): RedirectResponse
+    public function storeJob(CreateJobRequest $request): RedirectResponse
     {
-        $this->jobRepository->createJob($request);
+        $this->jobRepository->storeJob($request);
         return redirect()->route('homepage');
     }
 
