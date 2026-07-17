@@ -5,18 +5,25 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\EmployerCheckMiddleware;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::controller(JobController::class)->prefix('/job')->group(function() {
     Route::name('job.')->group(function() {
-        Route::get('/helper-create-page/{category}','createJobHelperPage')->name('helper.create.page');
-        Route::post('/helper-create','createJobHelper')->name('helper.create');
-        Route::get('/create-page/{category}','createJobPage')->name('create.page');
-        Route::post('/create','createJob')->name('create');
+        Route::get('/helper-create-page/{category}','createJobHelperPage')
+        ->middleware(['auth',EmployerCheckMiddleware::class])->name('helper.create.page');
+        Route::post('/helper-create','createJobHelper')
+        ->middleware(['auth',EmployerCheckMiddleware::class])->name('helper.create');
+        Route::get('/create-page/{category}','createJobPage')
+        ->middleware(['auth',EmployerCheckMiddleware::class])->name('create.page');
+        Route::post('/create','createJob')
+        ->middleware(['auth',EmployerCheckMiddleware::class])->name('create');
         Route::get('/show/{job}','show')->name('show');
-        Route::get('/categories/{jobType}','categories')->name('categories');
+        Route::get('/categories/{jobType}','categories')
+        ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
     });
 });
 
