@@ -11,7 +11,12 @@ class HomepageController extends Controller
     public function index()
     {
         $jobs = Job::with('company','location')->latest('created_at')->paginate();
-        
+        return view('welcome',['jobs' => $jobs]);
+    }
+
+    public function indexCategory($category)
+    {
+        $jobs = Job::where('category',$category)->with('company','location')->latest('created_at')->paginate();
         return view('welcome',['jobs' => $jobs]);
     }
 }

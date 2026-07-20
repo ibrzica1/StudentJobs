@@ -58,6 +58,11 @@ class JobRepository
         return $job;
     }
 
+    public function getLatestJobs($type)
+    {
+
+    }
+
     public function similarJobs(int $limit, string $category, int $id)
     {
         return $this->jobModel

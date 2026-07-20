@@ -9,6 +9,7 @@ use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\StudentCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/{category}', [HomepageController::class, 'indexCategory'])->name('homepage.category');
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::controller(JobController::class)->prefix('/job')
@@ -27,7 +28,7 @@ Route::controller(JobController::class)->prefix('/job')
 });
 
 Route::controller(ProfileController::class)
-->middleware('auth')->prefix('/profile')->name('profile')->group(function() {
+->middleware('auth')->prefix('/profile')->name('profile.')->group(function() {
     Route::get('/','edit')->name('edit');
     Route::patch('/update/user-info','updateUserInfo')->name('update.user-info');
     Route::patch('/update/user-address','updateUserAddress')->name('update.user-address');

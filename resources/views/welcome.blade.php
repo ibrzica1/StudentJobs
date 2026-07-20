@@ -8,10 +8,17 @@
 <?php 
     use Carbon\Carbon;
     use App\Services\TimeService;
+    use App\Models\Job;
     $time = new TimeService();
 
 ?>
 <body class="bg-body-secondary">
+
+@if($errors->any())
+    <div class="alert alert-danger text-center">{{$errors->first()}}</div>
+@endif
+
+<livewire:select-category/>
 
 <div class="mx-6 my-4">
     {{$jobs->links()}}
