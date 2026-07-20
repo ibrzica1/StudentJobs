@@ -58,9 +58,16 @@ class JobRepository
         return $job;
     }
 
-    public function getLatestJobs($type)
+    public function getLatestJobs()
     {
+        $jobs = Job::with('company','location')->latest('created_at')->paginate();
+        return $jobs;
+    }
 
+    public function getLatestJobsByCategory($category)
+    {
+        $jobs = Job::where('category',$category)->with('company','location')->latest('created_at')->paginate();
+        return $jobs;
     }
 
     public function similarJobs(int $limit, string $category, int $id)
