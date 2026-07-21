@@ -3,7 +3,7 @@
 ?>
 <div>
     <select wire:model="category">
-        <option value="">All</option>
+        <option value="all">All</option>
         @foreach (Job::ALLOWED_HELPER_TYPES as $category)
             <option value="{{$category}}">{{$category}}</option>
         @endforeach

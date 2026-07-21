@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class SelectCategory extends Component
 {
-    public $category = '';
+    public $category = 'all';
 
     public function updateCategory($category)
     {
@@ -15,7 +15,12 @@ class SelectCategory extends Component
 
     public function filterByCategory()
     {
-        redirect()->route('homepage.category',['category' => $this->category]);
+        if($this->category === 'all'){
+            redirect()->route('homepage');
+        }
+        else{
+            redirect()->route('homepage.category',['category' => $this->category]);
+        }
     }
 
     public function render()
