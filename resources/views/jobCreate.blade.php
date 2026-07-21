@@ -32,7 +32,7 @@
                     </h2>
                     <hr class="mb-4">
 
-                    <form action="{{route('job.create')}}" method="post">
+                    <form action="{{route('job.store')}}" method="post">
                         @csrf
                         
                         @if($errors->any())

@@ -35,12 +35,12 @@ use App\Models\Job;
     <div class="d-flex justify-content-center align-items-center
                 mt-4 mb-1 ">
         @if ($jobType === 'helper')
-        <a href="{{route('job.helper.create.page',['category' => "none"])}}"
+        <a href="{{route('job.helper.create',['category' => "none"])}}"
             class="btn bg-info col-6 shadow py-4">
             Continue with your own category
         </a>
         @else
-        <a href="{{route('job.create.page',['category' => "none"])}}"
+        <a href="{{route('job.create',['category' => "none"])}}"
             class="btn bg-info col-6 shadow py-4">
             Continue with your own category
         </a>
@@ -53,14 +53,14 @@ use App\Models\Job;
                 bg-white my-4 mx-2 py-2 shadow">
                 
             @if($jobType === 'helper')
-                <a href="{{route('job.helper.create.page',['category' => $helperType])}}">
+                <a href="{{route('job.helper.create',['category' => $helperType])}}">
                     {{$helperType}}
                 </a>
                 <div class="{{$helperType}}">
                     <img src="{{ asset('storage/images/category/'.$helperType .'.jpg') }}">
                 </div>
             @else
-                <a href="{{route('job.create.page',['category' => $helperType])}}">
+                <a href="{{route('job.create',['category' => $helperType])}}">
                     {{$helperType}}
                 </a>
                 <div class="{{$helperType}}">

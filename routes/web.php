@@ -9,7 +9,7 @@ use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\StudentCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{category}', [HomepageController::class, 'indexCategory'])->name('homepage.category');
+Route::get('/filter/{category}', [HomepageController::class, 'indexCategory'])->name('homepage.category');
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::controller(JobController::class)->prefix('/job')
