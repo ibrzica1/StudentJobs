@@ -34,6 +34,10 @@ class Job extends Model
     const BABYSITTER_HELPER = "Babysitter";
     const DRIVER_HELPER = "Driver";
 
+    const ALLOWED_JOB_TYPES = [
+         self::HELPER_JOB, self::JOB,
+    ];
+
     const ALLOWED_HELPER_TYPES = [
         self::CONSTRUCTION_HELPER, self::MOVING_HELPER, self::DECLUTTER_HELPER,
         self::EVENT_HELPER, self::LOGISTICS_HELPER, self::OFFICE_HELPER,

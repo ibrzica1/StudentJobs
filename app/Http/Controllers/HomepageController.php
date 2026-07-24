@@ -31,4 +31,13 @@ class HomepageController extends Controller
         $jobs = $this->jobRepo->getLatestJobsByCategory($category);
         return view('welcome',['jobs' => $jobs]);
     }
+
+     public function indexType($type)
+    {
+        if(!in_array($type,Job::ALLOWED_JOB_TYPES)){
+            redirect()->back()->withErrors('Incorrect job type');
+        }
+        $jobs = $this->jobRepo->getLatestJobsByType($type);
+        return view('welcome',['jobs' => $jobs]);
+    }
 }

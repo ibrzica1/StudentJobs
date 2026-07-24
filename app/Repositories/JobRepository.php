@@ -70,6 +70,12 @@ class JobRepository
         return $jobs;
     }
 
+    public function getLatestJobsByType($type)
+    {
+        $jobs = Job::where('type',$type)->with('company','location')->latest('created_at')->paginate();
+        return $jobs;
+    }
+
     public function similarJobs(int $limit, string $category, int $id)
     {
         return $this->jobModel

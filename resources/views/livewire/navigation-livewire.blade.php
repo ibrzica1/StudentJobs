@@ -17,21 +17,21 @@ use App\Models\Job;
              wire:click.outside="showMenu = false"
              style="width:300px">
                 <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">For employers</div>
-                <a href="{{route('job.categories',['jobType' => 'employee'])}}" 
+                <a href="{{route('job.categories',['jobType' => 'helper'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 Post a helper job</a>
-                <a href="{{route('job.categories',['jobType' => 'helper'])}}" 
+                <a href="{{route('job.categories',['jobType' => 'employee'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
                 >Post a internship job</a>
                 <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">For students</div>
-                <a href="{{route('job.categories',['jobType' => 'employee'])}}" 
+                <a href="{{route('homepage.type',['type' => 'helper-job'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
                 style="">
                 Find helper job</a>
-                <a href="{{route('job.categories',['jobType' => 'helper'])}}" 
+                <a href="{{route('homepage.type',['type' => 'job'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 Find internship job</a>
