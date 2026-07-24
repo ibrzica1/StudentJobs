@@ -54,18 +54,18 @@ use App\Models\Job;
                 
             @if($jobType === 'helper')
                 <a href="{{route('job.helper.create',['category' => $helperType])}}">
-                    {{$helperType}}
-                </a>
+                <p>{{$helperType}}</p>  
                 <div class="{{$helperType}}">
                     <img src="{{ asset('storage/images/category/'.$helperType .'.jpg') }}">
                 </div>
+                </a>
             @else
                 <a href="{{route('job.create',['category' => $helperType])}}">
-                    {{$helperType}}
-                </a>
+                <p>{{$helperType}}</p>    
                 <div class="{{$helperType}}">
                     <img src="{{ asset('storage/images/category/'.$helperType .'.jpg') }}">
                 </div>
+                </a>
             @endif
             
         </div>
