@@ -3,7 +3,7 @@
 @method('PATCH')
 
 
-<h6 class="text-uppercase text-muted fw-bold mb-3">
+<h6 class="text-uppercase text-muted fw-bold my-2 mb-3">
     Company Info
 </h6>
 

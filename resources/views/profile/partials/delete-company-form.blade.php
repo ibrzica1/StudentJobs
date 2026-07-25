@@ -2,7 +2,7 @@
 @csrf
 @method('DELETE')
 <button type="submit"
-        class="btn btn-danger">
+        class="btn btn-danger my-2">
     DELETE
 </button>
 </form>

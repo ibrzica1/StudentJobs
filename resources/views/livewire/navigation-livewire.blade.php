@@ -21,7 +21,7 @@ use App\Models\Job;
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 Post a helper job</a>
-                <a href="{{route('job.categories',['jobType' => 'employee'])}}" 
+                <a href="{{route('job.categories',['jobType' => 'emplyee'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
                 >Post a internship job</a>
