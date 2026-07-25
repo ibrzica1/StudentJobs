@@ -27,12 +27,12 @@ class JobController extends Controller
     {
         $job->load('location','company');
         $similarJobs = $this->jobRepository->similarJobs(10,$job->category,$job->id);
-        return view("showJob",['job' => $job],['similarJobs' => $similarJobs]);
+        return view("job/showJob",['job' => $job],['similarJobs' => $similarJobs]);
     }
 
     public function createJobHelper($category)
     {
-        return view('helperJobCreate',['category' => $category]);
+        return view('job/helperJobCreate',['category' => $category]);
     }
 
     public function storeJobHelper(CreateHelperJobRequest $request): RedirectResponse
@@ -44,7 +44,7 @@ class JobController extends Controller
     public function createJob($category)
     {
         $companies = $this->companyRepository->getUserCompanies(Auth::id());
-        return view('jobCreate',['companies' => $companies, 'category' => $category]);
+        return view('job/jobCreate',['companies' => $companies, 'category' => $category]);
     }
 
     public function storeJob(CreateJobRequest $request): RedirectResponse
@@ -55,6 +55,6 @@ class JobController extends Controller
 
     public function categories($jobType)
     {
-        return view('categories',['jobType' => $jobType]);
+        return view('job/categories',['jobType' => $jobType]);
     }
 }
