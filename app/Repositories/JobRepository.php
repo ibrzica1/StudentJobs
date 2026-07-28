@@ -64,7 +64,7 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () {
-            return Job::with('company','location')->latest('created_at')->paginate();
+            return $this->jobModel->with('company','location')->latest('created_at')->paginate();
         });
         
         return $jobs;
@@ -75,7 +75,7 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($category){
-            return Job::where('category',$category)->with('company','location')->latest('created_at')->paginate();
+            return $this->jobModel->where('category',$category)->with('company','location')->latest('created_at')->paginate();
         });
         return $jobs;
     }
@@ -85,18 +85,23 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($type){
-            return Job::where('type',$type)->with('company','location')->latest('created_at')->paginate();
+            return $this->jobModel->where('type',$type)->with('company','location')->latest('created_at')->paginate();
         });
         return $jobs;
     }
 
     public function similarJobs(int $limit, string $category, int $id)
     {
-        return $this->jobModel
-        ->where('category',$category)
-        ->latest()
-        ->take($limit)
-        ->get()
-        ->except($id);
+        $cacheKey = 'similar_job_'.$category;
+        $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){
+            return $this->jobModel
+            ->where('category',$category)
+            ->latest()
+            ->take($limit)
+            ->get()
+            ->except($id);
+        });
+
+        return $jobs;
     }
 }
