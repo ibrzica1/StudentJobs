@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class NavigationLivewire extends Component
@@ -23,9 +22,7 @@ class NavigationLivewire extends Component
 
     public function render()
     {
-        $user = Cache::remember('user',600, function () {
-            return Auth::user();
-            });
+        $user = Auth::user();
         
         return view('livewire.navigation-livewire', [
             'user' => $user

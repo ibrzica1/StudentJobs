@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class JobRepository
 {
@@ -60,19 +61,32 @@ class JobRepository
 
     public function getLatestJobs()
     {
-        $jobs = Job::with('company','location')->latest('created_at')->paginate();
+        $page = request('page',1);
+        $cacheKey = 'latest_jobs_'.$page;
+        $jobs = Cache::remember($cacheKey,120,function () {
+            return Job::with('company','location')->latest('created_at')->paginate();
+        });
+        
         return $jobs;
     }
 
     public function getLatestJobsByCategory($category)
     {
-        $jobs = Job::where('category',$category)->with('company','location')->latest('created_at')->paginate();
+        $page = request('page',1);
+        $cacheKey = 'latest_jobs_'.$category.'_'.$page;
+        $jobs = Cache::remember($cacheKey,120,function () use($category){
+            return Job::where('category',$category)->with('company','location')->latest('created_at')->paginate();
+        });
         return $jobs;
     }
 
     public function getLatestJobsByType($type)
     {
-        $jobs = Job::where('type',$type)->with('company','location')->latest('created_at')->paginate();
+        $page = request('page',1);
+        $cacheKey = 'latest_jobs_'.$type.'_'.$page;
+        $jobs = Cache::remember($cacheKey,120,function () use($type){
+            return Job::where('type',$type)->with('company','location')->latest('created_at')->paginate();
+        });
         return $jobs;
     }
 
