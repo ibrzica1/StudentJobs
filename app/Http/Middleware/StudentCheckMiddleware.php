@@ -15,7 +15,7 @@ class StudentCheckMiddleware
         if(Auth::user()->role !== 'student'){
             return redirect()
             ->route('homepage')
-            ->withErrors('You have to register as employer');
+            ->withErrors('You have to register as student');
         }
         return $next($request);
     }

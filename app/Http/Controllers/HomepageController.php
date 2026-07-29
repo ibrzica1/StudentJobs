@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Repositories\JobRepository;
 use App\Rules\AllowedCategoryTypes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HomepageController extends Controller
 {

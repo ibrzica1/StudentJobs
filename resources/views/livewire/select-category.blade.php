@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-end 
 align-items-center column-gap-3 mx-4 my-2">
-    <label for="">Select category</label>
+    <label for="">{{ __('Select category') }}</label>
     <select wire:model="category" 
         class="form-select w-25 border rounded">
         <option value="all">All</option>

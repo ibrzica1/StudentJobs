@@ -92,7 +92,7 @@ class JobRepository
 
     public function similarJobs(int $limit, string $category, int $id)
     {
-        $cacheKey = 'similar_job_'.$category;
+        $cacheKey = 'similar_job_'.$category.'_'.$id;
         $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){
             return $this->jobModel
             ->where('category',$category)

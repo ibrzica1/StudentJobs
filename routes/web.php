@@ -7,7 +7,16 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\StudentCheckMiddleware;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
+Route::view('/test', 'test');
+Route::get('/lenguage/{locale}', function($locale) {
+   App::setLocale($locale);
+   Session::put('locale',$locale);
+   return redirect()->back();
+});
 
 Route::get('/filter/type/{type}', [HomepageController::class, 'indexType'])->name('homepage.type');
 Route::get('/filter/category/{category}', [HomepageController::class, 'indexCategory'])->name('homepage.category');
