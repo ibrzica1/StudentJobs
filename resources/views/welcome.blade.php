@@ -42,7 +42,7 @@
                 style="object-fit: cover;">
             @endif
             <div class="text-center text-muted small">
-                Published {{$time->calculateTime($job->created_at)}}
+                {{ __('homepage.Published') }} {{$time->calculateTime($job->created_at)}}
             </div>
         </div>
 
@@ -78,7 +78,7 @@
                     </div>
                     <div class="d-flex column-gap-2">
                         <img src="{{ asset('storage/images/icons/watch.svg') }}" style="width: 20px;">
-                        <p>{{$job->weekly_hours}} / week</p>
+                        <p>{{$job->weekly_hours}} / {{ __('homepage.week') }}</p>
                     </div>
                 </div>
                 @else
@@ -97,14 +97,14 @@
                     <div>
                         <div class="fw-bold text-center">{{Carbon::parse($job->from)->format('H:i')}}
                              - {{Carbon::parse($job->to)->format('H:i')}}</div>
-                        <div class="text-center">{{$time->durationHours($job->from,$job->to)}} hours</div>
+                        <div class="text-center">{{$time->durationHours($job->from,$job->to)}} {{ __('homepage.hours') }}</div>
                     </div>
                 </div>
                 @endif
                     
                 <div>
                     <h1 class="h1">{{$job->wage}}</h1>
-                    <p>euro per hour</p>
+                    <p>e{{ __('homepage.euro per hour') }}</p>
                 </div>
 
             </div>
