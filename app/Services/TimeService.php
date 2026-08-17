@@ -24,17 +24,17 @@ class TimeService
         $years   = floor($diff / 31536000); 
 
         if ($minutes < 1) {
-            return "Less than 1 min ago";
+            return __('time.Less than 1 min ago');
         } elseif ($minutes < 60) {
-            return "$minutes min ago";
+            return "$minutes ". __('time.min ago');
         } elseif ($hours < 24) {
-            return "$hours hours ago";
+            return "$hours ". __('time.hours ago');
         } elseif ($days < 30) {
-            return "$days days ago";
+            return "$days ". __('time.days ago');
         } elseif ($months < 12) {
-            return "$months months ago";
+            return "$months ". __('time.months ago');
         } else {
-            return "$years years ago";
+            return "$years ". __('time.years ago');
         }
     }
 }
