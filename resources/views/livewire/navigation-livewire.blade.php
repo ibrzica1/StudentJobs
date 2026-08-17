@@ -16,31 +16,31 @@ use App\Models\Job;
              wire:show="showMenu"
              wire:click.outside="showMenu = false"
              style="width:300px">
-                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">For employers</div>
+                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For employers')}}</div>
                 <a href="{{route('job.categories',['jobType' => 'helper'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
-                Post a helper job</a>
+                {{__('navigation.Post a helper job')}}</a>
                 <a href="{{route('job.categories',['jobType' => 'emplyee'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
-                >Post a internship job</a>
-                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">For students</div>
+                >{{__('navigation.Post a internship job')}}</a>
+                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For students')}}</div>
                 <a href="{{route('homepage.type',['type' => 'helper-job'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
                 style="">
-                Find helper job</a>
+                {{__('navigation.Find helper job')}}</a>
                 <a href="{{route('homepage.type',['type' => 'job'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
-                Find internship job</a>
-                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">Categories</div>
+                {{__('navigation.Find internship job')}}</a>
+                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.Categories')}}</div>
                 @foreach (Job::ALLOWED_HELPER_TYPES as $category)
                 <a href="{{route('homepage.category',['category' => $category])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
-                {{$category}}</a>   
+                {{__("categories.$category")}}</a>   
                 @endforeach
         </div>
         
@@ -65,27 +65,34 @@ use App\Models\Job;
              style="width:300px">
              @if ($user)
                 @if ($user->role === 'employer' || $user->role === 'admin')
-                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">Profile & Account</a>
-                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">My Ads</a>
-                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">My Bills</a>
+                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
+                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.My Ads')}}</a>
+                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.My Bills')}}</a>
                     <form action="{{ route('logout') }}" method="POST" class="">
                         @csrf
                         <button href="{{route('logout')}}" class="block text-start p-2 px-4 hover:bg-gray-200 rounded 
                         w-100 transition-colors text-red-600">
-                            Logout</button>
+                            {{__('navigation.Logout')}}</button>
                     </form>
                 @elseif ($user->role === 'student')
-                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">Profile & Account</a>
-                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">My Applications</a>
+                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
+                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.My Applications')}}</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
-                            Logout</button>
+                            {{__('navigation.Logout')}}</button>
                     </form>
                 @endif
              @else
-                <a href="{{route('login')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">Login</a>
-                <a href="{{route('register')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-gray-800">Register</a>
+                <a href="{{route('login')}}" class="block p-2 px-4 hover:bg-gray-200 
+                rounded transition-colors text-gray-800">{{__('navigation.Login')}}</a>
+                <a href="{{route('register')}}" class="block p-2 px-4 hover:bg-gray-200 
+                rounded transition-colors text-gray-800">{{__('navigation.Register')}}</a>
              @endif
             
             
