@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\StudentCheckMiddleware;
@@ -12,11 +13,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 Route::view('/test', 'test');
-Route::get('/lenguage/{locale}', function($locale) {
-   App::setLocale($locale);
-   Session::put('locale',$locale);
-   return redirect()->back();
-});
+Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
 
 Route::get('/filter/type/{type}', [HomepageController::class, 'indexType'])->name('homepage.type');
 Route::get('/filter/category/{category}', [HomepageController::class, 'indexCategory'])->name('homepage.category');
