@@ -41,48 +41,48 @@
                     <div class="d-flex column-gap-3">
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/group.svg') }}" style="width: 20px;">
-                            <p>{{$job->employee_amount}} person</p>
+                            <p>{{$job->employee_amount}} {{__("showJob.person")}}</p>
                         </div>
                         
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/contract.svg') }}" style="width: 20px;">
-                            <p>Contract/ {{$job->duration}}</p>
+                            <p>{{__("showJob.Contract/")}} {{$job->duration}}</p>
                         </div>
                     </div>
                     <div class="d-flex column-gap-2 mb-2">
                         <img src="{{ asset('storage/images/icons/watch.svg') }}" style="width: 20px;">
-                        <p>{{$job->weekly_hours}} hours / week</p>
+                        <p>{{$job->weekly_hours}} {{__("showJob.hours / week")}}</p>
                     </div>
                 </div>
                 <div>
                     <h1 class="h1">{{$job->wage}}</h1>
-                    <p>euro per hour</p>
+                    <p>{{__("showJob.euro per hour")}}</p>
                 </div>
             </div>
     </div>
 
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow">
-        <div class="bg-light text-end fw-bold p-3">Job description</div>
+        <div class="bg-light text-end fw-bold p-3">{{__("showJob.Job description")}}</div>
         <div class="p-4">{{$job->description}}</div>
     </div>
 
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow">
-        <div class="bg-light text-end fw-bold p-3">Job expectation</div>
+        <div class="bg-light text-end fw-bold p-3">{{__("showJob.Job expectation")}}</div>
         <div class="p-4">{{$job->expectation}}</div>
     </div>
 
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow">
-        <div class="bg-light text-end fw-bold p-3">Job offer</div>
+        <div class="bg-light text-end fw-bold p-3">{{__("showJob.Job offer")}}</div>
         <div class="p-4">{{$job->offer}}</div>
     </div>
     <div class="justify-content-end align-item-end">
         <a href="{{route('application.create',['job' => $job->id])}}"
         class="btn bg-success text-white
         px-8 fw-bold">
-            Apply now
+            {{__("showJob.Apply now")}}
         </a>
     </div>
     
@@ -106,13 +106,13 @@
                     <div class="d-flex column-gap-3">
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/group.svg') }}" style="width: 20px;">
-                            <p>{{$job->employee_amount}} person</p>
+                            <p>{{$job->employee_amount}} {{__("showJob.person")}}</p>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h1 class="h1">{{$job->wage}}</h1>
-                    <p>euro per hour</p>
+                    <p>{{__("showJob.euro per hour")}}</p>
                 </div>
             </div>
     </div>
@@ -120,7 +120,7 @@
     
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow col-6">
-        <h5 class="bg-light text-end fw-bold p-3">Deployment date</h5>
+        <h5 class="bg-light text-end fw-bold p-3">{{__("showJob.Deployment date")}}</h5>
         <div class="d-flex p-4 column-gap-2">
             <div class="align-items-center justify-content-center p-1">
                 <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
@@ -134,7 +134,7 @@
                 <div class="small text-muted">
                     {{Carbon::parse($job->from)->format('H:i')}}
                     - {{Carbon::parse($job->to)->format('H:i')}}
-                    / <span class="fw-bold">{{$time->durationHours($job->from,$job->to)}} hours</span> 
+                    / <span class="fw-bold">{{$time->durationHours($job->from,$job->to)}} {{__("showJob.hours")}}</span> 
                 </div>
             </div>
         </div>
@@ -142,26 +142,26 @@
 
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow">
-        <div class="bg-light text-end fw-bold p-3">Job description</div>
+        <div class="bg-light text-end fw-bold p-3">{{__("showJob.Job description")}}</div>
         <div class="p-4">{{$job->description}}</div>
     </div>
 
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow">
-        <div class="bg-light text-end fw-bold p-3">Job expectation</div>
+        <div class="bg-light text-end fw-bold p-3">{{__("showJob.Job expectation")}}</div>
         <div class="p-4">{{$job->expectation}}</div>
     </div>
 
     <div class="my-3 bg-white justify-content-between 
         column-gap-4 rounded shadow">
-        <div class="bg-light text-end fw-bold p-3">Job tasks</div>
+        <div class="bg-light text-end fw-bold p-3">{{__("showJob.Job tasks")}}</div>
         <div class="p-4">{{$job->tasks}}</div>
     </div>
     <div class="justify-content-end">
         <a href="{{route('application.create',['job' => $job->id])}}"
         class="btn bg-success text-white
         px-8 fw-bold">
-            Apply now
+            {{__("showJob.Apply now")}}
         </a>
     </div>
 </div>    
@@ -170,7 +170,7 @@
 </div>
 
 <div class="container mt-4">
-    <h4 class="text-end h4">Other similar jobs</h4>
+    <h4 class="text-end h4">{{__("showJob.Other similar jobs")}}</h4>
 
     @foreach ($similarJobs as $job)
         <a href="{{route('job.show',['job' => $job->id])}}" class="container d-flex mx-6 my-4
@@ -190,7 +190,7 @@
                 style="object-fit: cover;">
             @endif
             <div class="text-center text-muted small">
-                Published {{$time->calculateTime($job->created_at)}}
+                {{__("showJob.Published")}} {{$time->calculateTime($job->created_at)}}
             </div>
         </div>
 
@@ -226,7 +226,7 @@
                     </div>
                     <div class="d-flex column-gap-2">
                         <img src="{{ asset('storage/images/icons/watch.svg') }}" style="width: 20px;">
-                        <p>{{$job->weekly_hours}} / week</p>
+                        <p>{{$job->weekly_hours}} / {{__("showJob.week")}}</p>
                     </div>
                 </div>
                 @else
@@ -252,7 +252,7 @@
                     
                 <div>
                     <h1 class="h1">{{$job->wage}}</h1>
-                    <p>euro per hour</p>
+                    <p>{{__("showJob.euro per hour")}}</p>
                 </div>
 
             </div>
