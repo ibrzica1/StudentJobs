@@ -14,5 +14,5 @@ return [
 'Other similar jobs' => 'Slicni poslovi',
 'Published' => 'Objavljeno',
 'week' => 'tjedno',
-''
+'hours' => 'sati'
 ];

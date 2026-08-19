@@ -14,5 +14,5 @@ return [
 'Other similar jobs' => 'Other similar jobs',
 'Published' => 'Published',
 'week' => 'week',
-''
+'hours' => 'hours'
 ];
