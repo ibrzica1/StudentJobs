@@ -1,0 +1,18 @@
+<?php
+
+use App\Models\Job;
+
+return [
+    'All' => 'All',
+    Job::CONSTRUCTION_HELPER => Job::CONSTRUCTION_HELPER,
+    Job::MOVING_HELPER => Job::MOVING_HELPER,
+    Job::DECLUTTER_HELPER => Job::DECLUTTER_HELPER,
+    Job::EVENT_HELPER => Job::EVENT_HELPER,
+    Job::LOGISTICS_HELPER => Job::LOGISTICS_HELPER,
+    Job::OFFICE_HELPER => Job::OFFICE_HELPER,
+    Job::TUTOR_HELPER => Job::TUTOR_HELPER,
+    Job::IT_HELPER => Job::IT_HELPER,
+    Job::BABYSITTER_HELPER => Job::BABYSITTER_HELPER ,
+    Job::DRIVER_HELPER => Job::DRIVER_HELPER,
+    'Filter' => 'Filter',
+];
