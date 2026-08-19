@@ -15,4 +15,5 @@ Job::IT_HELPER => 'It',
 Job::BABYSITTER_HELPER => 'Dadilja',
 Job::DRIVER_HELPER => 'Vozac',
 'Filter' => 'Filtriraj',
+'Continue with your own category' => 'Nastavi sa svojom kategorijom',
 ];

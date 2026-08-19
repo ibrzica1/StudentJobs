@@ -1,1 +1,0 @@
-<div>{{ __('homepage.Welcome') }}</div> 

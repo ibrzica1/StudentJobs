@@ -15,4 +15,5 @@ return [
     Job::BABYSITTER_HELPER => Job::BABYSITTER_HELPER ,
     Job::DRIVER_HELPER => Job::DRIVER_HELPER,
     'Filter' => 'Filter',
+    'Continue with your own category' => 'Continue with your own category',
 ];
