@@ -14,5 +14,5 @@
         name="wage" min=14 max=29 value={{$wage}} step="0.5"
         class="form-range custom-range-slider">
     </div>
-    <p class="text-center">{{$wage}} euros per hour</p>
+    <p class="text-center">{{$wage}} {{__('helperJobCreate.euros per hour')}}</p>
 </div>

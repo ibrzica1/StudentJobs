@@ -6,7 +6,7 @@
         <input type="text" 
                wire:model.live.debounce.300ms="search" 
                class="form-control custom-input" 
-               placeholder="Search city...">
+               placeholder="{{__('helperJobCreate.Search city...')}}">
     </div>
     
     <input type="hidden" name="location_id" wire:model="selectedLocationId">

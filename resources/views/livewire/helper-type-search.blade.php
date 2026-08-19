@@ -1,5 +1,5 @@
 <div>
-    <input type="text" name="title" placeholder="e.g. Moving Helper"
+    <input type="text" name="title" placeholder="{{__('helperJobCreate.e.g. Moving Helper')}}"
     wire:model.live="search">
     <ul>
         @foreach ($helperTypes as $type)
