@@ -56,7 +56,8 @@
                 <div class="card-body p-5">
                     
                     <h2 class="text-end fw-bold mb-4">
-                        Create / <span class="text-primary">Job</span>
+                       {{__('jobCreate.Create /')}}  
+                       <span class="text-primary">{{__('jobCreate.Job')}}</span>
                     </h2>
                     <hr class="mb-4">
 
@@ -67,10 +68,12 @@
                             <div class="alert alert-danger">{{$errors->first()}}</div>
                         @endif
 
-                        <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">Booking details</h6>
+                        <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">
+                            {{__('jobCreate.Booking details')}}</h6>
                         <input type="hidden" name="category" value="{{$category}}">
                         <div class="mb-3">
-                            <label class="form-label">Title / Your booking</label>
+                            <label class="form-label">
+                                {{__('jobCreate.Title / Your booking')}}</label>
                             <div class="input-group">
                                 <span class="input-group-text">
                                     <img src="{{ asset('storage/images/icons/title.svg') }}" width="20">
@@ -87,18 +90,18 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Location</label>
+                            <label class="form-label">{{__('jobCreate.Location')}}</label>
                             <livewire:location-search />
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Company</label>
+                            <label class="form-label">{{__('jobCreate.Company')}}</label>
                             <div class="input-group">
                                 <span class="input-group-text">
                                     <img src="{{ asset('storage/images/icons/company.svg') }}" width="20">
                                 </span>
                                 <select name="company_id" class="form-select custom-input">
-                                    <option value="">NONE</option>
+                                    <option value="">{{__('jobCreate.NONE')}}</option>
                                     @foreach ($companies as $company)
                                         <option value="{{$company->id}}">
                                             {{$company->name}}
@@ -109,27 +112,30 @@
                         </div>
 
                         <div class=" col-md-6 mb-3">
-                            <label class="form-label">Helper wage per person</label>
+                            <label class="form-label">
+                                {{__('jobCreate.Wage per hour')}}</label>
                             <livewire:wage-range />
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Setting Type</label>
+                                <label class="form-label">
+                                    {{__('jobCreate.Setting Type')}}</label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
                                     </span>
                                     <select name="setting_type" class="form-select custom-input">
                                         @foreach (Job::ALLOWED_SETTING_TYPES as $type)
-                                            <option>{{$type}}</option>
+                                            <option>{{__("settingTypes.$type")}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Weekly hours</label>
+                                <label class="form-label">
+                                    {{__('jobCreate.Weekly hours')}}</label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
@@ -141,7 +147,8 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Date of hiring</label>
+                                <label class="form-label">
+                                    {{__('jobCreate.Date of hiring')}}</label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <img src="{{ asset('storage/images/icons/calendar.svg') }}" width="20">
@@ -151,14 +158,15 @@
                                 
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Duration</label>
+                                <label class="form-label">
+                                    {{__('jobCreate.Duration')}}</label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
                                     </span>
                                     <select name="duration" class="form-select custom-input">
                                         @foreach (Job::ALLOWED_DURATION_TYPES as $type)
-                                            <option>{{$type}}</option>
+                                            <option>{{__("durationTypes.$type")}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -166,15 +174,18 @@
                             </div>
                         </div>
 
-                        <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">Job Description</h6>
+                        <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">
+                            {{__('jobCreate.Job Description')}}</h6>
 
                         <div class="mb-3">
-                            <label class="form-label">Job description</label>
+                            <label class="form-label">
+                                {{__('jobCreate.Job Description')}}</label>
                             <textarea name="description" class="form-control custom-input" rows="3"></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Expectation</label>
+                            <label class="form-label">
+                                {{__('jobCreate.Expectation')}}</label>
                             @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
                                 {{Job::ROLES[$category]['EXPECTATIONS']}}
@@ -185,13 +196,14 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="form-label">Offer</label>
+                            <label class="form-label">
+                                {{__('jobCreate.Offer')}}</label>
                             <textarea name="offer" class="form-control custom-input" rows="3"></textarea>
                         </div>
 
                         <div class="mt-4">
                             <button type="submit" class="btn btn-success btn-lg w-100 py-3 shadow-sm">
-                                SUBMIT JOB
+                                {{__('jobCreate.SUBMIT JOB')}}
                             </button>
                         </div>
                     </form>
