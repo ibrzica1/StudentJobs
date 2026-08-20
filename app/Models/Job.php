@@ -33,6 +33,18 @@ class Job extends Model
     const IT_HELPER = "It";
     const BABYSITTER_HELPER = "Babysitter";
     const DRIVER_HELPER = "Driver";
+    const INDEFINITE = 'indefinite';
+    const WEEKS = '1-4 weeks';
+    const MONTH1 = "1 month";
+    const MONTH2 = "2 months";
+    const MONTH3 = "3-5 months";
+    const MONTH6 = "6 months";
+    const YEAR1 = "1 year";
+    const YEAR2 = "2 years";
+    const YEAR3 = "3 years";
+    const FULL_TIME = "Full time";
+    const PART_TIME = "Part time";
+    const MINI_JOB = "Mini Job";
 
     const ALLOWED_JOB_TYPES = [
          self::HELPER_JOB, self::JOB,
@@ -46,11 +58,12 @@ class Job extends Model
     ];
 
     const ALLOWED_SETTING_TYPES = [
-        "Full Time", "Part Time", "Mini Job"
+       self::FULL_TIME, self::PART_TIME, self::MINI_JOB,
     ];
     const ALLOWED_DURATION_TYPES = [
-        "indefinite","1-4 weeks","1 month","2 months",
-        "3-5 months","6 months","1 year","2 years","3 years"
+        self::INDEFINITE, self::WEEKS, self::MONTH1,
+        self::MONTH2, self::MONTH3, self::MONTH6,
+        self::YEAR1, self::YEAR2, self::YEAR3,
     ];
 
     const ROLES = [
