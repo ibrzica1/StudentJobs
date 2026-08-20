@@ -83,7 +83,8 @@
                                     value="{{Job::ROLES[$category]['TITLE']}} Employee Needed"
                                     class="form-control custom-input">
                                 @else
-                                  <input type="text" name="title" class="form-control custom-input" placeholder="Job Title" required>
+                                  <input type="text" name="title" class="form-control custom-input"
+                                   placeholder="{{__('jobCreate.Job Title')}}" required>
                                 @endif
                                 
                             </div>
