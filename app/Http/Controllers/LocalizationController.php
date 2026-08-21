@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Localization;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class LocalizationController extends Controller
 {
-    public function setLocale($locale)
+    private $localization;
+
+    public function __construct()
     {
-        App::setLocale($locale);
-        Session::put('locale',$locale);
+        $this->localization = new Localization();
+    }
+
+    public function setLocale(string $locale): RedirectResponse
+    {
+        $this->localization->changeLocale($locale);
         return redirect()->back();
     }
 }
