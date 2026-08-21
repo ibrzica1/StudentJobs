@@ -1,6 +1,6 @@
 
 <h2 class="fw-bold mb-4">
-    Edit Information
+    {{__('profile.Edit Information')}}
 </h2>
 
 <form
@@ -12,7 +12,7 @@ method="POST"
 
 {{-- PERSONAL DETAILS --}}
 <h6 class="text-uppercase text-muted fw-bold mb-3">
-    Personal Details
+    {{__('profile.Personal Details')}}
 </h6>
 
 <div class="row">
@@ -20,7 +20,7 @@ method="POST"
     <div class="col-md-6 mb-3">
 
         <label for="firstName" class="form-label">
-            First Name
+            {{__('profile.First Name')}}
         </label>
 
         <div class="input-group">
@@ -48,7 +48,7 @@ method="POST"
     <div class="col-md-6 mb-3">
 
         <label for="lastName" class="form-label">
-            Last Name
+            {{__('profile.Last Name')}}
         </label>
 
         <div class="input-group">
@@ -79,7 +79,7 @@ method="POST"
             for="telephone"
             class="form-label"
         >
-            Telephone Number
+            {{__('profile.Telephone Number')}}
         </label>
 
         <div class="input-group">
@@ -107,7 +107,7 @@ method="POST"
         type="submit"
         class="btn btn-success btn-lg w-100 py-3"
     >
-        SAVE CHANGES
+        {{__('profile.SAVE CHANGES')}}
     </button>
 
 </div>

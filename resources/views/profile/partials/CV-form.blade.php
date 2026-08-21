@@ -25,7 +25,7 @@ enctype="multipart/form-data">
         type="submit"
         class="btn btn-success btn-lg w-100 py-3"
     >
-        UPLOAD CV
+        {{__('profile.UPLOAD CV')}}
     </button>
 
 </form>

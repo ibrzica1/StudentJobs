@@ -9,13 +9,13 @@ method="POST"
 
 
 <h6 class="text-uppercase text-muted fw-bold mb-3">
-    Address
+    {{__('profile.Address')}}
 </h6>
 
 <div class="mb-3">
 
     <label class="form-label">
-        City
+        {{__('profile.City')}}
     </label>
 
     <livewire:location-search />
@@ -24,7 +24,7 @@ method="POST"
 
 <div class="row">
     <div class="col-md-8 mb-3">
-        <label for="street" class="form-label">Street</label>
+        <label for="street" class="form-label">{{__('profile.Street')}}</label>
         <div class="input-group">
             <span class="input-group-text">
                 <img src="{{ asset('storage/images/icons/street.svg') }}" width="20">
@@ -34,7 +34,7 @@ method="POST"
     </div>
 
     <div class="col-md-4 mb-3">
-        <label for="houseNumber" class="form-label">House Number</label>
+        <label for="houseNumber" class="form-label">{{__('profile.House Number')}}</label>
         <div class="input-group">
             <span class="input-group-text">
                 <img src="{{ asset('storage/images/icons/house-number.svg') }}" width="20">
@@ -47,6 +47,6 @@ method="POST"
     <button
     type="submit"
     class="btn btn-success btn-lg w-100 py-3">
-    SAVE CHANGES
+    {{__('profile.SAVE CHANGES')}}
 </button>
 </form>

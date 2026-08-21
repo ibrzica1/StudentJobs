@@ -3,6 +3,6 @@
 @method('DELETE')
 <button type="submit"
         class="btn btn-danger my-2">
-    DELETE
+    {{__('profile.DELETE')}}
 </button>
 </form>

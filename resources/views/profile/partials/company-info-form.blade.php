@@ -4,7 +4,7 @@
 
 
 <h6 class="text-uppercase text-muted fw-bold my-2 mb-3">
-    Company Info
+    {{__('profile.Company Info')}}
 </h6>
 
 <div class="mb-4">
@@ -17,7 +17,8 @@
 </div>
 
 <div class="col-md-4 mb-3">
-    <label for="companyName" class="form-label">Company Name</label>
+    <label for="companyName" class="form-label">
+        {{__('profile.Company Name')}}</label>
     <div class="input-group">
         <span class="input-group-text"><img src="{{ asset('storage/images/icons/company.svg') }}" style="width: 20px;"></span>
         <input type="text" 
@@ -31,6 +32,6 @@
 <button
     type="submit"
     class="btn btn-success btn-lg w-100 py-3">
-    SAVE CHANGES
+    {{__('profile.SAVE CHANGES')}}
 </button>
 </form>

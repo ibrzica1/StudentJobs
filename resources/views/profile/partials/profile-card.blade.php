@@ -23,7 +23,7 @@
 </h3>
 
 <p class="text-muted mb-4">
-    Student Profile
+    {{__('profile.Student Profile')}}
 </p>
 
 
@@ -32,19 +32,19 @@
     <div class="col">
         <h4 class="fw-bold mb-0">0</h4>
         <small class="text-muted">
-            TOTAL APPLICATIONS
+            {{__('profile.TOTAL APPLICATIONS')}}
         </small>
     </div>
 
     <div class="col">
         <h4 class="fw-bold mb-0">0</h4>
         <small class="text-muted">
-            JOBS RECIEVED
+            {{__('profile.JOBS RECIEVED')}}
         </small>
     </div>
 </div>
     <a href="#" class="btn btn-success w-100">
-        FIND JOB
+        {{__('profile.FIND JOB')}}
     </a>
 </div>
 @else
@@ -52,19 +52,19 @@
     <div class="col">
             <h4 class="fw-bold mb-0">0</h4>
             <small class="text-muted">
-                BOOKINGS
+                {{__('profile.BOOKINGS')}}
             </small>
         </div>
 
         <div class="col">
             <h4 class="fw-bold mb-0">0</h4>
             <small class="text-muted">
-                INVOICES
+                {{__('profile.INVOICES')}}
             </small>
         </div>
     </div>
         <a href="#" class="btn btn-success w-100">
-            BOOK STUDENTS
+            {{__('profile.BOOK STUDENTS')}}
         </a>
     </div>
     @endif

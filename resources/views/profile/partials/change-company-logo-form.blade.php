@@ -6,7 +6,7 @@ enctype="multipart/form-data">
 
 
 <h6 class="text-uppercase text-muted fw-bold my-2 mb-3">
-    Company Logo
+    {{__('profile.Company Logo')}}
 </h6>
 
 @if ($company->logo)
@@ -39,7 +39,7 @@ enctype="multipart/form-data">
 <button
     type="submit"
     class="btn btn-success btn-lg w-100 py-3">
-    CHANGE LOGO
+    {{__('profile.CHANGE LOGO')}}
 </button>
 
 

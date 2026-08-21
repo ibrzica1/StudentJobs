@@ -9,7 +9,7 @@ enctype="multipart/form-data">
 
     {{-- PROFILE PICTURE --}}
     <h6 class="text-uppercase text-muted fw-bold mb-3">
-        Profile Picture
+        {{__('profile.Profile Picture')}}
     </h6>
 
     <div class="mb-4">
@@ -25,7 +25,7 @@ enctype="multipart/form-data">
         type="submit"
         class="btn btn-success btn-lg w-100 py-3"
     >
-        CHANGE AVATAR
+        {{__('profile.CHANGE AVATAR')}}
     </button>
 
 </form>
