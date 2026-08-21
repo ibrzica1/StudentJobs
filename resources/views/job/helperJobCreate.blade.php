@@ -149,7 +149,7 @@ use App\Models\Job;
                                 {{__('helperJobCreate.Tasks')}}</label>
                             @if (isset(Job::ROLES[$category]['TASKS']))
                                 <textarea name="tasks" class="form-control custom-input" rows="8">
-                                {{Job::ROLES[$category]['TASKS']}}
+                                {{__("tasks.$category")}}
                                 </textarea>
                             @else
                                <textarea name="tasks" class="form-control custom-input" rows="3"></textarea>
@@ -161,7 +161,7 @@ use App\Models\Job;
                                 {{__('helperJobCreate.Expectation')}}</label>
                             @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
-                                {{Job::ROLES[$category]['EXPECTATIONS']}}
+                                {{__("expectations.$category")}}
                                 </textarea>
                             @else
                                 <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
