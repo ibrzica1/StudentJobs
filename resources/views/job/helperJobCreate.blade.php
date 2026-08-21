@@ -78,7 +78,7 @@ use App\Models\Job;
                                 {{__('helperJobCreate.Title / Your booking')}}</label>
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
-                                @if (isset(Job::ROLES[$category]['TITLE']))
+                                @if (isset($category))
                                     <input type="text" name="title" 
                                     value="{{__('categories.'.$category)}} {{__('helperJobCreate.helper needed')}}"
                                     class="form-control custom-input">
@@ -147,7 +147,7 @@ use App\Models\Job;
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('helperJobCreate.Tasks')}}</label>
-                            @if (isset(Job::ROLES[$category]['TASKS']))
+                            @if (isset($category))
                                 <textarea name="tasks" class="form-control custom-input" rows="8">
                                 {{__("tasks.$category")}}
                                 </textarea>
@@ -159,7 +159,7 @@ use App\Models\Job;
                         <div class="mb-4">
                             <label class="form-label">
                                 {{__('helperJobCreate.Expectation')}}</label>
-                            @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
+                            @if (isset($category))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
                                 {{__("expectations.$category")}}
                                 </textarea>

@@ -78,7 +78,7 @@
                                 <span class="input-group-text">
                                     <img src="{{ asset('storage/images/icons/title.svg') }}" width="20">
                                 </span>
-                                @if (isset(Job::ROLES[$category]['TITLE']))
+                                @if (isset($category))
                                     <input type="text" name="title" 
                                     value="{{__('categories.'.$category)}} {{__('jobCreate.employee needed')}}"
                                     class="form-control custom-input">
@@ -187,7 +187,7 @@
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('jobCreate.Expectation')}}</label>
-                            @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
+                            @if (isset($category]))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
                                 {{__("expectations.$category")}}
                                 </textarea>
