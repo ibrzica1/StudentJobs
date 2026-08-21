@@ -21,5 +21,5 @@ return [
     'Search city...' => 'Search city...',
     'Street address, house number (optional)' => 'Street address, house number (optional)',
     'euros per hour' => 'euros per hour',
-    
+    'helper needed' => 'helper needed',
 ];

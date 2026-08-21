@@ -18,4 +18,5 @@ return [
     'Expectation' => 'Expectation',
     'Offer' => 'Offer',
     'SUBMIT JOB' => 'SUBMIT JOB',
+    'employee needed' => 'employee needed'
 ];
