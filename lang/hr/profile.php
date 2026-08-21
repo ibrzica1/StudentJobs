@@ -31,4 +31,11 @@ return [
     'BOOK STUDENTS' => 'NADI STUDENTE',
     'ADD COMPANY' => 'DODAJ KOMPANIJU',
     'ADD' => 'DODAJ',
+    'Mobility' => 'Mobilnost',
+    'Car driving licence' => 'Vozacka dozvola',
+    'YES' => 'DA',
+    'NO' => 'NE',
+    'Are there any cars available?' => 'Postoji li dostupan auto?',
+    'Truck drivers license' => 'Vozacka dozvola za kamion',
+    
 ];

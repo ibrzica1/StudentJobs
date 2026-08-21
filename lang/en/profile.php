@@ -31,4 +31,10 @@ return [
     'BOOK STUDENTS' => 'BOOK STUDENTS',
     'ADD COMPANY' => 'ADD COMPANY',
     'ADD' => 'ADD',
+    'Mobility' => 'Mobility',
+    'Car driving licence' => 'Car driving licence',
+    'YES' => 'YES',
+    'NO' => 'NO',
+    'Are there any cars available?' => 'Are there any cars available?',
+    'Truck drivers license' => 'Truck drivers license',
 ];
