@@ -189,7 +189,7 @@
                                 {{__('jobCreate.Expectation')}}</label>
                             @if (isset(Job::ROLES[$category]['EXPECTATIONS']))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
-                                {{Job::ROLES[$category]['EXPECTATIONS']}}
+                                {{__("expectations.$category")}}
                                 </textarea>
                             @else
                                 <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
