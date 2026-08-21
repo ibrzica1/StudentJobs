@@ -21,5 +21,5 @@ return [
     'Search city...' => 'Pretrazi grad',
     'Street address, house number (optional)' => 'Adresa, kucni broj (opcionalno)',
     'euros per hour' => 'eura po satu',
-    
+    'helper needed' => 'pomocnik potreban'
 ];

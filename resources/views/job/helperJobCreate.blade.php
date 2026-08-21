@@ -80,7 +80,7 @@ use App\Models\Job;
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
                                 @if (isset(Job::ROLES[$category]['TITLE']))
                                     <input type="text" name="title" 
-                                    value="{{Job::ROLES[$category]['TITLE']}} Helper Needed"
+                                    value="{{__('categories.'.$category)}} {{__('helperJobCreate.helper needed')}}"
                                     class="form-control custom-input">
                                 @else
                                     <div class="flex-grow-1">

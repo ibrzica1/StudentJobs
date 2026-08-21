@@ -80,7 +80,7 @@
                                 </span>
                                 @if (isset(Job::ROLES[$category]['TITLE']))
                                     <input type="text" name="title" 
-                                    value="{{Job::ROLES[$category]['TITLE']}} Employee Needed"
+                                    value="{{__('categories.'.$category)}} {{__('jobCreate.employee needed')}}"
                                     class="form-control custom-input">
                                 @else
                                   <input type="text" name="title" class="form-control custom-input"

@@ -18,4 +18,5 @@ return [
     'Expectation' => 'Ocekivanja',
     'Offer' => 'Ponuda',
     'SUBMIT JOB' => 'PREDAJ OGLAS',
+    'employee needed' => 'zaposlenik potreban'
 ];
