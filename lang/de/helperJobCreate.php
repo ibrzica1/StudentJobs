@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'New Job' => 'Neuer Job',
+    'Helper' => 'Helfer',
+    'Booking details' => 'Buchungsdetails',
+    'Title / Your booking' => 'Titel / Ihre Buchung',
+    'Location' => 'Standort',
+    'Address' => 'Adresse',
+    'How many moving helpers?' => 'Wie viele Umzugshelfer benötigen Sie?',
+    'Helper wage per person' => 'Helferlohn pro Person',
+    'Deployment date' => 'Einsatzdatum',
+    'From' => 'Von',
+    'To' => 'Bis',
+    'Job Details' => 'Job-Details',
+    'Description' => 'Beschreibung',
+    'Tasks' => 'Aufgaben',
+    'Expectation' => 'Erwartungen',
+    'SUBMIT JOB' => 'JOB EINREICHEN',
+    'e.g. Moving Helper' => 'z.B. Umzugshelfer',
+    'Search city...' => 'Stadt suchen...',
+    'Street address, house number (optional)' => 'Straße, Hausnummer (optional)',
+    'euros per hour' => 'Euro pro Stunde',
+    'helper needed' => 'Helfer benötigt',
+];
