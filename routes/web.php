@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
-Route::view('/test', 'test');
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
 
 Route::get('/filter/type/{type}', [HomepageController::class, 'indexType'])->name('homepage.type');

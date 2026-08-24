@@ -1,5 +1,6 @@
 <?php 
 use App\Models\Job;
+use App\Models\Localization;
 ?>
 
 <nav class="relative bg-white shadow-sm py-0 px-3">
@@ -50,6 +51,38 @@ use App\Models\Job;
                  class="h-[85px] object-contain">
         </a>
 
+        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-3
+            bg-secondary-subtle py-2 px-2 mx-3 
+            border-top-4 shadow-sm  rounded-5">
+            <div class="flex relative items-center justify-between border p-1 
+                shadow-sm bg-danger-subtle px-2 gap-2 rounded-5 locale-switcher-red"
+                wire:click="$wire.toggleLocale"
+                role="button">
+                <img src="{{ asset('storage/images/icons/'.$locale.'.png') }}" style="width: 20px;">
+                <p class="text-center">{{$locale}}</p>
+
+                <div class="absolute top-9 left-0 py-2 bg-white px-2 z-50
+                       bg-secondary-subtle gap-2 rounded"
+                       wire:show="showLocale"
+                       wire:click.outside="showLocale = false"
+                       style="width: 100px;">
+                    @foreach (Localization::ALLOWED_LOCALE as $locale)
+                        <div class="flex items-center justify-between p-2 
+                            rounded-5 locale-switcher-red"
+                            wire:click.stop="$wire.setLocale('{{$locale}}')"
+                            role="button">
+                            <img src="{{ asset('storage/images/icons/'.$locale.'.png') }}" style="width: 20px;">
+                            <p>{{$locale}}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <button class="bg-success-subtle p-2 rounded-5 shadow-sm locale-switcher-green"
+                    wire:click="$wire.updateLocale">
+                <img src="{{ asset('storage/images/icons/change.png') }}" style="width: 14px;">
+            </button>
+        </div>
         <!-- Profile Button -->
         <button class="p-3 border-0 transition-colors hover:bg-[#c4eccd] rounded"
                 wire:click="$wire.toggleProfile">
@@ -98,4 +131,22 @@ use App\Models\Job;
             
         </div>
     </div>
+    </div>
 </nav>
+
+<style>
+    .locale-switcher-red {
+        transition: background-color 0.2s ease;
+        cursor: pointer;
+    }
+    .locale-switcher-red:hover {
+        background-color: #f4bdbd !important;
+    }
+    .locale-switcher-green {
+        transition: background-color 0.2s ease;
+        cursor: pointer;
+    }
+    .locale-switcher-green:hover {
+        background-color: #a3cfbb !important;
+    }
+</style>

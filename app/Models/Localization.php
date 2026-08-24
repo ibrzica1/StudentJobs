@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class Localization extends Model
 {
-    
+
     const ENGLISH = "en";
     const CROATIAN = "hr";
     const GERMAN = "de";
