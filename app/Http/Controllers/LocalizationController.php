@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class LocalizationController extends Controller
 {
-    private $localization;
+    private object $localization;
 
     public function __construct()
     {

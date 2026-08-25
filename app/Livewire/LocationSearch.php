@@ -11,14 +11,14 @@ class LocationSearch extends Component
     public $locations = [];
     public $selectedLocationId = null;
 
-   public function selectLocation($id, $cityName)
+   public function selectLocation(int $id, string $cityName): void
     {
         $this->selectedLocationId = $id;
         $this->search = $cityName;   
         $this->locations = [];          
     }
 
-    public function updatedSearch()
+    public function updatedSearch(): void
     {
         $locationRepo = new LocationRepository();
         $this->locations = $locationRepo->locationSearch($this->search);

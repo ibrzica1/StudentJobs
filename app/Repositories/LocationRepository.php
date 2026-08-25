@@ -6,14 +6,14 @@ use App\Models\Location;
 
 class LocationRepository
 {
-    private $locationModel;
+    private object $locationModel;
 
     public function __construct()
     {
         $this->locationModel = new Location();
     }
 
-    public function locationSearch($search)
+    public function locationSearch(string $search): object
     {
         return $this->locationModel::where('city','like','%'.$search.'%')->take(10)->get();
     }
