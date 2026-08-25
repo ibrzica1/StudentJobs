@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
-    private $companyRepo; 
+    private object $companyRepo; 
 
     public function __construct()
     {

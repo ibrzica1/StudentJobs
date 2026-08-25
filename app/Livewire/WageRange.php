@@ -12,13 +12,13 @@ class WageRange extends Component
     public $showSmile = false;
     public $showHappy = false;
 
-    public function updateWage($amount)
+    public function updateWage(int $amount): void
     {
         $this->wage = $amount;
         $this->updateIcon();
     }
 
-    public function updateIcon()
+    public function updateIcon(): void
     {
         switch($this->wage){
             case($this->wage >= 14 && $this->wage < 16):

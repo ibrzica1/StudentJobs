@@ -9,24 +9,24 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyRepository
 {
-    private $companyModel;
+    private object $companyModel;
 
     public function __construct()
     {
         $this->companyModel = new Company();
     }
 
-   public function getCompany(int $id)
+   public function getCompany(int $id): Company
    {
         return $this->companyModel->whereId($id)->first();
    }
 
-   public function getUserCompanies(int $userId)
+   public function getUserCompanies(int $userId): array
    {
         return $this->companyModel->where('user_id',$userId)->get();
    }
 
-   public function store($request, $userId)
+   public function store(array $request, int $userId): Company
    {
         $logo = null;
         if($request['imageCompany']){
@@ -43,7 +43,7 @@ class CompanyRepository
        return $company;
    }
 
-   public function updateInfo(object $request)
+   public function updateInfo(object $request): void
    {
         $this->companyModel
         ->whereId($request->companyId)
@@ -52,7 +52,7 @@ class CompanyRepository
         ]);
    }
 
-   public function updateLogo(string $logo, int $id)
+   public function updateLogo(string $logo, int $id): void
    {
         $this->companyModel->where('user_id',$id)->update([
             'logo' => $logo,

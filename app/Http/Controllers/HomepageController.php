@@ -8,23 +8,24 @@ use App\Repositories\JobRepository;
 use App\Rules\AllowedCategoryTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\View\View;
 
 class HomepageController extends Controller
 {
-    private $jobRepo;
+    private object $jobRepo;
 
     public function __construct()
     {
         $this->jobRepo = new JobRepository();
     }
 
-    public function index()
+    public function index(): View
     {
         $jobs = $this->jobRepo->getLatestJobs();
         return view('welcome',['jobs' => $jobs]);
     }
 
-    public function indexCategory($category)
+    public function indexCategory(string $category): View
     {
         if(!in_array($category,Job::ALLOWED_HELPER_TYPES)){
             redirect()->back()->withErrors('Incorrect category type');
@@ -33,7 +34,7 @@ class HomepageController extends Controller
         return view('welcome',['jobs' => $jobs]);
     }
 
-     public function indexType($type)
+     public function indexType(string $type): View
     {
         if(!in_array($type,Job::ALLOWED_JOB_TYPES)){
             redirect()->back()->withErrors('Incorrect job type');

@@ -11,13 +11,13 @@ class HelperTypeSearch extends Component
     public $helperTypes = [];
 
 
-    public function selectHelperType($helperType)
+    public function selectHelperType(string $helperType): void
     {
         $this->search = $helperType;
         $this->helperTypes = [];
     }
 
-    public function updatedSearch()
+    public function updatedSearch(): void
     {
         if(strlen($this->search) >= 2){
             foreach(Job::ALLOWED_HELPER_TYPES as $type)

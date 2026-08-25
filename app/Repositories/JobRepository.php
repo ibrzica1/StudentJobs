@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Cache;
 
 class JobRepository
 {
-    private $jobModel;
+    private object $jobModel;
 
     public function __construct()
     {
        $this->jobModel = new Job();
     }
 
-    public function storeHelperJob($request)
+    public function storeHelperJob(array $request): Job
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::HELPER_JOB,
@@ -37,7 +37,7 @@ class JobRepository
         return $job;
     }
 
-    public function storeJob($request)
+    public function storeJob(array $request): Job
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::JOB,
@@ -59,7 +59,7 @@ class JobRepository
         return $job;
     }
 
-    public function getLatestJobs()
+    public function getLatestJobs(): array
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$page;
@@ -70,7 +70,7 @@ class JobRepository
         return $jobs;
     }
 
-    public function getLatestJobsByCategory($category)
+    public function getLatestJobsByCategory(string $category): array
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
@@ -80,7 +80,7 @@ class JobRepository
         return $jobs;
     }
 
-    public function getLatestJobsByType($type)
+    public function getLatestJobsByType(string $type): array
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
@@ -90,7 +90,7 @@ class JobRepository
         return $jobs;
     }
 
-    public function similarJobs(int $limit, string $category, int $id)
+    public function similarJobs(int $limit, string $category, int $id): array
     {
         $cacheKey = 'similar_job_'.$category.'_'.$id;
         $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){

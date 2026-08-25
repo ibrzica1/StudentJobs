@@ -8,7 +8,7 @@ class ProfileLivewire extends Component
 {
     public $showAddCompany = false;
 
-    public function toggleAddCompany()
+    public function toggleAddCompany(): void
     {
         $this->showAddCompany = !$this->showAddCompany;
     }

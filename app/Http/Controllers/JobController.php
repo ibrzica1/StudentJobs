@@ -11,11 +11,12 @@ use App\Repositories\JobRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class JobController extends Controller
 {
-    private $jobRepository;
-    private $companyRepository;
+    private object $jobRepository;
+    private object $companyRepository;
 
     public function __construct()
     {
@@ -23,14 +24,14 @@ class JobController extends Controller
         $this->companyRepository = new CompanyRepository();
     }
 
-    public function show(Job $job)
+    public function show(Job $job): View
     {
         $job->load('location','company');
         $similarJobs = $this->jobRepository->similarJobs(10,$job->category,$job->id);
         return view("job/showJob",['job' => $job],['similarJobs' => $similarJobs]);
     }
 
-    public function createJobHelper($category)
+    public function createJobHelper(string $category): View
     {
         return view('job/helperJobCreate',['category' => $category]);
     }
@@ -41,7 +42,7 @@ class JobController extends Controller
         return redirect()->route('homepage');
     }
 
-    public function createJob($category)
+    public function createJob(string $category): View
     {
         $companies = $this->companyRepository->getUserCompanies(Auth::id());
         return view('job/jobCreate',['companies' => $companies, 'category' => $category]);
@@ -53,7 +54,7 @@ class JobController extends Controller
         return redirect()->route('homepage');
     }
 
-    public function categories($jobType)
+    public function categories(string $jobType): View
     {
         return view('job/categories',['jobType' => $jobType]);
     }
