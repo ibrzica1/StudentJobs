@@ -7,6 +7,7 @@
        {{__('profile.Mobility')}} 
     </h6>
 
+    {{-- DRIVING LICENCE --}}
     <div class=" mb-3">
         <label for="car_licence" class="form-label">
             {{__('profile.Car driving licence')}}</label>
@@ -20,12 +21,13 @@
             </button>    
             <button type="button"
                     wire:click=uppdateCarLicense(0)
-                    class="{{$car_licence === 0 ? 'bg-success text-white' : 'bg-secondary-subtle'}}
+                    class="{{!$car_licence ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 {{__('profile.NO')}}
             </button>
         </div>
 
+        {{-- CAR AVAILABILITY --}}
         <label for="car_available" class="form-label">
             {{__('profile.Are there any cars available?')}}</label>
         <div class="input-group column-gap-3 mb-2">
@@ -38,12 +40,13 @@
             </button>    
             <button type="button"
                     wire:click=uppdateCarAvailable(0)
-                    class="{{$car_available === 0 ? 'bg-success text-white' : 'bg-secondary-subtle'}}
+                    class="{{!$car_available ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 {{__('profile.NO')}}
             </button>
         </div>
 
+        {{-- TRUCK LICENCE --}}
         <label for="truck_licence" class="form-label">
             {{__('profile.Truck drivers license')}}</label>
         <div class="input-group column-gap-3 mb-2">
@@ -56,13 +59,14 @@
             </button>    
             <button type="button"
                     wire:click=uppdateTruckLicense(0)
-                    class="{{$truck_licence === 0 ? 'bg-success text-white' : 'bg-secondary-subtle'}}
+                    class="{{!$truck_licence ? 'bg-success text-white' : 'bg-secondary-subtle'}}
                     col-5 h-50px btn rounded">
                 {{__('profile.NO')}}
             </button>
         </div>
     </div>
 
+    {{-- SUBMIT BUTTON --}}
     <button
     type="submit"
     class="btn btn-success btn-lg w-100 py-3">
