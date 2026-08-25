@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
 
-Route::get('/filter/type/{type}', [HomepageController::class, 'indexType'])->name('homepage.type');
-Route::get('/filter/category/{category}', [HomepageController::class, 'indexCategory'])->name('homepage.category');
-Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::controller(HomepageController::class)->name('homepage')->group(function() {
+    Route::get('/filter/type/{type}', 'indexType')->name('.type');
+    Route::get('/filter/category/{category}', 'indexCategory')->name('.category');
+    Route::get('/', 'index')->name('');
+});
 
 Route::controller(JobController::class)->prefix('/job')
 ->name('job.')->group(function() {

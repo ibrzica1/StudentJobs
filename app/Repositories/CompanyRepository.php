@@ -21,7 +21,7 @@ class CompanyRepository
         return $this->companyModel->whereId($id)->first();
    }
 
-   public function getUserCompanies(int $userId): array
+   public function getUserCompanies(int $userId): object
    {
         return $this->companyModel->where('user_id',$userId)->get();
    }

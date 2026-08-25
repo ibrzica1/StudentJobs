@@ -59,7 +59,7 @@ class JobRepository
         return $job;
     }
 
-    public function getLatestJobs(): array
+    public function getLatestJobs(): object
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$page;
@@ -70,7 +70,7 @@ class JobRepository
         return $jobs;
     }
 
-    public function getLatestJobsByCategory(string $category): array
+    public function getLatestJobsByCategory(string $category): object
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
@@ -80,7 +80,7 @@ class JobRepository
         return $jobs;
     }
 
-    public function getLatestJobsByType(string $type): array
+    public function getLatestJobsByType(string $type): object
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
@@ -90,7 +90,7 @@ class JobRepository
         return $jobs;
     }
 
-    public function similarJobs(int $limit, string $category, int $id): array
+    public function similarJobs(int $limit, string $category, int $id): object
     {
         $cacheKey = 'similar_job_'.$category.'_'.$id;
         $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){

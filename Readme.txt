@@ -1,9 +1,9 @@
 GENERAL
 
 Student Jobs is a site for students seeking work.
-There is 2 types of jobs, helper jobs and intership jobs.
+There are 2 types of jobs, helper jobs and intership jobs.
 Helper jobs are short term jobs when someone needs help with something.
-Usually its s few hours of work, like help with moving or babysitting gig.
+Usually its s few hours of work, like help with moving or babysitting.
 Intership jobs are more permanent position, with weekly hours and a contract.
 When registering user can decide how does he/she wants to register as a student,
 or as a employer.
@@ -11,6 +11,11 @@ Student is entering Account Information(Email, Password), Personal Details (Name
 Contact Details (City, Street, House Number, Telephone) and Profile Picture (optional).
 Employer is entering Account Information(Email, Password),  Personal Details (Name, Surname),
 Company Data (Company Name, City, Street, House Number, Telephone Number and Company Logo).
+Student can apply on the jobs.
+Employer is choosing amoung the applications and when he/she accepts the application, employer and
+student will be provided with eachoders email for contact.
+When posting a job employer will be provided with the bill.
+Bill is payed by bank transaction and admin is deciding if the bill is payed
 
 
 LOCATION
