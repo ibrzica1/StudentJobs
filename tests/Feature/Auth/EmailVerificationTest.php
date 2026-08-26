@@ -26,7 +26,7 @@ class EmailVerificationTest extends TestCase
 
     public function test_email_can_be_verified(): void
     {
-        $this->withoutExceptionHandling();
+        
         (new GermanLocationsSeeder())->run();
         $user = User::factory()->unverified()->create();
 
