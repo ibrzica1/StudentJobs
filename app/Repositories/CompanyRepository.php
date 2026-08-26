@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\StoreEmployerRequest;
 use App\Models\Company;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ class CompanyRepository
         return $this->companyModel->where('user_id',$userId)->get();
    }
 
-   public function store(array $request, int $userId): Company
+   public function store(StoreEmployerRequest $request, int $userId): Company
    {
         $logo = null;
         if($request['imageCompany']){
