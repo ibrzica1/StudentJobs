@@ -42,6 +42,23 @@ class UserFactory extends Factory
         ];
     }
 
+    public function student(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'student',
+            'car_available' => fake()->randomElement([true,false]),
+            'truck_licence'=> fake()->randomElement([true,false]),
+            'car_licence'=> fake()->randomElement([true,false]),
+        ]);
+    }
+
+    public function employer(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'employer',
+        ]);
+    }
+
     /**
      * Indicate that the model's email address should be unverified.
      */
