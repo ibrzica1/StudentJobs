@@ -187,7 +187,7 @@
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('jobCreate.Expectation')}}</label>
-                            @if (isset($category]))
+                            @if (isset($category))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
                                 {{__("expectations.$category")}}
                                 </textarea>
