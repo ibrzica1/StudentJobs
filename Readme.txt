@@ -36,4 +36,8 @@ Change location element is located in app navigation element.
 To change locale call 'locale.set' route and pass the desired locale, 
 in changeLocale function will validate if passed locale is valid and if yes locale will be changed
 
+TESTING
 
+Testing for Auth and Profile are from Breeze package but refactored
+Testing for Job is done by testing CRUD and for routes 
+testing authorization and authentication happy path and not happy path.
