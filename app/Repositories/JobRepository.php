@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\CreateHelperJobRequest;
+use App\Http\Requests\CreateJobRequest;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -15,7 +17,7 @@ class JobRepository
        $this->jobModel = new Job();
     }
 
-    public function storeHelperJob(array $request): Job
+    public function storeHelperJob(CreateHelperJobRequest $request): Job
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::HELPER_JOB,
@@ -37,7 +39,7 @@ class JobRepository
         return $job;
     }
 
-    public function storeJob(array $request): Job
+    public function storeJob(CreateJobRequest $request): Job
     {
         $job = $this->jobModel->create([
             'type' => $this->jobModel::JOB,
