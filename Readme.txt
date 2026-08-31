@@ -41,3 +41,5 @@ TESTING
 Testing for Auth and Profile are from Breeze package but refactored
 Testing for Job is done by testing CRUD and for routes 
 testing authorization and authentication happy path and not happy path.
+Testing the homepage is done by testing the loading of the page, 
+pagination of the jobs and filtering the jobs by category.
