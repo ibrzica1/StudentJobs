@@ -106,4 +106,16 @@ class JobRepository
 
         return $jobs;
     }
+
+    public function getMyJobs():object
+    {
+        $jobs = Cache::remember('my_ads',120,function() {
+            return $this->jobModel
+            ->where('employer_id', Auth::id())
+            ->latest()
+            ->get();
+        });
+
+        return $jobs;
+    }
 }
