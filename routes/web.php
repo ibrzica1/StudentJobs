@@ -49,12 +49,13 @@ Route::controller(ProfileController::class)
     Route::delete('/destroy','destroy')->name('destroy');
 });
 
-Route::controller(CompanyController::class)->prefix('/company')->name('company.')
+Route::controller(CompanyController::class)->middleware(['auth',EmployerCheckMiddleware::class])
+->prefix('/company')->name('company.')
 ->group(function() {
-    Route::delete('/delete/{company}','deleteCompany')
-    ->middleware(['auth',EmployerCheckMiddleware::class])->name('delete');
-    Route::post('/store','store')
-    ->middleware(['auth',EmployerCheckMiddleware::class])->name('store');
+    Route::patch('/update/company-logo','updateLogo')->name('update.company-logo');
+    Route::patch('/update/company-info','updateCompanyInfo')->name('update.company-info');
+    Route::delete('/delete/{company}','deleteCompany')->name('delete');
+    Route::post('/store','store')->name('store');
 });
 
 Route::controller(ApplicationController::class)->prefix('/application')->name('application.')
