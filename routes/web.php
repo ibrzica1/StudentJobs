@@ -33,6 +33,8 @@ Route::controller(JobController::class)->prefix('/job')
     Route::get('/show/{job}','show')->name('show');
     Route::get('/categories/{jobType}','categories')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
+    Route::get('/my-ads','myAds')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('my-ads');
 });
 
 Route::controller(ProfileController::class)
@@ -47,6 +49,7 @@ Route::controller(ProfileController::class)
     Route::patch('/update/company-logo','updateLogo')->name('update.company-logo');
     Route::patch('/update/company-info','updateCompanyInfo')->name('update.company-info');
     Route::delete('/destroy','destroy')->name('destroy');
+    
 });
 
 Route::controller(CompanyController::class)->middleware(['auth',EmployerCheckMiddleware::class])
