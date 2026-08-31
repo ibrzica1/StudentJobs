@@ -43,3 +43,5 @@ Testing for Job is done by testing CRUD and for routes
 testing authorization and authentication happy path and not happy path.
 Testing the homepage is done by testing the loading of the page, 
 pagination of the jobs and filtering the jobs by category.
+Testing for company is done by testing CRUD and for routes.
+Testing Localization is done by testing if locale can be changed.
