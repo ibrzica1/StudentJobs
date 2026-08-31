@@ -58,4 +58,11 @@ class JobController extends Controller
     {
         return view('job/categories',['jobType' => $jobType]);
     }
+
+    
+    public function myAds()
+    {
+        $ads = $this->jobRepository->getMyJobs();
+        return view('job/myAds',['ads' => $ads]);
+    }
 }
