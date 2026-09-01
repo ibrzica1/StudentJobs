@@ -58,11 +58,16 @@ class JobController extends Controller
     {
         return view('job/categories',['jobType' => $jobType]);
     }
-
     
     public function myAds()
     {
         $ads = $this->jobRepository->getMyJobs();
         return view('job/myAds',['ads' => $ads]);
+    }
+
+    public function delete(Job $job): RedirectResponse
+    {
+        $this->jobRepository->delete($job);
+        return redirect()->back();
     }
 }

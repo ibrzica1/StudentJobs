@@ -118,4 +118,10 @@ class JobRepository
 
         return $jobs;
     }
+
+    public function delete(Job $job): void
+    {
+       $this->jobModel->where('id',$job->id)->delete();
+       Cache::forget('my_ads');
+    }
 }

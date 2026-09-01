@@ -7,6 +7,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
+use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::controller(JobController::class)->prefix('/job')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
     Route::get('/my-ads','myAds')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('my-ads');
+    Route::delete('/delete/{job}','delete')
+    ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])->name('delete');
 });
 
 Route::controller(ProfileController::class)
