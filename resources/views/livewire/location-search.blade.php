@@ -3,7 +3,6 @@
         <span class="input-group-text">
             <img src="{{ asset('storage/images/icons/location.svg') }}" style="width: 20px;">
         </span>
-        /** wire:model.live.debounce.300ms is so there will be pause while user types  */
         <input type="text" 
                wire:model.live.debounce.300ms="search" 
                class="form-control custom-input" 
