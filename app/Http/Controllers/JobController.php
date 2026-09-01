@@ -54,6 +54,11 @@ class JobController extends Controller
         return redirect()->route('homepage');
     }
 
+    public function edit(Job $job): View
+    {
+        return view('job/jobEdit',['job' => $job]);
+    }
+
     public function categories(string $jobType): View
     {
         return view('job/categories',['jobType' => $jobType]);

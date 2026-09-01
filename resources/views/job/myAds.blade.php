@@ -123,7 +123,8 @@
                 </a>
 
                 <div class="d-flex flex-column align-items-center gap-2 ms-3">
-                    <a href="" class="btn btn-success btn-sm">
+                    <a href="{{ route('job.edit',['job' => $job->id]) }}" 
+                    class="btn btn-success btn-sm">
                         {{__('EDIT')}}
                     </a>
                     <form action="{{route('job.delete',['job' => $job->id])}}" method="post" class="m-0">

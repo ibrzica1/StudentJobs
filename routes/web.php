@@ -32,12 +32,16 @@ Route::controller(JobController::class)->prefix('/job')
     Route::post('/store','storeJob')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('store');
     Route::get('/show/{job}','show')->name('show');
+    Route::get('/update/{job}','edit')
+    ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])
+    ->name('edit');
     Route::get('/categories/{jobType}','categories')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
     Route::get('/my-ads','myAds')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('my-ads');
     Route::delete('/delete/{job}','delete')
-    ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])->name('delete');
+    ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])
+    ->name('delete');
 });
 
 Route::controller(ProfileController::class)
