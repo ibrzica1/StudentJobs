@@ -2,15 +2,26 @@
 
 namespace App\Livewire;
 
+use App\Models\Job;
 use Livewire\Component;
 
 class WageRange extends Component
 {
+    public ?Job $job = null;
     public $wage = 17;
     public $showSad = false;
     public $showNeutral = true;
     public $showSmile = false;
     public $showHappy = false;
+
+    public function mount(?Job $job = null)
+    {
+        $this->job = $job;
+        if($this->job){
+            $this->wage = $this->job->wage;
+            $this->updateIcon();
+        }
+    }
 
     public function updateWage(int $amount): void
     {
