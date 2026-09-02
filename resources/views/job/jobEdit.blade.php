@@ -84,7 +84,7 @@ use App\Models\Job;
                                 <div class="input-group">
                                     <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
                                         <div class="flex-grow-1">
-                                            <livewire:helper-type-search />
+                                            <livewire:helper-type-search :job="$job"/>
                                         </div>
                                 </div>
                             </div>
