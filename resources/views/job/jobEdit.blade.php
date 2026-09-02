@@ -91,7 +91,7 @@ use App\Models\Job;
 
                             <div class="mb-3">
                                 <label class="form-label">{{__('helperJobCreate.Location')}}</label>
-                                <livewire:location-search />
+                                <livewire:location-search :job="$job"/>
                             </div>
 
                             <div class="mb-3">
