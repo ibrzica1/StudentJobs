@@ -55,9 +55,9 @@ use App\Models\Job;
                     </h2>
                     <hr class="mb-4">
 
-                    <form action="{{route('job.store')}}" method="post">
+                    <form action="{{route('job.update',['job' => $job])}}" method="post">
                         @csrf
-                        
+                        @method('PATCH')
                         @if($errors->any())
                             <div class="alert alert-danger">{{$errors->first()}}</div>
                         @endif

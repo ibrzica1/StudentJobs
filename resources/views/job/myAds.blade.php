@@ -12,7 +12,7 @@
         $time = new TimeService();
     ?>
     <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
-        {{__('My Adds')}}
+        {{__('myAds.My Adds')}}
     </h6>
 
     @if ($ads->isEmpty())
@@ -23,14 +23,14 @@
                     width="80"
                     height="80"
                     style="object-fit: cover;">
-                <h3 class="fw-bold mb-2">{{__('You haven\'t created any jobs yet, but it\'s about time!')}}</h3>
-                <p class="text-muted mb-4">{{__('Start by creating your first job listing.')}}</p>
+                <h3 class="fw-bold mb-2">{{__('myAds.You haven\'t created any jobs yet, but it\'s about time!')}}</h3>
+                <p class="text-muted mb-4">{{__('myAds.Start by creating your first job listing.')}}</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="{{route('job.categories', ['jobType' => 'job'])}}" class="btn btn-danger px-4 py-2">
-                        {{__('Create Internship Job')}}
+                        {{__('myAds.Create Internship Job')}}
                     </a>
                     <a href="{{route('job.categories', ['jobType' => 'helper'])}}" class="btn btn-outline-danger px-4 py-2">
-                        {{__('Create Helper Job')}}
+                        {{__('myAds.Create Helper Job')}}
                     </a>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 <div class="d-flex flex-column align-items-center gap-2 ms-3">
                     <a href="{{ route('job.edit',['job' => $job->id]) }}" 
                     class="btn btn-success btn-sm">
-                        {{__('EDIT')}}
+                        {{__('myAds.EDIT')}}
                     </a>
                     <form action="{{route('job.delete',['job' => $job->id])}}" method="post" class="m-0">
                         @csrf
