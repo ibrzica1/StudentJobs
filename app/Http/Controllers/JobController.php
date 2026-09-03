@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
 use App\Http\Requests\UpdateHelperJobRequest;
+use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Repositories\CompanyRepository;
 use App\Repositories\JobRepository;
@@ -63,8 +64,13 @@ class JobController extends Controller
 
     public function updateJobHelper(Job $job, UpdateHelperJobRequest $request)
     {
-       
-       $this->jobRepository->updateHelperJob($job->id,$request->validated());
+       $this->jobRepository->update($job->id,$request->validated());
+       return redirect()->route('job.my-ads');
+    }
+
+    public function updateJob(Job $job, UpdateJobRequest $request)
+    {
+       $this->jobRepository->update($job->id,$request->validated());
        return redirect()->route('job.my-ads');
     }
 

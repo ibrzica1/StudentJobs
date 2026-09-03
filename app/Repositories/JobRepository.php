@@ -62,9 +62,8 @@ class JobRepository
         return $job;
     }
 
-    public function updateHelperJob(int $jobId, array $request): void
+    public function update(int $jobId, array $request): void
     {
-        
         $this->jobModel->where('id',$jobId)->update($request);
         Cache::forget('my_ads');
     }
