@@ -17,6 +17,8 @@ return [
     'Tasks' => 'Aufgaben',
     'Expectation' => 'Erwartungen',
     'SUBMIT JOB' => 'JOB EINREICHEN',
+    'UPDATE JOB' => 'JOB AKTUALISIEREN',
+    'Update /' => 'Aktualisieren /',
     'e.g. Moving Helper' => 'z.B. Umzugshelfer',
     'Search city...' => 'Stadt suchen...',
     'Street address, house number (optional)' => 'Straße, Hausnummer (optional)',

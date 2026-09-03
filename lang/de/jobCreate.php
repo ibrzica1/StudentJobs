@@ -18,5 +18,7 @@ return [
     'Expectation' => 'Erwartungen',
     'Offer' => 'Angebot',
     'SUBMIT JOB' => 'JOB EINREICHEN',
+    'UPDATE JOB' => 'JOB AKTUALISIEREN',
+    'Update /' => 'Aktualisieren /',
     'employee needed' => 'Mitarbeiter benötigt'
 ];

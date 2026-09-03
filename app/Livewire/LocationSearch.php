@@ -14,7 +14,7 @@ class LocationSearch extends Component
     public $selectedLocationId = null;
     public $name = '';
 
-    public function mount(?Job $job = null)
+    public function mount($job = null)
     {
         $this->job = $job;
         if($this->job){

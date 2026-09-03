@@ -17,6 +17,8 @@ return [
     'Tasks' => 'Zadaci posla',
     'Expectation' => 'Ocekivanja',
     'SUBMIT JOB' => 'PREDAJ OGLAS',
+    'UPDATE JOB' => 'PROMIJENI OGLAS',
+    'Update /' => 'Promijeni /',
     'e.g. Moving Helper' => 'npr. Selidba',
     'Search city...' => 'Pretrazi grad',
     'Street address, house number (optional)' => 'Adresa, kucni broj (opcionalno)',

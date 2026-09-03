@@ -35,6 +35,9 @@ Route::controller(JobController::class)->prefix('/job')
     Route::get('/update/{job}','edit')
     ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])
     ->name('edit');
+    Route::patch('/update/helper/{job}','updateJobHelper')
+    ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])
+    ->name('helper.update');
     Route::get('/categories/{jobType}','categories')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
     Route::get('/my-ads','myAds')

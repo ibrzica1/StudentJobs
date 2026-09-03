@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
+use App\Http\Requests\UpdateHelperJobRequest;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -59,6 +60,13 @@ class JobRepository
         ]);
 
         return $job;
+    }
+
+    public function updateHelperJob(int $jobId, array $request): void
+    {
+        
+        $this->jobModel->where('id',$jobId)->update($request);
+        Cache::forget('my_ads');
     }
 
     public function getLatestJobs(): object
