@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
@@ -20,15 +21,9 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
 
-Route::get('/mail/welcome',function() {
-    $user = Auth::user();
-    Mail::to('test@inbox.mailtrap.io')->send(new WelcomeEmail($user));
-});
-
-Route::get('/mail/job-created',function() {
-    $jobRepo = new JobRepository();
-    $job = $jobRepo->getJob(4);
-    Mail::to('test@inbox.mailtrap.io')->send(new JobCreatedMail($job));
+Route::controller(MailController::class)->group(function() {
+    Route::get('/mail/welcome', 'sendWelcomeMail');
+    Route::get('/mail/job-created', 'sendJobCreatedMail');
 });
 
 Route::controller(HomepageController::class)->name('homepage')->group(function() {
