@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JobCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
@@ -40,7 +41,8 @@ class JobController extends Controller
 
     public function storeJobHelper(CreateHelperJobRequest $request): RedirectResponse
     {
-        $this->jobRepository->storeHelperJob($request);
+        $job = $this->jobRepository->storeHelperJob($request);
+        event(new JobCreatedEvent($job));
         return redirect()->route('homepage');
     }
 
@@ -52,7 +54,8 @@ class JobController extends Controller
 
     public function storeJob(CreateJobRequest $request): RedirectResponse
     {
-        $this->jobRepository->storeJob($request);
+        $job = $this->jobRepository->storeJob($request);
+        event(new JobCreatedEvent($job));
         return redirect()->route('homepage');
     }
 
