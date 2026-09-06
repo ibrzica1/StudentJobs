@@ -126,6 +126,11 @@ class JobRepository
         return $jobs;
     }
 
+    public function getJob(int $id): Job
+    {
+        return $this->jobModel->where('id',$id)->first();
+    }
+
     public function delete(Job $job): void
     {
        $this->jobModel->where('id',$job->id)->delete();
