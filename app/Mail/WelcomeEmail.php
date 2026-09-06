@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,12 +15,13 @@ class WelcomeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private User $user;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -40,6 +42,7 @@ class WelcomeEmail extends Mailable
     {
         return new Content(
             view: 'mail.welcomeMail',
+            with: ['user' => $this->user],
         );
     }
 

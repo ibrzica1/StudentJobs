@@ -9,8 +9,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
+use App\Mail\JobCreatedMail;
 use App\Mail\WelcomeEmail;
+use App\Repositories\JobRepository;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +21,14 @@ use Illuminate\Support\Facades\Session;
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
 
 Route::get('/mail/welcome',function() {
-    Mail::to('test@inbox.mailtrap.io')->send(new WelcomeEmail());
+    $user = Auth::user();
+    Mail::to('test@inbox.mailtrap.io')->send(new WelcomeEmail($user));
+});
+
+Route::get('/mail/job-created',function() {
+    $jobRepo = new JobRepository();
+    $job = $jobRepo->getJob(4);
+    Mail::to('test@inbox.mailtrap.io')->send(new JobCreatedMail($job));
 });
 
 Route::controller(HomepageController::class)->name('homepage')->group(function() {
