@@ -28,6 +28,7 @@ CACHING
 For the latest jobs on index page I use pagination, 
 so I cache every page that has been clicked under cache key
 latest_jobs_ $pageNumber for 120 seconds.
+For my ads I used cache with key my_ads for 120 seconds.
 
 LOCALIZATION
 
@@ -45,3 +46,4 @@ Testing the homepage is done by testing the loading of the page,
 pagination of the jobs and filtering the jobs by category.
 Testing for company is done by testing CRUD and for routes.
 Testing Localization is done by testing if locale can be changed.
+Testing for email is done if by checking if mails can be send.

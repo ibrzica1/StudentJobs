@@ -19,7 +19,7 @@ class JobFactory extends Factory
             'type' => Job::JOB,
             'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
             'title' => fake()->text(20),
-            'employer_id' => User::factory()->employer()->create()->employer_id,
+            'employer_id' => User::factory()->employer()->create()->id,
             'location_id' => fake()->randomElement(Location::pluck('id')),
             'company_id' => null,
             'address' => null,

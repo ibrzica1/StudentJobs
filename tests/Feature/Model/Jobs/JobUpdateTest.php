@@ -16,7 +16,7 @@ it('job edit page for unauthorised user', function() {
     $this->withoutExceptionHandling();
     (new GermanLocationsSeeder())->run();
     $student = User::factory()->student()->create();
-    $job = Job::factory()->create();
+    $job = Job::factory(['employer_id' => $student->id])->create();
     $response = $this->actingAs($student)->get(route('job.edit',$job->id));
     $response->assertRedirect('/');
 });
@@ -26,7 +26,8 @@ it('job edit page for authorised user', function() {
     $this->withoutExceptionHandling();
     (new GermanLocationsSeeder())->run();
     $employer = User::factory()->employer()->create();
-    $job = Job::factory()->create();
+    $company = Company::factory(['user_id' => $employer->id])->create();
+    $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
     $response = $this->actingAs($employer)->get(route('job.edit',$job->id));
     $response->assertOk();
 });
