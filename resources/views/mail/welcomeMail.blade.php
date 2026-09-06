@@ -76,9 +76,9 @@
                                                     <div style="width:36px; height:36px; background-color:#fdeaea; border-radius:8px; text-align:center; line-height:36px; font-size:18px;">📄</div>
                                                 </td>
                                                 <td style="vertical-align:top;">
-                                                    <a href="{{ route('profile') }}" 
+                                                    <a href="{{ route('profile.edit') }}" 
                                                     style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">Complete your profile</a>
-                                                    <a href="{{ route('profile') }}" 
+                                                    <a href="{{ route('profile.edit') }}" 
                                                     style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">Add your details, CV, and preferences to stand out to employers.</p>
                                                 </td>
                                             </tr>

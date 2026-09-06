@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -102,7 +103,7 @@ class RegisteredUserController extends Controller
                 'profile_picture' => $avatar,
         ]);
         event(new Registered($user));
-
+        event(new UserCreatedEvent($user));
         Auth::login($user);
 
         return redirect(route('homepage', absolute: false));
