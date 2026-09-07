@@ -143,7 +143,7 @@ enctype="multipart/form-data">
     style="font-size: 14px">
         Below is your application text for this job</p>
 
-    <textarea name="applicationText"
+    <textarea name="text"
     class="form-control custom-input mt-2 text-secondary" rows="8">
 Dear Mr./Mrs. {{$job->employer->lastName}}
 

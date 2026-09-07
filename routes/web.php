@@ -5,26 +5,13 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
-use App\Mail\JobCreatedMail;
-use App\Mail\WelcomeEmail;
-use App\Repositories\JobRepository;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
-
-Route::controller(MailController::class)->group(function() {
-    Route::get('/mail/welcome', 'sendWelcomeMail');
-    Route::get('/mail/job-created', 'sendJobCreatedMail');
-});
 
 Route::controller(HomepageController::class)->name('homepage')->group(function() {
     Route::get('/filter/type/{type}', 'indexType')->name('.type');
