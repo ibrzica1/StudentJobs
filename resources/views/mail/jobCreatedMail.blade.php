@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Posted Successfully</title>
+<title>{{__('mail.Job Posted Successfully')}}</title>
 </head>
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, Helvetica, sans-serif;">
 
@@ -27,10 +27,10 @@
                                 ✅
                             </div>
                             <h1 style="margin:0 0 12px 0; font-size:24px; color:#212529; font-weight:700;">
-                                Your job has been posted!
+                                {{__('mail.Your job has been posted!')}}
                             </h1>
                             <p style="margin:0; font-size:15px; line-height:1.6; color:#6c757d;">
-                                Your listing is now live and visible to students on StudentJobs.
+                                {{__('mail.Your listing is now live and visible to students on StudentJobs.')}}
                             </p>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@
                                 <tr>
                                     <td style="padding:24px;">
                                         <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                            Job Title
+                                            {{__('mail.Job Title')}}
                                         </p>
                                         <h2 style="margin:0 0 20px 0; font-size:20px; color:#f00505; font-weight:700;">
                                             {{ $job->title }}
@@ -52,7 +52,7 @@
                                             <tr>
                                                 <td width="50%" style="vertical-align:top; padding-bottom:16px;">
                                                     <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                        Location
+                                                        {{__('mail.Location')}}
                                                     </p>
                                                     <p style="margin:0; font-size:14px; color:#212529;">
                                                         {{ $job->location->city ?? '—' }}
@@ -62,15 +62,15 @@
                                             <tr>
                                                 <td width="50%" style="vertical-align:top;">
                                                     <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                        Wage
+                                                        {{__('mail.Wage')}}
                                                     </p>
                                                     <p style="margin:0; font-size:14px; color:#212529;">
-                                                        €{{ $job->wage }} / hour
+                                                        €{{ $job->wage }} / {{__('mail.hour')}}
                                                     </p>
                                                 </td>
                                                 <td width="50%" style="vertical-align:top;">
                                                     <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                        Start Date
+                                                        {{__('mail.Start Date')}}
                                                     </p>
                                                     <p style="margin:0; font-size:14px; color:#212529;">
                                                         {{ \Carbon\Carbon::parse($job->start_date)->format('d.m.Y') }}
@@ -89,7 +89,7 @@
                         <td style="padding:0 40px 40px 40px; text-align:center;">
                             <a href="{{ route('job.show', ['job' => $job->id]) }}"
                                style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
-                                View Your Listing
+                                {{__('mail.View Your Listing')}}
                             </a>
                         </td>
                     </tr>
@@ -105,10 +105,11 @@
                     <tr>
                         <td style="padding:32px 40px;">
                             <p style="margin:0 0 12px 0; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                What happens next?
+                                {{__('mail.What happens next?')}}
                             </p>
                             <p style="margin:0; font-size:14px; line-height:1.6; color:#6c757d;">
-                                Students matching your criteria will be able to view and apply to this job. You'll be notified as soon as someone applies. You can edit or remove this listing anytime from your <a href="{{ route('job.my-ads') }}" style="color:#f00505; text-decoration:none; font-weight:600;">My Ads</a> page.
+                               {{__('mail.Students matching your criteria will be able to view and apply to this job. You will be notified as soon as someone applies. You can edit or remove this listing anytime from your')}}  
+                               <a href="{{ route('job.my-ads') }}" style="color:#f00505; text-decoration:none; font-weight:600;">{{__('mail.My Ads')}}</a>{{__('mail.page')}}.
                             </p>
                         </td>
                     </tr>
@@ -117,10 +118,10 @@
                     <tr>
                         <td style="background-color:#f8f9fa; padding:24px 40px; text-align:center;">
                             <p style="margin:0 0 8px 0; font-size:13px; color:#adb5bd;">
-                                &copy; {{ date('Y') }} StudentJobs. All rights reserved.
+                                &copy; {{ date('Y') }} {{__('mail.StudentJobs. All rights reserved.')}}
                             </p>
                             <p style="margin:0; font-size:13px; color:#adb5bd;">
-                                You're receiving this email because you posted a job on StudentJobs.
+                               {{__('mail.You are receiving this email because you posted a job on StudentJobs.')}} 
                             </p>
                         </td>
                     </tr>

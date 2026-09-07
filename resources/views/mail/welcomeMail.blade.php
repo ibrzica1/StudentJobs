@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome to StudentJobs</title>
+<title>{{__('mail.Welcome to StudentJobs')}}</title>
 </head>
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, Helvetica, sans-serif;">
 
@@ -24,10 +24,10 @@
                     <tr>
                         <td style="padding:40px 40px 24px 40px; text-align:center;">
                             <h1 style="margin:0 0 16px 0; font-size:26px; color:#212529; font-weight:700;">
-                                Welcome, {{ $user->firstName ?? 'there' }}! 👋
+                               {{__('mail.Welcome')}} , {{ $user->firstName }}! 👋
                             </h1>
                             <p style="margin:0; font-size:16px; line-height:1.6; color:#6c757d;">
-                                We're thrilled to have you on board. Your StudentJobs account is ready to go — start exploring opportunities or post your first job today.
+                               {{__('mail.We're thrilled to have you on board. Your StudentJobs account is ready to go — start exploring opportunities or post your first job today.')}} 
                             </p>
                         </td>
                     </tr>
@@ -37,7 +37,7 @@
                         <td style="padding:0 40px 32px 40px; text-align:center;">
                             <a href="{{ route('homepage') }}"
                                style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
-                                Get Started
+                                {{__('mail.Get Started')}}
                             </a>
                         </td>
                     </tr>
@@ -61,8 +61,8 @@
                                                     <div style="width:36px; height:36px; background-color:#fdeaea; border-radius:8px; text-align:center; line-height:36px; font-size:18px;">🔍</div>
                                                 </td>
                                                 <td style="vertical-align:top;">
-                                                    <p style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">Find opportunities</p>
-                                                    <p style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">Browse jobs and helper positions that match what you're looking for.</p>
+                                                    <p style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">{{__('mail.Find opportunities')}}</p>
+                                                    <p style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">{{__('mail.Browse jobs and helper positions that match what you're looking for.')}}</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -77,9 +77,9 @@
                                                 </td>
                                                 <td style="vertical-align:top;">
                                                     <a href="{{ route('profile.edit') }}" 
-                                                    style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">Complete your profile</a>
+                                                    style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">{{__('mail.Complete your profile')}}</a>
                                                     <a href="{{ route('profile.edit') }}" 
-                                                    style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">Add your details, CV, and preferences to stand out to employers.</p>
+                                                    style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">{{__('mail.Add your details, CV, and preferences to stand out to employers.')}}</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -93,10 +93,10 @@
                     <tr>
                         <td style="background-color:#f8f9fa; padding:24px 40px; text-align:center;">
                             <p style="margin:0 0 8px 0; font-size:13px; color:#adb5bd;">
-                                &copy; {{ date('Y') }} StudentJobs. All rights reserved.
+                                &copy; {{ date('Y') }} {{__('mail.StudentJobs. All rights reserved.')}}
                             </p>
                             <p style="margin:0; font-size:13px; color:#adb5bd;">
-                                If you didn't create this account, you can safely ignore this email.
+                                {{__('mail.If you didn't create this account, you can safely ignore this email.')}}
                             </p>
                         </td>
                     </tr>
