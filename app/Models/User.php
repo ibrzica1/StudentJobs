@@ -74,4 +74,9 @@ class User extends Authenticatable
         return $this->hasMany(Company::class,'user_id','id');
     }
 
+    public function applications(): HasMany
+    {
+        return $this->hasMany(Application::class);
+    }
+
 }
