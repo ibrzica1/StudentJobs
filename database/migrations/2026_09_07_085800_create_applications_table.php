@@ -11,7 +11,6 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('text',250);
             $table->foreignId('user_id')
             ->constrained('users')
@@ -19,7 +18,9 @@ return new class extends Migration
             $table->foreignId('job_id')
             ->constrained('jobs')
             ->cascadeOnDelete();
-            $table->string('status',9);
+            $table->string('accept_status',9);
+            $table->string('seen_status',8);
+            $table->timestamps();
         });
     }
 

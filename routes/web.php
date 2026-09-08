@@ -76,6 +76,8 @@ Route::controller(ApplicationController::class)->prefix('/application')->name('a
 ->group(function() {
     Route::get('/create/{job}','create')
     ->middleware(['auth',StudentCheckMiddleware::class])->name('create');
+    Route::post('/store','store')
+    ->middleware(['auth',StudentCheckMiddleware::class])->name('store');
 });
 
 require __DIR__.'/auth.php';

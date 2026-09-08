@@ -129,12 +129,12 @@
     @endif
 </div>
 </div>
-<form action="" 
+<form action="{{ route('application.store') }}" 
 method="post"
 enctype="multipart/form-data">
 @csrf
 
-<input type="hidden" name="jobId" value="{{$job->id}}">
+<input type="hidden" name="job_id" value="{{$job->id}}">
 <div class="container row bg-white p-2 rounded shadow h-100 mw-75 mt-3">
     <p class="text-end text-secondary">COVER LETTER</p>
 
