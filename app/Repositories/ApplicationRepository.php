@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Http\Requests\CreateApplicationRequest;
 use App\Models\Application;
+use App\Models\Job;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationRepository
@@ -26,5 +28,15 @@ class ApplicationRepository
         ]);   
 
         return $application;
+    }
+
+    public function getJobApplications(Job $job): Collection
+    {
+        $applications = $this->applicationModel
+                        ->where('job_id',$job->id)
+                        ->orderBy('seen_status','desc')
+                        ->get();
+
+        return $applications;
     }
 }

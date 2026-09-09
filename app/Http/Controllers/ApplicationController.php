@@ -21,6 +21,12 @@ class ApplicationController extends Controller
         $this->applicationRepo = new ApplicationRepository();
     }
 
+    public function index(Job $job): View
+    {
+        $applications = $this->applicationRepo->getJobApplications($job);
+        return view('applicationIndex',['applications' => $applications]);
+    }
+
     public function create(Job $job): View
     {
         $job->load('location','company','employer');

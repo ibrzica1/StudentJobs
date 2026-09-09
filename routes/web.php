@@ -78,6 +78,8 @@ Route::controller(ApplicationController::class)->prefix('/application')->name('a
     ->middleware(['auth',StudentCheckMiddleware::class])->name('create');
     Route::post('/store','store')
     ->middleware(['auth',StudentCheckMiddleware::class])->name('store');
+   Route::get('/job/{job}/applications','index')
+   ->middleware(['auth',EmployerCheckMiddleware::class])->name('index');
 });
 
 require __DIR__.'/auth.php';

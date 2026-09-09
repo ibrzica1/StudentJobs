@@ -146,7 +146,7 @@
                     {{Application::getNumberOfUnseenApplications($job->applications)}} {{__('myAds.NEW!')}}
                 </h3>
                 <p>{{__('mayAds.Total applications')}} ({{$job->applications->count()}})</p>
-                <a href=""
+                <a href="{{route('application.index',['job' => $job->id])}}"
                 class="btn btn-warning btn-sm">
                     {{__('myAds.APPLICATIONS')}}
                 </a>
