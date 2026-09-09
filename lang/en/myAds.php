@@ -7,4 +7,7 @@ return [
    'Create Internship Job' => 'Create Internship Job',
    'Create Helper Job' => 'Create Helper Job',
    'EDIT' => 'EDIT',
+   'APPLICATIONS' => 'APPLICATIONS',
+   'Total applications' => 'Total applications',
+   'NEW!' => 'NEW!',
 ];

@@ -7,4 +7,7 @@ return [
    'Create Internship Job' => 'Kreiraj Posao',
    'Create Helper Job' => 'Kreiraj Posao Pomocnika',
    'EDIT' => 'IZMJENI',
+   'APPLICATIONS' => 'APLIKACIJE',
+   'Total applications' => 'Ukupno aplikacija',
+   'NEW!' => 'NOVO!',
 ];

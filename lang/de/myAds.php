@@ -7,4 +7,7 @@ return [
     'Create Internship Job' => 'Praktikumsstelle erstellen',
     'Create Helper Job' => 'Aushilfsjob erstellen',
     'EDIT' => 'BEARBEITEN',
+    'APPLICATIONS' => 'ANWENDUNGEN',
+    'Total applications' => 'Gesamtbewerbungen',
+    'NEW!' => 'NEU!',
 ];
