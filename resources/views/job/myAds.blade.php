@@ -9,6 +9,7 @@
         use Carbon\Carbon;
         use App\Services\TimeService;
         use App\Models\Job;
+        use App\Models\Application;
         $time = new TimeService();
     ?>
     <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
@@ -36,10 +37,11 @@
             </div>
         </div>
     @else
-        @foreach ($ads as $job)
-            <div class="container d-flex mx-6 my-4 p-4 bg-white column-gap-3 rounded shadow align-items-center">
-                
-                <a href="{{route('job.show',['job' => $job->id])}}" class="d-flex column-gap-3 flex-grow-1 text-decoration-none text-dark">
+       @foreach ($ads as $job)
+        <div class="container mx-6 my-4 bg-white rounded shadow overflow-hidden">
+            
+            <div class="d-flex pt-2 column-gap-3 align-items-center">
+                <div class="d-flex column-gap-3 flex-grow-1 text-decoration-none text-dark">
                     <div class="col-3">
                         @if ($job->company === null)
                             <img src="{{ asset('storage/images/company_logo/default.png') }}"
@@ -120,7 +122,7 @@
 
                         </div>
                     </div>
-                </a>
+                </div>
 
                 <div class="d-flex flex-column align-items-center gap-2 ms-3">
                     <a href="{{ route('job.edit',['job' => $job->id]) }}" 
@@ -134,10 +136,24 @@
                             {{__('profile.DELETE')}}
                         </button>
                     </form>
+                    
                 </div>
-
             </div>
-        @endforeach
+
+            <div class="d-flex align-items-center justify-content-around p-3"
+                style="background-color: blanchedalmond;">
+                <h3 class="m-0 text-danger">
+                    {{Application::getNumberOfUnseenApplications($job->applications)}} {{__('myAds.NEW!')}}
+                </h3>
+                <p>{{__('mayAds.Total applications')}} ({{$job->applications->count()}})</p>
+                <a href=""
+                class="btn btn-warning btn-sm">
+                    {{__('myAds.APPLICATIONS')}}
+                </a>
+            </div>
+
+        </div>
+    @endforeach
     @endif
    
 @endsection

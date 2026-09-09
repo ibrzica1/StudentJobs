@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 
 class Application extends Model
 {
@@ -26,6 +27,20 @@ class Application extends Model
     const ALLOWED_SEEN_STATUSES = [
         self::SEEN, self::UNSEEN
     ];
+
+    public static function getNumberOfUnseenApplications(Collection $collection): int
+    {
+        $number = 0;
+
+        if($collection){
+            $unseenAplications = $collection->filter(function($item) {
+                return $item->seen_status === self::UNSEEN;
+            });
+            $number = $unseenAplications->count();
+        }
+
+        return $number;
+    }
 
     public function user(): BelongsTo
     {
