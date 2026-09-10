@@ -17,4 +17,9 @@ class Location extends Model
     {
         return $this->hasMany(Job::class);
     }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }
