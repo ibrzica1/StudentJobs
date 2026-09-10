@@ -24,7 +24,7 @@ class ApplicationController extends Controller
     public function index(Job $job): View
     {
         $applications = $this->applicationRepo->getJobApplications($job);
-        return view('applicationIndex',['applications' => $applications]);
+        return view('applicationIndex',['applications' => $applications, 'job' => $job]);
     }
 
     public function create(Job $job): View

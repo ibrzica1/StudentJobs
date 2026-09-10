@@ -4,8 +4,107 @@
 
 @section("content")
 
-@foreach ($applications as $application)
-    <div>{{$application->seen_status}} {{$application->id}}</div>
-@endforeach
+<div class="container py-5">
+
+    {{-- Job header --}}
+    <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
+        <p class="text-uppercase text-muted fw-bold small mb-1">{{__('applications.Job')}}</p>
+        <h2 class="fw-bold text-danger mb-0">{{$job->title}}</h2>
+    </div>
+
+    <h5 class="text-uppercase text-muted fw-bold mb-3">
+        {{__('applications.Applications')}} <span class="badge bg-danger rounded-pill">{{$applications->count()}}</span>
+    </h5>
+
+    @if ($applications->isEmpty())
+        <div class="bg-white rounded-4 shadow-sm p-5 text-center">
+            <img src="{{ asset('storage/images/icons/no-data.png') }}" width="70" class="mb-3">
+            <h5 class="fw-bold">{{__('applications.No applications yet')}}</h5>
+            <p class="text-muted mb-0">{{__('applications.Check back later to see who applied.')}}</p>
+        </div>
+    @else
+        @foreach ($applications as $application)
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <div class="row g-4 align-items-center">
+
+                        {{-- Avatar --}}
+                        <div class="col-auto">
+                            @if ($application->user->profile_picture)
+                                <img src="{{asset('storage/images/user_avatar/'.$application->user->profile_picture)}}"
+                                    class="rounded-circle shadow-sm"
+                                    width="100"
+                                    height="100"
+                                    style="object-fit: cover;">
+                            @else
+                                <img src="{{asset('storage/images/user_avatar/avatar-default.png')}}"
+                                    class="rounded-circle shadow-sm"
+                                    width="100"
+                                    height="100"
+                                    style="object-fit: cover;">
+                            @endif
+                        </div>
+
+                        {{-- Applicant info --}}
+                        <div class="col">
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <h5 class="fw-bold mb-0">
+                                    {{$application->user->firstName}} {{$application->user->lastName}}
+                                </h5>
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">
+                                    ★ 1 {{__('applications.review')}}
+                                    <a href="" class="text-decoration-none ms-1">{{__('applications.show')}}</a>
+                                </span>
+                            </div>
+
+                            <div class="row g-3 mt-1">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                                        <img src="{{ asset('storage/images/icons/location.svg') }}" width="16">
+                                        {{$application->user->location->city}}
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 text-muted small">
+                                        <img src="{{ asset('storage/images/icons/telephone.svg') }}" width="16">
+                                        {{$application->user->telephone}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                                        <img src="{{ asset('storage/images/icons/university.svg') }}" width="16">
+                                        {{$application->user->university}}
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 text-muted small">
+                                        <img src="{{ asset('storage/images/icons/mail.svg') }}" width="16">
+                                        {{$application->user->email}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Actions --}}
+                        <div class="col-12 col-lg-auto">
+                            <div class="d-flex flex-lg-column gap-2">
+                                <a href="" class="btn btn-outline-secondary btn-sm">
+                                    {{__('applications.View Application')}}
+                                </a>
+                                <div class="d-flex justify-content-between">
+                                     <button class="btn btn-success btn-sm">
+                                        ✓ {{__('applications.Accept')}}
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        ✕ {{__('applications.Reject')}}
+                                    </button>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+
+</div>
 
 @endsection
