@@ -65,6 +65,17 @@ class User extends Authenticatable
         ];
     }
 
+    public static function hideTelephone(string $telephone): string
+    {
+        return substr($telephone,0,-4). "****";
+    }
+
+    public static function hideMail(string $mail): string
+    {
+        $pieces = explode(".",$mail);
+        return "****".substr($mail,2,4)."****.".$pieces[1];
+    }
+
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);

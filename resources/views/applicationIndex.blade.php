@@ -3,6 +3,15 @@
 @section("pageTitle", "Application Index")
 
 @section("content")
+<?php 
+use App\Models\User;
+use App\Models\Application;
+?>
+<body class="bg-body-secondary">
+
+@if($errors->any())
+    <div class="alert alert-danger text-center">{{$errors->first()}}</div>
+@endif
 
 <div class="container py-5">
 
@@ -35,13 +44,13 @@
                                     class="rounded-circle shadow-sm"
                                     width="100"
                                     height="100"
-                                    style="object-fit: cover;">
+                                    style="object-fit: cover; !important; height: 100px !important; width: 100px !important; max-width: 100px !important; max-height: 100px !important; min-width: 100px !important; min-height: 100px !important;">
                             @else
                                 <img src="{{asset('storage/images/user_avatar/avatar-default.png')}}"
                                     class="rounded-circle shadow-sm"
                                     width="100"
                                     height="100"
-                                    style="object-fit: cover;">
+                                    style="object-fit: cover; !important; height: 100px !important; width: 100px !important; max-width: 100px !important; max-height: 100px !important; min-width: 100px !important; min-height: 100px !important;">
                             @endif
                         </div>
 
@@ -65,7 +74,7 @@
                                     </div>
                                     <div class="d-flex align-items-center gap-2 text-muted small">
                                         <img src="{{ asset('storage/images/icons/telephone.svg') }}" width="16">
-                                        {{$application->user->telephone}}
+                                        {{$application->accept_status === Application::APPROVED ? $application->user->telephone : User::hideTelephone($application->user->telephone)}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -75,7 +84,7 @@
                                     </div>
                                     <div class="d-flex align-items-center gap-2 text-muted small">
                                         <img src="{{ asset('storage/images/icons/mail.svg') }}" width="16">
-                                        {{$application->user->email}}
+                                        {{$application->accept_status === Application::APPROVED ? $application->user->email : User::hideMail($application->user->email)}}
                                     </div>
                                 </div>
                             </div>
@@ -83,19 +92,15 @@
 
                         {{-- Actions --}}
                         <div class="col-12 col-lg-auto">
-                            <div class="d-flex flex-lg-column gap-2">
-                                <a href="" class="btn btn-outline-secondary btn-sm">
-                                    {{__('applications.View Application')}}
-                                </a>
-                                <div class="d-flex justify-content-between">
-                                     <button class="btn btn-success btn-sm">
-                                        ✓ {{__('applications.Accept')}}
-                                    </button>
-                                    <button class="btn btn-outline-danger btn-sm">
-                                        ✕ {{__('applications.Reject')}}
-                                    </button>
-                                </div>
-                               
+                            <div class="d-flex justify-content-around flex-lg-column gap-2">
+                               <livewire:popup-application :application="$application"/>
+
+                                <button class="btn btn-success btn-sm">
+                                    ✓ {{__('applications.Accept')}}
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    ✕ {{__('applications.Reject')}}
+                                </button>
                             </div>
                         </div>
 
