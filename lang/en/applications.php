@@ -24,4 +24,9 @@ return [
     'CV' => 'CV',
     'University' => 'University',
     'Certificates' => 'Certificates',
+
+    'You will only see the applicants full' => 'You will only see the applicant\'s full',
+    'telephone number after you have accepted' => 'telephone number after you have accepted',
+    'email after you have accepted' => 'email after you have accepted',
+    'their offer.' => 'their offer.',
 ];
