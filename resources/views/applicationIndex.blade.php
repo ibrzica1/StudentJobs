@@ -7,6 +7,46 @@
 use App\Models\User;
 use App\Models\Application;
 ?>
+<style>
+    .custom-tooltip {
+    position: relative;
+    display: inline-flex;
+}
+
+.custom-tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2985ab;
+    color: #fff;
+    text-align: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    transition: opacity 0.15s ease;
+}
+
+.custom-tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2985ab transparent transparent transparent;
+}
+
+.custom-tooltip:hover .custom-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
 <body class="bg-body-secondary">
 
 @if($errors->any())
@@ -74,7 +114,17 @@ use App\Models\Application;
                                     </div>
                                     <div class="d-flex align-items-center gap-2 text-muted small">
                                         <img src="{{ asset('storage/images/icons/telephone.svg') }}" width="16">
-                                        {{$application->accept_status === Application::APPROVED ? $application->user->telephone : User::hideTelephone($application->user->telephone)}}
+                                        @if ($application->accept_status === Application::APPROVED)
+                                            {{$application->user->telephone}}
+                                        @else
+                                            {{User::hideTelephone($application->user->telephone)}}
+                                            <span class="custom-tooltip">
+                                                <img src="{{ asset('storage/images/icons/info.png') }}" width="12" style="cursor: pointer;">
+                                                <span class="custom-tooltip-text">{{__('applications.You will only see the applicants full')}}<br>
+                                                    {{__('applications.telephone number after you have accepted')}} <br>
+                                                    {{__('applications.their offer.')}}</span>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -84,7 +134,17 @@ use App\Models\Application;
                                     </div>
                                     <div class="d-flex align-items-center gap-2 text-muted small">
                                         <img src="{{ asset('storage/images/icons/mail.svg') }}" width="16">
-                                        {{$application->accept_status === Application::APPROVED ? $application->user->email : User::hideMail($application->user->email)}}
+                                        @if ($application->accept_status === Application::APPROVED)
+                                            {{$application->user->email}}
+                                        @else
+                                            {{User::hideMail($application->user->email)}}
+                                            <span class="custom-tooltip">
+                                                <img src="{{ asset('storage/images/icons/info.png') }}" width="12" style="cursor: pointer;">
+                                                <span class="custom-tooltip-text">{{__('applications.You will only see the applicants full')}}<br>
+                                                    {{__('applications.email after you have accepted')}} <br>
+                                                    {{__('applications.their offer.')}}</span>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
