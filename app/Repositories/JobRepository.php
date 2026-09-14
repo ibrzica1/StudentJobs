@@ -21,6 +21,7 @@ class JobRepository
     public function storeHelperJob(CreateHelperJobRequest $request): Job
     {
         $job = $this->jobModel->create([
+            'status' => $this->jobModel::ACTIVE,
             'type' => $this->jobModel::HELPER_JOB,
             'category' => $request['category'],
             'title' => $request['title'],
@@ -43,6 +44,7 @@ class JobRepository
     public function storeJob(CreateJobRequest $request): Job
     {
         $job = $this->jobModel->create([
+            'status' => $this->jobModel::ACTIVE,
             'type' => $this->jobModel::JOB,
             'category' => $request['category'],
             'title' => $request['title'],

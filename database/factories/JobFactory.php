@@ -16,6 +16,7 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
+            'status' => Job::ACTIVE,
             'type' => Job::JOB,
             'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
             'title' => fake()->text(20),
@@ -43,6 +44,7 @@ class JobFactory extends Factory
     {
         return $this->state(function ($array, $attributes) {
             return [
+                'status' => Job::ACTIVE,
                 'type' => Job::HELPER_JOB,
                 'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
                 'title' => fake()->text(20),

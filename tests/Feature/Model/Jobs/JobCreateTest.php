@@ -65,6 +65,7 @@ it('store intership job as unautorised user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
+        'status' => Job::ACTIVE,
         'type' => Job::JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -91,6 +92,7 @@ it('store intership job as unauthenticated user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
+        'status' => Job::ACTIVE,
         'type' => Job::JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -121,6 +123,7 @@ it('store intership job as autorised user', function() {
         'user_id' => $employer->id,
     ]);
     $jobData = [
+        'status' => Job::ACTIVE,
         'type' => Job::JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -142,6 +145,7 @@ it('store intership job as autorised user', function() {
     $response->assertRedirect('/');
 
     $this->assertDatabaseHas('jobs',[
+        'status' => Job::ACTIVE,
         'type' => Job::JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -167,6 +171,7 @@ it('store helper job as unautorised user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
+        'status' => Job::ACTIVE,
         'type' => Job::JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -193,6 +198,7 @@ it('store helper job as unauthenticated user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
+        'status' => Job::ACTIVE,
         'type' => Job::JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -220,6 +226,7 @@ it('store helper job as autorised user', function() {
     $employer = User::factory()->employer()->create();
     
     $jobData = [
+        'status' => Job::ACTIVE,
          'type' => Job::HELPER_JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',
@@ -241,6 +248,7 @@ it('store helper job as autorised user', function() {
     $response->assertRedirect('/');
 
     $this->assertDatabaseHas('jobs',[
+        'status' => Job::ACTIVE,
         'type' => Job::HELPER_JOB,
         'category' => Job::MOVING_HELPER,
         'title' => 'Helper needed',

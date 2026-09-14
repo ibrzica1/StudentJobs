@@ -51,6 +51,7 @@ it('job update has no errors', function() {
     $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
     $response = $this->actingAs($employer)
                      ->patch('/job/update/' .$job->id,[
+                        'status' => Job::ACTIVE,
                         'type' => Job::JOB,
                         'category' => Job::IT_HELPER,
                         'title' => 'TITLE',
