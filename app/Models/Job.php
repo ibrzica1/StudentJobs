@@ -17,7 +17,7 @@ class Job extends Model
     protected $table = 'jobs';
 
     protected $fillable = [
-        'type','category','title','employer_id','location_id','company_id','address','setting_type',
+        'status','type','category','title','employer_id','location_id','company_id','address','setting_type',
         'weekly_hours','employee_amount','wage','start_date','from','to','duration',
         'urgent','description','tasks','expectation','offer'
     ];
@@ -46,6 +46,13 @@ class Job extends Model
     const FULL_TIME = "Full time";
     const PART_TIME = "Part time";
     const MINI_JOB = "Mini Job";
+    const ACTIVE = "active";
+    const PROMISED = "promised";
+    const FINISHED = "finished";
+
+    const ALLOWED_STATUSES = [
+        self::ACTIVE, self::PROMISED, self::FINISHED
+    ];
 
     const ALLOWED_JOB_TYPES = [
          self::HELPER_JOB, self::JOB,
