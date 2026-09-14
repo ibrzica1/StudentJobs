@@ -104,6 +104,9 @@ use App\Models\Application;
                                     ★ 1 {{__('applications.review')}}
                                     <a href="" class="text-decoration-none ms-1">{{__('applications.show')}}</a>
                                 </span>
+                                @if ($application->seen_status === Application::UNSEEN)
+                                    <p class="bg-danger text-white p-1 rounded">NEW</p>
+                                @endif
                             </div>
 
                             <div class="row g-3 mt-1">
