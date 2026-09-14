@@ -75,7 +75,10 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () {
-            return $this->jobModel->with('company','location')->latest('created_at')->paginate();
+            return $this->jobModel->where('status',Job::ACTIVE)
+                                  ->with('company','location')
+                                  ->latest('created_at')
+                                  ->paginate();
         });
         
         return $jobs;
@@ -86,7 +89,11 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($category){
-            return $this->jobModel->where('category',$category)->with('company','location')->latest('created_at')->paginate();
+            return $this->jobModel->where('category',$category)
+                                  ->and('status',Job::ACTIVE)
+                                  ->with('company','location')
+                                  ->latest('created_at')
+                                  ->paginate();
         });
         return $jobs;
     }
@@ -96,7 +103,11 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($type){
-            return $this->jobModel->where('type',$type)->with('company','location')->latest('created_at')->paginate();
+            return $this->jobModel->where('type',$type)
+                                  ->and('status',Job::ACTIVE)
+                                  ->with('company','location')
+                                  ->latest('created_at')
+                                  ->paginate();
         });
         return $jobs;
     }
@@ -107,6 +118,7 @@ class JobRepository
         $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){
             return $this->jobModel
             ->where('category',$category)
+            ->and('status',Job::ACTIVE)
             ->latest()
             ->take($limit)
             ->get()
