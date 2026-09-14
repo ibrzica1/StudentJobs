@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\JobCreatedEvent;
+use App\Events\JobDeletedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
@@ -14,6 +15,7 @@ use App\Repositories\JobRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -49,6 +51,7 @@ class JobController extends Controller
     public function createJob(string $category): View
     {
         $companies = $this->companyRepository->getUserCompanies(Auth::id());
+        
         return view('job/jobCreate',['companies' => $companies, 'category' => $category]);
     }
 
@@ -91,6 +94,7 @@ class JobController extends Controller
     public function delete(Job $job): RedirectResponse
     {
         $this->jobRepository->delete($job);
+        event(JobDeletedEvent::class);
         return redirect()->back();
     }
 }
