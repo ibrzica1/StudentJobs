@@ -82,8 +82,8 @@ Route::controller(ApplicationController::class)->prefix('/application')->name('a
     ->middleware(['auth',StudentCheckMiddleware::class])->name('store');
    Route::get('/job/{job}/applications','index')
    ->middleware(['auth',EmployerCheckMiddleware::class])->name('index');
-   Route::post('/update/accept/{application}','accept')
-   ->middleware(['auth',StudentCheckMiddleware::class])->name('accept');
+   Route::patch('/update/accept/{application}','accept')
+   ->middleware(['auth',EmployerCheckMiddleware::class])->name('accept');
 });
 
 require __DIR__.'/auth.php';
