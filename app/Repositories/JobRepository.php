@@ -90,7 +90,7 @@ class JobRepository
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($category){
             return $this->jobModel->where('category',$category)
-                                  ->and('status',Job::ACTIVE)
+                                  ->where('status',Job::ACTIVE)
                                   ->with('company','location')
                                   ->latest('created_at')
                                   ->paginate();
@@ -104,7 +104,7 @@ class JobRepository
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($type){
             return $this->jobModel->where('type',$type)
-                                  ->and('status',Job::ACTIVE)
+                                  ->where('status',Job::ACTIVE)
                                   ->with('company','location')
                                   ->latest('created_at')
                                   ->paginate();
@@ -118,7 +118,7 @@ class JobRepository
         $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){
             return $this->jobModel
             ->where('category',$category)
-            ->and('status',Job::ACTIVE)
+            ->where('status',Job::ACTIVE)
             ->latest()
             ->take($limit)
             ->get()
@@ -128,15 +128,25 @@ class JobRepository
         return $jobs;
     }
 
-    public function getMyJobs():object
+    public function getMyJobs(?string $status):object
     {
-        $jobs = Cache::remember('my_ads',120,function() {
-            return $this->jobModel
-            ->where('employer_id', Auth::id())
-            ->latest()
-            ->get();
-        });
-
+        if($status && in_array($status,Job::ALLOWED_STATUSES)){
+            $jobs = Cache::remember('my_ads',120,function() use($status) {
+                return $this->jobModel
+                ->where('employer_id', Auth::id())
+                ->where('status',$status)
+                ->latest()
+                ->get();
+            });
+        }
+        else {
+            $jobs = Cache::remember('my_ads',120,function() use($status) {
+                return $this->jobModel
+                ->where('employer_id', Auth::id())
+                ->latest()
+                ->get();
+            });
+        }
         return $jobs;
     }
 

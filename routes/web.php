@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
@@ -41,8 +42,9 @@ Route::controller(JobController::class)->prefix('/job')
     ->name('update');
     Route::get('/categories/{jobType}','categories')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('categories');
-    Route::get('/my-ads','myAds')
-    ->middleware(['auth',EmployerCheckMiddleware::class])->name('my-ads');
+    Route::get('/my-ads/{status?}','myAds')
+    ->middleware(['auth',EmployerCheckMiddleware::class])
+    ->name('my-ads');
     Route::delete('/delete/{job}','delete')
     ->middleware(['auth',EmployerCheckMiddleware::class,JobBelongsToUser::class])
     ->name('delete');

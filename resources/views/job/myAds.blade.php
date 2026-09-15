@@ -12,9 +12,14 @@
         use App\Models\Application;
         $time = new TimeService();
     ?>
-    <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
-        {{__('myAds.My Adds')}}
-    </h6>
+    <div>
+        <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
+            {{__('myAds.My Adds')}}
+        </h6>
+
+        
+    </div>
+    
 
     @if ($ads->isEmpty())
         <div class="container">
@@ -59,6 +64,19 @@
                         <div class="text-center text-muted small">
                             {{ __('homepage.Published') }} {{$time->calculateTime($job->created_at)}}
                         </div>
+                        @if ($job->status === Job::ACTIVE)
+                        <div class="d-flex align-items-center justify-content-center p-1">
+                            <p class="bg-success text-white px-2 py-1 rounded fw-bold">ACTIVE</p>
+                        </div>
+                        @elseif ($job->status === Job::PROMISED)
+                        <div class="d-flex align-items-center justify-content-center p-1">
+                            <p class="bg-warning text-white px-2 py-1 rounded fw-bold">PROMISED</p>
+                        </div>
+                        @elseif ($job->status === Job::FINISHED)
+                        <div class="d-flex align-items-center justify-content-center p-1">
+                            <p class="bg-danger text-white px-2 py-1 rounded fw-bold">FINISHED</p>
+                        </div>
+                        @endif
                     </div>
 
                     <div class="col">

@@ -85,9 +85,9 @@ class JobController extends Controller
         return view('job/categories',['jobType' => $jobType]);
     }
     
-    public function myAds()
+    public function myAds(string $status)
     {
-        $ads = $this->jobRepository->getMyJobs();
+        $ads = $this->jobRepository->getMyJobs($status);
         return view('job/myAds',['ads' => $ads]);
     }
 
