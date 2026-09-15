@@ -39,4 +39,11 @@ class ApplicationRepository
 
         return $applications;
     }
+
+    public function acceptUpdate(Job $job)
+    {
+        $this->applicationModel
+        ->where('id',$job->id)
+        ->update(['accept_status' => $this->applicationModel::APPROVED]);
+    }
 }
