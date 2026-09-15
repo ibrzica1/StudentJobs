@@ -40,10 +40,18 @@ class ApplicationRepository
         return $applications;
     }
 
-    public function acceptUpdate(Job $job)
+    public function acceptApplicantUpdate(Application $application): void
     {
         $this->applicationModel
-        ->where('id',$job->id)
+        ->where('id',$application->id)
         ->update(['accept_status' => $this->applicationModel::APPROVED]);
+    }
+
+    public function rejectOtherApplicantsUpdate(Application $application): void
+    {
+        $this->applicationModel
+        ->where('job_id',$application->job_id)
+        ->whereNot('id',$application->id)
+        ->update(['accept_status' => $this->applicationModel::REJECTED]);
     }
 }
