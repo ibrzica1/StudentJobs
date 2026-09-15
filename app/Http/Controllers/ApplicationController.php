@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ApplicationAcceptedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateApplicationRequest;
 use App\Models\Job;
@@ -38,5 +39,12 @@ class ApplicationController extends Controller
     {
         $this->applicationRepo->store($request->validated());
         return redirect()->route('homepage');
+    }
+
+    public function accept(Job $job): RedirectResponse
+    {
+        $this->applicationRepo->acceptUpdate($job);
+        event(ApplicationAcceptedEvent::class);
+        return redirect()->route('application.index');
     }
 }
