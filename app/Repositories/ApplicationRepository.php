@@ -51,7 +51,7 @@ class ApplicationRepository
     {
         $this->applicationModel
         ->where('job_id',$application->job_id)
-        ->whereNot('id',$application->id)
+        ->where('accept_status', $this->applicationModel::PENDING)
         ->update(['accept_status' => $this->applicationModel::REJECTED]);
     }
 
