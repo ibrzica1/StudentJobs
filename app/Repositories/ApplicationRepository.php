@@ -54,4 +54,11 @@ class ApplicationRepository
         ->whereNot('id',$application->id)
         ->update(['accept_status' => $this->applicationModel::REJECTED]);
     }
+
+    public function rejectApplicantUpdate(Application $application): void
+    {
+        $this->applicationModel
+        ->where('id',$application->id)
+        ->update(['accept_status' => $this->applicationModel::REJECTED]);
+    }
 }
