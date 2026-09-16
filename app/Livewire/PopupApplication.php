@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Application;
+use App\Repositories\ApplicationRepository;
 use Livewire\Component;
 
 class PopupApplication extends Component
@@ -18,6 +19,7 @@ class PopupApplication extends Component
     public function open(): void
     {
         $this->showPopup = true;
+        (new ApplicationRepository())->changeSeenStatus($this->application);
     }
 
     public function close(): void

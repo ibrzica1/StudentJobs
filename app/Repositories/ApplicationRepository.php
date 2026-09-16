@@ -61,4 +61,11 @@ class ApplicationRepository
         ->where('id',$application->id)
         ->update(['accept_status' => $this->applicationModel::REJECTED]);
     }
+
+    public function changeSeenStatus(Application $application):void
+    {
+        $this->applicationModel
+        ->where('id',$application->id)
+        ->update(['seen_status' => $this->applicationModel::SEEN]);
+    }
 }

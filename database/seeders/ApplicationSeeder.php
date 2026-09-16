@@ -15,7 +15,7 @@ class ApplicationSeeder extends Seeder
     {
         ApplicationFactory::new([
             'user_id' => 122,
-            'job_id' => 12
+            'job_id' => 17
         ])->count(10)->create();
     }
 }
