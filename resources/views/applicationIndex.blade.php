@@ -157,17 +157,24 @@ use App\Models\Application;
                         <div class="col-12 col-lg-auto">
                             <div class="d-flex justify-content-around flex-lg-column gap-2">
                                <livewire:popup-application :application="$application"/>
-                                <form action="{{ route('application.accept', ['application' => $application->id]) }}" method="post">
-                                @csrf
-                                @method('PATCH')
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        ✓ {{__('applications.Accept')}}
+                               @if ($application->accept_status === Application::PENDING)
+                                   <form action="{{ route('application.accept', ['application' => $application->id]) }}" method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            ✓ {{__('applications.Accept')}}
+                                        </button>
+                                    </form>
+                                    
+                                    <form action="{{ route('application.reject', ['application' => $application->id]) }}" method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="btn btn-danger btn-sm">
+                                        ✕ {{__('applications.Reject')}}
                                     </button>
-                                </form>
+                                    </form>
+                               @endif
                                 
-                                <button class="btn btn-danger btn-sm">
-                                    ✕ {{__('applications.Reject')}}
-                                </button>
                             </div>
                         </div>
 
