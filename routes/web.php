@@ -84,6 +84,8 @@ Route::controller(ApplicationController::class)->prefix('/application')->name('a
    ->middleware(['auth',EmployerCheckMiddleware::class])->name('index');
    Route::patch('/update/accept/{application}','accept')
    ->middleware(['auth',EmployerCheckMiddleware::class])->name('accept');
+   Route::patch('/update/reject/{application}','reject')
+   ->middleware(['auth',EmployerCheckMiddleware::class])->name('reject');
 });
 
 require __DIR__.'/auth.php';
