@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ApplicationAcceptedEvent;
+use App\Events\AppllicationRejectedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateApplicationRequest;
 use App\Models\Application;
@@ -46,6 +47,13 @@ class ApplicationController extends Controller
     {
         $this->applicationRepo->acceptApplicantUpdate($application);
         event(new ApplicationAcceptedEvent($application));
+        return redirect()->route('application.index',['job' => $application->job_id]);
+    }
+
+    public function reject(Application $application): RedirectResponse
+    {
+        $this->applicationRepo->rejectApplicantUpdate($application);
+        event(new AppllicationRejectedEvent($application));
         return redirect()->route('application.index',['job' => $application->job_id]);
     }
 }
