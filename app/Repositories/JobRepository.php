@@ -70,6 +70,12 @@ class JobRepository
         Cache::forget('my_ads');
     }
 
+    public function updateStatus(int $jobId, string $status): void
+    {
+        $this->jobModel->where('id',$jobId)->update(['status' => $status]);
+        Cache::forget('my_ads');
+    }
+
     public function getLatestJobs(): object
     {
         $page = request('page',1);
