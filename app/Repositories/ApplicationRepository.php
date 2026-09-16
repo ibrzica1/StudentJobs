@@ -68,4 +68,11 @@ class ApplicationRepository
         ->where('id',$application->id)
         ->update(['seen_status' => $this->applicationModel::SEEN]);
     }
+
+    public function changeAllSeenStatus(Application $application): void
+    {
+         $this->applicationModel
+        ->where('job_id',$application->job_id)
+        ->update(['seen_status' => $this->applicationModel::SEEN]);
+    }
 }
