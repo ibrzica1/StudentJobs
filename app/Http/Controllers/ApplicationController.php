@@ -10,6 +10,7 @@ use App\Models\Application;
 use App\Models\Job;
 use App\Repositories\ApplicationRepository;
 use App\Repositories\JobRepository;
+use App\Services\ApplicationAcceptService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +18,13 @@ use Illuminate\View\View;
 
 class ApplicationController extends Controller
 {
-    private $applicationRepo;
+    private ApplicationRepository $applicationRepo;
+    private ApplicationAcceptService $applicationAcceptService;
 
     public function __construct()
     {
         $this->applicationRepo = new ApplicationRepository();
+        $this->applicationAcceptService = new ApplicationAcceptService();
     }
 
     public function index(Job $job): View
@@ -45,8 +48,7 @@ class ApplicationController extends Controller
 
     public function accept(Application $application): RedirectResponse
     {
-        $this->applicationRepo->acceptApplicantUpdate($application);
-        event(new ApplicationAcceptedEvent($application));
+        $this->applicationAcceptService->acceptApplication($application);
         return redirect()->route('application.index',['job' => $application->job_id]);
     }
 
