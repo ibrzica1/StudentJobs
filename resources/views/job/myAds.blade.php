@@ -141,21 +141,22 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="d-flex flex-column align-items-center gap-2 ms-3">
-                    <a href="{{ route('job.edit',['job' => $job->id]) }}" 
-                    class="btn btn-success btn-sm">
-                        {{__('myAds.EDIT')}}
-                    </a>
-                    <form action="{{route('job.delete',['job' => $job->id])}}" method="post" class="m-0">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            {{__('profile.DELETE')}}
-                        </button>
-                    </form>
-                    
-                </div>
+                @if ($job->status === Job::ACTIVE)
+                    <div class="d-flex flex-column align-items-center gap-2 ms-3">
+                        <a href="{{ route('job.edit',['job' => $job->id]) }}" 
+                        class="btn btn-success btn-sm">
+                            {{__('myAds.EDIT')}}
+                        </a>
+                        <form action="{{route('job.delete',['job' => $job->id])}}" method="post" class="m-0">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                {{__('profile.DELETE')}}
+                            </button>
+                        </form>
+                    </div>
+                @endif
+                
             </div>
 
             <div class="d-flex align-items-center justify-content-around p-3"
