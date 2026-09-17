@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Job;
+use App\Models\Application;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,21 +11,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class JobCreatedMail extends Mailable
+class StudentInfoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Job $job;
-
-    public function __construct(Job $job)
+     private Application $application;
+    
+    public function __construct(Application $application)
     {
-        $this->job = $job;
+        $this->application = $application;
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Job Created Mail',
+            subject: 'Student Info Mail',
             from: 'noreply@studentjobs.test',
         );
     }
@@ -33,8 +33,8 @@ class JobCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.jobCreatedMail',
-            with: ['job' => $this->job],
+            view: 'mail.studentInfoMail',
+            with: ['application' => $this->application],
         );
     }
 
