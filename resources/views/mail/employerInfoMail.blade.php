@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('mail.Application Accepted') }}</title>
+    <title>{{ __('employerInfoMail.Application Accepted') }}</title>
 </head>
 
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family:Arial, Helvetica, sans-serif;">
 
-```
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4; padding:40px 0;">
     <tr>
         <td align="center">
@@ -36,11 +34,11 @@
                         </div>
 
                         <h1 style="margin:0 0 12px 0; font-size:24px; color:#212529; font-weight:700;">
-                            {{ __('mail.Your application has been accepted!') }}
+                            {{ __('employerInfoMail.Your application has been accepted!') }}
                         </h1>
 
                         <p style="margin:0; font-size:15px; line-height:1.6; color:#6c757d;">
-                            {{ __('mail.Congratulations! The employer has accepted your application for the following job.') }}
+                            {{ __('employerInfoMail.Congratulations! The employer has accepted your application for the following job.') }}
                         </p>
 
                     </td>
@@ -57,7 +55,7 @@
                                 <td style="padding:24px;">
 
                                     <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                        {{ __('mail.Job Title') }}
+                                        {{ __('employerInfoMail.Job Title') }}
                                     </p>
 
                                     <h2 style="margin:0 0 20px 0; font-size:20px; color:#f00505; font-weight:700;">
@@ -69,7 +67,7 @@
                                         <tr>
                                             <td width="50%" style="vertical-align:top; padding-bottom:16px;">
                                                 <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('mail.Location') }}
+                                                    {{ __('employerInfoMail.Location') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
@@ -79,11 +77,11 @@
 
                                             <td width="50%" style="vertical-align:top; padding-bottom:16px;">
                                                 <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('mail.Wage') }}
+                                                    {{ __('employerInfoMail.Wage') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
-                                                    €{{ $application->job->wage }} / {{ __('mail.hour') }}
+                                                    €{{ $application->job->wage }} / {{ __('employerInfoMail.hour') }}
                                                 </p>
                                             </td>
                                         </tr>
@@ -91,7 +89,7 @@
                                         <tr>
                                             <td width="50%" style="vertical-align:top;">
                                                 <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('mail.Start Date') }}
+                                                    {{ __('employerInfoMail.Start Date') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
@@ -121,7 +119,7 @@
                                 <td style="padding:24px;">
 
                                     <p style="margin:0 0 16px 0; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                        {{ __('mail.Employer Information') }}
+                                        {{ __('employerInfoMail.Employer Information') }}
                                     </p>
 
                                     <h2 style="margin:0 0 16px 0; font-size:18px; color:#212529; font-weight:700;">
@@ -133,18 +131,18 @@
                                         <tr>
                                             <td style="padding-bottom:12px;">
                                                 <p style="margin:0 0 3px 0; font-size:12px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('mail.Contact Person') }}
+                                                    {{ __('employerInfoMail.Contact Person') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
-                                                  {{ $application->job->employer->firstName }}  {{ $application->job->employer->lastName }}
+                                                    {{ $application->job->employer->firstName }}  {{ $application->job->employer->lastName }}
                                                 </p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:12px;">
                                                 <p style="margin:0 0 3px 0; font-size:12px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('mail.Email') }}
+                                                    {{ __('employerInfoMail.Email') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
@@ -155,7 +153,7 @@
                                         <tr>
                                             <td>
                                                 <p style="margin:0 0 3px 0; font-size:12px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('mail.Phone') }}
+                                                    {{ __('employerInfoMail.Phone') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
@@ -179,7 +177,7 @@
 
                         <a href="{{ route('job.show', ['job' => $application->job->id]) }}"
                            style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
-                            {{ __('mail.View Job Details') }}
+                            {{ __('employerInfoMail.View Job Details') }}
                         </a>
 
                     </td>
@@ -197,11 +195,11 @@
                     <td style="padding:32px 40px;">
 
                         <p style="margin:0 0 12px 0; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                            {{ __('mail.What happens next?') }}
+                            {{ __('employerInfoMail.What happens next?') }}
                         </p>
 
                         <p style="margin:0; font-size:14px; line-height:1.6; color:#6c757d;">
-                            {{ __('mail.The employer has accepted your application. Please contact the employer for information about the job or your first day.') }}
+                            {{ __('employerInfoMail.The employer has accepted your application. Please contact the employer for information about the job or your first day.') }}
                         </p>
 
                     </td>
@@ -212,11 +210,11 @@
                     <td style="background-color:#f8f9fa; padding:24px 40px; text-align:center;">
 
                         <p style="margin:0 0 8px 0; font-size:13px; color:#adb5bd;">
-                            &copy; {{ date('Y') }} {{ __('mail.StudentJobs. All rights reserved.') }}
+                            &copy; {{ date('Y') }} {{ __('employerInfoMail.StudentJobs. All rights reserved.') }}
                         </p>
 
                         <p style="margin:0; font-size:13px; color:#adb5bd;">
-                            {{ __('mail.You are receiving this email because you applied for a job on StudentJobs.') }}
+                            {{ __('employerInfoMail.You are receiving this email because you applied for a job on StudentJobs.') }}
                         </p>
 
                     </td>
@@ -227,7 +225,6 @@
         </td>
     </tr>
 </table>
-```
 
 </body>
 </html>
