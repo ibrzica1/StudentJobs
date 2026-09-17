@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('mail.Application Rejected') }}</title>
+    <title>{{ __('applicationRejectedMail.Application Rejected') }}</title>
 </head>
 
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family:Arial, Helvetica, sans-serif;">
@@ -40,11 +40,11 @@
                     </div>
 
                     <h1 style="margin:0 0 12px 0; font-size:24px; color:#212529; font-weight:700;">
-                        {{ __('mail.Application not accepted') }}
+                        {{ __('applicationRejectedMail.Application not accepted') }}
                     </h1>
 
                     <p style="margin:0; font-size:15px; line-height:1.6; color:#6c757d;">
-                        {{ __('mail.Your application for the following job was not accepted.') }}
+                        {{ __('applicationRejectedMail.Your application for the following job was not accepted.') }}
                     </p>
 
                 </td>
@@ -61,7 +61,7 @@
                             <td style="padding:24px;">
 
                                 <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                    {{ __('mail.Job Title') }}
+                                    {{ __('applicationRejectedMail.Job Title') }}
                                 </p>
 
                                 <h2 style="margin:0 0 20px 0; font-size:20px; color:#f00505; font-weight:700;">
@@ -75,7 +75,7 @@
                                         <td width="50%" style="vertical-align:top; padding-bottom:16px;">
 
                                             <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                {{ __('mail.Location') }}
+                                                {{ __('applicationRejectedMail.Location') }}
                                             </p>
 
                                             <p style="margin:0; font-size:14px; color:#212529;">
@@ -88,11 +88,11 @@
                                         <td width="50%" style="vertical-align:top; padding-bottom:16px;">
 
                                             <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                {{ __('mail.Wage') }}
+                                                {{ __('applicationRejectedMail.Wage') }}
                                             </p>
 
                                             <p style="margin:0; font-size:14px; color:#212529;">
-                                                €{{ $application->job->wage }} / {{ __('mail.hour') }}
+                                                €{{ $application->job->wage }} / {{ __('applicationRejectedMail.hour') }}
                                             </p>
 
                                         </td>
@@ -103,7 +103,7 @@
                                         <td width="50%" style="vertical-align:top;">
 
                                             <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                {{ __('mail.Start Date') }}
+                                                {{ __('applicationRejectedMail.Start Date') }}
                                             </p>
 
                                             <p style="margin:0; font-size:14px; color:#212529;">
@@ -116,7 +116,7 @@
                                         <td width="50%" style="vertical-align:top;">
 
                                             <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                {{ __('mail.Job Type') }}
+                                                {{ __('applicationRejectedMail.Job Type') }}
                                             </p>
 
                                             <p style="margin:0; font-size:14px; color:#212529;">
@@ -141,7 +141,7 @@
                 <td style="padding:0 40px 40px 40px; text-align:center;">
 
                     <p style="margin:0; font-size:14px; line-height:1.6; color:#6c757d;">
-                        {{ __('mail.The employer has decided not to accept your application for this position.') }}
+                        {{ __('applicationRejectedMail.The employer has decided not to accept your application for this position.') }}
                     </p>
 
                 </td>
@@ -161,7 +161,7 @@
                 <td style="padding:32px 40px; text-align:center;">
 
                     <p style="margin:0; font-size:14px; line-height:1.6; color:#6c757d;">
-                        {{ __('mail.Don’t worry, there are many other opportunities waiting for you on StudentJobs.') }}
+                        {{ __('applicationRejectedMail.Dont worry, there are many other opportunities waiting for you on StudentJobs.') }}
                     </p>
 
                 </td>
@@ -173,11 +173,11 @@
 
                     <p style="margin:0 0 8px 0; font-size:13px; color:#adb5bd;">
                         &copy; {{ date('Y') }}
-                        {{ __('mail.StudentJobs. All rights reserved.') }}
+                        {{ __('applicationRejectedMail.StudentJobs. All rights reserved.') }}
                     </p>
 
                     <p style="margin:0; font-size:13px; color:#adb5bd;">
-                        {{ __('mail.You are receiving this email because you applied for a job on StudentJobs.') }}
+                        {{ __('applicationRejectedMail.You are receiving this email because you applied for a job on StudentJobs.') }}
                     </p>
 
                 </td>
