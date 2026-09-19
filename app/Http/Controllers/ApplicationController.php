@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ApplicationAcceptedEvent;
+use App\Events\ApplicationCreatedEvent;
 use App\Events\AppllicationRejectedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateApplicationRequest;
@@ -42,7 +43,8 @@ class ApplicationController extends Controller
 
     public function store(CreateApplicationRequest $request): RedirectResponse
     {
-        $this->applicationRepo->store($request->validated());
+        $application = $this->applicationRepo->store($request->validated());
+        event(new ApplicationCreatedEvent());
         return redirect()->route('homepage');
     }
 
