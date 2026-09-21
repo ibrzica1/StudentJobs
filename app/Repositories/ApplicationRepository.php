@@ -85,4 +85,11 @@ class ApplicationRepository
         ->where('job_id',$application->job_id)
         ->update(['seen_status' => $this->applicationModel::SEEN]);
     }
+
+    public function delete(Application $application): void
+    {
+        $this->applicationModel
+        ->where('id',$application->id)
+        ->delete();
+    }
 }

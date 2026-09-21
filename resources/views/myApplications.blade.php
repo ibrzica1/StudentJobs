@@ -168,7 +168,7 @@
                         class="btn btn-success btn-sm">
                             {{__('myApplication.VIEW JOB')}}
                     </a>
-                    <form action="{{route('job.delete',['job' => $application->job->id])}}" method="post" class="m-0">
+                    <form action="{{route('application.delete',['application' => $application->id])}}" method="post" class="m-0">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">

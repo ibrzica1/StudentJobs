@@ -66,4 +66,10 @@ class ApplicationController extends Controller
         $applications = $this->applicationRepo->getMyApplications();
         return view('myApplications',['applications' => $applications]);
     }
+
+    public function delete(Application $application)
+    {
+        $this->applicationRepo->delete($application);
+        return redirect()->route('application.my-applications');
+    }
 }

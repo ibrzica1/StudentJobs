@@ -88,6 +88,8 @@ Route::controller(ApplicationController::class)->prefix('/application')->name('a
    ->middleware(['auth',EmployerCheckMiddleware::class])->name('accept');
    Route::patch('/update/reject/{application}','reject')
    ->middleware(['auth',EmployerCheckMiddleware::class])->name('reject');
+   Route::delete('/delete/{application}','delete')
+   ->middleware(['auth',StudentCheckMiddleware::class])->name('delete');
 });
 
 require __DIR__.'/auth.php';
