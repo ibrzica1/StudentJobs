@@ -86,6 +86,19 @@ class ApplicationRepository
         ->update(['seen_status' => $this->applicationModel::SEEN]);
     }
 
+    public function applicationDoesntExist(Job $job): bool
+    {
+        $application = $this->applicationModel
+                        ->where('job_id',$job->id)
+                        ->where('user_id', Auth::id())
+                        ->get();
+        if($application){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function delete(Application $application): void
     {
         $this->applicationModel

@@ -56,7 +56,7 @@
 
     <div>
         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
-            {{__('myApplications.My Applications')}}
+            {{__('myApplication.My Applications')}}
         </h6>
 
         

@@ -158,11 +158,13 @@
         <div class="p-4">{{$job->tasks}}</div>
     </div>
     <div class="justify-content-end">
-        <a href="{{route('application.create',['job' => $job->id])}}"
-        class="btn bg-success text-white
-        px-8 fw-bold">
-            {{__("showJob.Apply now")}}
-        </a>
+        @can('can-apply',$job)
+            <a href="{{route('application.create',['job' => $job->id])}}"
+            class="btn bg-success text-white
+            px-8 fw-bold">
+                {{__("showJob.Apply now")}}
+            </a>
+        @endcan
     </div>
 </div>    
 @endif
