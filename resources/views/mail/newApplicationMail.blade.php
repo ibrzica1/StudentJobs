@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('studentInfoMail.New Application') }}</title>
+    <title>{{ __('newApplicationMail.Application') }}</title>
 </head>
 
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family:Arial, Helvetica, sans-serif;">
@@ -35,11 +35,11 @@
                         </div>
 
                         <h1 style="margin:0 0 12px 0; font-size:24px; color:#212529; font-weight:700;">
-                            {{ __('studentInfoMail.New Application') }}
+                            {{ __('newApplicationMail.New Application') }}
                         </h1>
 
                         <p style="margin:0; font-size:15px; line-height:1.6; color:#6c757d;">
-                            {{ __('studentInfoMail.You have received a new application for your job.') }}
+                            {{ __('newApplicationMail.You have received a new application for your job.') }}
                         </p>
 
                     </td>
@@ -55,7 +55,7 @@
                                 <td style="padding:24px;">
 
                                     <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                        {{ __('studentInfoMail.Job') }}
+                                        {{ __('newApplicationMail.Job') }}
                                     </p>
 
                                     <h2 style="margin:0 0 16px 0; font-size:20px; color:#f00505; font-weight:700;">
@@ -63,7 +63,7 @@
                                     </h2>
 
                                     <p style="margin:0; font-size:14px; color:#212529;">
-                                        <strong>{{ __('studentInfoMail.Location') }}:</strong>
+                                        <strong>{{ __('newApplicationMail.Location') }}:</strong>
                                         {{ $application->job->location->city ?? '—' }}
                                     </p>
 
@@ -84,7 +84,7 @@
                                 <td style="padding:24px;">
 
                                     <p style="margin:0 0 16px 0; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                        {{ __('studentInfoMail.Student Information') }}
+                                        {{ __('newApplicationMail.Student Information') }}
                                     </p>
 
                                     <!-- Student name -->
@@ -99,7 +99,7 @@
                                         <tr>
                                             <td style="padding-bottom:14px;">
                                                 <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('studentInfoMail.Location') }}
+                                                    {{ __('newApplicationMail.Location') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
@@ -112,7 +112,7 @@
                                         <tr>
                                             <td>
                                                 <p style="margin:0 0 4px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                                                    {{ __('studentInfoMail.University') }}
+                                                    {{ __('newApplicationMail.University') }}
                                                 </p>
 
                                                 <p style="margin:0; font-size:14px; color:#212529;">
@@ -134,9 +134,9 @@
                 <tr>
                     <td style="padding:0 40px 40px 40px; text-align:center;">
 
-                        <a href="{{ route('index', ['job' => $application->job->id]) }}"
+                        <a href="{{ route('application.index', ['job' => $application->job->id]) }}"
                            style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
-                            {{ __('studentInfoMail.View Application') }}
+                            {{ __('newApplicationMail.View Application') }}
                         </a>
 
                     </td>
@@ -154,11 +154,11 @@
                     <td style="padding:32px 40px;">
 
                         <p style="margin:0 0 12px 0; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:#adb5bd; font-weight:600;">
-                            {{ __('studentInfoMail.Next step') }}
+                            {{ __('newApplicationMail.Next step') }}
                         </p>
 
                         <p style="margin:0; font-size:14px; line-height:1.6; color:#6c757d;">
-                            {{ __('studentInfoMail.Review the application to see the full application details and decide how you would like to proceed.') }}
+                            {{ __('newApplicationMail.Review the application to see the full application details and decide how you would like to proceed.') }}
                         </p>
 
                     </td>
@@ -170,11 +170,11 @@
 
                         <p style="margin:0 0 8px 0; font-size:13px; color:#adb5bd;">
                             &copy; {{ date('Y') }}
-                            {{ __('studentInfoMail.StudentJobs. All rights reserved.') }}
+                            {{ __('newApplicationMail.StudentJobs. All rights reserved.') }}
                         </p>
 
                         <p style="margin:0; font-size:13px; color:#adb5bd;">
-                            {{ __('studentInfoMail.You are receiving this email because a student applied for your job on StudentJobs.') }}
+                            {{ __('newApplicationMail.You are receiving this email because a student applied for your job on StudentJobs.') }}
                         </p>
 
                     </td>
