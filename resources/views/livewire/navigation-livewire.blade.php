@@ -113,7 +113,7 @@ use App\Models\Localization;
                 @elseif ($user->role === 'student')
                     <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
-                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 
+                    <a href="{{route('application.my-applications')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Applications')}}</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf

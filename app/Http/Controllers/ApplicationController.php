@@ -60,4 +60,10 @@ class ApplicationController extends Controller
         event(new AppllicationRejectedEvent($application));
         return redirect()->route('application.index',['job' => $application->job_id]);
     }
+
+    public function myApplications(): View
+    {
+        $applications = $this->applicationRepo->getMyApplications();
+        return view('myApplications',['applications' => $applications]);
+    }
 }

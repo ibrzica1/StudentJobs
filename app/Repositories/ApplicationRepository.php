@@ -40,6 +40,16 @@ class ApplicationRepository
         return $applications;
     }
 
+    public function getMyApplications(): Collection
+    {
+        $applications = $this->applicationModel
+                        ->where('user_id',Auth::id())
+                        ->orderBy('id','desc')
+                        ->get();
+
+        return $applications;
+    }
+
     public function acceptApplicantUpdate(Application $application): void
     {
         $this->applicationModel

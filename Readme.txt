@@ -12,7 +12,9 @@ Contact Details (City, Street, House Number, Telephone) and Profile Picture (opt
 Employer is entering Account Information(Email, Password),  Personal Details (Name, Surname),
 Company Data (Company Name, City, Street, House Number, Telephone Number and Company Logo).
 Student can apply on the jobs.
-Student can view and apply on a job. When he applies 
+Student can view and apply on a job. When he applies new Application is created and NewApplication Event
+is trigered which sends email to employer informing him about the new applicant.
+
 Employer is choosing amoung the applications and when he/she accepts the application, employer and
 student will be provided with eachoders email for contact.
 When posting a job employer will be provided with the bill.
