@@ -44,7 +44,7 @@ class ApplicationController extends Controller
     public function store(CreateApplicationRequest $request): RedirectResponse
     {
         $application = $this->applicationRepo->store($request->validated());
-        event(new ApplicationCreatedEvent());
+        event(new ApplicationCreatedEvent($application));
         return redirect()->route('homepage');
     }
 
