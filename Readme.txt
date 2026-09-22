@@ -11,14 +11,16 @@ Student is entering Account Information(Email, Password), Personal Details (Name
 Contact Details (City, Street, House Number, Telephone) and Profile Picture (optional).
 Employer is entering Account Information(Email, Password),  Personal Details (Name, Surname),
 Company Data (Company Name, City, Street, House Number, Telephone Number and Company Logo).
-Student can apply on the jobs.
+Employer can create job postings. He can clickon create helper job or create intership job.
+After clicking he is redirected on the category page where he can choose which category the 
+job is babysitting, moving, IT, construction, ect...
+If category is selected form for creating a job will be partially autofilled with some data.
+Homepage is displaying active job posts, posts are paginated 12 per page.
+You can search job posts by category 
+By clicking on the job post, it will show that post with all the job information
 Student can view and apply on a job. When he applies new Application is created and NewApplication Event
 is trigered which sends email to employer informing him about the new applicant.
-
-Employer is choosing amoung the applications and when he/she accepts the application, employer and
-student will be provided with eachoders email for contact.
-When posting a job employer will be provided with the bill.
-Bill is payed by bank transaction and admin is deciding if the bill is payed
+Employer can view all his job postings in my-ads blade. There 
 
 
 LOCATION
