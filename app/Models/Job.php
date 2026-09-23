@@ -94,4 +94,9 @@ class Job extends Model
         return $this->hasMany(Application::class);
     }
 
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
+    }
+
 }
