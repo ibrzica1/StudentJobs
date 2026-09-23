@@ -20,7 +20,14 @@ You can search job posts by category
 By clicking on the job post, it will show that post with all the job information
 Student can view and apply on a job. When he applies new Application is created and NewApplication Event
 is trigered which sends email to employer informing him about the new applicant.
-Employer can view all his job postings in my-ads blade. There 
+Employer can view all his job postings in my-ads blade. There he can edit or delete the job if 
+the job status is pending or finished, if its promised job cant be edited or deleted.
+Employer can view all the applications of his job post. In application he can view all students
+information except telephone number and email which is hidden.
+By accepting the application after changing the status of the application to approved 
+Application Accepted Event is triggered which sends emails to student and employer about eachothers
+contact information
+
 
 
 LOCATION

@@ -171,6 +171,65 @@
                 </a>
             </div>
 
+            @if ($job->status !== Job::ACTIVE)
+                <div class="mt-4 p-4 bg-light rounded shadow-sm">
+                    <h4 class="fw-bold text-danger mb-4">
+                        Rate the students
+                    </h4>
+
+                    @foreach ($job->applications as $application)
+                        @if ($application->accept_status === Application::APPROVED)
+                            <form action="" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
+                                @csrf
+
+                                <div class="row align-items-center">
+
+                                    {{-- Student --}}
+                                    <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
+                                        <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
+                                            class="rounded shadow-sm mb-2"
+                                            width="110"
+                                            height="110"
+                                            style="object-fit: cover;">
+
+                                        <h5 class="fw-bold mb-1">
+                                            {{ $application->user->firstName }}
+                                            {{ $application->user->lastName }}
+                                        </h5>
+
+                                        <small class="text-muted">
+                                            {{ $application->user->location->city ?? '' }}
+                                        </small>
+                                    </div>
+
+                                    {{-- Rating --}}
+                                    <livewire:rating-livewire />
+
+                                    {{-- Comment --}}
+                                    <div class="col-md-4">
+                                        <label class="fw-bold mb-2">
+                                            Comment
+                                        </label>
+
+                                        <textarea name="comment"
+                                                class="form-control"
+                                                rows="4"
+                                                placeholder="Write a comment..."></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="text-end mt-3 pt-3 border-top">
+                                    <button type="submit"
+                                            class="btn btn-danger px-4 fw-bold">
+                                        Submit rating
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endforeach
     @endif
