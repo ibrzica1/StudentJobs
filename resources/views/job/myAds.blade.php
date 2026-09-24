@@ -12,6 +12,10 @@
         use App\Models\Application;
         $time = new TimeService();
     ?>
+    @if($errors->any())
+        <div class="alert alert-danger">{{$errors->first()}}</div>
+    @endif
+
     <div>
         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
             {{__('myAds.My Adds')}}
@@ -19,7 +23,6 @@
 
         
     </div>
-    
 
     @if ($ads->isEmpty())
         <div class="container">
@@ -179,9 +182,11 @@
 
                     @foreach ($job->applications as $application)
                         @if ($application->accept_status === Application::APPROVED)
-                            <form action="" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
+                            <form action="{{route('rating.store')}}" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
                                 @csrf
 
+                                <input type="hidden" name="user_id" value="{{$application->user_id}}">
+                                <input type="hidden" name="job_id" value="{{$application->job_id}}">
                                 <div class="row align-items-center">
 
                                     {{-- Student --}}
@@ -202,10 +207,8 @@
                                         </small>
                                     </div>
 
-                                    {{-- Rating --}}
                                     <livewire:rating-livewire />
 
-                                    {{-- Comment --}}
                                     <div class="col-md-4">
                                         <label class="fw-bold mb-2">
                                             Comment

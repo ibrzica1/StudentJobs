@@ -6,6 +6,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingController;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
@@ -90,6 +91,12 @@ Route::controller(ApplicationController::class)->prefix('/application')->name('a
    ->middleware(['auth',EmployerCheckMiddleware::class])->name('reject');
    Route::delete('/delete/{application}','delete')
    ->middleware(['auth',StudentCheckMiddleware::class])->name('delete');
+});
+
+Route::controller(RatingController::class)->prefix('/rating')->name('rating.')
+->group(function() {
+    Route::post('/store','store')
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('store');
 });
 
 require __DIR__.'/auth.php';
