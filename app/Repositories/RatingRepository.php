@@ -17,4 +17,13 @@ class RatingRepository
     {
         return $rating = $this->ratingModel->create($request);
     }
+
+    public function calculateAverage(int $userId): float
+    {
+        $sumOfRatings = $this->ratingModel->where('user_id',$userId)
+                                          ->sum('score');
+        $countRatings = $this->ratingModel->where('user_id',$userId)
+                                          ->count();
+        return $sumOfRatings / $countRatings;
+    }
 }
