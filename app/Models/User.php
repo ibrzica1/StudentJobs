@@ -32,6 +32,7 @@ class User extends Authenticatable
         'car_licence',
         'university',
         'certificates',
+        'average_rating',
     ];
 
     /**
