@@ -182,53 +182,78 @@
 
                     @foreach ($job->applications as $application)
                         @if ($application->accept_status === Application::APPROVED)
-                            <form action="{{route('rating.store')}}" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
-                                @csrf
+                            @if ($application->user->ratings->contains('job_id',$job->id))
+                                <div class="bg-white rounded shadow-sm p-4 mb-3">
+                                    <div class="row align-items-center">
+                                        {{-- Student --}}
+                                        <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
+                                            <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
+                                                class="rounded shadow-sm mb-2"
+                                                width="110"
+                                                height="110"
+                                                style="object-fit: cover;">
 
-                                <input type="hidden" name="user_id" value="{{$application->user_id}}">
-                                <input type="hidden" name="job_id" value="{{$application->job_id}}">
-                                <div class="row align-items-center">
+                                            <h5 class="fw-bold mb-1">
+                                                {{ $application->user->firstName }}
+                                                {{ $application->user->lastName }}
+                                            </h5>
 
-                                    {{-- Student --}}
-                                    <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
-                                        <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
-                                            class="rounded shadow-sm mb-2"
-                                            width="110"
-                                            height="110"
-                                            style="object-fit: cover;">
+                                            <small class="text-muted">
+                                                {{ $application->user->location->city ?? '' }}
+                                            </small>
 
-                                        <h5 class="fw-bold mb-1">
-                                            {{ $application->user->firstName }}
-                                            {{ $application->user->lastName }}
-                                        </h5>
-
-                                        <small class="text-muted">
-                                            {{ $application->user->location->city ?? '' }}
-                                        </small>
+                                            <x-user-rating :rating="$application->user->average_rating" />
+                                        </div>
                                     </div>
+                                </div>
+                            @else
+                                <form action="{{route('rating.store')}}" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
+                                    @csrf
 
-                                    <livewire:rating-livewire />
+                                    <input type="hidden" name="user_id" value="{{$application->user_id}}">
+                                    <input type="hidden" name="job_id" value="{{$application->job_id}}">
+                                    <div class="row align-items-center">
 
-                                    <div class="col-md-4">
-                                        <label class="fw-bold mb-2">
-                                            Comment
-                                        </label>
+                                        {{-- Student --}}
+                                        <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
+                                            <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
+                                                class="rounded shadow-sm mb-2"
+                                                width="110"
+                                                height="110"
+                                                style="object-fit: cover;">
 
-                                        <textarea name="comment"
-                                                class="form-control"
-                                                rows="4"
-                                                placeholder="Write a comment..."></textarea>
+                                            <h5 class="fw-bold mb-1">
+                                                {{ $application->user->firstName }}
+                                                {{ $application->user->lastName }}
+                                            </h5>
+
+                                            <small class="text-muted">
+                                                {{ $application->user->location->city ?? '' }}
+                                            </small>
+                                        </div>
+
+                                        <livewire:rating-livewire />
+
+                                        <div class="col-md-4">
+                                            <label class="fw-bold mb-2">
+                                                Comment
+                                            </label>
+
+                                            <textarea name="comment"
+                                                    class="form-control"
+                                                    rows="4"
+                                                    placeholder="Write a comment..."></textarea>
+                                        </div>
                                     </div>
-
-                                </div>
-
-                                <div class="text-end mt-3 pt-3 border-top">
-                                    <button type="submit"
-                                            class="btn btn-danger px-4 fw-bold">
-                                        Submit rating
-                                    </button>
-                                </div>
-                            </form>
+                                    <div class="text-end mt-3 pt-3 border-top">
+                                        <button type="submit"
+                                                class="btn btn-danger px-4 fw-bold">
+                                            Submit rating
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                                    
                         @endif
                     @endforeach
                 </div>
