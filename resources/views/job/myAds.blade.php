@@ -183,29 +183,94 @@
                     @foreach ($job->applications as $application)
                         @if ($application->accept_status === Application::APPROVED)
                             @if ($application->user->ratings->contains('job_id',$job->id))
-                                <div class="bg-white rounded shadow-sm p-4 mb-3">
-                                    <div class="row align-items-center">
-                                        {{-- Student --}}
-                                        <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
-                                            <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
-                                                class="rounded shadow-sm mb-2"
-                                                width="110"
-                                                height="110"
-                                                style="object-fit: cover;">
+                            @php
+                                $studentRating = $application->user->ratings
+                                    ->where('job_id', $job->id)
+                                    ->first();
+                            @endphp
 
-                                            <h5 class="fw-bold mb-1">
-                                                {{ $application->user->firstName }}
-                                                {{ $application->user->lastName }}
-                                            </h5>
+                            <div class="bg-white rounded shadow-sm p-4 mb-4">
 
-                                            <small class="text-muted">
-                                                {{ $application->user->location->city ?? '' }}
-                                            </small>
+                                <div class="row">
 
+                                    {{-- Student --}}
+                                    <div class="d-flex flex-column col-md-4 text-center border-end align-items-center justify-content-center">
+                                        <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
+                                            class="rounded shadow-sm mb-3"
+                                            width="110"
+                                            height="110"
+                                            style="object-fit: cover;">
+
+                                        <h5 class="fw-bold mb-1">
+                                            {{ $application->user->firstName }}
+                                            {{ $application->user->lastName }}
+                                        </h5>
+
+                                        <small class="text-muted d-block mb-3">
+                                            {{ $application->user->location->city ?? '' }}
+                                        </small>
+
+                                        {{-- Average rating --}}
+                                        <div class="d-flex justify-content-center">
                                             <x-user-rating :rating="$application->user->average_rating" />
                                         </div>
                                     </div>
+
+
+                                    {{-- Employer rating --}}
+                                    <div class="col-md-8 ps-md-5 mt-4 mt-md-0">
+
+                                        <div class="mb-3">
+                                            <span class="text-uppercase text-muted small fw-bold">
+                                                {{__('myAds.My Rating')}}
+                                            </span>
+
+                                            <div class="d-flex align-items-center gap-2 mt-2">
+
+                                                <span class="fs-4 fw-bold text-danger">
+                                                    {{ $studentRating?->score ?? '-' }}
+                                                </span>
+
+                                                <span class="text-muted">
+                                                    / 5
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+
+                                        {{-- Comment --}}
+                                        @if ($studentRating?->comment)
+
+                                            <div class="border-top pt-3">
+
+                                                <span class="text-uppercase text-muted small fw-bold">
+                                                    {{__('myAds.My Comment')}}My Comment
+                                                </span>
+
+                                                <div class="bg-light rounded p-3 mt-2">
+                                                    <p class="mb-0 text-dark">
+                                                        "{{ $studentRating->comment }}"
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+                                        @else
+
+                                            <div class="border-top pt-3">
+                                                <span class="text-muted small">
+                                                   {{__('myAds.No comment was added.')}} 
+                                                </span>
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+
                                 </div>
+
+                            </div>
                             @else
                                 <form action="{{route('rating.store')}}" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
                                     @csrf
@@ -236,19 +301,19 @@
 
                                         <div class="col-md-4">
                                             <label class="fw-bold mb-2">
-                                                Comment
+                                                {{__('myAds.Comment')}} 
                                             </label>
 
                                             <textarea name="comment"
                                                     class="form-control"
                                                     rows="4"
-                                                    placeholder="Write a comment..."></textarea>
+                                                    placeholder="{{__('myAds.Write a comment...')}}"></textarea>
                                         </div>
                                     </div>
                                     <div class="text-end mt-3 pt-3 border-top">
                                         <button type="submit"
                                                 class="btn btn-danger px-4 fw-bold">
-                                            Submit rating
+                                            {{__('myAds.Submit rating')}} 
                                         </button>
                                     </div>
                                 </form>

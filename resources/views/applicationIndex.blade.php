@@ -78,7 +78,7 @@ use App\Models\Application;
                     <div class="row g-4 align-items-center">
 
                         {{-- Avatar --}}
-                        <div class="col-auto">
+                        <div class="col-auto d-flex flex-column align-items-center gap-2">
                             @if ($application->user->profile_picture)
                                 <img src="{{asset('storage/images/user_avatar/'.$application->user->profile_picture)}}"
                                     class="rounded-circle shadow-sm"
@@ -92,6 +92,9 @@ use App\Models\Application;
                                     height="100"
                                     style="object-fit: cover; !important; height: 100px !important; width: 100px !important; max-width: 100px !important; max-height: 100px !important; min-width: 100px !important; min-height: 100px !important;">
                             @endif
+                            <div class="d-flex justify-content-center">
+                                <x-user-rating :rating="$application->user->average_rating" />
+                            </div>
                         </div>
 
                         {{-- Applicant info --}}
@@ -100,9 +103,14 @@ use App\Models\Application;
                                 <h5 class="fw-bold mb-0">
                                     {{$application->user->firstName}} {{$application->user->lastName}}
                                 </h5>
+                                
                                 <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">
-                                    ★ 1 {{__('applications.review')}}
-                                    <a href="" class="text-decoration-none ms-1">{{__('applications.show')}}</a>
+                                    @if ($application->user->ratings)
+                                        ★ {{$application->user->ratings->count()}} {{__('applications.review')}}
+                                        <a href="" class="text-decoration-none ms-1">{{__('applications.show')}}</a>
+                                    @else
+                                        ★ 0 {{__('applications.review')}}
+                                    @endif
                                 </span>
                                 @if ($application->seen_status === Application::UNSEEN)
                                     <p class="bg-danger text-white p-1 rounded">NEW</p>
