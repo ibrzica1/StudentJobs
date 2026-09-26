@@ -10,4 +10,10 @@ return [
     'APPLICATIONS' => 'ANWENDUNGEN',
     'Total applications' => 'Gesamtbewerbungen',
     'NEW!' => 'NEU!',
+    'My Rating' => 'Meine Bewertung',
+    'My Comment' => 'Mein Kommentar',
+    'No comment was added.' => 'Es wurde kein Kommentar hinzugefügt.',
+    'Comment' => 'Kommentar',
+    'Write a comment...' => 'Schreiben Sie einen Kommentar...',
+    'Submit rating' => 'Bewertung absenden',
 ];

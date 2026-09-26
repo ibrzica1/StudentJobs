@@ -10,4 +10,10 @@ return [
    'APPLICATIONS' => 'APPLICATIONS',
    'Total applications' => 'Total applications',
    'NEW!' => 'NEW!',
+   'My Rating' => 'My Rating',
+   'My Comment' => 'My Comment',
+   'No comment was added.' => 'No comment was added.',
+   'Comment' => 'Comment',
+   'Write a comment...' => 'Write a comment...',
+   'Submit rating' => 'Submit rating',
 ];

@@ -10,4 +10,10 @@ return [
    'APPLICATIONS' => 'APLIKACIJE',
    'Total applications' => 'Ukupno aplikacija',
    'NEW!' => 'NOVO!',
+   'My Rating' => 'Moja ocjena',
+   'My Comment' => 'Moj komentar',
+   'No comment was added.' => 'Komentar nije dodan.',
+   'Comment' => 'Komentar',
+   'Write a comment...' => 'Napišite komentar...',
+   'Submit rating' => 'Pošalji ocjenu',
 ];
