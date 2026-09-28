@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Rating;
+use App\Models\User;
 
 class RatingRepository
 {
@@ -18,11 +19,11 @@ class RatingRepository
         return $rating = $this->ratingModel->create($request);
     }
 
-    public function calculateAverage(int $userId): float
+    public function calculateAverage(User $user): float
     {
-        $sumOfRatings = $this->ratingModel->where('user_id',$userId)
+        $sumOfRatings = $this->ratingModel->where('user_id',$user->id)
                                           ->sum('score');
-        $countRatings = $this->ratingModel->where('user_id',$userId)
+        $countRatings = $this->ratingModel->where('user_id',$user->id)
                                           ->count();
         return $sumOfRatings / $countRatings;
     }

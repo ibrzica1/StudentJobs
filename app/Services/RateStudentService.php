@@ -19,6 +19,6 @@ class RateStudentService
     public function rateStudent(array $request)
     {
         $rating = $this->ratingRepo->store($request);
-        event(new RatingCreatedEvent($rating->user_id));
+        event(new RatingCreatedEvent($rating->user));
     }
 }
