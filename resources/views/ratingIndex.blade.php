@@ -25,7 +25,7 @@
     <div class="bg-white rounded shadow-sm p-4 mb-4 m-3">
         <div class="row align-items-center">
 
-            {{-- Employer Info (Lijeva strana - 4 stupca) --}}
+            {{-- Employer Info --}}
             <div class="col-md-4 text-center border-end">
                 <img src="{{ !empty($rating->job->employer->profile_picture) && file_exists(storage_path('app/public/images/user_avatar/'.$rating->job->employer->profile_picture)) 
                     ? asset('storage/images/user_avatar/'.$rating->job->employer->profile_picture) 
@@ -34,12 +34,22 @@
                      style="width: 110px; height: 110px; object-fit: cover;">
 
                 <h5 class="fw-bold mb-1">
-                    {{ $rating->job->employer->firstName }}
-                    {{ $rating->job->employer->lastName }}
+                    @if ($rating->job)
+                        {{ $rating->job->employer->firstName }}
+                        {{ $rating->job->employer->lastName }}
+                    @else
+                        {{__('ratingIndex.Employer was deleted')}}
+                    @endif
+                    
                 </h5>
 
                 <small class="text-muted d-block mb-3">
-                    {{ $rating->job->employer->location->city ?? '' }}
+                    @if ($rating->job)
+                        {{ $rating->job->employer->location->city ?? '' }}
+                    @else
+                        {{__('ratingIndex.No location')}}
+                    @endif
+                    
                 </small>
             </div>
 
@@ -49,7 +59,7 @@
                 {{-- Rating Score --}}
                 <div class="mb-3">
                     <span class="text-uppercase text-muted small fw-bold">
-                        Rating
+                        {{__('ratingIndex.Rating')}}
                     </span>
 
                     <div class="d-flex align-items-center gap-2 mt-2">
