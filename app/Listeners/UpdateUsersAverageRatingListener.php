@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\BlacklistUserEvent;
 use App\Events\RatingCreatedEvent;
 use App\Repositories\RatingRepository;
 use App\Repositories\UserRepository;
@@ -21,7 +22,10 @@ class UpdateUsersAverageRatingListener
 
     public function handle(RatingCreatedEvent $event): void
     {
-        $averageRating = $this->ratingRepo->calculateAverage($event->userId);
-        $this->userRepo->updateAverageRating($event->userId,$averageRating);
+        $averageRating = $this->ratingRepo->calculateAverage($event->user);
+        $user = $this->userRepo->updateAverageRating($event->user,$averageRating);
+        if($user->average_rating < 2 && $user->ratings->count() >= 5){
+            event(new BlacklistUserEvent($user));
+        }
     }
 }

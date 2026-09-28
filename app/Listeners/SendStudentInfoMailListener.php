@@ -16,7 +16,7 @@ class SendStudentInfoMailListener
         //
     }
 
-    public function handle(ApplicationAcceptedEvent $event): void
+    public function handle( $event): void
     {
         Mail::to('test@inbox.mailtrap.io')->send(new StudentInfoMail($event->application));
     }
