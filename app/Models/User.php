@@ -33,6 +33,7 @@ class User extends Authenticatable
         'university',
         'certificates',
         'average_rating',
+        'blacklisted',
     ];
 
     /**

@@ -13,9 +13,15 @@ class UserRepository
         $this->userModel = new User();
     }
 
-    public function updateAverageRating(int $userId, float $averageRating)
+    public function updateAverageRating(User $user, float $averageRating): User
+    {
+        $user->update(['average_rating' => $averageRating]);
+        return $user;
+    }
+
+    public function updateBlacklisted(int $userId, bool $value)
     {
         $this->userModel->where('id',$userId)
-                        ->update(['average_rating' => $averageRating]);
+                        ->update(['blacklisted' => $value]);
     }
 }
