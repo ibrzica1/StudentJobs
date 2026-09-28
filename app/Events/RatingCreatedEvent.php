@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,7 +16,7 @@ class RatingCreatedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct(public int $userId)
+    public function __construct(public User $user)
     {
         //
     }
