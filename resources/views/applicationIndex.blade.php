@@ -107,7 +107,9 @@ use App\Models\Application;
                                 <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">
                                     @if ($application->user->ratings)
                                         ★ {{$application->user->ratings->count()}} {{__('applications.review')}}
-                                        <a href="" class="text-decoration-none ms-1">{{__('applications.show')}}</a>
+                                        <a href="{{route('rating.index',['user' => $application->user])}}" 
+                                        class="text-decoration-none ms-1">
+                                        {{__('applications.show')}}</a>
                                     @else
                                         ★ 0 {{__('applications.review')}}
                                     @endif

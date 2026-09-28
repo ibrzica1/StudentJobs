@@ -97,6 +97,8 @@ Route::controller(RatingController::class)->prefix('/rating')->name('rating.')
 ->group(function() {
     Route::post('/store','store')
     ->middleware(['auth',EmployerCheckMiddleware::class])->name('store');
+    Route::get('/{user}/index','index')
+    ->middleware(['auth'])->name('index');
 });
 
 require __DIR__.'/auth.php';

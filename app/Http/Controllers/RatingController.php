@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\RatingCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRatingRequest;
+use App\Models\User;
 use App\Repositories\RatingRepository;
 use App\Services\RateStudentService;
 use Illuminate\Http\Request;
@@ -24,5 +25,10 @@ class RatingController extends Controller
     {
         $this->rateStudentService->rateStudent($request->validated());
         return redirect()->route('job.my-ads',['status'=>'all']);
+    }
+
+    public function index(User $user)
+    {
+        return view('ratingIndex',['user' => $user]);
     }
 }
