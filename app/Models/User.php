@@ -103,4 +103,9 @@ class User extends Authenticatable
         return $this->hasMany(Rating::class);
     }
 
+    public function bills(): HasMany
+    {
+        return $this->hasMany(Bill::class);
+    }
+
 }
