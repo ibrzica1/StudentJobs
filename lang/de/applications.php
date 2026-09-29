@@ -27,4 +27,5 @@ return [
     'email after you have accepted' => 'sehen Sie erst, nachdem Sie',
     'telephone number after you have accepted' => 'sehen Sie erst, nachdem Sie',
     'their offer.' => 'sein Angebot angenommen haben.',
+    'We advise you against this user' => 'Wir raten Ihnen von diesem Benutzer ab',
 ];

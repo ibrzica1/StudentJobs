@@ -29,4 +29,5 @@ return [
     'telephone number after you have accepted' => 'telephone number after you have accepted',
     'email after you have accepted' => 'email after you have accepted',
     'their offer.' => 'their offer.',
+    'We advise you against this user' => 'We advise you against this user',
 ];

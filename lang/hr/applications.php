@@ -27,4 +27,5 @@ return [
     'telephone number after you have accepted' => 'tek nakon što prihvatite',
     'email after you have accepted' => 'tek nakon što prihvatite',
     'their offer.' => 'njihovu ponudu.',
+    'We advise you against this user' => 'Savjetujemo vas protiv ovog kandidata'
 ];

@@ -73,7 +73,12 @@ use App\Models\Application;
         </div>
     @else
         @foreach ($applications as $application)
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div @class([
+                    'card shadow-sm rounded-4 mb-4',
+                    'border-danger' => $application->user->blacklisted,
+                    'bg-danger-subtle' => $application->user->blacklisted,
+                    'border-0' => !$application->user->blacklisted,
+                ])>
                 <div class="card-body p-4">
                     <div class="row g-4 align-items-center">
 
@@ -95,6 +100,12 @@ use App\Models\Application;
                             <div class="d-flex justify-content-center">
                                 <x-user-rating :rating="$application->user->average_rating" />
                             </div>
+                            @if ($application->user->blacklisted)
+                                <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                                    <img src="{{ asset('storage/images/icons/warning.png') }}" width="18">
+                                    <p>{{__('applications.We advise you against this user')}}</p>
+                                </div>
+                            @endif
                         </div>
 
                         {{-- Applicant info --}}
