@@ -1,3 +1,6 @@
+ <?php 
+    use App\Models\Application;
+?>
  @if ($user->profile_picture)
     <img
         src="{{ asset('storage/images/user_avatar/'.$user->profile_picture) }}"
@@ -30,22 +33,32 @@
 @if ($user->role === 'student')
 <div class="row text-center mb-4">
     <div class="col">
-        <h4 class="fw-bold mb-0">0</h4>
+        <h4 class="fw-bold mb-0">{{$user->applications->count()}}</h4>
         <small class="text-muted">
             {{__('profile.TOTAL APPLICATIONS')}}
         </small>
     </div>
 
     <div class="col">
-        <h4 class="fw-bold mb-0">0</h4>
+        <h4 class="fw-bold mb-0">
+            {{$user->applications->where('accept_status',Application::APPROVED)->count()}}
+        </h4>
         <small class="text-muted">
             {{__('profile.JOBS RECIEVED')}}
         </small>
     </div>
 </div>
-    <a href="#" class="btn btn-success w-100">
+<div class="d-flex justify-content-center">
+    <x-user-rating :rating="$user->average_rating" />
+</div>
+<div class="d-flex flex-column align-items-center gap-2 mt-3">
+    <a href="{{route('rating.index',['user' => $user])}}" 
+    class="btn btn-warning w-50">
+    {{$user->ratings->count()}} {{__('applications.review')}}</a>
+    <a href="{{route('homepage')}}" class="btn btn-success w-75">
         {{__('profile.FIND JOB')}}
     </a>
+</div>
 </div>
 @else
 <div class="row text-center mb-4">

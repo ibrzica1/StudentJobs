@@ -5,6 +5,7 @@
 @endsection
 
 @section("content")
+
 <div class="bg-light">
 
 
