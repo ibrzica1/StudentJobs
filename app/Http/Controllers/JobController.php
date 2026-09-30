@@ -57,7 +57,7 @@ class JobController extends Controller
 
     public function storeJob(CreateJobRequest $request): RedirectResponse
     {
-        $job = $this->jobRepository->storeJob($request);
+        $job = $this->jobRepository->storeJob($request->validated());
         event(new JobCreatedEvent($job));
         return redirect()->route('homepage');
     }

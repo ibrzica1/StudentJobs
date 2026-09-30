@@ -16,6 +16,8 @@ class Bill extends Model
 
     const PAYED = "payed";
     const UNPAYED = "unpayed";
+    const JOB_AD_PRICE = 23.99;
+    const TAX = 24;
 
     const ALLOWED_STATUSES = [
         self::PAYED, self::UNPAYED
