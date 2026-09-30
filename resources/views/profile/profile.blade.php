@@ -5,8 +5,7 @@
 @endsection
 
 @section("content")
-
-<div class="bg-light">
+<div class="bg-body-secondary">
 
 
 <div class="container py-5">
