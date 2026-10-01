@@ -12,4 +12,14 @@ class BillRepository
     {
         $this->billModel = new Bill();
     }
+
+    public function store(int $userId, int $jobId, float $amount): Bill
+    {
+        return $this->billModel->create([
+            'user_id' => $userId,
+            'job_id' => $jobId,
+            'amount' => $amount,
+            'status' => Bill::UNPAYED
+        ]);
+    }
 }
