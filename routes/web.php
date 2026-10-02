@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobController;
@@ -100,5 +101,6 @@ Route::controller(RatingController::class)->prefix('/rating')->name('rating.')
     Route::get('/{user}/index','index')
     ->middleware(['auth'])->name('index');
 });
+
 
 require __DIR__.'/auth.php';

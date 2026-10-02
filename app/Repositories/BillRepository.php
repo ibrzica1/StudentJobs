@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Bill;
+use Illuminate\Http\Request;
 
 class BillRepository
 {
@@ -13,13 +14,22 @@ class BillRepository
         $this->billModel = new Bill();
     }
 
-    public function store(int $userId, int $jobId, float $amount): Bill
+    public function store(array $array): Bill
     {
         return $this->billModel->create([
-            'user_id' => $userId,
-            'job_id' => $jobId,
-            'amount' => $amount,
-            'status' => Bill::UNPAYED
+            'user_id' => $array['user_id'],
+            'job_id' => $array['job_id'],
+            'amount' => $array['amount'],
+            'status' => $array['status']
         ]);
+    }
+
+    public function updatePdf(int $billId, string $pdfPath): Bill
+    {
+        $bill = $this->billModel->findOrFail($billId);
+        $bill->update([
+            'pdf' => $pdfPath
+        ]);
+        return $bill;
     }
 }
