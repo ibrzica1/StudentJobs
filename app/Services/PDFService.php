@@ -5,11 +5,16 @@ namespace App\Services;
 use App\Models\Bill;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Storage;
 
 class PDFService
 {
-    public function createJobBillPDF(Bill $bill): PDF
+    public function createAndStoreJobBillPDF(Bill $bill): string
     {
-        return FacadePdf::loadView('pdf.jobBillPDF',['bill' => $bill]);
+        $pdf = FacadePdf::loadView('pdf.jobBillPDF',['bill' => $bill]);
+        $filename = 'bill-'.$bill->id.'-'.time().'.pdf';
+        $path = 'documents/job-bills/'.$filename;
+        Storage::disk('public')->put($path,$pdf->output());
+        return $path;
     }
 }
