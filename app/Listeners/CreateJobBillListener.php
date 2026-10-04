@@ -26,12 +26,13 @@ class CreateJobBillListener
     public function handle(JobCreatedEvent $event): void
     {
         $total = $this->moneyService->calculatePrice(Bill::JOB_AD_PRICE,Bill::TAX);
-        
+        $billNumber = 'bill-job/'.$event->job->id.'/'.time().'.pdf';
         $bill = $this->billRepo->store([
             'user_id' => $event->job->employer_id,
             'job_id' => $event->job->id,
             'amount' => $total,
-            'status' => Bill::UNPAYED
+            'status' => Bill::UNPAYED,
+            'bill_number' => $billNumber
         ]);
         $path = $this->pdfservice->createAndStoreJobBillPDF($bill);
         $bill = $this->billRepo->updatePdf($bill->id,$path);

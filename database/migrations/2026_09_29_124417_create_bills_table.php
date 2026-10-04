@@ -11,8 +11,12 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('job_id')->constrained('jobs');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+            $table->foreignId('job_id')
+                ->constrained('jobs')
+                ->cascadeOnDelete();
             $table->float('amount');
             $table->text('status');
             $table->timestamps();
