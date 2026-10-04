@@ -34,8 +34,7 @@ class CreateJobBillListener
             'status' => Bill::UNPAYED,
             'bill_number' => $billNumber
         ]);
-        $path = $this->pdfservice->createAndStoreJobBillPDF($bill);
-        $bill = $this->billRepo->updatePdf($bill->id,$path);
+        $this->pdfservice->createAndStoreJobBillPDF($bill);
         
         event(new BillCreatedEvent($bill));
     }
