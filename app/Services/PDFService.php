@@ -12,8 +12,7 @@ class PDFService
     public function createAndStoreJobBillPDF(Bill $bill): string
     {
         $pdf = FacadePdf::loadView('pdf.jobBillPDF',['bill' => $bill]);
-        $filename = 'bill-'.$bill->id.'-'.time().'.pdf';
-        $path = 'documents/job-bills/'.$filename;
+        $path = 'documents/job-bills/'.$bill->bill_number;
         Storage::disk('public')->put($path,$pdf->output());
         return $path;
     }
