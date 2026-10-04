@@ -71,13 +71,13 @@ class JobController extends Controller
     public function updateJobHelper(Job $job, UpdateHelperJobRequest $request)
     {
        $this->jobRepository->update($job->id,$request->validated());
-       return redirect()->route('job.my-ads');
+       return redirect()->route('job.my-ads',['status' => 'all']);
     }
 
     public function updateJob(Job $job, UpdateJobRequest $request)
     {
        $this->jobRepository->update($job->id,$request->validated());
-       return redirect()->route('job.my-ads');
+       return redirect()->route('job.my-ads',['status' => 'all']);
     }
 
     public function categories(string $jobType): View
