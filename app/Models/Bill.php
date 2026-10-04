@@ -12,7 +12,7 @@ class Bill extends Model
 
     protected $table = 'bills';
 
-    protected $fillable = ['user_id','job_id','amount','status','pdf','bill_number'];
+    protected $fillable = ['user_id','job_id','amount','status','bill_number'];
 
     const PAYED = "payed";
     const UNPAYED = "unpayed";

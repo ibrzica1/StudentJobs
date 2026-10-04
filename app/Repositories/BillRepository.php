@@ -20,16 +20,8 @@ class BillRepository
             'user_id' => $array['user_id'],
             'job_id' => $array['job_id'],
             'amount' => $array['amount'],
-            'status' => $array['status']
+            'status' => $array['status'],
+            'bill_number' => $array['bill_number']
         ]);
-    }
-
-    public function updatePdf(int $billId, string $pdfPath): Bill
-    {
-        $bill = $this->billModel->findOrFail($billId);
-        $bill->update([
-            'pdf' => $pdfPath
-        ]);
-        return $bill;
     }
 }
