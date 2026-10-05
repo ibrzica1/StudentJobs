@@ -18,6 +18,7 @@ class SendJobBillMailListener
 
     public function handle(BillCreatedEvent $event): void
     {
+       
         Mail::to('test@inbox.mailtrap.io')->send(new BillJobAdMail($event->bill));
     }
 }
