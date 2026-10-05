@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 
 class BillJobAdMail extends Mailable
 {
@@ -38,10 +39,12 @@ class BillJobAdMail extends Mailable
 
     public function attachments(): array
     {
+        $path = "documents/job-bills/".$this->bill->bill_number.'.pdf';
         return [
-            Attachment::fromStorage('app/public/storage/job-bills'.$this->bill->bill_number.'.pdf')
-            ->as($this->bill->bill_number)
-            ,
+            
+            Attachment::fromPath(Storage::disk('public')->path($path))
+            ->as($this->bill->bill_number.'.pdf')
+            ->withMime('application/pdf'),
         ];
     }
 }

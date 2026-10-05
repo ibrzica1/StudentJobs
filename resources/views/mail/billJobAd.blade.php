@@ -170,11 +170,11 @@ use App\Services\MoneyService;
         <!-- Body Content -->
         <div class="email-body">
             <div class="greeting">
-                Hello Mr. {{ $bill->user->lastName ?? 'Brzika' }},
+                {{ __('jobBillPdf.Hello Mr.') }} {{ $bill->user->lastName }},
             </div>
 
             <div class="message-box">
-                Your invoice is attached to this email. Thank you for using StudentJobs. This invoice covers the publication of your job advertisement. Please use the invoice number as a reference when making your payment.
+                {{ __('jobBillPdf.Your invoice is attached to this email. Thank you for using StudentJobs. This invoice covers the publication of your job advertisement. Please use the invoice number as a reference when making your payment.') }}
             </div>
 
             <!-- Items Table -->
@@ -209,7 +209,7 @@ use App\Services\MoneyService;
             </table>
 
             <!-- Account Details / Bank Section -->
-            <div class="section-title">{{ __('jobBillPdf.Bank') }} Account Details</div>
+            <div class="section-title">{{ __('jobBillPdf.Bank Account Details') }} </div>
             <div class="bank-info-box">
                 <table width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -244,7 +244,7 @@ use App\Services\MoneyService;
 
         <!-- Service notification notice -->
         <div class="service-note">
-            This email is a service notification and not a newsletter. Therefore, it is not possible to unsubscribe from this type of email.
+            {{ __('jobBillPdf.This email is a service notification and not a newsletter. Therefore, it is not possible to unsubscribe from this type of email.') }}
         </div>
     </div>
 </body>
