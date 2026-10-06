@@ -9,6 +9,7 @@ use App\Repositories\BillRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class BillController extends Controller
 {
@@ -19,4 +20,9 @@ class BillController extends Controller
         $this->billRepo = new BillRepository();
     }
 
+    public function index(): View
+    {
+        $bills = $this->billRepo->getMyBills();
+        return view('myBills',['bills' => $bills]);
+    }
 }
