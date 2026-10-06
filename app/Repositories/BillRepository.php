@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Bill;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BillRepository
 {
@@ -23,5 +25,10 @@ class BillRepository
             'status' => $array['status'],
             'bill_number' => $array['bill_number']
         ]);
+    }
+
+    public function getMyBills(): Collection
+    {
+        return $this->billModel->where('user_id',Auth::id())->get();
     }
 }
