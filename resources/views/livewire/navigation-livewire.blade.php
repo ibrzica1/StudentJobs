@@ -102,7 +102,7 @@ use App\Models\Localization;
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
                     <a href="{{ route('job.my-ads',['status'=>'all']) }}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Ads')}}</a>
-                    <a href="#" class="block p-2 px-4 hover:bg-gray-200 
+                    <a href="{{route('bill.index')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Bills')}}</a>
                     <form action="{{ route('logout') }}" method="POST" class="">
                         @csrf

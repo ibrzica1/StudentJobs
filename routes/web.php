@@ -102,5 +102,11 @@ Route::controller(RatingController::class)->prefix('/rating')->name('rating.')
     ->middleware(['auth'])->name('index');
 });
 
+Route::controller(BillController::class)->prefix('/bill')->name('bill.')
+->group(function() {
+    Route::get('/index','index')
+    ->middleware(['auth'],EmployerCheckMiddleware::class)->name('index');
+});
+
 
 require __DIR__.'/auth.php';
