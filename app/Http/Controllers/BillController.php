@@ -27,8 +27,13 @@ class BillController extends Controller
         return view('myBills',['bills' => $bills]);
     }
 
-    public function download(string $path): StreamedResponse
+    public function download(string $fileName): StreamedResponse
     {
+        $path = 'documents/job-bills/'.$fileName.'.pdf';
+
+        if (!Storage::disk('public')->exists($path)) {
+            abort(404, 'File not found');
+        }
         return Storage::disk('public')->download($path);
     }
 }
