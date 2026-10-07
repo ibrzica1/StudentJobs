@@ -106,6 +106,8 @@ Route::controller(BillController::class)->prefix('/bill')->name('bill.')
 ->group(function() {
     Route::get('/index','index')
     ->middleware(['auth'],EmployerCheckMiddleware::class)->name('index');
+    Route::get('/download/{path}','download')
+    ->middleware(['auth'],EmployerCheckMiddleware::class)->name('download');
 });
 
 
