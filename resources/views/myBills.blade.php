@@ -14,7 +14,7 @@ use App\Models\Bill;
         transition: background-color 0.3s ease;
     }
     .hover-darken:hover {
-        background-color: rgba(0, 0, 0, 0.1); /* 0.1 je 10% zatamnjenja, pojačaj na 0.15 ili 0.2 ako želiš tamnije */
+        background-color: rgba(0, 0, 0, 0.1); 
     }
 </style>
 
