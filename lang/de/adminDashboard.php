@@ -9,4 +9,5 @@ return [
     'Jobs This Month'     => 'Jobs diesen Monat',
     'Unpaid Bills'        => 'Unbezahlte Rechnungen',
     'Mark As Paid'        => 'Als bezahlt markieren',
+    'Payment info'        => 'Zahlungsinformationen',
 ];

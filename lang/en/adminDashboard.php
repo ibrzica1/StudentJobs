@@ -9,4 +9,5 @@ return [
     'Jobs This Month'     => 'Jobs This Month',
     'Unpaid Bills'        => 'Unpaid Bills',
     'Mark As Paid'        => 'Mark As Paid',
+    'Payment info'        => 'Payment info',
 ];

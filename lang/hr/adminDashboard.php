@@ -9,4 +9,5 @@ return [
     'Jobs This Month'     => 'Poslovi ovaj mjesec',
     'Unpaid Bills'        => 'Neplaćeni računi',
     'Mark As Paid'        => 'Označi kao plaćeno',
+    'Payment info'        => 'Informacije placanja',
 ];
