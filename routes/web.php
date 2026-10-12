@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CompanyController;
@@ -15,6 +16,7 @@ use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::controller(HomepageController::class)->name('homepage')->group(function() {
     Route::get('/filter/type/{type}', 'indexType')->name('.type');
