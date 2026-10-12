@@ -31,4 +31,9 @@ class BillRepository
     {
         return $this->billModel->where('user_id',Auth::id())->get();
     }
+
+    public function getAllUnpaidBills(): Collection
+    {
+        return $this->billModel->where('status',Bill::UNPAYED)->get();
+    }
 }
