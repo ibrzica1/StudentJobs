@@ -12,6 +12,7 @@
         use App\Models\Application;
         $time = new TimeService();
     ?>
+    <body class="bg-body-secondary">
     @if($errors->any())
         <div class="alert alert-danger">{{$errors->first()}}</div>
     @endif

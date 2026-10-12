@@ -9,9 +9,19 @@
 use Carbon\Carbon;
 use App\Models\Bill;
 ?>
+<style>
+    .hover-darken {
+        transition: background-color 0.3s ease;
+    }
+    .hover-darken:hover {
+        background-color: rgba(0, 0, 0, 0.1); /* 0.1 je 10% zatamnjenja, pojačaj na 0.15 ili 0.2 ako želiš tamnije */
+    }
+</style>
 
 <body class="bg-body-secondary">
-<h1>My Bills</h1>
+<h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
+    {{__('myBills.My Bills')}}
+</h6>
 
 @foreach ($bills as $bill)
     
@@ -26,25 +36,29 @@ use App\Models\Bill;
             <div class="d-flex flex-column col-10 col-md-3 col-lg-3 col-xl-3 justify-content-center align-items-center
                         gap-3">
                 <p class="text-center fw-bold text-truncate">{{$bill->job->title}}</p>
-                <p class="text-center">issued {{Carbon::parse($bill->created_at)->format('M d Y')}}</p>
+                <p class="text-center text-muted">{{__('myBills.issued')}} {{Carbon::parse($bill->created_at)->format('M d Y')}}</p>
             </div>
             <div class="d-flex flex-column col-10 col-md-4 col-lg-3 col-xl-3 justify-content-center 
             align-items-center gap-3">
                 <p class="text-center fw-bold">€ {{$bill->amount}}</p>
                 @if ($bill->status === Bill::PAYED)
                     <div class="text-center bg-success p-3">
-                        PAID
+                       {{__('myBills.PAID')}} 
                     </div>
                 @elseif ($bill->status === Bill::UNPAYED)
                 <div class="d-flex align-items-center justify-content-around p-1 px-2 rounded"
                     style="background-color: blanchedalmond;">
-                    <p style="color:chocolate; font-weight:bold">UNPAID</p>
+                    <p style="color:chocolate; font-weight:bold">
+                       {{__('myBills.UNPAID')}} 
+                    </p>
                 </div>
                 @endif
                 
             </div>
-            <div class="d-flex col-10 col-md-3 col-lg-3 col-xl-3 justify-content-center align-items-center">
-                <a href="{{route('bill.download',['path' => $bill->bill_number])}}">
+            <div class="d-flex col-10 col-md-3 col-lg-3 col-xl-3 justify-content-center align-items-center"
+                >
+                <a href="{{route('bill.download',['path' => $bill->bill_number])}}"
+                class="hover-darken p-2 rounded">
                     <img src="{{asset('storage/images/icons/pdf.png')}}"
                     width="60"
                     height="60"
