@@ -5,10 +5,16 @@
 @endsection
 
 @section("content")
-<?php 
-use Carbon\Carbon;
-?>
+    <?php 
+    use Carbon\Carbon;
+    ?>
+    
     <body class="bg-body-secondary">
+
+    @if($errors->any())
+        <div class="alert alert-danger text-center">{{$errors->first()}}</div>
+    @endif
+
     <div class="d-flex container row mt-3 mx-2 gap-2">
         <div class="d-flex flex-column align-items-center  p-2 rounded gap-3 border-end border-2
                     col-10 col-sm-3 col-md-3 col-lg-3 col-xl-3">
@@ -100,10 +106,13 @@ use Carbon\Carbon;
                         <p class="text-center">{{$bill->user->firstName}} {{$bill->user->lastName}}</p>
                     </div>
                     <div class="d-flex col-10 col-md-3 col-lg-3 col-xl-3 justify-content-center align-items-center">
-                        <a href="*" 
-                            class="btn btn-warning btn-sm">
+                        <form action="{{route('bill.paid',['bill' => $bill->id])}}" method="post">
+                            @csrf
+                            @method('patch')
+                            <button type="submit" class="btn btn-warning btn-sm">
                                 {{__('adminDashboard.Mark As Paid')}}
-                        </a>
+                            </button>
+                        </form>
                     </div>
                 </div>
             @endforeach

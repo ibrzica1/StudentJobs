@@ -6,6 +6,7 @@ use App\Models\Bill;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\Void_;
 
 class BillRepository
 {
@@ -35,5 +36,10 @@ class BillRepository
     public function getAllUnpaidBills(): Collection
     {
         return $this->billModel->where('status',Bill::UNPAYED)->get();
+    }
+
+    public function markAsPaid(int $billId): void
+    {
+        $this->billModel->where('id',$billId)->update(['status' => Bill::PAYED]);
     }
 }
