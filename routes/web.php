@@ -9,6 +9,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
@@ -107,9 +108,11 @@ Route::controller(RatingController::class)->prefix('/rating')->name('rating.')
 Route::controller(BillController::class)->prefix('/bill')->name('bill.')
 ->group(function() {
     Route::get('/index','index')
-    ->middleware(['auth'],EmployerCheckMiddleware::class)->name('index');
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('index');
     Route::get('/download/{path}','download')
-    ->middleware(['auth'],EmployerCheckMiddleware::class)->name('download');
+    ->middleware(['auth',EmployerCheckMiddleware::class])->name('download');
+    Route::patch('/{bill}/paid','markAsPaid')
+    ->middleware(['auth',AdminCheckMiddleware::class])->name('paid');
 });
 
 
