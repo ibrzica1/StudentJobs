@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBillRequest;
 use App\Http\Requests\UpdateBillRequest;
+use App\Models\Bill;
 use App\Repositories\BillRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,5 +36,11 @@ class BillController extends Controller
             abort(404, 'File not found');
         }
         return Storage::disk('public')->download($path);
+    }
+
+    public function markAsPaid(Bill $bill)
+    {
+        $this->billRepo->markAsPaid($bill->id);
+        return redirect()->route('admin.dashboard');
     }
 }
