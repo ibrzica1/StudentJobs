@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <p class="fst-italic mb-0">{{__('adminDashboard.Visits Today')}}</p>
-                    <p class="fw-bold text-center mb-0">0</p>
+                    <p class="fw-bold text-center mb-0">{{$statistics['todayVisits']}}</p>
                 </div>
             </div>
             <div class="d-flex bg-white p-2 rounded shadow gap-2 align-items-center">
@@ -42,7 +42,7 @@
                 </div>
                 <div>
                     <p class="fst-italic mb-0">{{__('adminDashboard.Visits This Month')}}</p>
-                    <p class="fw-bold text-center mb-0">0</p>
+                    <p class="fw-bold text-center mb-0">{{$statistics['thisMonthVisits']}}</p>
                 </div>
             </div>
             <div class="d-flex bg-white p-2 rounded shadow gap-2 align-items-center">
@@ -55,7 +55,7 @@
                 </div>
                 <div>
                     <p class="fst-italic mb-0">{{__('adminDashboard.Total Visits')}}</p>
-                    <p class="fw-bold text-center mb-0">0</p>
+                    <p class="fw-bold text-center mb-0">{{$statistics['totalVisits']}}</p>
                 </div>
             </div>
             <div class="d-flex bg-white p-2 rounded shadow gap-2 align-items-center">
@@ -68,7 +68,7 @@
                 </div>
                 <div>
                     <p class="fst-italic mb-0">{{__('adminDashboard.New Jobs Today')}}</p>
-                    <p class="fw-bold text-center mb-0">0</p>
+                    <p class="fw-bold text-center mb-0">{{$statistics['todayJobs']}}</p>
                 </div>
             </div>
             <div class="d-flex bg-white p-2 rounded shadow gap-2 align-items-center">
@@ -81,7 +81,7 @@
                 </div>
                 <div>
                     <p class="fst-italic mb-0">{{__('adminDashboard.Jobs This Month')}}</p>
-                    <p class="fw-bold text-center mb-0">0</p>
+                    <p class="fw-bold text-center mb-0">{{$statistics['thisMonthJobs']}}</p>
                 </div>
             </div>
         </div>
