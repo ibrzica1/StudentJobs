@@ -6,6 +6,7 @@ use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
 use App\Http\Requests\UpdateHelperJobRequest;
 use App\Models\Job;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -159,6 +160,19 @@ class JobRepository
     public function getJob(int $id): Job
     {
         return $this->jobModel->where('id',$id)->first();
+    }
+
+    public function getThisMonthsJobCount(): int
+    {
+        return $this->jobModel->whereYear('created_at',Carbon::now()->year)
+                              ->whereMonth('created_at',Carbon::now()->month)
+                              ->count();
+    }
+
+    public function getTodaysJobCount(): int
+    {
+        return $this->jobModel->whereDate('created_at',Carbon::today())
+                              ->count();
     }
 
     public function delete(Job $job): void
