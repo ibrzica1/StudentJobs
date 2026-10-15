@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\JobCategories;
 use Error;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,40 +23,12 @@ class Job extends Model
         'urgent','description','tasks','expectation','offer'
     ];
 
-    const JOB = "job";
-    const HELPER_JOB = "helper-job";
-    const INDEFINITE = 'indefinite';
-    const WEEKS = '1-4 weeks';
-    const MONTH1 = "1 month";
-    const MONTH2 = "2 months";
-    const MONTH3 = "3-5 months";
-    const MONTH6 = "6 months";
-    const YEAR1 = "1 year";
-    const YEAR2 = "2 years";
-    const YEAR3 = "3 years";
-    const FULL_TIME = "Full time";
-    const PART_TIME = "Part time";
-    const MINI_JOB = "Mini Job";
-    const ACTIVE = "active";
-    const PROMISED = "promised";
-    const FINISHED = "finished";
-
-    const ALLOWED_STATUSES = [
-        self::ACTIVE, self::PROMISED, self::FINISHED
-    ];
-
-    const ALLOWED_JOB_TYPES = [
-         self::HELPER_JOB, self::JOB,
-    ];
-
-    const ALLOWED_SETTING_TYPES = [
-       self::FULL_TIME, self::PART_TIME, self::MINI_JOB,
-    ];
-    const ALLOWED_DURATION_TYPES = [
-        self::INDEFINITE, self::WEEKS, self::MONTH1,
-        self::MONTH2, self::MONTH3, self::MONTH6,
-        self::YEAR1, self::YEAR2, self::YEAR3,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'category' => JobCategories::class,
+        ];
+    }
 
     public function location(): BelongsTo
     {

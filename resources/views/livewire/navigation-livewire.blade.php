@@ -1,4 +1,5 @@
 <?php 
+use App\Enums\JobCategories;
 use App\Models\Job;
 use App\Models\Localization;
 ?>
@@ -22,7 +23,7 @@ use App\Models\Localization;
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Post a helper job')}}</a>
-                <a href="{{route('job.categories',['jobType' => 'emplyee'])}}" 
+                <a href="{{route('job.categories',['jobType' => 'employee'])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
                 >{{__('navigation.Post a internship job')}}</a>
@@ -37,11 +38,11 @@ use App\Models\Localization;
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Find internship job')}}</a>
                 <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.Categories')}}</div>
-                @foreach (Job::ALLOWED_HELPER_TYPES as $category)
-                <a href="{{route('homepage.category',['category' => $category])}}" 
+                @foreach (JobCategories::cases() as $category)
+                <a href="{{route('homepage.category',['category' => $category->value])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
-                {{__("categories.$category")}}</a>   
+                {{__("enums.$category->value")}}</a>   
                 @endforeach
         </div>
         
