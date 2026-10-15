@@ -24,16 +24,6 @@ class Job extends Model
 
     const JOB = "job";
     const HELPER_JOB = "helper-job";
-    const CONSTRUCTION_HELPER = "Construction";
-    const MOVING_HELPER = "Moving";
-    const DECLUTTER_HELPER = "Declutter";
-    const EVENT_HELPER = "Event";
-    const LOGISTICS_HELPER = "Logistics";
-    const OFFICE_HELPER = "Office";
-    const TUTOR_HELPER = "Tutor";
-    const IT_HELPER = "It";
-    const BABYSITTER_HELPER = "Babysitter";
-    const DRIVER_HELPER = "Driver";
     const INDEFINITE = 'indefinite';
     const WEEKS = '1-4 weeks';
     const MONTH1 = "1 month";
@@ -56,13 +46,6 @@ class Job extends Model
 
     const ALLOWED_JOB_TYPES = [
          self::HELPER_JOB, self::JOB,
-    ];
-
-    const ALLOWED_HELPER_TYPES = [
-        self::CONSTRUCTION_HELPER, self::MOVING_HELPER, self::DECLUTTER_HELPER,
-        self::EVENT_HELPER, self::LOGISTICS_HELPER, self::OFFICE_HELPER,
-        self::TUTOR_HELPER, self::IT_HELPER, self::BABYSITTER_HELPER,
-        self::DRIVER_HELPER
     ];
 
     const ALLOWED_SETTING_TYPES = [
