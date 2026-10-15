@@ -46,14 +46,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    const STUDENT = 'student';
-    const EMPLOYER = 'employer';
-    const ADMIN = 'admin';
-
-    const ALLOWED_ROLES = [
-        self::STUDENT, self::EMPLOYER, self::ADMIN
-    ];
-
     /**
      * Get the attributes that should be cast.
      *
