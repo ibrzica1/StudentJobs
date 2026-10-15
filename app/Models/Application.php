@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ApplicationSeenStatusesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,27 +18,13 @@ class Application extends Model
         'text','user_id','job_id','accept_status','seen_status'
     ];
 
-    const PENDING = "pending";
-    const APPROVED = "approved";
-    const REJECTED = "rejected";
-    const SEEN = "seen";
-    const UNSEEN = "unseen";
-
-    const ALLOWED_ACCEPT_STATUSES = [
-        self::PENDING, self::APPROVED, self::REJECTED
-    ];
-
-    const ALLOWED_SEEN_STATUSES = [
-        self::SEEN, self::UNSEEN
-    ];
-
     public static function getNumberOfUnseenApplications(Collection $collection): int
     {
         $number = 0;
 
         if($collection){
             $unseenAplications = $collection->filter(function($item) {
-                return $item->seen_status === self::UNSEEN;
+                return $item->seen_status === ApplicationSeenStatusesEnum::UNSEEN->value;
             });
             $number = $unseenAplications->count();
         }
