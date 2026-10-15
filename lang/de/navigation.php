@@ -15,4 +15,5 @@ return [
     'My Applications' => 'Meine Bewerbungen',
     'Login' => 'Anmelden',
     'Register' => 'Registrieren',
+    'Admin Dashboard' => 'Admin Dashboard'
 ];

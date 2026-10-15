@@ -97,7 +97,7 @@ use App\Models\Localization;
              wire:click.outside="showProfile = false"
              style="width:300px">
              @if ($user)
-                @if ($user->role === 'employer' || $user->role === 'admin')
+                @if ($user->role === 'employer')
                     <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
                     <a href="{{ route('job.my-ads',['status'=>'all']) }}" class="block p-2 px-4 hover:bg-gray-200 
@@ -115,6 +115,16 @@ use App\Models\Localization;
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
                     <a href="{{route('application.my-applications')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Applications')}}</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
+                            {{__('navigation.Logout')}}</button>
+                    </form>
+                @elseif ($user->role === 'admin')
+                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
+                    <a href="{{route('admin.dashboard')}}" class="block p-2 px-4 hover:bg-gray-200 
+                    rounded transition-colors text-gray-800">{{__('navigation.Admin Dashboard')}}</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">

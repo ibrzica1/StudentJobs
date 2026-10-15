@@ -15,4 +15,5 @@ return [
     'My Applications' => 'Moje aplikacije',
     'Login' => 'Ulogiraj se',
     'Register' => 'Registriraj se',
+    'Admin Dashboard' => 'Administratorska Ploca'
 ];

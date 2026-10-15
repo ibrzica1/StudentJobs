@@ -15,4 +15,5 @@ return [
     'My Applications' => 'My Applications',
     'Login' => 'Login',
     'Register' => 'Register',
+    'Admin Dashboard' => 'Admin Dashboard',
 ];
