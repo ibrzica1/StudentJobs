@@ -14,14 +14,8 @@ class Bill extends Model
 
     protected $fillable = ['user_id','job_id','amount','status','bill_number'];
 
-    const PAYED = "payed";
-    const UNPAYED = "unpayed";
-    const JOB_AD_PRICE = 23.99;
-    const TAX = 24;
-
-    const ALLOWED_STATUSES = [
-        self::PAYED, self::UNPAYED
-    ];
+    
+   
 
     public function user(): BelongsTo
     {
