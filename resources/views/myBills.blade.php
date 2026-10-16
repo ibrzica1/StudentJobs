@@ -8,6 +8,7 @@
 <?php 
 use Carbon\Carbon;
 use App\Models\Bill;
+use App\Enums\BillStatusesEnum;
 ?>
 <style>
     .hover-darken {
@@ -41,11 +42,11 @@ use App\Models\Bill;
             <div class="d-flex flex-column col-10 col-md-4 col-lg-3 col-xl-3 justify-content-center 
             align-items-center gap-3">
                 <p class="text-center fw-bold">€ {{$bill->amount}}</p>
-                @if ($bill->status === Bill::PAYED)
+                @if ($bill->status === BillStatusesEnum::PAYED->value)
                     <div class="text-center bg-success p-3">
                        {{__('myBills.PAID')}} 
                     </div>
-                @elseif ($bill->status === Bill::UNPAYED)
+                @elseif ($bill->status === BillStatusesEnum::UNPAYED->value)
                 <div class="d-flex align-items-center justify-content-around p-1 px-2 rounded"
                     style="background-color: blanchedalmond;">
                     <p style="color:chocolate; font-weight:bold">

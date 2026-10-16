@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\BillStatusesEnum;
 use App\Models\Bill;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -35,11 +36,11 @@ class BillRepository
 
     public function getAllUnpaidBills(): Collection
     {
-        return $this->billModel->where('status',Bill::UNPAYED)->get();
+        return $this->billModel->where('status',BillStatusesEnum::UNPAYED->value)->get();
     }
 
     public function markAsPaid(int $billId): void
     {
-        $this->billModel->where('id',$billId)->update(['status' => Bill::PAYED]);
+        $this->billModel->where('id',$billId)->update(['status' => BillStatusesEnum::PAYED->value]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Enums\JobStatusesEnum;
 use App\Events\ApplicationAcceptedEvent;
 use App\Events\ApplicationRejectOthers;
 use App\Models\Job;
@@ -21,6 +22,6 @@ class UpdateJobStatusToPromised
     
     public function handle(ApplicationRejectOthers $event): void
     {
-        $this->jobRepo->updateStatus($event->application->job_id,Job::PROMISED);
+        $this->jobRepo->updateStatus($event->application->job_id,JobStatusesEnum::PROMISED->value);
     }
 }

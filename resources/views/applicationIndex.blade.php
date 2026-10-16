@@ -6,6 +6,8 @@
 <?php 
 use App\Models\User;
 use App\Models\Application;
+use App\Enums\ApplicationSeenStatusesEnum;
+use App\Enums\ApplicationAcceptStatusesEnum;
 ?>
 <style>
     .custom-tooltip {
@@ -125,7 +127,7 @@ use App\Models\Application;
                                         ★ 0 {{__('applications.review')}}
                                     @endif
                                 </span>
-                                @if ($application->seen_status === Application::UNSEEN)
+                                @if ($application->seen_status === ApplicationSeenStatusesEnum::UNSEEN->value)
                                     <p class="bg-danger text-white p-1 rounded">NEW</p>
                                 @endif
                             </div>
@@ -138,7 +140,7 @@ use App\Models\Application;
                                     </div>
                                     <div class="d-flex align-items-center gap-2 text-muted small">
                                         <img src="{{ asset('storage/images/icons/telephone.svg') }}" width="16">
-                                        @if ($application->accept_status === Application::APPROVED)
+                                        @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
                                             {{$application->user->telephone}}
                                         @else
                                             {{User::hideTelephone($application->user->telephone)}}
@@ -158,7 +160,7 @@ use App\Models\Application;
                                     </div>
                                     <div class="d-flex align-items-center gap-2 text-muted small">
                                         <img src="{{ asset('storage/images/icons/mail.svg') }}" width="16">
-                                        @if ($application->accept_status === Application::APPROVED)
+                                        @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
                                             {{$application->user->email}}
                                         @else
                                             {{User::hideMail($application->user->email)}}
@@ -178,7 +180,7 @@ use App\Models\Application;
                         <div class="col-12 col-lg-auto">
                             <div class="d-flex justify-content-around flex-lg-column gap-2">
                                <livewire:popup-application :application="$application"/>
-                               @if ($application->accept_status === Application::PENDING)
+                               @if ($application->accept_status === ApplicationAcceptStatusesEnum::PENDING->value)
                                    <form action="{{ route('application.accept', ['application' => $application->id]) }}" method="post">
                                     @csrf
                                     @method('PATCH')

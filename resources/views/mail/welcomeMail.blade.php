@@ -27,7 +27,7 @@
                                {{__('mail.Welcome')}} , {{ $user->firstName }}! 👋
                             </h1>
                             <p style="margin:0; font-size:16px; line-height:1.6; color:#6c757d;">
-                               {{__('mail.We're thrilled to have you on board. Your StudentJobs account is ready to go — start exploring opportunities or post your first job today.')}} 
+                               {{__('mail.Were thrilled to have you on board. Your StudentJobs account is ready to go — start exploring opportunities or post your first job today.')}} 
                             </p>
                         </td>
                     </tr>
@@ -62,7 +62,7 @@
                                                 </td>
                                                 <td style="vertical-align:top;">
                                                     <p style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">{{__('mail.Find opportunities')}}</p>
-                                                    <p style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">{{__('mail.Browse jobs and helper positions that match what you're looking for.')}}</p>
+                                                    <p style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">{{__('mail.Browse jobs and helper positions that match what youre looking for.')}}</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -96,7 +96,7 @@
                                 &copy; {{ date('Y') }} {{__('mail.StudentJobs. All rights reserved.')}}
                             </p>
                             <p style="margin:0; font-size:13px; color:#adb5bd;">
-                                {{__('mail.If you didn't create this account, you can safely ignore this email.')}}
+                                {{__('mail.If you didnt create this account, you can safely ignore this email.')}}
                             </p>
                         </td>
                     </tr>

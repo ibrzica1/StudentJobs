@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\JobCategories;
 use App\Models\Job;
 use App\Models\User;
 use Database\Seeders\GermanLocationsSeeder;
@@ -37,10 +38,10 @@ it('shows filtered jobs by category', function() {
     $employer = User::factory()->employer()->create();
     $jobs = Job::factory([
         'employer_id' => $employer->id,
-        'category' => Job::MOVING_HELPER,
+        'category' => JobCategories::MOVING_HELPER->value,
     ]) ->count(5)->create();
 
-    $response = $this->get(route('homepage.category',['category' => Job::MOVING_HELPER]));
+    $response = $this->get(route('homepage.category',['category' => JobCategories::MOVING_HELPER->value]));
     $viewJobs = $response->viewData('jobs');
     expect($viewJobs)->toHaveCount(5);
 });

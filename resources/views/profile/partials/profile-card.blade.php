@@ -1,5 +1,7 @@
  <?php 
     use App\Models\Application;
+    use App\Enums\UserRolesEnum;
+    use App\Enums\ApplicationAcceptStatusesEnum;
 ?>
  @if ($user->profile_picture)
     <img
@@ -30,7 +32,7 @@
 </p>
 
 
-@if ($user->role === 'student')
+@if ($user->role === UserRolesEnum::STUDENT->value)
 <div class="row text-center mb-4">
     <div class="col">
         <h4 class="fw-bold mb-0">{{$user->applications->count()}}</h4>
@@ -41,7 +43,7 @@
 
     <div class="col">
         <h4 class="fw-bold mb-0">
-            {{$user->applications->where('accept_status',Application::APPROVED)->count()}}
+            {{$user->applications->where('accept_status',ApplicationAcceptStatusesEnum::APPROVED->value)->count()}}
         </h4>
         <small class="text-muted">
             {{__('profile.JOBS RECIEVED')}}

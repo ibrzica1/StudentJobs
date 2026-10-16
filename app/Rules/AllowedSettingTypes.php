@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Enums\JobSettingTypesEnum;
 use App\Models\Job;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -14,7 +15,7 @@ class AllowedSettingTypes implements ValidationRule
     
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,Job::ALLOWED_SETTING_TYPES)){
+        if(!in_array($value,JobSettingTypesEnum::cases())){
             $fail('You have entered the wrong setting type');
         }
     }

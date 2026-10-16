@@ -1,5 +1,10 @@
 <?php
 
+use App\Enums\JobCategories;
+use App\Enums\JobDurationTypesEnum;
+use App\Enums\JobSettingTypesEnum;
+use App\Enums\JobStatusesEnum;
+use App\Enums\JobTypesEnum;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\User;
@@ -65,18 +70,18 @@ it('store intership job as unautorised user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
-        'status' => Job::ACTIVE,
-        'type' => Job::JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'employer_id' => $student->id,
         'location_id' => 4,
         'company_id' => 2,
         'wage' => 23,
-        'setting_type' => Job::FULL_TIME,
+        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
         'weekly_hours' => 40,
         'start_date' => '2026-07-09',
-        'duration' => Job::YEAR1,
+        'duration' => JobDurationTypesEnum::YEAR1->value,
         'description' => 'description',
         'expectation' => 'expectations',
         'offer' => 'offer',
@@ -92,18 +97,18 @@ it('store intership job as unauthenticated user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
-        'status' => Job::ACTIVE,
-        'type' => Job::JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'employer_id' => $student->id,
         'location_id' => 4,
         'company_id' => 2,
         'wage' => 23,
-        'setting_type' => Job::FULL_TIME,
+        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
         'weekly_hours' => 40,
         'start_date' => '2026-07-09',
-        'duration' => Job::YEAR1,
+        'duration' => JobDurationTypesEnum::YEAR1->value,
         'description' => 'description',
         'expectation' => 'expectations',
         'offer' => 'offer',
@@ -123,18 +128,18 @@ it('store intership job as autorised user', function() {
         'user_id' => $employer->id,
     ]);
     $jobData = [
-        'status' => Job::ACTIVE,
-        'type' => Job::JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'employer_id' => $employer->id,
         'location_id' => 4,
         'company_id' => $company->id,
         'wage' => 23,
-        'setting_type' => Job::FULL_TIME,
+        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
         'weekly_hours' => 40,
         'start_date' => Carbon::now(),
-        'duration' => Job::YEAR1,
+        'duration' => JobDurationTypesEnum::YEAR1->value,
         'description' => 'description',
         'expectation' => 'expectations',
         'offer' => 'offer',
@@ -145,18 +150,18 @@ it('store intership job as autorised user', function() {
     $response->assertRedirect('/');
 
     $this->assertDatabaseHas('jobs',[
-        'status' => Job::ACTIVE,
-        'type' => Job::JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'employer_id' => $employer->id,
         'location_id' => 4,
         'company_id' => $company->id,
         'wage' => 23,
-        'setting_type' => Job::FULL_TIME,
+        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
         'weekly_hours' => 40,
         'start_date' => Carbon::now(),
-        'duration' => Job::YEAR1,
+        'duration' => JobDurationTypesEnum::YEAR1->value,
         'description' => 'description',
         'expectation' => 'expectations',
         'offer' => 'offer',
@@ -171,9 +176,9 @@ it('store helper job as unautorised user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
-        'status' => Job::ACTIVE,
-        'type' => Job::JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'location_id' => 4,
         'employer_id' => $student->id,
@@ -198,9 +203,9 @@ it('store helper job as unauthenticated user', function() {
 
     $student = User::factory()->student()->create();
     $jobData = [
-        'status' => Job::ACTIVE,
-        'type' => Job::JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'location_id' => 4,
         'employer_id' => $student->id,
@@ -226,9 +231,9 @@ it('store helper job as autorised user', function() {
     $employer = User::factory()->employer()->create();
     
     $jobData = [
-        'status' => Job::ACTIVE,
-         'type' => Job::HELPER_JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+         'type' => JobTypesEnum::HELPER_JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'location_id' => 4,
         'employer_id' => $employer->id,
@@ -248,9 +253,9 @@ it('store helper job as autorised user', function() {
     $response->assertRedirect('/');
 
     $this->assertDatabaseHas('jobs',[
-        'status' => Job::ACTIVE,
-        'type' => Job::HELPER_JOB,
-        'category' => Job::MOVING_HELPER,
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::HELPER_JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
         'title' => 'Helper needed',
         'location_id' => 4,
         'employer_id' => $employer->id,

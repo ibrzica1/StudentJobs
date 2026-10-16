@@ -5,6 +5,9 @@
 @endsection
 
 @section("content")
+<?php 
+use App\Enums\UserRolesEnum;
+?>
 <div class="bg-body-secondary">
 
 
@@ -46,7 +49,7 @@
                     {{-- CV --}}
                     @include('profile.partials.CV-form') 
 
-                    @if ($user->role === 'employer')
+                    @if ($user->role === UserRolesEnum::EMPLOYER->value)
                         
                         @if ($companies !== null)
                             
@@ -69,7 +72,7 @@
 
                     @endif
 
-                    @if ($user->role === 'student')
+                    @if ($user->role === UserRolesEnum::STUDENT->value)
 
                         <livewire:mobility/>
 

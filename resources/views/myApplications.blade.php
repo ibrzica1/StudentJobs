@@ -11,6 +11,7 @@
         use App\Models\Job;
         use App\Models\Application;
         use App\Models\User;
+        use App\Enums\ApplicationAcceptStatusesEnum;
         $time = new TimeService();
     ?>
     <style>
@@ -118,7 +119,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-2 text-muted small">
                                     <img src="{{ asset('storage/images/icons/mail.svg') }}" width="16">
-                                    @if ($application->accept_status === Application::APPROVED)
+                                    @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
                                         {{$application->user->email}}
                                     @else
                                         {{User::hideMail($application->user->email)}}
@@ -140,7 +141,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-2 text-muted small">
                                 <img src="{{ asset('storage/images/icons/telephone.svg') }}" width="16">
-                                    @if ($application->accept_status === Application::APPROVED)
+                                    @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
                                         {{$application->user->telephone}}
                                     @else
                                         {{User::hideTelephone($application->user->telephone)}}
@@ -177,17 +178,17 @@
                     </form>
                 </div>
             </div>
-            @if ($application->accept_status === Application::PENDING)
+            @if ($application->accept_status === ApplicationAcceptStatusesEnum::PENDING->value)
                 <div class="d-flex align-items-center justify-content-around p-3"
                     style="background-color: blanchedalmond;">
                     <p style="color:chocolate; font-weight:bold">{{__('myApplication.PENDING')}}</p>
                 </div>
-            @elseif ($application->accept_status === Application::APPROVED)
+            @elseif ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
                 <div class="d-flex align-items-center justify-content-around p-3"
                 style="background-color:#d4edda;">
                     <p style="color:#155724; font-weight:bold">{{__('myApplication.APPROVED')}}</p>
                 </div>
-            @elseif ($application->accept_status === Application::REJECTED)
+            @elseif ($application->accept_status === ApplicationAcceptStatusesEnum::REJECTED->value)
                 <div class="d-flex align-items-center justify-content-around p-3"
                 style="background-color: #f8d7da;">
                     <p style="color:#721c24; font-weight:bold">{{__('myApplication.REJECTED')}}</p>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\ApplicationAcceptStatusesEnum;
+use App\Enums\ApplicationSeenStatusesEnum;
 use App\Models\Application;
 use App\Models\Company;
 use App\Models\Job;
@@ -51,8 +53,8 @@ it('store application as unautorised user', function() {
         'text' => 'text',
         'user_id' => $employer->id,
         'job_id' => $job->id,
-        'accept_status' => Application::PENDING,
-        'seen_status' => Application::UNSEEN
+        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
+        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
     ];
 
     $response = $this->actingAs($employer)->post(route('application.store'),$applicationData);
@@ -69,8 +71,8 @@ it('store application as autorised user', function() {
         'text' => 'text',
         'user_id' => $student->id,
         'job_id' => $job->id,
-        'accept_status' => Application::PENDING,
-        'seen_status' => Application::UNSEEN
+        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
+        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
     ];
 
     $response = $this->actingAs($student)->post(route('application.store'),$applicationData);
@@ -80,7 +82,7 @@ it('store application as autorised user', function() {
         'text' => 'text',
         'user_id' => $student->id,
         'job_id' => $job->id,
-        'accept_status' => Application::PENDING,
-        'seen_status' => Application::UNSEEN
+        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
+        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
     ]);
 });

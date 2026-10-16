@@ -16,7 +16,7 @@ class RatingRepository
 
     public function store(array $request): Rating
     {
-        return $rating = $this->ratingModel->create($request);
+        return $this->ratingModel->create($request);
     }
 
     public function calculateAverage(User $user): float

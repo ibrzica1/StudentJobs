@@ -6,15 +6,14 @@
 <?php 
     use Carbon\Carbon;
     use App\Services\TimeService;
+    use App\Enums\JobTypesEnum;
     $time = new TimeService();
-
 ?>
 <style>
 
 </style>
 <body class="bg-body-secondary">
 <div class="container p-5">
-
 
 <div class="container row bg-white p-2 rounded shadow h-100 mw-75">
      <div class="col-lg-4 d-flex align-items-center">
@@ -33,7 +32,7 @@
         @endif
     </div>
 
-    @if ($job->type === 'job')
+    @if ($job->type === JobTypesEnum::JOB->value)
     <div class="col-lg-8 ">
         <div class="p-2 bg-white justify-content-between 
         column-gap-2">
@@ -43,7 +42,7 @@
             <div class="d-flex justify-content-between 
             column-gap-4">
                 <div>
-                    <div  class="d-flex column-gap-3">
+                    <div class="d-flex column-gap-3">
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/location.svg') }}" style="width: 20px;">
                             <p>{{$job->location->city}}</p>
@@ -57,28 +56,28 @@
                     <div class="d-flex column-gap-3">
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/group.svg') }}" style="width: 20px;">
-                            <p>{{$job->employee_amount}} person</p>
+                            <p>{{$job->employee_amount}} {{ __('applicationCreate.person') }}</p>
                         </div>
                         
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/contract.svg') }}" style="width: 20px;">
-                            <p>Contract/ {{$job->duration}}</p>
+                            <p>{{ __('applicationCreate.contract') }}/ {{$job->duration}}</p>
                         </div>
                     </div>
                     <div class="d-flex column-gap-2 mb-2">
                         <img src="{{ asset('storage/images/icons/watch.svg') }}" style="width: 20px;">
-                        <p>{{$job->weekly_hours}} hours / week</p>
+                        <p>{{$job->weekly_hours}} {{ __('applicationCreate.hours_per_week') }}</p>
                     </div>
                 </div>
                 <div>
                     <h1 class="h1">{{$job->wage}}</h1>
-                    <p>euro per hour</p>
+                    <p>{{ __('applicationCreate.euro_per_hour') }}</p>
                 </div>
             </div>
     </div>
     @else
     <div class="col-lg-8 ">
-        <div class=" p-2 justify-content-between 
+        <div class="p-2 justify-content-between 
         column-gap-4">
             <div class="pb-3 pt-1 h5 text-danger text-center">
                 {{$job->title}}
@@ -86,7 +85,7 @@
             <div class="d-flex justify-content-between 
         column-gap-1">
                 <div>
-                    <div  class="d-flex column-gap-1">
+                    <div class="d-flex column-gap-1">
                         <div class="d-flex column-gap-1 mb-2">
                             <img src="{{ asset('storage/images/icons/location.svg') }}" style="width: 20px;">
                             <p>{{$job->location->city}}</p>
@@ -95,7 +94,7 @@
                     <div class="d-flex column-gap-3">
                         <div class="d-flex column-gap-2 mb-2">
                             <img src="{{ asset('storage/images/icons/group.svg') }}" style="width: 20px;">
-                            <p>{{$job->employee_amount}} person</p>
+                            <p>{{$job->employee_amount}} {{ __('applicationCreate.person') }}</p>
                         </div>
                     </div>
                 </div>
@@ -106,29 +105,27 @@
                 <div>
                     <div class="text-center">
                         {{Carbon::parse($job->start_date)->dayOfMonth}}
-                        {{Carbon::parse($job->start_date)->shortEnglishDayOfWeek;}}
+                        {{Carbon::parse($job->start_date)->shortEnglishDayOfWeek}}
                         {{Carbon::parse($job->start_date)->format('F')}}
                     </div>
                     <div class="small text-muted">
                         {{Carbon::parse($job->from)->format('H:i')}}
                         - {{Carbon::parse($job->to)->format('H:i')}}
-                        / <span class="fw-bold">{{$time->durationHours($job->from,$job->to)}} hours</span> 
+                        / <span class="fw-bold">{{$time->durationHours($job->from,$job->to)}} {{ __('applicationCreate.hours') }}</span> 
                     </div>
                 </div>
             </div>
                 <div>
                     <h1 class="h1">{{$job->wage}}</h1>
-                    <p>euro per hour</p>
+                    <p>{{ __('applicationCreate.euro_per_hour') }}</p>
                 </div>
             </div>
            
     </div>
-
-    
-    
     @endif
 </div>
 </div>
+
 <form action="{{ route('application.store') }}" 
 method="post"
 enctype="multipart/form-data">
@@ -136,29 +133,27 @@ enctype="multipart/form-data">
 
 <input type="hidden" name="job_id" value="{{$job->id}}">
 <div class="container row bg-white p-2 rounded shadow h-100 mw-75 mt-3">
-    <p class="text-end text-secondary">COVER LETTER</p>
+    <p class="text-end text-secondary">{{ __('applicationCreate.cover_letter') }}</p>
 
-    <p class="text-end fw-bold">Application text</p>
+    <p class="text-end fw-bold">{{ __('applicationCreate.application_text') }}</p>
     <p class="text-end text-secondary"
     style="font-size: 14px">
-        Below is your application text for this job</p>
+        {{ __('applicationCreate.application_text_desc') }}</p>
 
     <textarea name="text"
-    class="form-control custom-input mt-2 text-secondary" rows="8">
-Dear Mr./Mrs. {{$job->employer->lastName}}
+    class="form-control custom-input mt-2 text-secondary" rows="8">{{ __('applicationCreate.dear_mr_mrs') }} {{$job->employer->lastName}}
 
 
-   
-Thank you for considering my application.
-Sincerly,
+{{ __('applicationCreate.thank_you_consideration') }}
+{{ __('applicationCreate.sincerely') }}
 {{$user->firstName}} {{$user->lastName}}
     </textarea>
 </div>
 
 @if ($user->profile_picture)
     <div class="container d-flex flex-column justify-content-center bg-white 
-    py-2  px-4 rounded shadow h-100 mw-75 mt-3">
-        <p class="text-end text-secondary">APPLICATION PHOTO</p>
+    py-2 px-4 rounded shadow h-100 mw-75 mt-3">
+        <p class="text-end text-secondary">{{ __('applicationCreate.application_photo') }}</p>
         <div class="d-flex flex-column justify-content-center
         align-items-center"
         >
@@ -172,19 +167,19 @@ Sincerly,
             >
             <a href="{{route('profile.edit')}}"
                 class="btn w-25 h-25 bg-success shadow text-white my-2 px-2">
-                CHANGE AVATAR
+                {{ __('applicationCreate.change_avatar') }}
             </a>
         </div>
         
     </div>
 @else
     <div class="d-flex row justify-content-center bg-white 
-    py-2  px-4 rounded shadow mw-75 mt-3"
+    py-2 px-4 rounded shadow mw-75 mt-3"
     style="height: 210px;">
-        <p class="text-end fw-bold">APPLICATION PHOTO</p>
+        <p class="text-end fw-bold">{{ __('applicationCreate.application_photo') }}</p>
         <p class="text-end text-secondary"
         style="font-size: 14px">
-            Please upload your application photo here.</p>
+            {{ __('applicationCreate.upload_photo_prompt') }}</p>
         <div class="w-100 h-75 d-flex justify-content-center align-items-center
         border rounded mb-2">
             <input name="profilePicture" type="file"/>
@@ -194,8 +189,8 @@ Sincerly,
 
 @if ($user->cv)
     <div class="container justify-content-center bg-white 
-    py-2  px-4 rounded shadow h-100 mw-75 mt-3">
-        <p class="text-end text-secondary">CV</p>
+    py-2 px-4 rounded shadow h-100 mw-75 mt-3">
+        <p class="text-end text-secondary">{{ __('applicationCreate.cv') }}</p>
         <div class="d-flex row justify-content-center"
         style="height: 150px;">
             <div class="d-flex h-50 justify-content-center align-items-center
@@ -209,19 +204,19 @@ Sincerly,
             </div>
             <a href="{{route('profile.edit')}}"
                 class="btn w-25 h-25 bg-success shadow text-white px-2">
-                CHANGE CV
+                {{ __('applicationCreate.change_cv') }}
             </a>
         </div>
         
     </div>
 @else
     <div class="d-flex row justify-content-center bg-white 
-    py-2  px-4 rounded shadow mw-75 mt-3"
+    py-2 px-4 rounded shadow mw-75 mt-3"
     style="height: 200px;">
-        <p class="text-end fw-bold">CV</p>
+        <p class="text-end fw-bold">{{ __('applicationCreate.cv') }}</p>
         <p class="text-end text-secondary"
         style="font-size: 14px">
-            Please upload your CV here.</p>
+            {{ __('applicationCreate.upload_cv_prompt') }}</p>
         <div class="w-100 h-75 d-flex justify-content-center align-items-center
         border rounded">
             <input name="cv" type="file"/>
@@ -230,13 +225,13 @@ Sincerly,
 @endif
 
 <div class="container d-flex row justify-content-center bg-white 
-    py-2  px-4 rounded shadow h-100 mw-75 mt-3">
+    py-2 px-4 rounded shadow h-100 mw-75 mt-3">
     <p class=" text-center text-secondary" 
     style="font-size: 14px">
-        Please note that after you submit your application, your data will be submited to the employer
+        {{ __('applicationCreate.submit_notice') }}
     </p>
     <button type="submit" class="btn btn-info text-white m-3">
-        Submit application</button>
+        {{ __('applicationCreate.submit_application') }}</button>
 </div>
 </form>
 

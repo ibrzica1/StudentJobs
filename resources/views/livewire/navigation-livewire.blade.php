@@ -1,5 +1,8 @@
 <?php 
 use App\Enums\JobCategories;
+use App\Enums\LocalizationEnum;
+use App\Enums\JobTypesEnum;
+use App\Enums\UserRolesEnum;
 use App\Models\Job;
 use App\Models\Localization;
 ?>
@@ -19,21 +22,20 @@ use App\Models\Localization;
              wire:click.outside="showMenu = false"
              style="width:300px">
                 <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For employers')}}</div>
-                <a href="{{route('job.categories',['jobType' => 'helper'])}}" 
+                <a href="{{route('job.categories',['jobType' => JobTypesEnum::HELPER_JOB->value])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Post a helper job')}}</a>
-                <a href="{{route('job.categories',['jobType' => 'employee'])}}" 
+                <a href="{{route('job.categories',['jobType' => JobTypesEnum::JOB->value])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary"
                 >{{__('navigation.Post a internship job')}}</a>
                 <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For students')}}</div>
-                <a href="{{route('homepage.type',['type' => 'helper-job'])}}" 
+                <a href="{{route('homepage.type',['type' => JobTypesEnum::HELPER_JOB->value])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
-                transition-colors text-gray-800 my-2 text-secondary"
-                style="">
+                transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Find helper job')}}</a>
-                <a href="{{route('homepage.type',['type' => 'job'])}}" 
+                <a href="{{route('homepage.type',['type' => JobTypesEnum::JOB->value])}}" 
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Find internship job')}}</a>
@@ -68,13 +70,13 @@ use App\Models\Localization;
                        wire:show="showLocale"
                        wire:click.outside="showLocale = false"
                        style="width: 100px;">
-                    @foreach (Localization::ALLOWED_LOCALE as $locale)
+                    @foreach (LocalizationEnum::cases() as $locale)
                         <div class="flex items-center justify-between p-2 
                             rounded-5 locale-switcher-red"
-                            wire:click.stop="$wire.setLocale('{{$locale}}')"
+                            wire:click.stop="$wire.setLocale('{{$locale->value}}')"
                             role="button">
-                            <img src="{{ asset('storage/images/icons/'.$locale.'.png') }}" style="width: 20px;">
-                            <p>{{$locale}}</p>
+                            <img src="{{ asset('storage/images/icons/'.$locale->value.'.png') }}" style="width: 20px;">
+                            <p>{{$locale->value}}</p>
                         </div>
                     @endforeach
                 </div>
@@ -98,7 +100,7 @@ use App\Models\Localization;
              wire:click.outside="showProfile = false"
              style="width:300px">
              @if ($user)
-                @if ($user->role === 'employer')
+                @if ($user->role === UserRolesEnum::EMPLOYER->value)
                     <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
                     <a href="{{ route('job.my-ads',['status'=>'all']) }}" class="block p-2 px-4 hover:bg-gray-200 
@@ -111,7 +113,7 @@ use App\Models\Localization;
                         w-100 transition-colors text-red-600">
                             {{__('navigation.Logout')}}</button>
                     </form>
-                @elseif ($user->role === 'student')
+                @elseif ($user->role === UserRolesEnum::STUDENT->value)
                     <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
                     <a href="{{route('application.my-applications')}}" class="block p-2 px-4 hover:bg-gray-200 
@@ -121,7 +123,7 @@ use App\Models\Localization;
                         <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
                             {{__('navigation.Logout')}}</button>
                     </form>
-                @elseif ($user->role === 'admin')
+                @elseif ($user->role === UserRolesEnum::ADMIN->value)
                     <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
                     <a href="{{route('admin.dashboard')}}" class="block p-2 px-4 hover:bg-gray-200 

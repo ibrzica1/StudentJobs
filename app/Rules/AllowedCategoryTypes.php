@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Enums\JobCategories;
 use Closure;
 use App\Models\Job;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -16,7 +17,7 @@ class AllowedCategoryTypes implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,Job::ALLOWED_HELPER_TYPES) && $value !== "none"){
+        if(!in_array($value,JobCategories::cases()) && $value !== "none"){
             $fail('You have entered the wrong category');
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\JobCategories;
 use App\Models\Job;
 use Livewire\Component;
 
@@ -28,10 +29,10 @@ class HelperTypeSearch extends Component
     public function updatedSearch(): void
     {
         if(strlen($this->search) >= 2){
-            foreach(Job::ALLOWED_HELPER_TYPES as $type)
+            foreach(JobCategories::cases() as $type)
             {
-                if(str_contains(strtolower($type),strtolower($this->search))){
-                    array_push($this->helperTypes,$type);
+                if(str_contains(strtolower($type->value),strtolower($this->search))){
+                    array_push($this->helperTypes,$type->value);
                 }
             }
         }

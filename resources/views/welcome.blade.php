@@ -9,6 +9,7 @@
     use Carbon\Carbon;
     use App\Services\TimeService;
     use App\Models\Job;
+    use App\Enums\JobTypesEnum;    
     $time = new TimeService();
 
 ?>
@@ -70,7 +71,7 @@
                 </div>
 
                 
-                @if ($job->type === 'job')
+                @if ($job->type === JobTypesEnum::JOB->value)
                 <div class="m-2 column-gap-3">
                     <div class="d-flex column-gap-2 mb-2">
                         <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">

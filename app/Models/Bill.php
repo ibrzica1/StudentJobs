@@ -14,9 +14,6 @@ class Bill extends Model
 
     protected $fillable = ['user_id','job_id','amount','status','bill_number'];
 
-    
-   
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

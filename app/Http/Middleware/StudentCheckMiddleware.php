@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\UserRolesEnum;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class StudentCheckMiddleware
 
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role !== 'student'){
+        if(Auth::user()->role !== UserRolesEnum::STUDENT->value){
             return redirect()
             ->route('homepage')
             ->withErrors('You have to register as student');

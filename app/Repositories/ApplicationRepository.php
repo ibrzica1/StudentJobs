@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Enums\ApplicationAcceptStatusesEnum;
+use App\Enums\ApplicationSeenStatusesEnum;
 use App\Http\Requests\CreateApplicationRequest;
 use App\Models\Application;
 use App\Models\Job;
@@ -23,8 +25,8 @@ class ApplicationRepository
             'text' => $request['text'],
             'user_id' => Auth::id(),
             'job_id' => $request['job_id'],
-            'accept_status' => Application::PENDING,
-            'seen_status' => Application::UNSEEN
+            'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
+            'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
         ]);   
 
         return $application;
@@ -54,36 +56,36 @@ class ApplicationRepository
     {
         $this->applicationModel
         ->where('id',$application->id)
-        ->update(['accept_status' => $this->applicationModel::APPROVED]);
+        ->update(['accept_status' => ApplicationAcceptStatusesEnum::APPROVED->value]);
     }
 
     public function rejectOtherApplicantsUpdate(Application $application): void
     {
         $this->applicationModel
         ->where('job_id',$application->job_id)
-        ->where('accept_status', $this->applicationModel::PENDING)
-        ->update(['accept_status' => $this->applicationModel::REJECTED]);
+        ->where('accept_status', ApplicationAcceptStatusesEnum::PENDING->value)
+        ->update(['accept_status' => ApplicationAcceptStatusesEnum::REJECTED->value]);
     }
 
     public function rejectApplicantUpdate(Application $application): void
     {
         $this->applicationModel
         ->where('id',$application->id)
-        ->update(['accept_status' => $this->applicationModel::REJECTED]);
+        ->update(['accept_status' => ApplicationAcceptStatusesEnum::REJECTED->value]);
     }
 
     public function changeSeenStatus(Application $application):void
     {
         $this->applicationModel
         ->where('id',$application->id)
-        ->update(['seen_status' => $this->applicationModel::SEEN]);
+        ->update(['seen_status' => ApplicationSeenStatusesEnum::SEEN->value]);
     }
 
     public function changeAllSeenStatus(Application $application): void
     {
          $this->applicationModel
         ->where('job_id',$application->job_id)
-        ->update(['seen_status' => $this->applicationModel::SEEN]);
+        ->update(['seen_status' => ApplicationSeenStatusesEnum::SEEN->value]);
     }
 
     public function applicationDoesntExist(Job $job): bool

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserRolesEnum;
 use App\Events\UserCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -62,7 +63,7 @@ class RegisteredUserController extends Controller
                 'street' => $request->street,
                 'house_number' => $request->house_number,
                 'telephone' => $request->telephone,
-                'role' => 'employer',
+                'role' => UserRolesEnum::EMPLOYER->value,
             ]);
 
             if($request->companyName !== null){
@@ -99,7 +100,7 @@ class RegisteredUserController extends Controller
                 'street' => $request->street,
                 'house_number' => $request->house_number,
                 'telephone' => $request->telephone,
-                'role' => 'student',
+                'role' => UserRolesEnum::STUDENT->value,
                 'profile_picture' => $avatar,
         ]);
         event(new Registered($user));

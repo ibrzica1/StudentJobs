@@ -10,7 +10,7 @@ enum ApplicationAcceptStatusesEnum: string
 {
     use EnumTranslatable;
 
-    case ACTIVE = "active";
-    case PROMISED = "promised";
-    case FINISHED = "finished";
+    case APPROVED = "approved";
+    case PENDING = "pending";
+    case REJECTED = "rejected";
 }

@@ -2,6 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Enums\JobCategories;
+use App\Enums\JobDurationTypesEnum;
+use App\Enums\JobSettingTypesEnum;
+use App\Enums\JobStatusesEnum;
+use App\Enums\JobTypesEnum;
 use App\Models\Job;
 use App\Models\Location;
 use App\Models\User;
@@ -16,22 +21,22 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => Job::ACTIVE,
-            'type' => Job::JOB,
-            'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
+            'status' => JobStatusesEnum::ACTIVE->value,
+            'type' => JobTypesEnum::JOB->value,
+            'category' => fake()->randomElement(JobCategories::cases()),
             'title' => fake()->text(20),
             'employer_id' => User::factory()->employer()->create()->id,
             'location_id' => fake()->randomElement(Location::pluck('id')),
             'company_id' => null,
             'address' => null,
-            'setting_type' => fake()->randomElement(Job::ALLOWED_SETTING_TYPES),
+            'setting_type' => fake()->randomElement(JobSettingTypesEnum::cases()),
             'weekly_hours' => fake()->numberBetween(10,50),
             'employee_amount' => 1,
             'wage' => fake()->numberBetween(13,29),
             'start_date' => fake()->dateTimeBetween('now','+1 month'),
             'from' => null,
             'to' => null,
-            'duration' => fake()->randomElement(Job::ALLOWED_DURATION_TYPES),
+            'duration' => fake()->randomElement(JobDurationTypesEnum::cases()),
             'urgent' => false,
             'description' => fake()->text(50),
             'tasks' => null,
@@ -44,9 +49,9 @@ class JobFactory extends Factory
     {
         return $this->state(function ($array, $attributes) {
             return [
-                'status' => Job::ACTIVE,
-                'type' => Job::HELPER_JOB,
-                'category' => fake()->randomElement(Job::ALLOWED_HELPER_TYPES),
+                'status' => JobStatusesEnum::ACTIVE->value,
+                'type' => JobTypesEnum::HELPER_JOB->value,
+                'category' => fake()->randomElement(JobCategories::cases()),
                 'title' => fake()->text(20),
                 'employer_id' => User::factory(),
                 'location_id' => fake()->randomElement(Location::pluck('id')),

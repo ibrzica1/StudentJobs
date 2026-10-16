@@ -1,5 +1,10 @@
 <?php
 
+use App\Enums\JobCategories;
+use App\Enums\JobDurationTypesEnum;
+use App\Enums\JobSettingTypesEnum;
+use App\Enums\JobStatusesEnum;
+use App\Enums\JobTypesEnum;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\User;
@@ -51,18 +56,18 @@ it('job update has no errors', function() {
     $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
     $response = $this->actingAs($employer)
                      ->patch('/job/update/' .$job->id,[
-                        'status' => Job::ACTIVE,
-                        'type' => Job::JOB,
-                        'category' => Job::IT_HELPER,
+                        'status' => JobStatusesEnum::ACTIVE->value,
+                        'type' => JobTypesEnum::JOB->value,
+                        'category' => JobCategories::IT_HELPER->value,
                         'title' => 'TITLE',
                         'employer_id' => $employer->id,
                         'location_id' => 4,
                         'company_id' => $company->id,
                         'wage' => 20,
-                        'setting_type' => Job::ALLOWED_SETTING_TYPES[0],
+                        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
                         'weekly_hours' => 20,
                         'start_date' => fake()->dateTimeBetween('now','+1 month')->format('Y-m-d'),
-                        'duration' => fake()->randomElement(Job::ALLOWED_DURATION_TYPES),
+                        'duration' => fake()->randomElement(JobDurationTypesEnum::cases()),
                         'description' => 'DESCRIPTION',
                         'expectation' => 'EXPECTATIONS',
                         'offer' => 'OFFER',

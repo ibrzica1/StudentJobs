@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Events\ApplicationAcceptedEvent;
 use App\Events\ApplicationRejectOthers;
 use App\Models\Application;
@@ -23,7 +24,7 @@ class ApplicationAcceptService
         event(new ApplicationAcceptedEvent($application));
         $job = $application->job;
         $numberOfAcceptedApplicants = $job->applications
-                                            ->where('accept_status',Application::APPROVED)
+                                            ->where('accept_status',ApplicationAcceptStatusesEnum::APPROVED->value)
                                             ->count();
         
         if($numberOfAcceptedApplicants === $job->employee_amount){

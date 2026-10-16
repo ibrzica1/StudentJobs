@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Enums\JobStatusesEnum;
+use App\Enums\JobTypesEnum;
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
 use App\Http\Requests\UpdateHelperJobRequest;
@@ -22,8 +24,8 @@ class JobRepository
     public function storeHelperJob(CreateHelperJobRequest $request): Job
     {
         $job = $this->jobModel->create([
-            'status' => $this->jobModel::ACTIVE,
-            'type' => $this->jobModel::HELPER_JOB,
+            'status' => JobStatusesEnum::ACTIVE->value,
+            'type' => JobTypesEnum::HELPER_JOB->value,
             'category' => $request['category'],
             'title' => $request['title'],
             'employer_id' => Auth::id(),
@@ -45,8 +47,8 @@ class JobRepository
     public function storeJob(CreateJobRequest $request): Job
     {
         $job = $this->jobModel->create([
-            'status' => $this->jobModel::ACTIVE,
-            'type' => $this->jobModel::JOB,
+            'status' => JobStatusesEnum::ACTIVE->value,
+            'type' => JobTypesEnum::JOB->value,
             'category' => $request['category'],
             'title' => $request['title'],
             'employer_id' => Auth::id(),
@@ -82,7 +84,7 @@ class JobRepository
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () {
-            return $this->jobModel->where('status',Job::ACTIVE)
+            return $this->jobModel->where('status',JobStatusesEnum::ACTIVE->value)
                                   ->with('company','location')
                                   ->latest('created_at')
                                   ->paginate();
@@ -97,7 +99,7 @@ class JobRepository
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($category){
             return $this->jobModel->where('category',$category)
-                                  ->where('status',Job::ACTIVE)
+                                  ->where('status',JobStatusesEnum::ACTIVE->value)
                                   ->with('company','location')
                                   ->latest('created_at')
                                   ->paginate();
@@ -111,7 +113,7 @@ class JobRepository
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
         $jobs = Cache::remember($cacheKey,120,function () use($type){
             return $this->jobModel->where('type',$type)
-                                  ->where('status',Job::ACTIVE)
+                                  ->where('status',JobStatusesEnum::ACTIVE->value)
                                   ->with('company','location')
                                   ->latest('created_at')
                                   ->paginate();
@@ -125,7 +127,7 @@ class JobRepository
         $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){
             return $this->jobModel
             ->where('category',$category)
-            ->where('status',Job::ACTIVE)
+            ->where('status',JobStatusesEnum::ACTIVE->value)
             ->latest()
             ->take($limit)
             ->get()
@@ -137,7 +139,7 @@ class JobRepository
 
     public function getMyJobs(?string $status):object
     {
-        if($status && in_array($status,Job::ALLOWED_STATUSES)){
+        if($status && in_array($status,JobStatusesEnum::cases())){
             $jobs = Cache::remember('my_ads',120,function() use($status) {
                 return $this->jobModel
                 ->where('employer_id', Auth::id())

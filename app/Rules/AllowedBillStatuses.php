@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Enums\BillStatusesEnum;
 use App\Models\Bill;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -16,7 +17,7 @@ class AllowedBillStatuses implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,Bill::ALLOWED_STATUSES) && $value !== "none"){
+        if(!in_array($value,BillStatusesEnum::cases()) && $value !== "none"){
             $fail('You have entered the wrong status');
         }
     }

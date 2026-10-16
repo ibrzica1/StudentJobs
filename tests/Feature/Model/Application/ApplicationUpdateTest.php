@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Models\Application;
 use App\Models\Company;
 use App\Models\Job;
@@ -76,7 +77,7 @@ it('update accept application as authorised user', function() {
              ->assertRedirect(route('application.index',['job' => $application->job_id]));
 
     $this->assertDatabaseHas('applications',[
-        'accept_status' => Application::APPROVED,
+        'accept_status' => ApplicationAcceptStatusesEnum::APPROVED->value,
     ]);
 });
 
@@ -94,6 +95,6 @@ it('update reject application as authorised user', function() {
              ->assertRedirect(route('application.index',['job' => $application->job_id]));
     
     $this->assertDatabaseHas('applications',[
-        'accept_status' => Application::REJECTED,
+        'accept_status' => ApplicationAcceptStatusesEnum::REJECTED->value,
     ]);
 });

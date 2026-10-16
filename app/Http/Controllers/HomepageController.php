@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JobCategories;
+use App\Enums\JobTypesEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Job;
 use App\Repositories\JobRepository;
@@ -27,7 +29,7 @@ class HomepageController extends Controller
 
     public function indexCategory(string $category): View
     {
-        if(!in_array($category,Job::ALLOWED_HELPER_TYPES)){
+        if(!in_array($category,JobCategories::cases())){
             redirect()->back()->withErrors('Incorrect category type');
         }
         $jobs = $this->jobRepo->getLatestJobsByCategory($category);
@@ -36,7 +38,7 @@ class HomepageController extends Controller
 
      public function indexType(string $type): View
     {
-        if(!in_array($type,Job::ALLOWED_JOB_TYPES)){
+        if(!in_array($type,JobTypesEnum::cases())){
             redirect()->back()->withErrors('Incorrect job type');
         }
         $jobs = $this->jobRepo->getLatestJobsByType($type);

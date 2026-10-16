@@ -142,7 +142,8 @@
 <body>
     <?php 
     use App\Models\Bill;
-use App\Services\MoneyService;
+    use App\Services\MoneyService;
+    use App\Enums\BillPricesEnum;
 
     $moneyService = new MoneyService();
     ?>
@@ -190,13 +191,13 @@ use App\Services\MoneyService;
                     <tr>
                         <td>{{ __('jobBillPdf.Job Ad') }}</td>
                         <td class="text-end">EUR</td>
-                        <td class="text-end">{{ number_format(Bill::JOB_AD_PRICE, 2, ',', '.') }}</td>
+                        <td class="text-end">{{ number_format(BillPricesEnum::JOB_AD_PRICE->value, 2, ',', '.') }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('jobBillPdf.Tax') }} {{ Bill::TAX }}%</td>
+                        <td>{{ __('jobBillPdf.Tax') }} {{ BillPricesEnum::TAX->value }}%</td>
                         <td class="text-end">EUR</td>
                         <td class="text-end">
-                            {{ number_format($moneyService->calculateTax(Bill::JOB_AD_PRICE, Bill::TAX), 2, ',', '.') }}
+                            {{ number_format($moneyService->calculateTax(BillPricesEnum::JOB_AD_PRICE->value, BillPricesEnum::TAX->value), 2, ',', '.') }}
                         </td>
                     </tr>
                     <tr class="total-row">
