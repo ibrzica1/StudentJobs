@@ -6,6 +6,7 @@
 <?php 
     use Carbon\Carbon;
     use App\Services\TimeService;
+    use App\Enums\JobTypesEnum;
     $time = new TimeService();
 
 ?>
@@ -17,7 +18,7 @@
         @include('job.partials.company-logo')
         
     </div>
-    @if ($job->type === 'job')
+    @if ($job->type === JobTypesEnum::JOB->value)
     <div class="col ">
         <div class="p-4 bg-white justify-content-between 
         column-gap-4 rounded shadow">
@@ -209,7 +210,7 @@
                         <p>{{$job->location->city}}</p>
                     </div>
                     <div class="d-flex  column-gap-2">
-                        @if ($job->type === 'job')
+                        @if ($job->type === JobTypesEnum::JOB->value)
                             <img src="{{ asset('storage/images/icons/sand-watch.svg') }}" style="width: 20px;">
                             <p>{{$job->duration}}</p>
                         @else
@@ -220,7 +221,7 @@
                 </div>
 
                 
-                @if ($job->type === 'job')
+                @if ($job->type === JobTypesEnum::JOB->value)
                 <div>
                     <div class="d-flex column-gap-2 mb-2">
                         <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">

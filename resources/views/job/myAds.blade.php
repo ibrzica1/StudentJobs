@@ -10,6 +10,9 @@
         use App\Services\TimeService;
         use App\Models\Job;
         use App\Models\Application;
+        use App\Enums\JobStatusesEnum;
+        use App\Enums\JobTypesEnum;
+        use App\Enums\ApplicationAcceptStatusesEnum;
         $time = new TimeService();
     ?>
     <body class="bg-body-secondary">
@@ -68,15 +71,15 @@
                         <div class="text-center text-muted small">
                             {{ __('homepage.Published') }} {{$time->calculateTime($job->created_at)}}
                         </div>
-                        @if ($job->status === Job::ACTIVE)
+                        @if ($job->status === JobStatusesEnum::ACTIVE->value)
                         <div class="d-flex align-items-center justify-content-center p-1">
                             <p class="bg-success text-white px-2 py-1 rounded fw-bold">ACTIVE</p>
                         </div>
-                        @elseif ($job->status === Job::PROMISED)
+                        @elseif ($job->status === JobStatusesEnum::PROMISED->value)
                         <div class="d-flex align-items-center justify-content-center p-1">
                             <p class="bg-warning text-white px-2 py-1 rounded fw-bold">PROMISED</p>
                         </div>
-                        @elseif ($job->status === Job::FINISHED)
+                        @elseif ($job->status === JobStatusesEnum::FINISHED->value)
                         <div class="d-flex align-items-center justify-content-center p-1">
                             <p class="bg-danger text-white px-2 py-1 rounded fw-bold">FINISHED</p>
                         </div>
@@ -95,7 +98,7 @@
                                     <p>{{$job->location->city}}</p>
                                 </div>
                                 <div class="d-flex column-gap-2">
-                                    @if ($job->type === 'job')
+                                    @if ($job->type === JobTypesEnum::JOB->value)
                                         <img src="{{ asset('storage/images/icons/sand-watch.svg') }}" style="width: 20px;">
                                         <p>{{$job->duration}}</p>
                                     @else
@@ -105,7 +108,7 @@
                                 </div>
                             </div>
 
-                            @if ($job->type === 'job')
+                            @if ($job->type === JobTypesEnum::JOB->value)
                             <div class="m-2 column-gap-3">
                                 <div class="d-flex column-gap-2 mb-2">
                                     <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
@@ -145,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-                @if ($job->status === Job::ACTIVE)
+                @if ($job->status === JobStatusesEnum::ACTIVE->value)
                     <div class="d-flex flex-column align-items-center gap-2 ms-3">
                         <a href="{{ route('job.edit',['job' => $job->id]) }}" 
                         class="btn btn-success btn-sm">
@@ -175,14 +178,14 @@
                 </a>
             </div>
 
-            @if ($job->status !== Job::ACTIVE)
+            @if ($job->status !== JobStatusesEnum::ACTIVE->value)
                 <div class="mt-4 p-4 bg-light rounded shadow-sm">
                     <h4 class="fw-bold text-danger mb-4">
                         Rate the students
                     </h4>
 
                     @foreach ($job->applications as $application)
-                        @if ($application->accept_status === Application::APPROVED)
+                        @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
                             @if ($application->user->ratings->contains('job_id',$job->id))
                             @php
                                 $studentRating = $application->user->ratings

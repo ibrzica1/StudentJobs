@@ -7,12 +7,13 @@
 @section("content")
 <?php 
 use App\Models\Job;
+use App\Enums\JobTypesEnum;
 ?>
-@if ($job->type === Job::JOB)
+@if ($job->type === JobTypesEnum::JOB)
     
     @include('job.partials.job-edit-form')
 
-@elseif ($job->type === Job::HELPER_JOB)
+@elseif ($job->type === JobTypesEnum::HELPER_JOB)
 
     @include('job.partials.helper-job-edit-form')
 

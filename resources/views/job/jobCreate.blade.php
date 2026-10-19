@@ -5,6 +5,8 @@
 @section("content")
 @php
     use App\Models\Job;
+    use App\Enums\JobSettingTypesEnum;
+    use App\Enums\JobDurationTypesEnum;
 @endphp
 
 <style>
@@ -127,8 +129,8 @@
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
                                     </span>
                                     <select name="setting_type" class="form-select custom-input">
-                                        @foreach (Job::ALLOWED_SETTING_TYPES as $type)
-                                            <option>{{__("settingTypes.$type")}}</option>
+                                        @foreach (JobSettingTypesEnum::cases() as $type)
+                                            <option>{{__("settingTypes.$type->value")}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -166,8 +168,8 @@
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
                                     </span>
                                     <select name="duration" class="form-select custom-input">
-                                        @foreach (Job::ALLOWED_DURATION_TYPES as $type)
-                                            <option>{{__("durationTypes.$type")}}</option>
+                                        @foreach (JobDurationTypesEnum::cases as $type)
+                                            <option>{{__("durationTypes.$type->value")}}</option>
                                         @endforeach
                                     </select>
                                 </div>
