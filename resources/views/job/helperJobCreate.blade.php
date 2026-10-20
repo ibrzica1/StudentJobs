@@ -80,7 +80,7 @@ use App\Models\Job;
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
                                 @if (isset($category))
                                     <input type="text" name="title" 
-                                    value="{{__('categories.'.$category)}} {{__('helperJobCreate.helper needed')}}"
+                                    value="{{__('enums.job_categories.'.$category)}} {{__('helperJobCreate.helper needed')}}"
                                     class="form-control custom-input">
                                 @else
                                     <div class="flex-grow-1">
@@ -149,7 +149,7 @@ use App\Models\Job;
                                 {{__('helperJobCreate.Tasks')}}</label>
                             @if (isset($category))
                                 <textarea name="tasks" class="form-control custom-input" rows="8">
-                                {{__("tasks.$category")}}
+                                {{__("enums.tasks.$category")}}
                                 </textarea>
                             @else
                                <textarea name="tasks" class="form-control custom-input" rows="3"></textarea>
@@ -161,7 +161,7 @@ use App\Models\Job;
                                 {{__('helperJobCreate.Expectation')}}</label>
                             @if (isset($category))
                                 <textarea name="expectation" class="form-control custom-input" rows="8">
-                                {{__("expectations.$category")}}
+                                {{__("enums.expectations.$category")}}
                                 </textarea>
                             @else
                                 <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>

@@ -28,7 +28,7 @@ class CompanyRepository
         return $this->companyModel->where('user_id',$userId)->get();
    }
 
-   public function store(CreateCompanyRequest $request, int $userId): Company
+   public function store(StoreEmployerRequest $request, int $userId): Company
    {
         $logo = null;
         if($request['imageCompany']){

@@ -56,14 +56,14 @@ use App\Enums\JobTypesEnum;
                 
             @if($jobType === JobTypesEnum::HELPER_JOB->value)
                 <a href="{{route('job.helper.create',['category' => $helperType->value])}}">
-                <p>{{__("categories.$helperType->value")}}</p>  
+                <p>{{__("enums.job_categories.$helperType->value")}}</p>  
                 <div class="{{$helperType->value}}">
                     <img src="{{ asset('storage/images/category/'.$helperType->value .'.jpg') }}">
                 </div>
                 </a>
             @else
                 <a href="{{route('job.create',['category' => $helperType->value])}}">
-                <p>{{__("categories.$helperType->value")}}</p>    
+                <p>{{__("enums.job_categories.$helperType->value")}}</p>    
                 <div class="{{$helperType->value}}">
                     <img src="{{ asset('storage/images/category/'.$helperType->value .'.jpg') }}">
                 </div>
