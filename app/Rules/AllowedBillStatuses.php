@@ -17,7 +17,8 @@ class AllowedBillStatuses implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,BillStatusesEnum::cases()) && $value !== "none"){
+        $allowedValues = array_column(BillStatusesEnum::cases(), 'value');
+        if(!in_array($value,$allowedValues) && $value !== "none"){
             $fail('You have entered the wrong status');
         }
     }

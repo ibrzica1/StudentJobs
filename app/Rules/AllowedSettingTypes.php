@@ -15,7 +15,8 @@ class AllowedSettingTypes implements ValidationRule
     
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,JobSettingTypesEnum::cases())){
+        $allowedValues = array_column(JobSettingTypesEnum::cases(), 'value');
+        if(!in_array($value,$allowedValues)){
             $fail('You have entered the wrong setting type');
         }
     }

@@ -13,7 +13,8 @@ class AllowedDurationTypes implements ValidationRule
     
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,JobDurationTypesEnum::cases())){
+        $allowedValues = array_column(JobDurationTypesEnum::cases(), 'value');
+        if(!in_array($value,$allowedValues)){
             $fail('You have entered the wrong duration type');
         }
     }
