@@ -24,7 +24,7 @@ class CompanyController extends Controller
 
     public function store(CreateCompanyRequest $request): RedirectResponse
     {
-        $this->companyRepo->store($request,$request->user()->id);
+        $this->companyRepo->store($request->validated(),$request->user()->id);
         return Redirect::route('profile.edit')->with('status', 'company-created');
     }
 

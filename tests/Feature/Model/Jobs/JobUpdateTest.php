@@ -54,24 +54,29 @@ it('job update has no errors', function() {
     $employer = User::factory()->employer()->create();
     $company = Company::factory(['user_id' => $employer->id])->create();
     $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
+    $status = JobStatusesEnum::ACTIVE->value;
+    $type = JobTypesEnum::JOB->value;
+    $category = JobCategories::IT_HELPER->value;
+    $setting = JobSettingTypesEnum::FULL_TIME->value;
+    $duration = JobDurationTypesEnum::INDEFINITE->value;
     $response = $this->actingAs($employer)
                      ->patch('/job/update/' .$job->id,[
-                        'status' => JobStatusesEnum::ACTIVE->value,
-                        'type' => JobTypesEnum::JOB->value,
-                        'category' => JobCategories::IT_HELPER->value,
+                        'status' => $status,
+                        'type' => $type,
+                        'category' => $category,
                         'title' => 'TITLE',
                         'employer_id' => $employer->id,
                         'location_id' => 4,
                         'company_id' => $company->id,
                         'wage' => 20,
-                        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
+                        'setting_type' => $setting,
                         'weekly_hours' => 20,
                         'start_date' => fake()->dateTimeBetween('now','+1 month')->format('Y-m-d'),
-                        'duration' => fake()->randomElement(JobDurationTypesEnum::cases()),
+                        'duration' => $duration,
                         'description' => 'DESCRIPTION',
                         'expectation' => 'EXPECTATIONS',
                         'offer' => 'OFFER',
                      ]);
     $response->assertSessionHasNoErrors()
-             ->assertRedirect('/job/my-ads');
+             ->assertRedirect('/job/my-ads/all');
 });

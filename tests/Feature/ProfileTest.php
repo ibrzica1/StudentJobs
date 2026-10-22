@@ -16,7 +16,7 @@ class ProfileTest extends TestCase
     {
         $this->withoutExceptionHandling();
         (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
+        $user = User::factory()->student()->create();
 
         $response = $this
             ->actingAs($user)

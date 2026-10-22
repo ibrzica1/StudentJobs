@@ -28,10 +28,11 @@ class CompanyRepository
         return $this->companyModel->where('user_id',$userId)->get();
    }
 
-   public function store(StoreEmployerRequest $request, int $userId): Company
+   public function store(array $request, int $userId): Company
    {
         $logo = null;
-        if($request['imageCompany']){
+        
+        if(isset($request['imageCompany'])){
             $path = $request['imageCompany']->store('images/company_logo','public');
             $logo = basename($path);
         }
