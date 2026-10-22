@@ -44,7 +44,7 @@ class JobRepository
         return $job;
     }
 
-    public function storeJob(CreateJobRequest $request): Job
+    public function storeJob(array $request): Job
     {
         $job = $this->jobModel->create([
             'status' => JobStatusesEnum::ACTIVE->value,
