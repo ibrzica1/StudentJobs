@@ -2,11 +2,8 @@
 
 use App\Enums\LocalizationEnum;
 use App\Models\Localization;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\App;
-use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 it('can change locale', function() {
     $locale = App::getLocale();

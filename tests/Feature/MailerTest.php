@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 it('can send welcome email', function() {
     $this->withoutExceptionHandling();

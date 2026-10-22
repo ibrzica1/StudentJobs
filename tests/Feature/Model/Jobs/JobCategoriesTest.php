@@ -4,10 +4,7 @@ use App\Enums\JobCategories;
 use App\Models\Job;
 use App\Models\User;
 use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 it('categories page for unauthorised user', function() {
     

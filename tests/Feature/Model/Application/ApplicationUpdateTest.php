@@ -7,11 +7,8 @@ use App\Models\Job;
 use App\Models\User;
 use Carbon\Carbon;
 use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Date;
-use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 it('update accept application as unautorised user', function() {
     $this->withoutExceptionHandling();

@@ -4,11 +4,8 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\User;
 use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
-use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 it('can store the company', function() {
     $this->withoutExceptionHandling();

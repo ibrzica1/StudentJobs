@@ -3,10 +3,6 @@
 use App\Models\Job;
 use App\Models\User;
 use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-
-uses(TestCase::class, RefreshDatabase::class);
 
 it('store rating as unauthenticated user', function() {
 
