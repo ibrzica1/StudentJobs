@@ -17,7 +17,8 @@ class AllowedCategoryTypes implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!in_array($value,JobCategories::cases()) && $value !== "none"){
+        $allowedValues = array_column(JobCategories::cases(), 'value');
+        if(!in_array($value,$allowedValues) && $value !== "none"){
             $fail('You have entered the wrong category');
         }
     }
