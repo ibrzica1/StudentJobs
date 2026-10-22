@@ -27,7 +27,7 @@ class CreateJobBillListener
 
     public function handle(JobCreatedEvent $event): void
     {
-        $total = $this->moneyService->calculatePrice(BillPricesEnum::JOB_AD_PRICE->value, BillPricesEnum::TAX->value);
+        $total = $this->moneyService->calculatePrice(BillPricesEnum::JOB_AD_PRICE->JobAdFloatPrice(), BillPricesEnum::TAX->TaxFloatPrice());
         $billNumber = 'bill-job-'.$event->job->id.'-'.time();
         $bill = $this->billRepo->store([
             'user_id' => $event->job->employer_id,

@@ -16,8 +16,8 @@ class SendJobCreatedEmailListener
         //
     }
 
-    public function handle(JobCreatedEvent $event): void
-    {
-        Mail::to('test@inbox.mailtrap.io')->send(new JobCreatedMail($event->job));
-    }
+    //public function handle(JobCreatedEvent $event): void
+    //{
+       // Mail::to('test@inbox.mailtrap.io')->send(new JobCreatedMail($event->job));
+    //}
 }
