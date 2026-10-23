@@ -13,17 +13,10 @@ use Illuminate\Support\Facades\Date;
 
 it('store application as unautorised user', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-
-    $employer = User::factory()->employer()->create();
-    $job = Job::factory(['employer_id' => $employer->id])->create();
-    $applicationData = [
-        'text' => "TEXT",
-        'user_id' => $employer->id,
-        'job_id' => $job->id,
-        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
-        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
-    ];
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
+    $applicationData = applicationData($employer->id,$job->id);
 
     $response = $this->actingAs($employer)->post(route('application.store'),$applicationData);
     $response->assertRedirect('/');
@@ -34,14 +27,7 @@ it('store application as unauthenticated user', function() {
 
     $employer = User::factory()->employer()->create();
     $job = Job::factory(['employer_id' => $employer->id])->create();
-    $applicationData = [
-        'text' => "TEXT",
-        'user_id' => $employer->id,
-        'job_id' => $job->id,
-        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
-        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
-    ];
-
+    $applicationData = applicationData($employer->id,$job->id);
     $response = $this->post(route('application.store'),$applicationData);
     $response->assertRedirect('/login');
 });
@@ -53,22 +39,9 @@ it('store application as authorised user', function() {
     $student = User::factory()->student()->create();
     $employer = User::factory()->employer()->create();
     $job = Job::factory(['employer_id' => $employer->id])->create();
-    $applicationData = [
-        'text' => "TEXT",
-        'user_id' => $student->id,
-        'job_id' => $job->id,
-        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
-        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
-    ];
-
+    $applicationData = applicationData($student->id,$job->id);
     $response = $this->actingAs($student)->post(route('application.store'),$applicationData);
     $response->assertRedirect('/');
 
-    $this->assertDatabaseHas('applications',[
-        'text' => "TEXT",
-        'user_id' => $student->id,
-        'job_id' => $job->id,
-        'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
-        'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value
-    ]);
+    $this->assertDatabaseHas('applications',$applicationData);
 });
