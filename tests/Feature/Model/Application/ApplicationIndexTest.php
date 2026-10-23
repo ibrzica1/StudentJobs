@@ -1,29 +1,20 @@
 <?php
 
-use App\Models\Application;
-use App\Models\Company;
-use App\Models\Job;
-use App\Models\User;
-use Carbon\Carbon;
-use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Support\Facades\Date;
-
 
 it('application index page for unauthorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $student = User::factory()->student()->create();
-    $job = Job::factory(['employer_id' => $employer->id])->create();
-    $response = $this->actingAs($student)->get('application/job/'.$job->id.'/applications');
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
+    $response = loginAsStudent()->get('application/job/'.$job->id.'/applications');
     $response->assertRedirect('/');
 });
 
 it('application index page for unauthanticated user', function() {
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $job = Job::factory(['employer_id' => $employer->id])->create();
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
     $response = $this->get('application/job/'.$job->id.'/applications');
     $response->assertRedirect('/login');
 });
@@ -31,9 +22,9 @@ it('application index page for unauthanticated user', function() {
 it('application index page for authorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $job = Job::factory(['employer_id' => $employer->id])->create();
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
     $response = $this->actingAs($employer)->get('application/job/'.$job->id.'/applications');
     $response->assertOk();
 });
