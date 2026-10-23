@@ -1,5 +1,9 @@
 <?php
-
+use App\Models\User;
+use App\Models\Job;
+use Database\Seeders\GermanLocationsSeeder;
+use App\Enums\ApplicationAcceptStatusesEnum;
+use App\Enums\ApplicationSeenStatusesEnum;
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -12,7 +16,7 @@
 */
 
 pest()->extend(Tests\TestCase::class)
-     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+     //->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
 
 /*
@@ -41,7 +45,42 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function germanLocationSeeder()
 {
-    // ..
+    return (new GermanLocationsSeeder())->run();
 }
+
+function student()
+{
+    return User::factory()->student()->create();
+}
+
+function employer()
+{
+    return User::factory()->employer()->create();
+}
+
+function loginAsStudent()
+{
+    return test()->actingAs(User::factory()->student()->create());
+}
+
+function loginAsEmployer()
+{
+    return test()->actingAs(User::factory()->employer()->create());
+}
+
+function job(int $employerId)
+{
+    return Job::factory(['employer_id' => $employerId])->create();
+}
+
+function applicationData(int $studentId, int $jobId)
+{
+   return [ 'text' => 'text',
+            'user_id' => $studentId,
+            'job_id' => $jobId,
+            'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
+            'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value];
+}
+
