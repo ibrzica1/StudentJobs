@@ -4,6 +4,7 @@ use App\Models\Job;
 use Database\Seeders\GermanLocationsSeeder;
 use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Enums\ApplicationSeenStatusesEnum;
+use Illuminate\Http\UploadedFile;
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -82,5 +83,14 @@ function applicationData(int $studentId, int $jobId)
             'job_id' => $jobId,
             'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
             'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value];
+}
+
+function companyData(int $employerId)
+{
+    return [
+        'imageCompany' => UploadedFile::fake()->create('company.jpg',500),
+        'companyName' => 'Company',
+        'user_id' => $employerId,
+    ];
 }
 
