@@ -4,7 +4,15 @@ use App\Models\Job;
 use Database\Seeders\GermanLocationsSeeder;
 use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Enums\ApplicationSeenStatusesEnum;
+use App\Enums\JobCategories;
+use App\Enums\JobDurationTypesEnum;
+use App\Enums\JobSettingTypesEnum;
+use App\Enums\JobStatusesEnum;
+use App\Enums\JobTypesEnum;
+use App\Models\Company;
+use Database\Factories\CompanyFactory;
 use Illuminate\Http\UploadedFile;
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -94,3 +102,44 @@ function companyData(int $employerId)
     ];
 }
 
+function jobData(int $employerId)
+{
+    return [
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
+        'title' => 'Helper needed',
+        'employer_id' => $employerId,
+        'location_id' => 4,
+        'company_id' => Company::factory()->create(['user_id' => $employerId])->id,
+        'wage' => 23,
+        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
+        'weekly_hours' => 40,
+        'start_date' => Carbon::now()->format('Y-m-d H:i:s'),
+        'duration' => JobDurationTypesEnum::YEAR1->value,
+        'description' => 'description',
+        'expectation' => 'expectations',
+        'offer' => 'offer',
+    ];
+}
+
+function helperJobData(int $employerId)
+{
+    return [
+        'status' => JobStatusesEnum::ACTIVE->value,
+        'type' => JobTypesEnum::HELPER_JOB->value,
+        'category' => JobCategories::MOVING_HELPER->value,
+        'title' => 'Helper needed',
+        'location_id' => 4,
+        'employer_id' => $employerId,
+        'address' => 'Long str.',
+        'employee_amount' => 2,
+        'wage' => 23,
+        'start_date' => Carbon::now()->format('Y-m-d H:i:s'),
+        'from' => Carbon::now()->addHour(1)->format('H:i'),
+        'to' => Carbon::now()->addHour(2)->format('H:i'),
+        'description' => 'description',
+        'tasks' => 'tasks',
+        'expectation' => 'expectations',
+    ];
+}
