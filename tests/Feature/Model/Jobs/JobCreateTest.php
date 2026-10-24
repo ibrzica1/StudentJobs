@@ -1,51 +1,35 @@
 <?php
 
-use App\Enums\JobCategories;
-use App\Enums\JobDurationTypesEnum;
-use App\Enums\JobSettingTypesEnum;
-use App\Enums\JobStatusesEnum;
-use App\Enums\JobTypesEnum;
-use App\Models\Company;
-use App\Models\Job;
-use App\Models\User;
-use Carbon\Carbon;
-use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Support\Facades\Date;
-
 
 it('internship job create page for unauthorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $student = User::factory()->student()->create();
-    $response = $this->actingAs($student)->get('/job/create/It');
+    germanLocationSeeder();
+    $response = loginAsStudent()->get('/job/create/It');
     $response->assertRedirect('/');
 });
 
 it('internship job create page for authorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $response = $this->actingAs($employer)->get('/job/create/It');
+    germanLocationSeeder();
+    $response = loginAsEmployer()->get('/job/create/It');
     $response->assertOk();
 });
 
 it('helper job create page for unauthorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $student = User::factory()->student()->create();
-    $response = $this->actingAs($student)->get('/job/helper-create/It');
+    germanLocationSeeder();
+    $response = loginAsStudent()->get('/job/helper-create/It');
     $response->assertRedirect('/');
 });
 
 it('helper job create page for authorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $response = $this->actingAs($employer)->get('/job/helper-create/It');
+    germanLocationSeeder();
+    $response = loginAsEmployer()->get('/job/helper-create/It');
     $response->assertOk();
 });
 
@@ -63,205 +47,57 @@ it('helper job create page for unauthenticated user', function() {
 
 it('store intership job as unautorised user', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-
-    $student = User::factory()->student()->create();
-    $jobData = [
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'employer_id' => $student->id,
-        'location_id' => 4,
-        'company_id' => 2,
-        'wage' => 23,
-        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
-        'weekly_hours' => 40,
-        'start_date' => '2026-07-09',
-        'duration' => JobDurationTypesEnum::YEAR1->value,
-        'description' => 'description',
-        'expectation' => 'expectations',
-        'offer' => 'offer',
-    ];
-
+    germanLocationSeeder();
+    $student = student();
+    $jobData = jobData($student->id);
     $response = $this->actingAs($student)->post(route('job.store'),$jobData);
     $response->assertRedirect('/');
 });
 
 it('store intership job as unauthenticated user', function() {
 
-    (new GermanLocationsSeeder())->run();
-
-    $student = User::factory()->student()->create();
-    $jobData = [
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'employer_id' => $student->id,
-        'location_id' => 4,
-        'company_id' => 2,
-        'wage' => 23,
-        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
-        'weekly_hours' => 40,
-        'start_date' => '2026-07-09',
-        'duration' => JobDurationTypesEnum::YEAR1->value,
-        'description' => 'description',
-        'expectation' => 'expectations',
-        'offer' => 'offer',
-    ];
-
+    germanLocationSeeder();
+    $student = student();
+    $jobData = jobData($student->id);
     $response = $this->post(route('job.store'),$jobData);
     $response->assertRedirect('/login');
 });
 
 it('store intership job as autorised user', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-
-    $employer = User::factory()->employer()->create();
-    $company = Company::create([
-        'name' => 'Company',
-        'user_id' => $employer->id,
-    ]);
-    $jobData = [
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'employer_id' => $employer->id,
-        'location_id' => 4,
-        'company_id' => $company->id,
-        'wage' => 23,
-        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
-        'weekly_hours' => 40,
-        'start_date' => Carbon::now(),
-        'duration' => JobDurationTypesEnum::YEAR1->value,
-        'description' => 'description',
-        'expectation' => 'expectations',
-        'offer' => 'offer',
-    ];
-
+    germanLocationSeeder();
+    $employer = employer();
+    $jobData = jobData($employer->id);
     $response = $this->actingAs($employer)->post(route('job.store'),$jobData);
     $response->assertRedirect();
     $response->assertRedirect('/');
-
-    $this->assertDatabaseHas('jobs',[
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'employer_id' => $employer->id,
-        'location_id' => 4,
-        'company_id' => $company->id,
-        'wage' => 23,
-        'setting_type' => JobSettingTypesEnum::FULL_TIME->value,
-        'weekly_hours' => 40,
-        'duration' => JobDurationTypesEnum::YEAR1->value,
-        'description' => 'description',
-        'expectation' => 'expectations',
-        'offer' => 'offer',
-    ]);
-
-    
+    $this->assertDatabaseHas('jobs',$jobData);
 });
 
 it('store helper job as unautorised user', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-
-    $student = User::factory()->student()->create();
-    $jobData = [
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'location_id' => 4,
-        'employer_id' => $student->id,
-        'address' => 'Long str.',
-        'employee_amount' => 2,
-        'wage' => 23,
-        'start_date' => Carbon::now(),
-        'from' => Carbon::now()->addHour(1),
-        'to' => Carbon::now()->addHour(2),
-        'description' => 'description',
-        'tasks' => 'tasks',
-        'expectation' => 'expectations'
-    ];
-
+    germanLocationSeeder();
+    $student = student();
+    $jobData = helperJobData($student->id);
     $response = $this->actingAs($student)->post(route('job.helper.store'),$jobData);
     $response->assertRedirect('/');
 });
 
 it('store helper job as unauthenticated user', function() {
-
-    (new GermanLocationsSeeder())->run();
-
-    $student = User::factory()->student()->create();
-    $jobData = [
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'location_id' => 4,
-        'employer_id' => $student->id,
-        'address' => 'Long str.',
-        'employee_amount' => 2,
-        'wage' => 23,
-        'start_date' => Carbon::now(),
-        'from' => Carbon::now()->addHour(1),
-        'to' => Carbon::now()->addHour(2),
-        'description' => 'description',
-        'tasks' => 'tasks',
-        'expectation' => 'expectations',
-    ];
-
+    germanLocationSeeder();
+    $student = student();
+    $jobData = helperJobData($student->id);
     $response = $this->post(route('job.helper.store'),$jobData);
     $response->assertRedirect('/login');
 });
 
 it('store helper job as autorised user', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-
-    $employer = User::factory()->employer()->create();
-    
-    $jobData = [
-        'status' => JobStatusesEnum::ACTIVE->value,
-         'type' => JobTypesEnum::HELPER_JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'location_id' => 4,
-        'employer_id' => $employer->id,
-        'address' => 'Long str.',
-        'employee_amount' => 2,
-        'wage' => 23,
-        'start_date' => Carbon::now(),
-        'from' => Carbon::now()->addHour(1)->format('H:i'),
-        'to' => Carbon::now()->addHour(2)->format('H:i'),
-        'description' => 'description',
-        'tasks' => 'tasks',
-        'expectation' => 'expectations',
-    ];
-
+    germanLocationSeeder();
+    $employer = employer();
+    $jobData = helperJobData($employer->id);
     $response = $this->actingAs($employer)->post(route('job.helper.store'),$jobData);
     $response->assertRedirect();
     $response->assertRedirect('/');
-
-    $this->assertDatabaseHas('jobs',[
-        'status' => JobStatusesEnum::ACTIVE->value,
-        'type' => JobTypesEnum::HELPER_JOB->value,
-        'category' => JobCategories::MOVING_HELPER->value,
-        'title' => 'Helper needed',
-        'location_id' => 4,
-        'employer_id' => $employer->id,
-        'address' => 'Long str.',
-        'employee_amount' => 2,
-        'wage' => 23,
-        'description' => 'description',
-        'tasks' => 'tasks',
-        'expectation' => 'expectations',
-    ]);
-
-    
+    $this->assertDatabaseHas('jobs',$jobData);
 });
