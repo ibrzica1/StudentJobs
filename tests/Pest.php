@@ -153,3 +153,16 @@ function ratingData(int $studentId, int $jobId)
         'job_id' => $jobId,
     ];
 }
+
+function jobs(int $employerId)
+{
+    return Job::factory(['employer_id' => $employerId])->count(16)->create();
+}
+
+function createFiveJobs(int $employerId)
+{
+    Job::factory([
+        'employer_id' => $employerId,
+        'category' => JobCategories::MOVING_HELPER->value,
+    ]) ->count(5)->create();
+}
