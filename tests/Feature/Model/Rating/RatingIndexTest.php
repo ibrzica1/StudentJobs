@@ -1,13 +1,10 @@
 <?php
 
-use App\Models\Job;
-use App\Models\User;
-use Database\Seeders\GermanLocationsSeeder;
 
 it('rating index as unauthenticated user', function() {
 
-    (new GermanLocationsSeeder())->run();
-    $student = User::factory()->student()->create();
+    germanLocationSeeder();
+    $student = student();
     $response = $this->get(route('rating.index',['user' => $student->id]));
     $response->assertRedirect('/login');
 });
@@ -15,9 +12,8 @@ it('rating index as unauthenticated user', function() {
 it('rating index as authenticated user', function() {
 
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $student = User::factory()->student()->create();
-    $response = $this->actingAs($employer)->get(route('rating.index',['user' => $student->id]));
+    germanLocationSeeder();
+    $student = student();
+    $response = loginAsEmployer()->get(route('rating.index',['user' => $student->id]));
     $response->assertOk();
 });
