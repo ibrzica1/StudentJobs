@@ -143,3 +143,13 @@ function helperJobData(int $employerId)
         'expectation' => 'expectations',
     ];
 }
+
+function ratingData(int $studentId, int $jobId)
+{
+    return [
+        'score' => 3,
+        'comment' => 'KOMENT',
+        'user_id' => $studentId,
+        'job_id' => $jobId,
+    ];
+}
