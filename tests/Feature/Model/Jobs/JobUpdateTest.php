@@ -1,24 +1,12 @@
 <?php
 
-use App\Enums\JobCategories;
-use App\Enums\JobDurationTypesEnum;
-use App\Enums\JobSettingTypesEnum;
-use App\Enums\JobStatusesEnum;
-use App\Enums\JobTypesEnum;
-use App\Models\Company;
-use App\Models\Job;
-use App\Models\User;
-use Carbon\Carbon;
-use Database\Seeders\GermanLocationsSeeder;
-use Illuminate\Support\Facades\Date;
-
 
 it('job edit page for unauthorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $student = User::factory()->student()->create();
-    $job = Job::factory(['employer_id' => $student->id])->create();
+    germanLocationSeeder();
+    $student = student();
+    $job = job($student->id);
     $response = $this->actingAs($student)->get(route('job.edit',$job->id));
     $response->assertRedirect('/');
 });
@@ -26,20 +14,18 @@ it('job edit page for unauthorised user', function() {
 it('job edit page for authorised user', function() {
     
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $company = Company::factory(['user_id' => $employer->id])->create();
-    $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
     $response = $this->actingAs($employer)->get(route('job.edit',$job->id));
     $response->assertOk();
 });
 
 it('job edit page for unauthenticated user', function() {
     
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $company = Company::factory(['user_id' => $employer->id])->create();
-    $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
     $response = $this->get(route('job.edit',$job->id));
     $response->assertRedirect('/login');
 });
@@ -47,33 +33,12 @@ it('job edit page for unauthenticated user', function() {
 it('job update has no errors', function() {
 
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $company = Company::factory(['user_id' => $employer->id])->create();
-    $job = Job::factory(['employer_id' => $employer->id, 'company_id' => $company->id])->create();
-    $status = JobStatusesEnum::ACTIVE->value;
-    $type = JobTypesEnum::JOB->value;
-    $category = JobCategories::IT_HELPER->value;
-    $setting = JobSettingTypesEnum::FULL_TIME->value;
-    $duration = JobDurationTypesEnum::INDEFINITE->value;
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
+    $jobData = jobData($employer->id);
     $response = $this->actingAs($employer)
-                     ->patch('/job/update/' .$job->id,[
-                        'status' => $status,
-                        'type' => $type,
-                        'category' => $category,
-                        'title' => 'TITLE',
-                        'employer_id' => $employer->id,
-                        'location_id' => 4,
-                        'company_id' => $company->id,
-                        'wage' => 20,
-                        'setting_type' => $setting,
-                        'weekly_hours' => 20,
-                        'start_date' => fake()->dateTimeBetween('now','+1 month')->format('Y-m-d'),
-                        'duration' => $duration,
-                        'description' => 'DESCRIPTION',
-                        'expectation' => 'EXPECTATIONS',
-                        'offer' => 'OFFER',
-                     ]);
+                     ->patch('/job/update/' .$job->id,$jobData);
     $response->assertSessionHasNoErrors()
              ->assertRedirect('/job/my-ads/all');
 });
