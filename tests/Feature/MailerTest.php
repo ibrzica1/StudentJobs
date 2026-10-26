@@ -2,19 +2,12 @@
 
 use App\Mail\JobCreatedMail;
 use App\Mail\WelcomeEmail;
-use App\Models\Job;
-use Database\Seeders\GermanLocationsSeeder;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-use App\Models\User;
-
 
 it('can send welcome email', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-
+    germanLocationSeeder();
+    $employer = employer();
     Mail::fake();
     Mail::send(new WelcomeEmail($employer));
     Mail::assertSent(WelcomeEmail::class);
@@ -25,9 +18,9 @@ it('can send welcome email', function() {
 
 it('can send job created email', function() {
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $employer = User::factory()->employer()->create();
-    $job = Job::factory(['employer_id' => $employer->id])->create();
+    germanLocationSeeder();
+    $employer = employer();
+    $job = job($employer->id);
     Mail::fake();
     Mail::send(new JobCreatedMail($job));
     Mail::assertSent(JobCreatedMail::class);
