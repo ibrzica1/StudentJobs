@@ -2,6 +2,7 @@
 use App\Models\User;
 use App\Models\Job;
 use Database\Seeders\GermanLocationsSeeder;
+use App\Enums\LocalizationEnum;
 use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Enums\ApplicationSeenStatusesEnum;
 use App\Enums\JobCategories;
@@ -12,6 +13,7 @@ use App\Enums\JobTypesEnum;
 use App\Models\Company;
 use Database\Factories\CompanyFactory;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -165,4 +167,14 @@ function createFiveJobs(int $employerId)
         'employer_id' => $employerId,
         'category' => JobCategories::MOVING_HELPER->value,
     ]) ->count(5)->create();
+}
+
+function getLocale()
+{
+    return App::getLocale();
+}
+
+function getRandomNewLocale(string $locale)
+{
+    return array_rand(array_filter(LocalizationEnum::cases(), fn($item) => $item != $locale));
 }
