@@ -14,54 +14,43 @@ class ProfileTest extends TestCase
     public function test_profile_page_is_displayed(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->student()->create();
-
+        germanLocationSeeder();
+        $student = student();
         $response = $this
-            ->actingAs($user)
+            ->actingAs($student)
             ->get('/profile');
-
         $response->assertOk();
     }
 
     public function test_user_informations_can_be_updated(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
-
+        germanLocationSeeder();
+        $student = student();
         $response = $this
-            ->actingAs($user)
-            ->patch('/profile/update/user-info', [
-                'firstName' => 'Name',
-                'lastName' => 'Surname',
-                'telephone' => '2234556777',
-            ]);
+            ->actingAs($student)
+            ->patch('/profile/update/user-info', userInformationData());
 
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
 
-        $user->refresh();
+        $student->refresh();
 
-        $this->assertSame('Name', $user->firstName);
-        $this->assertSame('Surname', $user->lastName);
-        $this->assertSame('2234556777', $user->telephone);
+        $this->assertSame('Name', $student->firstName);
+        $this->assertSame('Surname', $student->lastName);
+        $this->assertSame('2234556777', $student->telephone);
     }
 
     public function test_user_address_can_be_updated(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
+        germanLocationSeeder();
+        $user = user();
 
         $response = $this
             ->actingAs($user)
-            ->patch('/profile/update/user-address', [
-                'location_id' => 4,
-                'street' => 'long str',
-                'house_number' => '44',
-            ]);
+            ->patch('/profile/update/user-address', userAddressData());
 
         $response
             ->assertSessionHasNoErrors()
@@ -77,9 +66,9 @@ class ProfileTest extends TestCase
     public function test_user_CV_can_be_updated(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
-        $file = UploadedFile::fake()->create('cv.pdf',500);
+        germanLocationSeeder();
+        $user = user();
+        $file = createFile('cv.pdf');
 
         $response = $this
             ->actingAs($user)
@@ -96,9 +85,9 @@ class ProfileTest extends TestCase
     public function test_user_avatar_can_be_updated(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
-        $file = UploadedFile::fake()->create('profile.jpg',500);
+        germanLocationSeeder();
+        $user = user();
+        $file = createFile('profile.jpg');
 
         $response = $this
             ->actingAs($user)
@@ -115,8 +104,8 @@ class ProfileTest extends TestCase
     public function test_user_mobility_can_be_updated(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
+        germanLocationSeeder();
+        $user = user();
 
         $response = $this
             ->actingAs($user)
@@ -138,8 +127,8 @@ class ProfileTest extends TestCase
     public function test_user_education_can_be_updated(): void
     {
         $this->withoutExceptionHandling();
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
+        germanLocationSeeder();
+        $user = user();
 
         $response = $this
             ->actingAs($user)
@@ -158,8 +147,8 @@ class ProfileTest extends TestCase
 
     public function test_user_can_delete_their_account(): void
     {
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
+        germanLocationSeeder();
+        $user = user();
 
         $response = $this
             ->actingAs($user)
@@ -177,8 +166,8 @@ class ProfileTest extends TestCase
 
     public function test_correct_password_must_be_provided_to_delete_account(): void
     {
-        (new GermanLocationsSeeder())->run();
-        $user = User::factory()->create();
+        germanLocationSeeder();
+        $user = user();
 
         $response = $this
             ->actingAs($user)

@@ -71,6 +71,11 @@ function employer()
     return User::factory()->employer()->create();
 }
 
+function user()
+{
+    return User::factory()->create();
+}
+
 function loginAsStudent()
 {
     return test()->actingAs(User::factory()->student()->create());
@@ -177,4 +182,27 @@ function getLocale()
 function getRandomNewLocale(string $locale)
 {
     return array_rand(array_filter(LocalizationEnum::cases(), fn($item) => $item != $locale));
+}
+
+function userInformationData()
+{
+   return [
+            'firstName' => 'Name',
+            'lastName' => 'Surname',
+            'telephone' => '2234556777',
+        ];
+}
+
+function userAddressData()
+{
+    return [
+            'location_id' => 4,
+            'street' => 'long str',
+            'house_number' => '44',
+        ];
+}
+
+function createFile(string $name)
+{
+    return UploadedFile::fake()->create($name,500);
 }
