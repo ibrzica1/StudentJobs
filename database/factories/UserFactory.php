@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRolesEnum;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -45,7 +46,7 @@ class UserFactory extends Factory
     public function student(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role' => 'student',
+            'role' => UserRolesEnum::STUDENT->value,
             'car_available' => fake()->randomElement([true,false]),
             'truck_licence'=> fake()->randomElement([true,false]),
             'car_licence'=> fake()->randomElement([true,false]),
@@ -55,7 +56,14 @@ class UserFactory extends Factory
     public function employer(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role' => 'employer',
+            'role' => UserRolesEnum::EMPLOYER->value,
+        ]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => UserRolesEnum::ADMIN->value,
         ]);
     }
 
