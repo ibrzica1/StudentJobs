@@ -10,6 +10,7 @@ use App\Enums\JobDurationTypesEnum;
 use App\Enums\JobSettingTypesEnum;
 use App\Enums\JobStatusesEnum;
 use App\Enums\JobTypesEnum;
+use App\Models\Bill;
 use App\Models\Company;
 use Database\Factories\CompanyFactory;
 use Illuminate\Http\UploadedFile;
@@ -205,4 +206,9 @@ function userAddressData()
 function createFile(string $name)
 {
     return UploadedFile::fake()->create($name,500);
+}
+
+function bills(int $employerId)
+{
+    return Bill::factory(['user_id' => $employerId])->test()->count(10)->create();
 }
