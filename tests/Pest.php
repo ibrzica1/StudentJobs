@@ -72,6 +72,11 @@ function employer()
     return User::factory()->employer()->create();
 }
 
+function admin()
+{
+    return User::factory()->admin()->create();
+}
+
 function user()
 {
     return User::factory()->create();
@@ -211,4 +216,9 @@ function createFile(string $name)
 function bills(int $employerId)
 {
     return Bill::factory(['user_id' => $employerId])->test()->count(10)->create();
+}
+
+function bill(int $employerId)
+{
+    return Bill::factory(['user_id' => $employerId])->test()->create();
 }
