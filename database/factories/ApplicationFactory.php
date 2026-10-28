@@ -22,4 +22,12 @@ class ApplicationFactory extends Factory
             'seen_status' => fake()->randomElement(ApplicationSeenStatusesEnum::cases())
         ];
     }
+
+     public function test(): static
+    {
+         return $this->state(fn (array $attributes) => [
+            'user_id' => User::factory()->student()->create()->id,
+            'job_id' => Job::factory()->create()->id,
+        ]);
+    }
 }
