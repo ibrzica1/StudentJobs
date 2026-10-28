@@ -73,7 +73,7 @@ it('update reject application as authorised user', function() {
     $employer = employer();
     $job = job($employer->id);
     $student = User::factory()->student()->create();
-    $application = Application::factory(['user_id' => $student->id,'job_id' => $job->id])->create();
+    $application = application($student->id,$job->id);
     $response = $this->actingAs($employer)->patch("application/update/reject/".$application->id);
     $response->assertSessionHasNoErrors()
              ->assertRedirect(route('application.index',['job' => $application->job_id]));
