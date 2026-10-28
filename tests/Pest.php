@@ -10,6 +10,7 @@ use App\Enums\JobDurationTypesEnum;
 use App\Enums\JobSettingTypesEnum;
 use App\Enums\JobStatusesEnum;
 use App\Enums\JobTypesEnum;
+use App\Models\Application;
 use App\Models\Bill;
 use App\Models\Company;
 use Database\Factories\CompanyFactory;
@@ -104,6 +105,21 @@ function applicationData(int $studentId, int $jobId)
             'job_id' => $jobId,
             'accept_status' => ApplicationAcceptStatusesEnum::PENDING->value,
             'seen_status' => ApplicationSeenStatusesEnum::UNSEEN->value];
+}
+
+function application(?int $userId = null, ?int $jobId = null)
+{
+    $attributes = [];
+
+    if ($userId !== null) {
+        $attributes['user_id'] = $userId;
+    }
+
+    if ($jobId !== null) {
+        $attributes['job_id'] = $jobId;
+    }
+
+    return Application::factory($attributes)->test()->create();
 }
 
 function companyData(int $employerId)
