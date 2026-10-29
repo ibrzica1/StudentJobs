@@ -61,6 +61,14 @@ class UserRepository
                                   'telephone' => $request['telephone']]);
     }
 
+    public function updateUserAddress(int $userId, array $request)
+    {
+        $this->userModel->where('id',$userId)
+                        ->update(['location_id' => $request['location_id'],
+                                  'street' => $request['street'],
+                                  'house_number' => $request['house_number']]);
+    }
+
     public function updateAverageRating(User $user, float $averageRating): User
     {
         $user->update(['average_rating' => $averageRating]);
