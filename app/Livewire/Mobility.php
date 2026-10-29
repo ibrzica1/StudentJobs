@@ -18,9 +18,9 @@ class Mobility extends Component
     public function __construct()
     {
        $this->user = Auth::user();
-       $this->car_licence = $this->user->car_licence;
-       $this->car_available = $this->user->car_available;
-       $this->truck_licence = $this->user->truck_licence;
+       $this->car_licence = $this->user->car_licence ? $this->user->car_licence : false;
+       $this->car_available = $this->user->car_available ? $this->user->car_available : false;
+       $this->truck_licence = $this->user->truck_licence ? $this->user->truck_licence : false;
     }
 
     public function save()
