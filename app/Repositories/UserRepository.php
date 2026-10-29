@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Enums\UserRolesEnum;
 
 class UserRepository
 {
@@ -11,6 +13,44 @@ class UserRepository
     public function __construct()
     {
         $this->userModel = new User();
+    }
+
+    public function storeEmployer(array $request): User
+    {
+        return $this->userModel->create([
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'firstName' => $request['firstName'],
+            'lastName' => $request['lastName'],
+            'location_id' => $request['location_id'],
+            'street' => $request['street'],
+            'house_number' => $request['house_number'],
+            'telephone' => $request['telephone'],
+            'role' => UserRolesEnum::EMPLOYER->value,
+        ]);
+    }
+
+    public function storeStudent(array $request): User
+    {
+        $avatar = null;
+
+        if($request['imageStudent']){
+            $path = $request['imageStudent']->store('images/user_avatar','public');
+            $avatar = basename($path);
+        }
+
+        return $this->userModel->create([
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'firstName' => $request['firstName'],
+            'lastName' => $request['lastName'],
+            'location_id' => $request['location_id'],
+            'street' => $request['street'],
+            'house_number' => $request['house_number'],
+            'telephone' => $request['telephone'],
+            'role' => UserRolesEnum::STUDENT->value,
+            'avatar' => $avatar,
+        ]);
     }
 
     public function updateAverageRating(User $user, float $averageRating): User
