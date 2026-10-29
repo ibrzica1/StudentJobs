@@ -10,6 +10,9 @@ use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileMobilityUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Company;
+use App\Repositories\CompanyRepository;
+use App\Repositories\UserRepository;
+use App\Services\StoreFileService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +22,22 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    private CompanyRepository $companyRepo;
+    private UserRepository $userRepo;
+    private StoreFileService $storeFileService;
+
+    public function __construct()
+    {
+        $this->companyRepo = new CompanyRepository();
+        $this->userRepo = new UserRepository();
+        $this->storeFileService = new StoreFileService();
+    }
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        $companies = Company::where('user_id',$request->user()->id)->get();
+        $companies = $this->companyRepo->getUserCompanies($request->user()->id);
         return view('profile.profile', [
             'user' => $request->user(),
             'companies' => $companies,
@@ -36,10 +49,7 @@ class ProfileController extends Controller
      */
     public function updateUserInfo(ProfileInfoUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        $request->user()->save();
-
+        $this->userRepo->updateUserInfo($request->user()->id(),$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -60,9 +70,7 @@ class ProfileController extends Controller
      */
     public function updateUserCv(ProfileCvUpdateRequest $request): RedirectResponse
     {
-        Storage::disk('public')->delete('documents/cv/'. $request->user()->cv);
-        $path = $request->cv->store('documents/cv/','public');
-        $cv = basename($path);
+        $cv = $this->storeFileService->storeCv($request->user()->cv,$request->validated());
         $request->user()->fill(['cv' => $cv,]);
         
         $request->user()->save();
