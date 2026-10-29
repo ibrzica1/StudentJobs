@@ -4,12 +4,18 @@ use App\Models\User;
 use Database\Seeders\GermanLocationsSeeder;
 
 
+it('check if its not employer', function () {
+
+    $this->withoutExceptionHandling();
+    germanLocationSeeder();
+    $response = loginAsStudent()->get('/job/helper-create/It');
+    $response->assertRedirect('/');
+});
+
 it('check if its employer', function () {
 
     $this->withoutExceptionHandling();
-    (new GermanLocationsSeeder())->run();
-    $user = User::factory()->student()->create();
-
-    $response =  $this->actingAs($user)->get('/job/helper-create/It');
-    $response->assertRedirect('/');
+    germanLocationSeeder();
+    $response = loginAsEmployer()->get('/job/helper-create/It');
+    $response->assertOk();
 });
