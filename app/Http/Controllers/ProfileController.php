@@ -68,10 +68,7 @@ class ProfileController extends Controller
     public function updateUserCv(ProfileCvUpdateRequest $request): RedirectResponse
     {
         $cv = $this->storeFileService->storeCv($request->user()->cv,$request->validated());
-        $request->user()->fill(['cv' => $cv,]);
-        
-        $request->user()->save();
-
+        $this->userRepo->updateUserCv($request->user()->id(),$cv);
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
