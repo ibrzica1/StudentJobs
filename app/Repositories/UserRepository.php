@@ -69,6 +69,12 @@ class UserRepository
                                   'house_number' => $request['house_number']]);
     }
 
+    public function updateUserCv(int $userId, string $cv)
+    {
+        $this->userModel->where('id',$userId)
+                        ->update(['cv' => $cv]);
+    }
+
     public function updateAverageRating(User $user, float $averageRating): User
     {
         $user->update(['average_rating' => $averageRating]);
