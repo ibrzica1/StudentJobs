@@ -58,10 +58,7 @@ class ProfileController extends Controller
      */
     public function updateUserAddress(ProfileAddressUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-        
-        $request->user()->save();
-
+        $this->userRepo->updateUserAddress($request->user()->id(),$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
