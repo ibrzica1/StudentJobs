@@ -1,9 +1,5 @@
 <?php
 
-use App\Models\User;
-use Database\Seeders\GermanLocationsSeeder;
-
-
 it('check if its not employer', function () {
 
     $this->withoutExceptionHandling();
