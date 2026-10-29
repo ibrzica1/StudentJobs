@@ -8,8 +8,6 @@ use App\Http\Requests\ProfileCvUpdateRequest;
 use App\Http\Requests\ProfileEducationUpdateRequest;
 use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileMobilityUpdateRequest;
-use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Company;
 use App\Repositories\CompanyRepository;
 use App\Repositories\UserRepository;
 use App\Services\StoreFileService;
@@ -17,7 +15,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -77,25 +74,14 @@ class ProfileController extends Controller
      */
     public function updateUserAvatar(ProfileAvatarUpdateRequest $request): RedirectResponse
     {
-        Storage::disk('public')->delete('images/user_avatar/'. $request->user()->profile_picture);
-        $path = $request->profilePicture->store('images/user_avatar','public');
-        $avatar = basename($path);
-        $request->user()->fill(['profile_picture' => $avatar,]);
-        
-        $request->user()->save();
-
+        $avatar = $this->storeFileService->storeAvatar($request->user()->profile_picture, $request->validated());
+        $this->userRepo->updateUserAvatar($request->user()->id(),$avatar);
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     public function updateUserEducation(ProfileEducationUpdateRequest $request): RedirectResponse
     {
-        $request->user()->update([
-            'university' => $request['university'],
-            'certificates' => $request['certificates'],
-        ]);
-        
-        $request->user()->save();
-
+        $this->userRepo->updateUserEducation($request->user()->id(),$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -104,14 +90,7 @@ class ProfileController extends Controller
      */
     public function updateUserMobility(ProfileMobilityUpdateRequest $request): RedirectResponse
     {
-        $request->user()->update([
-            'car_licence' => $request['car_licence'],
-            'car_available' => $request['car_available'],
-            'truck_licence' => $request['truck_licence'],
-        ]);
-        
-        $request->user()->save();
-
+        $this->userRepo->updateUserMobility($request->user()->id(),$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

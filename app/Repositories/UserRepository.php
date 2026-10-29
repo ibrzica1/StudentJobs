@@ -75,6 +75,27 @@ class UserRepository
                         ->update(['cv' => $cv]);
     }
 
+    public function updateUserAvatar(int $userId, string $avatar)
+    {
+        $this->userModel->where('id',$userId)
+                        ->update(['profile_picture' => $avatar]);
+    }
+
+    public function updateUserEducation(int $userId, array $request)
+    {
+        $this->userModel->where('id',$userId)
+                        ->update(['university' => $request['university'],
+                                  'certificates' => $request['certificates'],]);
+    }
+
+    public function updateUserMobility(int $userId, array $request)
+    {
+        $this->userModel->where('id',$userId)
+                        ->update([ 'car_licence' => $request['car_licence'],
+                                   'car_available' => $request['car_available'],
+                                   'truck_licence' => $request['truck_licence'],]);
+    }
+
     public function updateAverageRating(User $user, float $averageRating): User
     {
         $user->update(['average_rating' => $averageRating]);

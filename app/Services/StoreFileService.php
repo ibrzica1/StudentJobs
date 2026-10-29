@@ -12,4 +12,11 @@ class StoreFileService
         $path = $request['cv']->store('documents/cv/','public');
         return basename($path);
     }
+
+    public function storeAvatar(string $oldAvatar, array $request): string
+    {
+        Storage::disk('public')->delete('images/user_avatar/'. $oldAvatar);
+        $path = $request['profilePicture']->store('images/user_avatar/','public');
+        return basename($path);
+    }
 }
