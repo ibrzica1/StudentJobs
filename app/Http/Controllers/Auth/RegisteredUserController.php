@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enums\UserRolesEnum;
 use App\Events\UserCreatedEvent;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\StoreEmployerRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Repositories\CompanyRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    private UserRepository $userRepo;
+
+    public function __construct()
+    {
+        $this->userRepo = new UserRepository();
+    }
     /**
      * Display the registration view.
      */
@@ -54,17 +54,7 @@ class RegisteredUserController extends Controller
 
         DB::transaction(function () use ($request) {
 
-            $user = User::create([
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'firstName' => $request->firstName,
-                'lastName' => $request->lastName,
-                'location_id' => $request->location_id,
-                'street' => $request->street,
-                'house_number' => $request->house_number,
-                'telephone' => $request->telephone,
-                'role' => UserRolesEnum::EMPLOYER->value,
-            ]);
+            $user = $this->userRepo->storeEmployer($request->validated());
 
             if($request->companyName !== null){
                 $companyRepository = new CompanyRepository();
@@ -84,25 +74,7 @@ class RegisteredUserController extends Controller
      */
     public function storeStudent(StoreStudentRequest $request): RedirectResponse
     {
-        $avatar = null;
-
-        if($request->imageStudent){
-            $path = $request->imageStudent->store('images/user_avatar','public');
-            $avatar = basename($path);
-        }
-
-        $user = User::create([
-            'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'firstName' => $request->firstName,
-                'lastName' => $request->lastName,
-                'location_id' => $request->location_id,
-                'street' => $request->street,
-                'house_number' => $request->house_number,
-                'telephone' => $request->telephone,
-                'role' => UserRolesEnum::STUDENT->value,
-                'profile_picture' => $avatar,
-        ]);
+        $user = $this->userRepo->storeStudent($request->validated());
         event(new Registered($user));
         event(new UserCreatedEvent($user));
         Auth::login($user);
