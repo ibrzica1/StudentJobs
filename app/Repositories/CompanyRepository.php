@@ -2,12 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Http\Requests\CreateCompanyRequest;
-use App\Http\Requests\StoreEmployerRequest;
 use App\Models\Company;
-
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class CompanyRepository
 {
