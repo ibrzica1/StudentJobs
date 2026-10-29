@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\JobCategories;
 use App\Enums\JobTypesEnum;
 use App\Http\Controllers\Controller;
-use App\Models\Job;
 use App\Repositories\JobRepository;
-use App\Rules\AllowedCategoryTypes;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 class HomepageController extends Controller

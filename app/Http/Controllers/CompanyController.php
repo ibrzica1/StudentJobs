@@ -8,18 +8,19 @@ use App\Http\Requests\CompanyLogoUpdateRequest;
 use App\Http\Requests\CreateCompanyRequest;
 use App\Models\Company;
 use App\Repositories\CompanyRepository;
+use App\Services\StoreFileService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
-    private object $companyRepo; 
+    private CompanyRepository $companyRepo; 
+    private StoreFileService $fileService;
 
     public function __construct()
     {
         $this->companyRepo =  new CompanyRepository();
+        $this->fileService = new StoreFileService();
     }
 
     public function store(CreateCompanyRequest $request): RedirectResponse
@@ -31,9 +32,7 @@ class CompanyController extends Controller
     public function updateLogo(CompanyLogoUpdateRequest $request): RedirectResponse
     {
         $company = $this->companyRepo->getCompany($request->companyId);
-        Storage::disk('public')->delete('images/company_logo/'.$company->logo);
-        $path = $request->companyLogo->store('images/company_logo','public');
-        $logo = basename($path);
+        $logo = $this->fileService->updateLogo($company->logo,$request->validated());
         $this->companyRepo->updateLogo($logo,$request->user()->id);
         return Redirect::route('profile.edit')->with('status', 'logo-updated');
     }

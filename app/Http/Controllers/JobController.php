@@ -13,9 +13,7 @@ use App\Models\Job;
 use App\Repositories\CompanyRepository;
 use App\Repositories\JobRepository;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class JobController extends Controller

@@ -19,4 +19,11 @@ class StoreFileService
         $path = $request['profilePicture']->store('images/user_avatar/','public');
         return basename($path);
     }
+
+    public function updateLogo(string $logo,array $request ): string
+    {
+        Storage::disk('public')->delete('images/company_logo/'.$logo);
+        $path = $request['companyLogo']->store('images/company_logo','public');
+        return basename($path);
+    }
 }
