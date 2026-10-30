@@ -17,9 +17,15 @@ use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-Route::controller(HomepageController::class)->name('homepage')->group(function() {
+Route::controller(AdminController::class)->prefix('/admin')
+->name('admin')->group(function() {
+    Route::get('/dashboard', 'dashboard')
+    ->middleware(['auth',AdminCheckMiddleware::class])->name('.dashboard');
+});
+
+Route::controller(HomepageController::class)->prefix('/homepage')
+->name('homepage')->group(function() {
     Route::get('/filter/type/{type}', 'indexType')->name('.type');
     Route::get('/filter/category/{category}', 'indexCategory')->name('.category');
     Route::get('/', 'index')->name('');

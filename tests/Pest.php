@@ -93,6 +93,11 @@ function loginAsEmployer()
     return test()->actingAs(User::factory()->employer()->create());
 }
 
+function loginAsAdmin()
+{
+    return test()->actingAs(User::factory()->admin()->create());
+}
+
 function job(int $employerId)
 {
     return Job::factory(['employer_id' => $employerId])->create();
