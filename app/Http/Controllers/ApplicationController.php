@@ -7,6 +7,7 @@ use App\Events\ApplicationCreatedEvent;
 use App\Events\AppllicationRejectedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateApplicationRequest;
+use App\Interfaces\ApplicationRepositoryInterface;
 use App\Models\Application;
 use App\Models\Job;
 use App\Repositories\ApplicationRepository;
@@ -19,12 +20,12 @@ use Illuminate\View\View;
 
 class ApplicationController extends Controller
 {
-    private ApplicationRepository $applicationRepo;
+    private ApplicationRepositoryInterface $applicationRepo;
     private ApplicationAcceptService $applicationAcceptService;
 
-    public function __construct()
+    public function __construct(ApplicationRepositoryInterface $applicationRepositoryInterface)
     {
-        $this->applicationRepo = new ApplicationRepository();
+        $this->applicationRepo = $applicationRepositoryInterface;
         $this->applicationAcceptService = new ApplicationAcceptService();
     }
 

@@ -5,12 +5,13 @@ namespace App\Repositories;
 use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Enums\ApplicationSeenStatusesEnum;
 use App\Http\Requests\CreateApplicationRequest;
+use App\Interfaces\ApplicationRepositoryInterface;
 use App\Models\Application;
 use App\Models\Job;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
-class ApplicationRepository
+class ApplicationRepository implements ApplicationRepositoryInterface
 {
     private object $applicationModel;
 
