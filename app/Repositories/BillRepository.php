@@ -3,13 +3,12 @@
 namespace App\Repositories;
 
 use App\Enums\BillStatusesEnum;
+use App\Interfaces\BillRepositoryInterface;
 use App\Models\Bill;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\Cast\Void_;
 
-class BillRepository
+class BillRepository implements BillRepositoryInterface
 {
     private object $billModel;
 
