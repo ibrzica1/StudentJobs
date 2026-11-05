@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\BillCreatedEvent;
 use App\Mail\BillJobAdMail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class SendJobBillMailListener

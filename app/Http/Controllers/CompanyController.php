@@ -8,7 +8,6 @@ use App\Http\Requests\CompanyLogoUpdateRequest;
 use App\Http\Requests\CreateCompanyRequest;
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Company;
-use App\Repositories\CompanyRepository;
 use App\Services\StoreFileService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;

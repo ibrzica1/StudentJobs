@@ -6,21 +6,20 @@ use App\Enums\BillPricesEnum;
 use App\Enums\BillStatusesEnum;
 use App\Events\BillCreatedEvent;
 use App\Events\JobCreatedEvent;
-use App\Models\Bill;
-use App\Repositories\BillRepository;
+use App\Interfaces\BillRepositoryInterface;
 use App\Services\MoneyService;
 use App\Services\PDFService;
 
 
 class CreateJobBillListener
 {
-    private BillRepository $billRepo;
+    private BillRepositoryInterface $billRepo;
     private MoneyService $moneyService;
     public PDFService $pdfservice;
 
-    public function __construct()
+    public function __construct(BillRepositoryInterface $billRepositoryInterface)
     {
-        $this->billRepo = new BillRepository();
+        $this->billRepo = $billRepositoryInterface;
         $this->moneyService = new MoneyService();
         $this->pdfservice = new PDFService();
     }

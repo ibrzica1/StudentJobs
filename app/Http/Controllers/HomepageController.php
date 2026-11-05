@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Enums\JobCategories;
 use App\Enums\JobTypesEnum;
 use App\Http\Controllers\Controller;
-use App\Repositories\JobRepository;
+use App\Interfaces\JobRepositoryInterface;
 use Illuminate\View\View;
 
 class HomepageController extends Controller
 {
-    private object $jobRepo;
+    private JobRepositoryInterface $jobRepo;
 
-    public function __construct()
+    public function __construct(JobRepositoryInterface $jobRepositoryInterface)
     {
-        $this->jobRepo = new JobRepository();
+        $this->jobRepo = $jobRepositoryInterface;
     }
 
     public function index(): View

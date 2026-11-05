@@ -4,6 +4,8 @@ namespace App\Listeners;
 
 use App\Events\BlacklistUserEvent;
 use App\Events\RatingCreatedEvent;
+use App\Interfaces\RatingRepositoryInterface;
+use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\RatingRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,13 +13,16 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateUsersAverageRatingListener
 {
-    private RatingRepository $ratingRepo;
-    private UserRepository $userRepo;
+    private RatingRepositoryInterface $ratingRepo;
+    private UserRepositoryInterface $userRepo;
 
-    public function __construct()
+    public function __construct(
+        RatingRepositoryInterface $ratingRepositoryInterface,
+        UserRepositoryInterface $userRepositoryInterface
+    )
     {
-        $this->userRepo = new UserRepository();
-        $this->ratingRepo =  new RatingRepository();
+        $this->userRepo = $userRepositoryInterface;
+        $this->ratingRepo = $ratingRepositoryInterface;
     }
 
     public function handle(RatingCreatedEvent $event): void

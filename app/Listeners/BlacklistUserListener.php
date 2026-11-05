@@ -3,16 +3,15 @@
 namespace App\Listeners;
 
 use App\Events\BlacklistUserEvent;
-use App\Repositories\UserRepository;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Interfaces\UserRepositoryInterface;
 
 class BlacklistUserListener
 {
+    private UserRepositoryInterface $userRepo;
    
-    public function __construct(public UserRepository $userRepo)
+    public function __construct(public UserRepositoryInterface $userRepositoryInterface)
     {
-        //
+        $this->userRepo = $userRepositoryInterface;
     }
 
     public function handle(BlacklistUserEvent $event): void

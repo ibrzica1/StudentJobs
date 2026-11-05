@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Interfaces\JobRepositoryInterface;
+use App\Interfaces\VisitRepositoryInterface;
 use App\Repositories\JobRepository;
 use App\Repositories\VisitRepository;
 use Carbon\Carbon;
@@ -9,13 +11,16 @@ use Illuminate\Support\Facades\Cache;
 
 class GetStatisticsDataService
 {
-    private VisitRepository $visitRepo;
-    private JobRepository $jobRepo;
+    private VisitRepositoryInterface $visitRepo;
+    private JobRepositoryInterface $jobRepo;
 
-    public function __construct()
+    public function __construct(
+        VisitRepositoryInterface $visitRepositoryInterface,
+        JobRepositoryInterface $jobRepositoryInterface
+    )
     {
-        $this->visitRepo = new VisitRepository();
-        $this->jobRepo = new JobRepository();
+        $this->visitRepo = $visitRepositoryInterface;
+        $this->jobRepo = $jobRepositoryInterface;
     }
 
     public function getData(): array

@@ -26,7 +26,7 @@ class ApplicationController extends Controller
     public function __construct(ApplicationRepositoryInterface $applicationRepositoryInterface)
     {
         $this->applicationRepo = $applicationRepositoryInterface;
-        $this->applicationAcceptService = new ApplicationAcceptService();
+        $this->applicationAcceptService = new ApplicationAcceptService($this->applicationRepo);
     }
 
     public function index(Job $job): View

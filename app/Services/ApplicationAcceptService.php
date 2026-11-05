@@ -5,16 +5,17 @@ namespace App\Services;
 use App\Enums\ApplicationAcceptStatusesEnum;
 use App\Events\ApplicationAcceptedEvent;
 use App\Events\ApplicationRejectOthers;
+use App\Interfaces\ApplicationRepositoryInterface;
 use App\Models\Application;
 use App\Repositories\ApplicationRepository;
 
 class ApplicationAcceptService
 {
-    private ApplicationRepository $applicationRepo;
+    private ApplicationRepositoryInterface $applicationRepo;
 
-    public function __construct()
+    public function __construct(ApplicationRepositoryInterface $applicationRepositoryInterface)
     {
-        $this->applicationRepo = new ApplicationRepository();
+        $this->applicationRepo = $applicationRepositoryInterface;
     }
 
     public function acceptApplication(Application $application)

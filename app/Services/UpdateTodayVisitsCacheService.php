@@ -2,17 +2,18 @@
 
 namespace App\Services;
 
+use App\Interfaces\VisitRepositoryInterface;
 use App\Repositories\VisitRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class UpdateTodayVisitsCacheService
 {
-    private VisitRepository $visitRepo;
+    private VisitRepositoryInterface $visitRepo;
 
-    public function __construct()
+    public function __construct(VisitRepositoryInterface $visitRepositoryInterface)
     {
-        $this->visitRepo = new VisitRepository();
+        $this->visitRepo = $visitRepositoryInterface;
     }
 
     public function updateVisitCount()

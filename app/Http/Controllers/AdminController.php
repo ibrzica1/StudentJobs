@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\BillRepositoryInterface;
+use App\Interfaces\JobRepositoryInterface;
+use App\Interfaces\VisitRepositoryInterface;
 use App\Repositories\BillRepository;
 use App\Services\GetStatisticsDataService;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    private BillRepository $billRepo;
+    private BillRepositoryInterface $billRepo;
     private GetStatisticsDataService $statisticDataService;
 
-    public function __construct()
+    public function __construct(
+        BillRepositoryInterface $billRepositoryInterface,
+        VisitRepositoryInterface $visitRepositoryInterface,
+        JobRepositoryInterface $jobRepositoryInterface
+    )
     {
-        $this->billRepo = new BillRepository();
-        $this->statisticDataService = new GetStatisticsDataService();
+        $this->billRepo = $billRepositoryInterface;
+        $this->statisticDataService = new GetStatisticsDataService($visitRepositoryInterface, $jobRepositoryInterface);
     }
 
     public function dashboard()

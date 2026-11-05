@@ -9,6 +9,7 @@ use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
 use App\Http\Requests\UpdateHelperJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Job;
 use App\Repositories\CompanyRepository;
 use App\Repositories\JobRepository;
@@ -20,12 +21,15 @@ use Illuminate\View\View;
 class JobController extends Controller
 {
     private JobRepositoryInterface $jobRepository;
-    private object $companyRepository;
+    private CompanyRepositoryInterface $companyRepository;
 
-    public function __construct(JobRepositoryInterface $jobInterface)
+    public function __construct(
+        JobRepositoryInterface $jobInterface,
+        CompanyRepositoryInterface $companyRepositoryInterface
+    )
     {
         $this->jobRepository = $jobInterface;
-        $this->companyRepository = new CompanyRepository();
+        $this->companyRepository = $companyRepositoryInterface;
     }
 
     public function show(Job $job): View

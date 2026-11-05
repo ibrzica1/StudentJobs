@@ -3,17 +3,15 @@
 namespace App\Listeners;
 
 use App\Events\ApplicationRejectOthers;
-use App\Repositories\ApplicationRepository;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Interfaces\ApplicationRepositoryInterface;
 
 class ChangeAllApplicantsSeenListener
 {
-    private ApplicationRepository $applicationRepo;
+    private ApplicationRepositoryInterface $applicationRepo;
     
-    public function __construct()
+    public function __construct(ApplicationRepositoryInterface $applicationRepositoryInterface)
     {
-        $this->applicationRepo = new ApplicationRepository();
+        $this->applicationRepo = $applicationRepositoryInterface;
     }
 
     public function handle(ApplicationRejectOthers $event): void

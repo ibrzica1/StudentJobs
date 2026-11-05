@@ -3,20 +3,16 @@
 namespace App\Listeners;
 
 use App\Enums\JobStatusesEnum;
-use App\Events\ApplicationAcceptedEvent;
 use App\Events\ApplicationRejectOthers;
-use App\Models\Job;
-use App\Repositories\JobRepository;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Interfaces\JobRepositoryInterface;
 
 class UpdateJobStatusToPromised
 {
-    private JobRepository $jobRepo;
+    private JobRepositoryInterface $jobRepo;
 
-    public function __construct()
+    public function __construct(JobRepositoryInterface $jobRepositoryInterface)
     {
-        $this->jobRepo = new JobRepository();
+        $this->jobRepo = $jobRepositoryInterface;
     }
 
     
