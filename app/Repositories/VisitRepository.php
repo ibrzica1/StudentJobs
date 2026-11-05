@@ -2,11 +2,12 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\VisitRepositoryInterface;
 use App\Models\Visit;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
-class VisitRepository
+class VisitRepository implements VisitRepositoryInterface
 {
     private object $visitModel;
 
