@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\LocationRepositoryInterface;
 use App\Models\Location;
 
-class LocationRepository
+class LocationRepository implements LocationRepositoryInterface
 {
     private object $locationModel;
 
