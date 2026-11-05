@@ -5,8 +5,9 @@ namespace App\Repositories;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Enums\UserRolesEnum;
+use App\Interfaces\UserRepositoryInterface;
 
-class UserRepository
+class UserRepository implements UserRepositoryInterface
 {
     private object $userModel;
 
@@ -34,7 +35,7 @@ class UserRepository
     {
         $avatar = null;
 
-        if($request['imageStudent']){
+        if(isset($request['imageStudent'])){
             $path = $request['imageStudent']->store('images/user_avatar','public');
             $avatar = basename($path);
         }
@@ -53,7 +54,7 @@ class UserRepository
         ]);
     }
 
-    public function updateUserInfo(int $userId, array $request)
+    public function updateUserInfo(int $userId, array $request): void
     {
         $this->userModel->where('id',$userId)
                         ->update(['firstName' => $request['firstName'],
@@ -61,7 +62,7 @@ class UserRepository
                                   'telephone' => $request['telephone']]);
     }
 
-    public function updateUserAddress(int $userId, array $request)
+    public function updateUserAddress(int $userId, array $request): void
     {
         $this->userModel->where('id',$userId)
                         ->update(['location_id' => $request['location_id'],
@@ -69,26 +70,26 @@ class UserRepository
                                   'house_number' => $request['house_number']]);
     }
 
-    public function updateUserCv(int $userId, string $cv)
+    public function updateUserCv(int $userId, string $cv): void
     {
         $this->userModel->where('id',$userId)
                         ->update(['cv' => $cv]);
     }
 
-    public function updateUserAvatar(int $userId, string $avatar)
+    public function updateUserAvatar(int $userId, string $avatar): void
     {
         $this->userModel->where('id',$userId)
                         ->update(['profile_picture' => $avatar]);
     }
 
-    public function updateUserEducation(int $userId, array $request)
+    public function updateUserEducation(int $userId, array $request): void
     {
         $this->userModel->where('id',$userId)
                         ->update(['university' => $request['university'],
                                   'certificates' => $request['certificates'],]);
     }
 
-    public function updateUserMobility(int $userId, array $request)
+    public function updateUserMobility(int $userId, array $request): void
     {
         $this->userModel->where('id',$userId)
                         ->update([ 'car_licence' => $request['car_licence'],
@@ -102,7 +103,7 @@ class UserRepository
         return $user;
     }
 
-    public function updateBlacklisted(int $userId, bool $value)
+    public function updateBlacklisted(int $userId, bool $value): void
     {
         $this->userModel->where('id',$userId)
                         ->update(['blacklisted' => $value]);

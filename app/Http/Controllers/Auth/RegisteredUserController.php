@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreEmployerRequest;
 use App\Http\Requests\StoreStudentRequest;
+use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\CompanyRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +17,11 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    private UserRepository $userRepo;
+    private UserRepositoryInterface $userRepo;
 
-    public function __construct()
+    public function __construct(UserRepositoryInterface $userRepositoryInterface)
     {
-        $this->userRepo = new UserRepository();
+        $this->userRepo = $userRepositoryInterface;
     }
     /**
      * Display the registration view.

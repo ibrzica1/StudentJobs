@@ -8,8 +8,8 @@ use App\Http\Requests\ProfileCvUpdateRequest;
 use App\Http\Requests\ProfileEducationUpdateRequest;
 use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileMobilityUpdateRequest;
-use App\Repositories\CompanyRepository;
-use App\Repositories\UserRepository;
+use App\Interfaces\CompanyRepositoryInterface;
+use App\Interfaces\UserRepositoryInterface;
 use App\Services\StoreFileService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,14 +19,17 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    private CompanyRepository $companyRepo;
-    private UserRepository $userRepo;
+    private CompanyRepositoryInterface $companyRepo;
+    private UserRepositoryInterface $userRepo;
     private StoreFileService $storeFileService;
 
-    public function __construct()
+    public function __construct(
+        UserRepositoryInterface $userRepositoryInterface,
+        CompanyRepositoryInterface $companyRepositoryInterface 
+        )
     {
-        $this->companyRepo = new CompanyRepository();
-        $this->userRepo = new UserRepository();
+        $this->companyRepo = $companyRepositoryInterface;
+        $this->userRepo = $userRepositoryInterface;
         $this->storeFileService = new StoreFileService();
     }
     /**
