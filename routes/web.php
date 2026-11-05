@@ -24,7 +24,7 @@ Route::controller(AdminController::class)->prefix('/admin')
     ->middleware(['auth',AdminCheckMiddleware::class])->name('.dashboard');
 });
 
-Route::controller(HomepageController::class)->prefix('/homepage')
+Route::controller(HomepageController::class)
 ->name('homepage')->group(function() {
     Route::get('/filter/type/{type}', 'indexType')->name('.type');
     Route::get('/filter/category/{category}', 'indexCategory')->name('.category');

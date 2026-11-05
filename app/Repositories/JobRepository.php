@@ -7,12 +7,13 @@ use App\Enums\JobTypesEnum;
 use App\Http\Requests\CreateHelperJobRequest;
 use App\Http\Requests\CreateJobRequest;
 use App\Http\Requests\UpdateHelperJobRequest;
+use App\Interfaces\JobRepositoryInterface;
 use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
-class JobRepository
+class JobRepository implements JobRepositoryInterface
 {
     private object $jobModel;
 
@@ -21,7 +22,7 @@ class JobRepository
        $this->jobModel = new Job();
     }
 
-    public function storeHelperJob(CreateHelperJobRequest $request): Job
+    public function storeHelperJob(array $request): Job
     {
         $job = $this->jobModel->create([
             'status' => JobStatusesEnum::ACTIVE->value,

@@ -12,18 +12,19 @@ use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Repositories\CompanyRepository;
 use App\Repositories\JobRepository;
+use App\Interfaces\JobRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class JobController extends Controller
 {
-    private object $jobRepository;
+    private JobRepositoryInterface $jobRepository;
     private object $companyRepository;
 
-    public function __construct()
+    public function __construct(JobRepositoryInterface $jobInterface)
     {
-        $this->jobRepository = new JobRepository();
+        $this->jobRepository = $jobInterface;
         $this->companyRepository = new CompanyRepository();
     }
 
@@ -41,7 +42,7 @@ class JobController extends Controller
 
     public function storeJobHelper(CreateHelperJobRequest $request): RedirectResponse
     {
-        $job = $this->jobRepository->storeHelperJob($request);
+        $job = $this->jobRepository->storeHelperJob($request->validated());
         event(new JobCreatedEvent($job));
         return redirect()->route('homepage');
     }
