@@ -3,16 +3,17 @@
 namespace App\Services;
 
 use App\Events\RatingCreatedEvent;
+use App\Interfaces\RatingRepositoryInterface;
 use App\Repositories\RatingRepository;
 use App\Repositories\UserRepository;
 
 class RateStudentService
 {
-    private RatingRepository $ratingRepo;
+    private RatingRepositoryInterface $ratingRepo;
 
-    public function __construct()
+    public function __construct(RatingRepositoryInterface $ratingRepositoryInterface)
     {
-        $this->ratingRepo = new RatingRepository();
+        $this->ratingRepo = $ratingRepositoryInterface;
         
     }
 

@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\RatingRepositoryInterface;
 use App\Models\Rating;
 use App\Models\User;
 
-class RatingRepository
+class RatingRepository implements RatingRepositoryInterface
 {
     private object $ratingModel;
 

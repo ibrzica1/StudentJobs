@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRatingRequest;
+use App\Interfaces\RatingRepositoryInterface;
 use App\Models\User;
 use App\Repositories\RatingRepository;
 use App\Services\RateStudentService;
 
 class RatingController extends Controller
 {
-    private object $ratingRepo;
+    private RatingRepositoryInterface $ratingRepo;
     private RateStudentService $rateStudentService;
 
-    public function __construct()
+    public function __construct(RatingRepositoryInterface $ratingRepositoryInterface)
     {
-        $this->ratingRepo = new RatingRepository();
-        $this->rateStudentService = new RateStudentService();
+        $this->ratingRepo = $ratingRepositoryInterface;
+        $this->rateStudentService = new RateStudentService($this->ratingRepo);
     }
 
     public function store(CreateRatingRequest $request)
