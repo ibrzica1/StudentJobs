@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 
-class CompanyRepository
+class CompanyRepository implements CompanyRepositoryInterface
 {
     private object $companyModel;
 
@@ -58,7 +59,7 @@ class CompanyRepository
         ]);
    }
 
-   public function deleteCompany(Model $company): void
+   public function deleteCompany(Company $company): void
    {
         $company->delete();
    }
