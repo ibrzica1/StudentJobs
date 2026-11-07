@@ -9,6 +9,7 @@ use App\Http\Requests\ProfileEducationUpdateRequest;
 use App\Http\Requests\ProfileInfoUpdateRequest;
 use App\Http\Requests\ProfileMobilityUpdateRequest;
 use App\Interfaces\CompanyRepositoryInterface;
+use App\Interfaces\StoreFileInterface;
 use App\Interfaces\UserRepositoryInterface;
 use App\Services\StoreFileService;
 use Illuminate\Http\RedirectResponse;
@@ -21,16 +22,17 @@ class ProfileController extends Controller
 {
     private CompanyRepositoryInterface $companyRepo;
     private UserRepositoryInterface $userRepo;
-    private StoreFileService $storeFileService;
+    private StoreFileInterface $storeFile;
 
     public function __construct(
         UserRepositoryInterface $userRepositoryInterface,
-        CompanyRepositoryInterface $companyRepositoryInterface 
+        CompanyRepositoryInterface $companyRepositoryInterface, 
+        StoreFileInterface $storeFileInterface
         )
     {
         $this->companyRepo = $companyRepositoryInterface;
         $this->userRepo = $userRepositoryInterface;
-        $this->storeFileService = new StoreFileService();
+        $this->storeFile = $storeFileInterface;
     }
     /**
      * Display the user's profile form.
@@ -67,7 +69,7 @@ class ProfileController extends Controller
      */
     public function updateUserCv(ProfileCvUpdateRequest $request): RedirectResponse
     {
-        $cv = $this->storeFileService->storeCv($request->user()->cv,$request->validated());
+        $cv = $this->storeFile->storeCv($request->user()->cv,$request->validated());
         $this->userRepo->updateUserCv($request->user()->id,$cv);
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -77,7 +79,7 @@ class ProfileController extends Controller
      */
     public function updateUserAvatar(ProfileAvatarUpdateRequest $request): RedirectResponse
     {
-        $avatar = $this->storeFileService->storeAvatar($request->user()->profile_picture, $request->validated());
+        $avatar = $this->storeFile->storeAvatar($request->user()->profile_picture, $request->validated());
         $this->userRepo->updateUserAvatar($request->user()->id,$avatar);
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

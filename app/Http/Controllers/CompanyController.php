@@ -7,6 +7,7 @@ use App\Http\Requests\CompanyInfoUpdateRequest;
 use App\Http\Requests\CompanyLogoUpdateRequest;
 use App\Http\Requests\CreateCompanyRequest;
 use App\Interfaces\CompanyRepositoryInterface;
+use App\Interfaces\StoreFileInterface;
 use App\Models\Company;
 use App\Services\StoreFileService;
 use Illuminate\Http\RedirectResponse;
@@ -15,12 +16,15 @@ use Illuminate\Support\Facades\Redirect;
 class CompanyController extends Controller
 {
     private CompanyRepositoryInterface $companyRepo; 
-    private StoreFileService $fileService;
+    private StoreFileInterface $fileService;
 
-    public function __construct(CompanyRepositoryInterface $companyRepositoryInterface)
+    public function __construct(
+        CompanyRepositoryInterface $companyRepositoryInterface,
+        StoreFileInterface $storeFileInterface
+    )
     {
-        $this->companyRepo =  $companyRepositoryInterface;
-        $this->fileService = new StoreFileService();
+        $this->companyRepo = $companyRepositoryInterface;
+        $this->fileService = $storeFileInterface;
     }
 
     public function store(CreateCompanyRequest $request): RedirectResponse
