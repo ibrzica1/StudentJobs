@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use App\Interfaces\PDFInterface;
 use App\Interfaces\StoreFileInterface;
 use App\Listeners\ForgetCacheMyAds;
 use App\Models\Job;
 use App\Models\User;
 use App\Repositories\ApplicationRepository;
 use App\Repositories\JobRepository;
+use App\Services\PDFService;
+use App\Services\PDFStorageService;
 use App\Services\StoreFileService;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
@@ -21,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(StoreFileInterface::class, StoreFileService::class);
+        $this->app->bind(PDFInterface::class, PDFStorageService::class);
     }
 
     /**

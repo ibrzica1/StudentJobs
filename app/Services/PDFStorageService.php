@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Interfaces\PDFInterface;
 use App\Models\Bill;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Storage;
 
-class PDFService
+class PDFStorageService implements PDFInterface
 {
     public function createAndStoreJobBillPDF(Bill $bill): string
     {
