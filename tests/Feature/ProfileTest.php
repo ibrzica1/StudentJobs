@@ -119,9 +119,10 @@ class ProfileTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
 
-        $this->assertSame(true, $user->car_licence);
-        $this->assertSame(false, $user->car_available);
-        $this->assertSame(true, $user->truck_licence);
+        $user->refresh();
+        $this->assertSame(1, $user->car_licence);
+        $this->assertSame(0, $user->car_available);
+        $this->assertSame(1, $user->truck_licence);
     }
 
     public function test_user_education_can_be_updated(): void
@@ -141,6 +142,7 @@ class ProfileTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
 
+        $user->refresh();
         $this->assertSame('university', $user->university);
         $this->assertSame('certificates', $user->certificates);
     }
