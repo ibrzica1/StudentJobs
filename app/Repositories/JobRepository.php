@@ -4,22 +4,22 @@ namespace App\Repositories;
 
 use App\Enums\JobStatusesEnum;
 use App\Enums\JobTypesEnum;
-use App\Http\Requests\CreateHelperJobRequest;
-use App\Http\Requests\CreateJobRequest;
-use App\Http\Requests\UpdateHelperJobRequest;
 use App\Interfaces\JobRepositoryInterface;
 use App\Models\Job;
 use Carbon\Carbon;
+use Illuminate\Cache\Repository;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
+
 
 class JobRepository implements JobRepositoryInterface
 {
     private object $jobModel;
+    protected Repository $cache;
 
-    public function __construct()
+    public function __construct(Repository $cache)
     {
        $this->jobModel = new Job();
+       $this->cache = $cache;
     }
 
     public function storeHelperJob(array $request): Job
@@ -71,20 +71,20 @@ class JobRepository implements JobRepositoryInterface
     public function update(int $jobId, array $request): void
     {
         $this->jobModel->where('id',$jobId)->update($request);
-        Cache::forget('my_ads');
+        $this->cache->forget('my_ads');
     }
 
     public function updateStatus(int $jobId, string $status): void
     {
         $this->jobModel->where('id',$jobId)->update(['status' => $status]);
-        Cache::forget('my_ads');
+        $this->cache->forget('my_ads');
     }
 
     public function getLatestJobs(): object
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$page;
-        $jobs = Cache::remember($cacheKey,120,function () {
+        $jobs = $this->cache->remember($cacheKey,120,function () {
             return $this->jobModel->where('status',JobStatusesEnum::ACTIVE->value)
                                   ->with('company','location')
                                   ->latest('created_at')
@@ -98,7 +98,7 @@ class JobRepository implements JobRepositoryInterface
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$category.'_'.$page;
-        $jobs = Cache::remember($cacheKey,120,function () use($category){
+        $jobs = $this->cache->remember($cacheKey,120,function () use($category){
             return $this->jobModel->where('category',$category)
                                   ->where('status',JobStatusesEnum::ACTIVE->value)
                                   ->with('company','location')
@@ -112,7 +112,7 @@ class JobRepository implements JobRepositoryInterface
     {
         $page = request('page',1);
         $cacheKey = 'latest_jobs_'.$type.'_'.$page;
-        $jobs = Cache::remember($cacheKey,120,function () use($type){
+        $jobs = $this->cache->remember($cacheKey,120,function () use($type){
             return $this->jobModel->where('type',$type)
                                   ->where('status',JobStatusesEnum::ACTIVE->value)
                                   ->with('company','location')
@@ -125,7 +125,7 @@ class JobRepository implements JobRepositoryInterface
     public function similarJobs(int $limit, string $category, int $id): object
     {
         $cacheKey = 'similar_job_'.$category.'_'.$id;
-        $jobs = Cache::remember($cacheKey,120,function () use($limit,$category,$id){
+        $jobs = $this->cache->remember($cacheKey,120,function () use($limit,$category,$id){
             return $this->jobModel
             ->where('category',$category)
             ->where('status',JobStatusesEnum::ACTIVE->value)
@@ -141,7 +141,7 @@ class JobRepository implements JobRepositoryInterface
     public function getMyJobs(?string $status):object
     {
         if($status && in_array($status,JobStatusesEnum::cases())){
-            $jobs = Cache::remember('my_ads',120,function() use($status) {
+            $jobs = $this->cache->remember('my_ads',120,function() use($status) {
                 return $this->jobModel
                 ->where('employer_id', Auth::id())
                 ->where('status',$status)
@@ -150,7 +150,7 @@ class JobRepository implements JobRepositoryInterface
             });
         }
         else {
-            $jobs = Cache::remember('my_ads',120,function() use($status) {
+            $jobs = $this->cache->remember('my_ads',120,function() use($status) {
                 return $this->jobModel
                 ->where('employer_id', Auth::id())
                 ->latest()
