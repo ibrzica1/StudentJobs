@@ -49,7 +49,7 @@ class ProfileController extends Controller
      */
     public function updateUserInfo(ProfileInfoUpdateRequest $request): RedirectResponse
     {
-        $this->userRepo->updateUserInfo($request->user()->id(),$request->validated());
+        $this->userRepo->updateUserInfo($request->user()->id,$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -58,7 +58,7 @@ class ProfileController extends Controller
      */
     public function updateUserAddress(ProfileAddressUpdateRequest $request): RedirectResponse
     {
-        $this->userRepo->updateUserAddress($request->user()->id(),$request->validated());
+        $this->userRepo->updateUserAddress($request->user()->id,$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -68,7 +68,7 @@ class ProfileController extends Controller
     public function updateUserCv(ProfileCvUpdateRequest $request): RedirectResponse
     {
         $cv = $this->storeFileService->storeCv($request->user()->cv,$request->validated());
-        $this->userRepo->updateUserCv($request->user()->id(),$cv);
+        $this->userRepo->updateUserCv($request->user()->id,$cv);
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -78,13 +78,13 @@ class ProfileController extends Controller
     public function updateUserAvatar(ProfileAvatarUpdateRequest $request): RedirectResponse
     {
         $avatar = $this->storeFileService->storeAvatar($request->user()->profile_picture, $request->validated());
-        $this->userRepo->updateUserAvatar($request->user()->id(),$avatar);
+        $this->userRepo->updateUserAvatar($request->user()->id,$avatar);
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     public function updateUserEducation(ProfileEducationUpdateRequest $request): RedirectResponse
     {
-        $this->userRepo->updateUserEducation($request->user()->id(),$request->validated());
+        $this->userRepo->updateUserEducation($request->user()->id,$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -93,7 +93,7 @@ class ProfileController extends Controller
      */
     public function updateUserMobility(ProfileMobilityUpdateRequest $request): RedirectResponse
     {
-        $this->userRepo->updateUserMobility($request->user()->id(),$request->validated());
+        $this->userRepo->updateUserMobility($request->user()->id,$request->validated());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
