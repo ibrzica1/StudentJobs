@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Interfaces\StoreFileInterface;
 use Illuminate\Support\Facades\Storage;
 
-class StoreFileService implements StoreFileInterface
+class StoreFileStorageService implements StoreFileInterface
 {
     public function storeCv(?string $oldCV, array $request): string
     {

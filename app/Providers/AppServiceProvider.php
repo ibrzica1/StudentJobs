@@ -8,10 +8,8 @@ use App\Listeners\ForgetCacheMyAds;
 use App\Models\Job;
 use App\Models\User;
 use App\Repositories\ApplicationRepository;
-use App\Repositories\JobRepository;
-use App\Services\PDFService;
 use App\Services\PDFStorageService;
-use App\Services\StoreFileService;
+use App\Services\StoreFileStorageService;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -23,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(StoreFileInterface::class, StoreFileService::class);
+        $this->app->bind(StoreFileInterface::class, StoreFileStorageService::class);
         $this->app->bind(PDFInterface::class, PDFStorageService::class);
     }
 
