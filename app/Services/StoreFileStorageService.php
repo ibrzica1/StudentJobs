@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\StoreFileInterface;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class StoreFileStorageService implements StoreFileInterface
 {
@@ -31,5 +32,15 @@ class StoreFileStorageService implements StoreFileInterface
         Storage::disk('public')->delete('images/company_logo/'.$logo);
         $path = $request['companyLogo']->store('images/company_logo','public');
         return basename($path);
+    }
+
+    public function download(string $fileName): StreamedResponse
+    {
+        $path = 'documents/job-bills/'.$fileName.'.pdf';
+
+        if (!Storage::disk('public')->exists($path)) {
+            abort(404, 'File not found');
+        }
+        return Storage::disk('public')->download($path);
     }
 }

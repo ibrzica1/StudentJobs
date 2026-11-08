@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\BillRepositoryInterface;
+use App\Interfaces\StoreFileInterface;
 use App\Models\Bill;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class BillController extends Controller
 {
     private BillRepositoryInterface $billRepo;
+    private StoreFileInterface $fileInterface;
 
-    public function __construct(BillRepositoryInterface $billRepositoryInterface)
+    public function __construct(
+        BillRepositoryInterface $billRepositoryInterface,
+        StoreFileInterface $storeFileInterface
+    )
     {
         $this->billRepo = $billRepositoryInterface;
+        $this->fileInterface = $storeFileInterface;
     }
 
     public function index(): View
@@ -26,12 +31,7 @@ class BillController extends Controller
 
     public function download(string $fileName): StreamedResponse
     {
-        $path = 'documents/job-bills/'.$fileName.'.pdf';
-
-        if (!Storage::disk('public')->exists($path)) {
-            abort(404, 'File not found');
-        }
-        return Storage::disk('public')->download($path);
+      return $this->fileInterface->download($fileName);
     }
 
     public function markAsPaid(Bill $bill)
