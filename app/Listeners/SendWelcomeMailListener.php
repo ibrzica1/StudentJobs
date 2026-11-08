@@ -3,9 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\UserCreatedEvent;
+use App\Jobs\SendWelcomeEmail;
 use App\Mail\WelcomeEmail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class SendWelcomeMailListener
@@ -23,6 +22,6 @@ class SendWelcomeMailListener
      */
     public function handle(UserCreatedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->send(new WelcomeEmail($event->user));
+        SendWelcomeEmail::dispatch($event->user);
     }
 }
