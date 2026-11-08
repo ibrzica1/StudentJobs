@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserCreatedEvent;
 use App\Jobs\SendWelcomeEmail;
+use App\Jobs\SendWelcomeEmailJob;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,6 +23,6 @@ class SendWelcomeMailListener
      */
     public function handle(UserCreatedEvent $event): void
     {
-        SendWelcomeEmail::dispatch($event->user);
+        SendWelcomeEmailJob::dispatch($event->user);
     }
 }

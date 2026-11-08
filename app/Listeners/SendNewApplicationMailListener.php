@@ -3,10 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\ApplicationCreatedEvent;
-use App\Mail\NewApplicationMail;
+use App\Jobs\SendNewApplicationMailJob;
 use App\Models\Application;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class SendNewApplicationMailListener
@@ -19,6 +17,6 @@ class SendNewApplicationMailListener
 
     public function handle(ApplicationCreatedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->queue(new NewApplicationMail($event->application));
+        SendNewApplicationMailJob::dispatch($event->application);
     }
 }

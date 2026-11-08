@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\BillCreatedEvent;
+use App\Jobs\SendJobBillMailJob;
 use App\Mail\BillJobAdMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -17,6 +18,6 @@ class SendJobBillMailListener
     public function handle(BillCreatedEvent $event): void
     {
        
-        Mail::to('test@inbox.mailtrap.io')->queue(new BillJobAdMail($event->bill));
+        SendJobBillMailJob::dispatch($event->bill);
     }
 }

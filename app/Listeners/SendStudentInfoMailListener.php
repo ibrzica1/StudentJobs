@@ -3,9 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\ApplicationAcceptedEvent;
+use App\Jobs\SendStudentInfoMailJob;
 use App\Mail\StudentInfoMail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class SendStudentInfoMailListener
@@ -18,6 +17,6 @@ class SendStudentInfoMailListener
 
     public function handle(ApplicationAcceptedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->queue(new StudentInfoMail($event->application));
+        SendStudentInfoMailJob::dispatch($event->application);
     }
 }

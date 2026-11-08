@@ -8,7 +8,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 
-class SendWelcomeEmail implements ShouldQueue
+class SendWelcomeEmailJob implements ShouldQueue
 {
     use Queueable;
 

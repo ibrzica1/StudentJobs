@@ -3,10 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\JobCreatedEvent;
-use App\Mail\JobCreatedMail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendJobCreatedEmailJob;
 
 class SendJobCreatedEmailListener
 {
@@ -18,6 +15,6 @@ class SendJobCreatedEmailListener
 
     public function handle(JobCreatedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->queue(new JobCreatedMail($event->job));
+        SendJobCreatedEmailJob::dispatch($event->job);
     }
 }

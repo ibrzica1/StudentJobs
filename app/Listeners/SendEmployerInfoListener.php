@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ApplicationAcceptedEvent;
+use App\Jobs\SendEmployerInfoMailJob;
 use App\Mail\EmployerInfoMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,6 +17,6 @@ class SendEmployerInfoListener
 
     public function handle(ApplicationAcceptedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->queue(new EmployerInfoMail($event->application));
+        SendEmployerInfoMailJob::dispatch($event->application);
     }
 }
