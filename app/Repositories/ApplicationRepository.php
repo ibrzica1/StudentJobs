@@ -94,8 +94,8 @@ class ApplicationRepository implements ApplicationRepositoryInterface
         $application = $this->applicationModel
                         ->where('job_id',$job->id)
                         ->where('user_id', Auth::id())
-                        ->get();
-        if($application){
+                        ->first();
+        if(isset($application)){
             return false;
         } else {
             return true;
