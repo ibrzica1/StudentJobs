@@ -13,7 +13,6 @@ use App\Http\Middleware\AdminCheckMiddleware;
 use App\Http\Middleware\EmployerCheckMiddleware;
 use App\Http\Middleware\JobBelongsToUser;
 use App\Http\Middleware\StudentCheckMiddleware;
-use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/lenguage/{locale}', [LocalizationController::class, 'setLocale'])->name('locale.set');

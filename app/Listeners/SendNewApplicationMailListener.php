@@ -19,6 +19,6 @@ class SendNewApplicationMailListener
 
     public function handle(ApplicationCreatedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->send(new NewApplicationMail($event->application));
+        Mail::to('test@inbox.mailtrap.io')->queue(new NewApplicationMail($event->application));
     }
 }

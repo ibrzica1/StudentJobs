@@ -17,6 +17,6 @@ class SendApplicationRejectedMail
    
     public function handle(AppllicationRejectedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->send(new ApplicationRejectedMail($event->application));
+        Mail::to('test@inbox.mailtrap.io')->queue(new ApplicationRejectedMail($event->application));
     }
 }

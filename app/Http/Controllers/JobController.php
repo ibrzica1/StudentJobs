@@ -35,7 +35,7 @@ class JobController extends Controller
     public function show(Job $job): View
     {
         $job->load('location','company');
-        $similarJobs = $this->jobRepository->similarJobs(10,$job->category,$job->id);
+        $similarJobs = $this->jobRepository->similarJobs(10,$job->category->value,$job->id);
         return view("job/showJob",['job' => $job],['similarJobs' => $similarJobs]);
     }
 

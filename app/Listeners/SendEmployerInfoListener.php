@@ -16,6 +16,6 @@ class SendEmployerInfoListener
 
     public function handle(ApplicationAcceptedEvent $event): void
     {
-        Mail::to('test@inbox.mailtrap.io')->send(new EmployerInfoMail($event->application));
+        Mail::to('test@inbox.mailtrap.io')->queue(new EmployerInfoMail($event->application));
     }
 }
