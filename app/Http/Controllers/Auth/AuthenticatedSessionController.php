@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Interfaces\VisitRepositoryInterface;
 use App\Services\UpdateTodayVisitsCacheService;
+use Illuminate\Cache\Repository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,9 @@ class AuthenticatedSessionController extends Controller
 {
     private UpdateTodayVisitsCacheService $updateTodayService;
 
-    public function __construct(VisitRepositoryInterface $visitRepositoryInterface)
+    public function __construct(VisitRepositoryInterface $visitRepositoryInterface, Repository $cache)
     {
-        $this->updateTodayService = new UpdateTodayVisitsCacheService($visitRepositoryInterface);
+        $this->updateTodayService = new UpdateTodayVisitsCacheService($visitRepositoryInterface,$cache);
     }
     /**
      * Display the login view.
