@@ -10,14 +10,9 @@ use Carbon\Carbon;
 use App\Models\Bill;
 use App\Enums\BillStatusesEnum;
 ?>
-<style>
-    .hover-darken {
-        transition: background-color 0.3s ease;
-    }
-    .hover-darken:hover {
-        background-color: rgba(0, 0, 0, 0.1); 
-    }
-</style>
+@push('styles')
+    @vite(['resources/css/myBills.css'])
+@endpush
 
 <body class="bg-body-secondary">
 <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">

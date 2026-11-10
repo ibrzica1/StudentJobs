@@ -8,48 +8,9 @@
     use App\Enums\JobSettingTypesEnum;
     use App\Enums\JobDurationTypesEnum;
 @endphp
-
-<style>
-    .custom-range-slider::-webkit-slider-runnable-track {
-        background-color: #ffb4b4;
-        height: 0.5rem;
-        border-radius: 0.25rem;
-    }
-
-    .custom-range-slider::-moz-range-track {
-        background-color: #f00505;
-        height: 0.5rem;
-        border-radius: 0.25rem;
-    }
-    .custom-range-slider::-webkit-slider-thumb {
-        background-color: #2ea32c;
-    }
-    
-    .custom-range-slider::-moz-range-thumb {
-        background-color: #2ea32c;
-        border: none;
-    }
-
-    .custom-range-slider::-webkit-slider-thumb:active {
-        background-color: #2ea32c;
-    }
-
-    .custom-range-slider:focus::-webkit-slider-thumb {
-        box-shadow: 0 0 0 0.25rem rgba(129, 255, 74, 0.25);
-    }
-    .custom-input {
-        border: 1px solid #f00505 !important;
-        border-radius: 4px;
-    }
-    .custom-input:focus {
-        box-shadow: 0 0 0 0.25rem rgba(240, 5, 5, 0.25);
-    }
-    .input-group-text {
-        background-color: #fff;
-        border: 1px solid #f00505;
-        border-right: none;
-    }
-</style>
+@push('styles')
+    @vite(['resources/css/jobCreate.css'])
+@endpush
 
 <div class="container-fluid bg-light py-5">
     <div class="row justify-content-center">

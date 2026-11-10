@@ -14,46 +14,9 @@
         use App\Enums\ApplicationAcceptStatusesEnum;
         $time = new TimeService();
     ?>
-    <style>
-    .custom-tooltip {
-    position: relative;
-    display: inline-flex;
-}
-
-.custom-tooltip-text {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #2985ab;
-    color: #fff;
-    text-align: center;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    white-space: nowrap;
-    z-index: 10;
-    transition: opacity 0.15s ease;
-}
-
-.custom-tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: #2985ab transparent transparent transparent;
-}
-
-.custom-tooltip:hover .custom-tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-</style>
+@push('styles')
+    @vite(['resources/css/myApplications.css'])
+@endpush
 
     <div>
         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">

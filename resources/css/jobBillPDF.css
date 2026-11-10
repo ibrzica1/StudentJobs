@@ -1,0 +1,86 @@
+ @page {
+            margin: 35px 40px;
+        }
+
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 12px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .invoice-header {
+            border-bottom: 3px solid #f00505;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .invoice-title {
+            color: #f00505;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            color: #f00505;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .company-info p,
+        .customer-info p,
+        .bank-info p {
+            margin-bottom: 4px;
+        }
+
+        .table thead th {
+            background-color: #f00505;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #f00505;
+        }
+
+        .table tbody td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+        }
+
+        .total-row td {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .grand-total {
+            color: #f00505;
+            font-size: 15px;
+        }
+
+        .message-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #f00505;
+            padding: 15px;
+            margin-top: 25px;
+        }
+
+        .bank-section {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid #f00505;
+            text-align: center;
+            color: #666666;
+            font-size: 11px;
+        }
+
+        .text-muted {
+            color: #777777;
+        }

@@ -9,9 +9,7 @@
     use App\Enums\JobTypesEnum;
     $time = new TimeService();
 ?>
-<style>
 
-</style>
 <body class="bg-body-secondary">
 <div class="container p-5">
 

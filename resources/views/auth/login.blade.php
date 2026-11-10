@@ -3,21 +3,9 @@
 @section('pageTitle', 'Login')
 
 @section('content')
-
-<style>
-    /* Isti stil kao kod registracije za potpunu konzistentnost */
-    .custom-input {
-        border: 1px solid #f00505 !important;
-    }
-    .custom-input:focus {
-        box-shadow: 0 0 0 0.25rem rgba(240, 5, 5, 0.25);
-    }
-    .input-group-text {
-        background-color: #fff;
-        border: 1px solid #f00505;
-        border-right: none;
-    }
-</style>
+@push('styles')
+    @vite(['resources/css/login.css'])
+@endpush
 
 <div class="container-fluid bg-light py-5 min-vh-100 d-flex align-items-center">
     <div class="row justify-content-center w-100">
