@@ -1,83 +1,88 @@
 @extends("layout")
 
 @section("pageTitle")
-    Profile
+Profile
 @endsection
 
 @section("content")
-<?php 
+<?php
+
 use App\Enums\UserRolesEnum;
 ?>
 <div class="bg-body-secondary">
 
 
-<div class="container py-5">
+    <div class="container py-5">
 
-    <div class="row g-4">
+        <div class="row g-4">
 
-        {{-- PROFILE CARD --}}
-        <div class="col-lg-4">
+            {{-- PROFILE CARD --}}
+            <div class="col-lg-4">
 
-            <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0">
 
-            <div class="card-body justify-content-center text-center p-4">
+                    <div class="card-body justify-content-center text-center p-4">
 
-                @include('profile.partials.profile-card')
+                        @include('profile.partials.profile-card')
 
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        {{-- EDIT PROFILE --}}
-        <div class="col-lg-8">
+                {{-- EDIT PROFILE --}}
+                <div class="col-lg-8">
 
-            <div class="card shadow-sm border-0">
+                    <div class="card shadow-sm border-0">
 
-                <div class="card-body p-4">
-                    <x-error-message/>
+                        <div class="card-body p-4">
+                            <x-error-message />
 
-                    {{-- PERSONAL DETAILS --}}
-                    @include('profile.partials.personal-details-form')
+                            {{-- PERSONAL DETAILS --}}
+                            @include('profile.partials.personal-details-form')
 
-                    {{-- ADDRESS --}}
-                    @include('profile.partials.address-form')
-                    
-                    {{-- CHANGE AVATAR --}}
-                    @include('profile.partials.change-avatar-form') 
-                    
-                    {{-- CV --}}
-                    @include('profile.partials.CV-form') 
+                            {{-- ADDRESS --}}
+                            @include('profile.partials.address-form')
 
-                    @if ($user->role === UserRolesEnum::EMPLOYER->value)
-                        
-                        @if ($companies !== null)
-                            
+                            {{-- CHANGE AVATAR --}}
+                            @include('profile.partials.change-avatar-form')
+
+                            {{-- CV --}}
+                            @include('profile.partials.CV-form')
+
+                            @if ($user->role === UserRolesEnum::EMPLOYER->value)
+
+                            @if ($companies !== null)
+
                             @foreach ($companies as $company)
-                                
-                                {{-- CHANGE COMPANY LOGO --}}
-                                @include('profile.partials.change-company-logo-form') 
 
-                                {{-- COMPANY INFO --}}
-                                @include('profile.partials.company-info-form') 
+                            {{-- CHANGE COMPANY LOGO --}}
+                            @include('profile.partials.change-company-logo-form')
 
-                                {{-- COMPANY DELETE --}}
-                                @include('profile.partials.delete-company-form') 
+                            {{-- COMPANY INFO --}}
+                            @include('profile.partials.company-info-form')
+
+                            {{-- COMPANY DELETE --}}
+                            @include('profile.partials.delete-company-form')
 
                             @endforeach
 
-                        @endif
-                        
-                        <livewire:profile-livewire />
+                            @endif
 
-                    @endif
+                            <livewire:profile-livewire />
 
-                    @if ($user->role === UserRolesEnum::STUDENT->value)
+                            @endif
 
-                        <livewire:mobility/>
+                            @if ($user->role === UserRolesEnum::STUDENT->value)
 
-                        {{-- EDUCATION --}}
-                        @include('profile.partials.education-form') 
-                        
-                    @endif
+                            <livewire:mobility />
+
+                            {{-- EDUCATION --}}
+                            @include('profile.partials.education-form')
+
+                            @endif
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -86,8 +91,4 @@ use App\Enums\UserRolesEnum;
 
     </div>
 
-</div>
-
-</div>
-
-@endsection
+    @endsection

@@ -4,7 +4,7 @@
 
 @section('content')
 @push('styles')
-    @vite(['resources/css/registerEmployer.css'])
+@vite(['resources/css/registerEmployer.css'])
 @endpush
 
 <div class="container-fluid bg-light py-5">
@@ -20,17 +20,17 @@
                     <hr class="mb-4">
 
                     <form method="POST" action="{{ route('store.employer') }}" enctype="multipart/form-data">
-                        <x-error-message/>
+                        <x-error-message />
                         @csrf
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">Account Information</h6>
-                        
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/mail.svg') }}" style="width: 20px;"></span>
-                                <input type="email" id="email" name="email" value="{{ old('email') }}" 
-                                       class="form-control custom-input @error('email') is-invalid @enderror" required>
+                                <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                    class="form-control custom-input @error('email') is-invalid @enderror" required>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@
                             <label class="form-label">City</label>
                             <livewire:location-search />
                         </div>
-                        
+
 
                         <div class="mb-4">
                             <label for="telephone" class="form-label">Telephone Number</label>

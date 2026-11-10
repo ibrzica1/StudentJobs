@@ -1,28 +1,30 @@
 <?php
+
 use App\Enums\JobCategories;
 use App\Enums\JobTypesEnum;
 ?>
 
 <div class="d-flex flex-column w-100 mt-5 p-4 text-white"
-style="background-color: rgb(28, 128, 169);">
+    style="background-color: rgb(28, 128, 169);">
     <div class="d-flex d-flex justify-content-around">
         <div>
             <div class="d-flex justify-content-center align-items-center border-bottom">
-                <img src="{{ asset('storage/images/icons/PageLogo.png') }}" 
-                 alt="Logo"
-                 class="h-[85px] object-contain">
+                <img src="{{ asset('storage/images/icons/PageLogo.png') }}"
+                    alt="Logo"
+                    class="h-[85px] object-contain">
             </div>
             <div class="d-flex flex-column gap-2 py-2">
                 <p>{{env('COMPANY_NAME')}}</p>
                 <p>{{env('COMPANY_STREET')}}</p>
-                <p>{{env('COMPANY_POSTAL_CODE')}}</p><p>{{env('COMPANY_CITY')}}</p>
+                <p>{{env('COMPANY_POSTAL_CODE')}}</p>
+                <p>{{env('COMPANY_CITY')}}</p>
             </div>
         </div>
         <div>
             <div class="d-flex justify-content-center align-items-center pt-3 pb-4 border-bottom">
-                <img src="{{ asset('storage/images/icons/phone.png') }}" 
-                 alt="Logo"
-                 class="h-[45px] object-contain">
+                <img src="{{ asset('storage/images/icons/phone.png') }}"
+                    alt="Logo"
+                    class="h-[45px] object-contain">
             </div>
             <div class="d-flex flex-column gap-2 py-2">
                 <p class="text-center h4 fw-bold">{{env('COMPANY_TELEPHONE')}}</p>

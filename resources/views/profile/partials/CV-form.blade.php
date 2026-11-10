@@ -1,9 +1,9 @@
 <form
-action="{{ route('profile.update.user-cv') }}"
-method="POST"
-enctype="multipart/form-data">
-@csrf
-@method('PATCH')
+    action="{{ route('profile.update.user-cv') }}"
+    method="POST"
+    enctype="multipart/form-data">
+    @csrf
+    @method('PATCH')
 
     <hr class="my-4">
 
@@ -17,14 +17,12 @@ enctype="multipart/form-data">
             type="file"
             name="cv"
             id="cv"
-            class="form-control"
-        >
+            class="form-control">
     </div>
 
     <button
         type="submit"
-        class="btn btn-success btn-lg w-100 py-3"
-    >
+        class="btn btn-success btn-lg w-100 py-3">
         {{__('profile.UPLOAD CV')}}
     </button>
 

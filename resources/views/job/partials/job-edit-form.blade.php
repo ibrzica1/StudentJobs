@@ -1,8 +1,9 @@
-<?php 
+<?php
+
 use App\Models\Job;
 ?>
 @push('styles')
-    @vite(['resources/css/jobEditForm.css'])
+@vite(['resources/css/jobEditForm.css'])
 @endpush
 
 <div class="container-fluid bg-light py-5">
@@ -10,10 +11,10 @@ use App\Models\Job;
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-5">
-                    
+
                     <h2 class="text-end fw-bold mb-4">
-                       {{__('jobCreate.Update /')}}  
-                       <span class="text-primary">{{__('jobCreate.Job')}}</span>
+                        {{__('jobCreate.Update /')}}
+                        <span class="text-primary">{{__('jobCreate.Job')}}</span>
                     </h2>
                     <hr class="mb-4">
 
@@ -21,11 +22,12 @@ use App\Models\Job;
                         @csrf
                         @method('PATCH')
                         @if($errors->any())
-                            <div class="alert alert-danger">{{$errors->first()}}</div>
+                        <div class="alert alert-danger">{{$errors->first()}}</div>
                         @endif
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">
-                            {{__('jobCreate.Booking details')}}</h6>
+                            {{__('jobCreate.Booking details')}}
+                        </h6>
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('jobCreate.Title / Your booking')}}</label>
@@ -33,14 +35,14 @@ use App\Models\Job;
                                 <span class="input-group-text">
                                     <img src="{{ asset('storage/images/icons/title.svg') }}" width="20">
                                 </span>
-                                  <input type="text" name="title" class="form-control custom-input"
-                                   value="{{$job->title}}" required>
+                                <input type="text" name="title" class="form-control custom-input"
+                                    value="{{$job->title}}" required>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">{{__('jobCreate.Location')}}</label>
-                            <livewire:location-search :job="$job"/>
+                            <livewire:location-search :job="$job" />
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -53,9 +55,9 @@ use App\Models\Job;
                                     <option value="{{$job->company->id}}">{{$job->company->name}}</option>
                                     <option value="">{{__('jobCreate.NONE')}}</option>
                                     @foreach ($companies as $company)
-                                        <option value="{{$company->id}}">
-                                            {{$company->name}}
-                                        </option>
+                                    <option value="{{$company->id}}">
+                                        {{$company->name}}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -64,7 +66,7 @@ use App\Models\Job;
                         <div class=" col-md-6 mb-3">
                             <label class="form-label">
                                 {{__('jobCreate.Wage per hour')}}</label>
-                            <livewire:wage-range :job="$job"/>
+                            <livewire:wage-range :job="$job" />
                         </div>
 
                         <div class="row">
@@ -78,13 +80,13 @@ use App\Models\Job;
                                     <select name="setting_type" class="form-select custom-input">
                                         <option value="{{$job->setting_type}}">{{$job->setting_type}}</option>
                                         @foreach (Job::ALLOWED_SETTING_TYPES as $type)
-                                            <option value="{{__('settingTypes.$type')}}">
-                                                {{__("settingTypes.$type")}}
-                                            </option>
+                                        <option value="{{__('settingTypes.$type')}}">
+                                            {{__("settingTypes.$type")}}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">
@@ -93,8 +95,8 @@ use App\Models\Job;
                                     <span class="input-group-text">
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
                                     </span>
-                                     <input type="number" name="weekly_hours" class="form-control custom-input"
-                                     value="{{$job->weekly_hours}}">
+                                    <input type="number" name="weekly_hours" class="form-control custom-input"
+                                        value="{{$job->weekly_hours}}">
                                 </div>
                             </div>
                         </div>
@@ -108,9 +110,9 @@ use App\Models\Job;
                                         <img src="{{ asset('storage/images/icons/calendar.svg') }}" width="20">
                                     </span>
                                     <input type="date" name="start_date" class="form-control custom-input"
-                                    value="{{$job->start_date}}">
+                                        value="{{$job->start_date}}">
                                 </div>
-                                
+
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">
@@ -122,18 +124,19 @@ use App\Models\Job;
                                     <select name="duration" class="form-select custom-input">
                                         <option value="{{$job->duration}}">{{$job->duration}}</option>
                                         @foreach (Job::ALLOWED_DURATION_TYPES as $type)
-                                            <option value="{{__('durationTypes.$type')}}">
-                                                {{__("durationTypes.$type")}}
-                                            </option>
+                                        <option value="{{__('durationTypes.$type')}}">
+                                            {{__("durationTypes.$type")}}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                         <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">
-                            {{__('jobCreate.Job Description')}}</h6>
+                            {{__('jobCreate.Job Description')}}
+                        </h6>
 
                         <div class="mb-3">
                             <label class="form-label">

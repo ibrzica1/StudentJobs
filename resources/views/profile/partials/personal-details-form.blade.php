@@ -1,115 +1,105 @@
-
 <h2 class="fw-bold mb-4">
     {{__('profile.Edit Information')}}
 </h2>
 
 <form
-action="{{route('profile.update.user-info')}}"
-method="POST"
->
-@csrf
-@method('PATCH')
+    action="{{route('profile.update.user-info')}}"
+    method="POST">
+    @csrf
+    @method('PATCH')
 
-{{-- PERSONAL DETAILS --}}
-<h6 class="text-uppercase text-muted fw-bold mb-3">
-    {{__('profile.Personal Details')}}
-</h6>
+    {{-- PERSONAL DETAILS --}}
+    <h6 class="text-uppercase text-muted fw-bold mb-3">
+        {{__('profile.Personal Details')}}
+    </h6>
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-3">
 
-        <label for="firstName" class="form-label">
-            {{__('profile.First Name')}}
-        </label>
+            <label for="firstName" class="form-label">
+                {{__('profile.First Name')}}
+            </label>
 
-        <div class="input-group">
+            <div class="input-group">
 
-            <span class="input-group-text">
-                <img
-                    src="{{ asset('storage/images/icons/usr-info.svg') }}"
-                    width="20"
-                >
-            </span>
+                <span class="input-group-text">
+                    <img
+                        src="{{ asset('storage/images/icons/usr-info.svg') }}"
+                        width="20">
+                </span>
 
-            <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value="{{ $user->firstName }}"
-                class="form-control"
-                required
-            >
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value="{{ $user->firstName }}"
+                    class="form-control"
+                    required>
 
-        </div>
-
-    </div>
-
-    <div class="col-md-6 mb-3">
-
-        <label for="lastName" class="form-label">
-            {{__('profile.Last Name')}}
-        </label>
-
-        <div class="input-group">
-
-            <span class="input-group-text">
-                <img
-                    src="{{ asset('storage/images/icons/usr-info.svg') }}"
-                    width="20"
-                >
-            </span>
-
-            <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value="{{ $user->lastName }}"
-                class="form-control"
-                required
-            >
+            </div>
 
         </div>
 
-    </div>
+        <div class="col-md-6 mb-3">
 
-    <div class="mb-4">
+            <label for="lastName" class="form-label">
+                {{__('profile.Last Name')}}
+            </label>
 
-        <label
-            for="telephone"
-            class="form-label"
-        >
-            {{__('profile.Telephone Number')}}
-        </label>
+            <div class="input-group">
 
-        <div class="input-group">
+                <span class="input-group-text">
+                    <img
+                        src="{{ asset('storage/images/icons/usr-info.svg') }}"
+                        width="20">
+                </span>
 
-            <span class="input-group-text">
-                <img
-                    src="{{ asset('storage/images/icons/telephone.svg') }}"
-                    width="20"
-                >
-            </span>
+                <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value="{{ $user->lastName }}"
+                    class="form-control"
+                    required>
 
-            <input
-                type="tel"
-                id="telephone"
-                name="telephone"
-                value="{{ $user->telephone }}"
-                class="form-control"
-            >
+            </div>
 
         </div>
 
-    </div>
+        <div class="mb-4">
+
+            <label
+                for="telephone"
+                class="form-label">
+                {{__('profile.Telephone Number')}}
+            </label>
+
+            <div class="input-group">
+
+                <span class="input-group-text">
+                    <img
+                        src="{{ asset('storage/images/icons/telephone.svg') }}"
+                        width="20">
+                </span>
+
+                <input
+                    type="tel"
+                    id="telephone"
+                    name="telephone"
+                    value="{{ $user->telephone }}"
+                    class="form-control">
+
+            </div>
+
+        </div>
 
         <button
-        type="submit"
-        class="btn btn-success btn-lg w-100 py-3"
-    >
-        {{__('profile.SAVE CHANGES')}}
-    </button>
+            type="submit"
+            class="btn btn-success btn-lg w-100 py-3">
+            {{__('profile.SAVE CHANGES')}}
+        </button>
 
-</div>
+    </div>
 
 </form>

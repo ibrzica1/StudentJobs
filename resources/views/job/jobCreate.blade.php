@@ -4,12 +4,12 @@
 
 @section("content")
 @php
-    use App\Models\Job;
-    use App\Enums\JobSettingTypesEnum;
-    use App\Enums\JobDurationTypesEnum;
+use App\Models\Job;
+use App\Enums\JobSettingTypesEnum;
+use App\Enums\JobDurationTypesEnum;
 @endphp
 @push('styles')
-    @vite(['resources/css/jobCreate.css'])
+@vite(['resources/css/jobCreate.css'])
 @endpush
 
 <div class="container-fluid bg-light py-5">
@@ -17,20 +17,21 @@
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-5">
-                    
+
                     <h2 class="text-end fw-bold mb-4">
-                       {{__('jobCreate.Create /')}}  
-                       <span class="text-primary">{{__('jobCreate.Job')}}</span>
+                        {{__('jobCreate.Create /')}}
+                        <span class="text-primary">{{__('jobCreate.Job')}}</span>
                     </h2>
                     <hr class="mb-4">
 
                     <form action="{{route('job.store')}}" method="post">
                         @csrf
-                        
-                        <x-error-message/> 
+
+                        <x-error-message />
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">
-                            {{__('jobCreate.Booking details')}}</h6>
+                            {{__('jobCreate.Booking details')}}
+                        </h6>
                         <input type="hidden" name="category" value="{{$category}}">
                         <div class="mb-3">
                             <label class="form-label">
@@ -40,14 +41,14 @@
                                     <img src="{{ asset('storage/images/icons/title.svg') }}" width="20">
                                 </span>
                                 @if (isset($category))
-                                    <input type="text" name="title" 
+                                <input type="text" name="title"
                                     value="{{__('enums.job_categories.'.$category)}} {{__('jobCreate.employee needed')}}"
                                     class="form-control custom-input">
                                 @else
-                                  <input type="text" name="title" class="form-control custom-input"
-                                   placeholder="{{__('jobCreate.Job Title')}}" required>
+                                <input type="text" name="title" class="form-control custom-input"
+                                    placeholder="{{__('jobCreate.Job Title')}}" required>
                                 @endif
-                                
+
                             </div>
                         </div>
 
@@ -65,9 +66,9 @@
                                 <select name="company_id" class="form-select custom-input">
                                     <option value="">{{__('jobCreate.NONE')}}</option>
                                     @foreach ($companies as $company)
-                                        <option value="{{$company->id}}">
-                                            {{$company->name}}
-                                        </option>
+                                    <option value="{{$company->id}}">
+                                        {{$company->name}}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -89,11 +90,11 @@
                                     </span>
                                     <select name="setting_type" class="form-select custom-input">
                                         @foreach (JobSettingTypesEnum::cases() as $type)
-                                            <option>{{__("enums.setting_types.$type->value")}}</option>
+                                        <option>{{__("enums.setting_types.$type->value")}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">
@@ -102,7 +103,7 @@
                                     <span class="input-group-text">
                                         <img src="{{ asset('storage/images/icons/watch.svg') }}" width="20">
                                     </span>
-                                     <input type="number" name="weekly_hours" class="form-control custom-input">
+                                    <input type="number" name="weekly_hours" class="form-control custom-input">
                                 </div>
                             </div>
                         </div>
@@ -117,7 +118,7 @@
                                     </span>
                                     <input type="date" name="start_date" class="form-control custom-input">
                                 </div>
-                                
+
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">
@@ -128,16 +129,17 @@
                                     </span>
                                     <select name="duration" class="form-select custom-input">
                                         @foreach (JobDurationTypesEnum::cases() as $type)
-                                            <option>{{__("enums.duration_types.$type->value")}}</option>
+                                        <option>{{__("enums.duration_types.$type->value")}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                         <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">
-                            {{__('jobCreate.Job Description')}}</h6>
+                            {{__('jobCreate.Job Description')}}
+                        </h6>
 
                         <div class="mb-3">
                             <label class="form-label">
@@ -149,11 +151,11 @@
                             <label class="form-label">
                                 {{__('jobCreate.Expectation')}}</label>
                             @if (isset($category))
-                                <textarea name="expectation" class="form-control custom-input" rows="8">
-                                {{__("enums.expectations.$category")}}
-                                </textarea>
+                            <textarea name="expectation" class="form-control custom-input" rows="8">
+                            {{__("enums.expectations.$category")}}
+                            </textarea>
                             @else
-                                <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
+                            <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
                             @endif
                         </div>
 

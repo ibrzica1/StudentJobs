@@ -1,332 +1,335 @@
 @extends("layout")
 
 @section("pageTitle")
-    My Ads
+My Ads
 @endsection
 
 @section("content")
-    <?php 
-        use Carbon\Carbon;
-        use App\Services\TimeService;
-        use App\Models\Job;
-        use App\Models\Application;
-        use App\Enums\JobStatusesEnum;
-        use App\Enums\JobTypesEnum;
-        use App\Enums\ApplicationAcceptStatusesEnum;
-        $time = new TimeService();
-    ?>
-    <body class="bg-body-secondary">
-    <x-error-message/>
+<?php
+
+use Carbon\Carbon;
+use App\Services\TimeService;
+use App\Models\Job;
+use App\Models\Application;
+use App\Enums\JobStatusesEnum;
+use App\Enums\JobTypesEnum;
+use App\Enums\ApplicationAcceptStatusesEnum;
+
+$time = new TimeService();
+?>
+
+<body class="bg-body-secondary">
+    <x-error-message />
 
     <div>
         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
             {{__('myAds.My Adds')}}
         </h6>
 
-        
+
     </div>
 
     @if ($ads->isEmpty())
-        <div class="container">
-            <div class="bg-white rounded shadow p-5 text-center">
-                <img src="{{ asset('storage/images/icons/no-data.png') }}"
-                    class="d-block mx-auto mb-4"
-                    width="80"
-                    height="80"
-                    style="object-fit: cover;">
-                <h3 class="fw-bold mb-2">{{__('myAds.You haven\'t created any jobs yet, but it\'s about time!')}}</h3>
-                <p class="text-muted mb-4">{{__('myAds.Start by creating your first job listing.')}}</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="{{route('job.categories', ['jobType' => 'job'])}}" class="btn btn-danger px-4 py-2">
-                        {{__('myAds.Create Internship Job')}}
-                    </a>
-                    <a href="{{route('job.categories', ['jobType' => 'helper'])}}" class="btn btn-outline-danger px-4 py-2">
-                        {{__('myAds.Create Helper Job')}}
-                    </a>
-                </div>
-            </div>
-        </div>
-    @else
-       @foreach ($ads as $job)
-        <div class="container mx-6 my-4 bg-white rounded shadow overflow-hidden">
-            
-            <div class="d-flex pt-2 column-gap-3 align-items-center">
-                <div class="d-flex column-gap-3 flex-grow-1 text-decoration-none text-dark">
-                    <div class="col-3">
-                        @if ($job->company === null)
-                            <img src="{{ asset('storage/images/company_logo/default.png') }}"
-                            class="rounded-circle shadow-sm mb-3 d-block mx-auto"
-                            width="50"
-                            height="50"
-                            style="object-fit: cover;">
-                        @else
-                            <img src="{{ asset('storage/images/company_logo/'.$job->company->logo) }}"
-                            class="rounded-circle shadow-sm mb-3 d-block mx-auto"
-                            width="50"
-                            height="50"
-                            style="object-fit: cover;">
-                        @endif
-                        <div class="text-center text-muted small">
-                            {{ __('homepage.Published') }} {{$time->calculateTime($job->created_at)}}
-                        </div>
-                        @if ($job->status === JobStatusesEnum::ACTIVE->value)
-                        <div class="d-flex align-items-center justify-content-center p-1">
-                            <p class="bg-success text-white px-2 py-1 rounded fw-bold">ACTIVE</p>
-                        </div>
-                        @elseif ($job->status === JobStatusesEnum::PROMISED->value)
-                        <div class="d-flex align-items-center justify-content-center p-1">
-                            <p class="bg-warning text-white px-2 py-1 rounded fw-bold">PROMISED</p>
-                        </div>
-                        @elseif ($job->status === JobStatusesEnum::FINISHED->value)
-                        <div class="d-flex align-items-center justify-content-center p-1">
-                            <p class="bg-danger text-white px-2 py-1 rounded fw-bold">FINISHED</p>
-                        </div>
-                        @endif
-                    </div>
-
-                    <div class="col">
-                        <h3 class="text-danger fw-bold my-2">
-                            {{$job->title}}
-                        </h3>
-                        <div class="d-flex justify-content-between column-gap-4">
-
-                            <div class="m-2 column-gap-3">
-                                <div class="d-flex column-gap-2 mb-2">
-                                    <img src="{{ asset('storage/images/icons/location.svg') }}" style="width: 20px;">
-                                    <p>{{$job->location->city}}</p>
-                                </div>
-                                <div class="d-flex column-gap-2">
-                                    @if ($job->type === JobTypesEnum::JOB->value)
-                                        <img src="{{ asset('storage/images/icons/sand-watch.svg') }}" style="width: 20px;">
-                                        <p>{{$job->duration}}</p>
-                                    @else
-                                        <img src="{{ asset('storage/images/icons/group.svg') }}" style="width: 20px;">
-                                        <p>{{$job->employee_amount}}</p>
-                                    @endif
-                                </div>
-                            </div>
-
-                            @if ($job->type === JobTypesEnum::JOB->value)
-                            <div class="m-2 column-gap-3">
-                                <div class="d-flex column-gap-2 mb-2">
-                                    <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
-                                    <p>{{$job->start_date}}</p>
-                                </div>
-                                <div class="d-flex column-gap-2">
-                                    <img src="{{ asset('storage/images/icons/watch.svg') }}" style="width: 20px;">
-                                    <p>{{$job->weekly_hours}} / {{ __('homepage.week') }}</p>
-                                </div>
-                            </div>
-                            @else
-                            <div class="d-flex m-2 column-gap-3">
-                                <div>
-                                    <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
-                                </div>
-                                <div>
-                                    <div class="fw-bold text-center">{{Carbon::parse($job->start_date)->dayOfMonth}}</div>
-                                    <div class="text-danger text-center">{{Carbon::parse($job->start_date)->shortEnglishDayOfWeek;}}</div>
-                                </div>
-                                <div>
-                                    <div class="fw-bold text-center">{{Carbon::parse($job->start_date)->format('F')}}</div>
-                                    <div class="text-center">{{Carbon::parse($job->start_date)->year}}</div>
-                                </div>
-                                <div>
-                                    <div class="fw-bold text-center">{{Carbon::parse($job->from)->format('H:i')}}
-                                        - {{Carbon::parse($job->to)->format('H:i')}}</div>
-                                    <div class="text-center">{{$time->durationHours($job->from,$job->to)}} {{ __('homepage.hours') }}</div>
-                                </div>
-                            </div>
-                            @endif
-
-                            <div>
-                                <h1 class="h1">{{$job->wage}}</h1>
-                                <p>e{{ __('homepage.euro per hour') }}</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                @if ($job->status === JobStatusesEnum::ACTIVE->value)
-                    <div class="d-flex flex-column align-items-center gap-2 ms-3">
-                        <a href="{{ route('job.edit',['job' => $job->id]) }}" 
-                        class="btn btn-success btn-sm">
-                            {{__('myAds.EDIT')}}
-                        </a>
-                        <form action="{{route('job.delete',['job' => $job->id])}}" method="post" class="m-0">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                {{__('profile.DELETE')}}
-                            </button>
-                        </form>
-                    </div>
-                @endif
-                
-            </div>
-
-            <div class="d-flex align-items-center justify-content-around p-3"
-                style="background-color: blanchedalmond;">
-                <h3 class="m-0 text-danger">
-                    {{Application::getNumberOfUnseenApplications($job->applications)}} {{__('myAds.NEW!')}}
-                </h3>
-                <p>{{__('myAds.Total applications')}} ({{$job->applications->count()}})</p>
-                <a href="{{route('application.index',['job' => $job->id])}}"
-                class="btn btn-warning btn-sm">
-                    {{__('myAds.APPLICATIONS')}}
+    <div class="container">
+        <div class="bg-white rounded shadow p-5 text-center">
+            <img src="{{ asset('storage/images/icons/no-data.png') }}"
+                class="d-block mx-auto mb-4"
+                width="80"
+                height="80"
+                style="object-fit: cover;">
+            <h3 class="fw-bold mb-2">{{__('myAds.You haven\'t created any jobs yet, but it\'s about time!')}}</h3>
+            <p class="text-muted mb-4">{{__('myAds.Start by creating your first job listing.')}}</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{{route('job.categories', ['jobType' => 'job'])}}" class="btn btn-danger px-4 py-2">
+                    {{__('myAds.Create Internship Job')}}
+                </a>
+                <a href="{{route('job.categories', ['jobType' => 'helper'])}}" class="btn btn-outline-danger px-4 py-2">
+                    {{__('myAds.Create Helper Job')}}
                 </a>
             </div>
+        </div>
+    </div>
+    @else
+    @foreach ($ads as $job)
+    <div class="container mx-6 my-4 bg-white rounded shadow overflow-hidden">
 
-            @if ($job->status !== JobStatusesEnum::ACTIVE->value)
-                <div class="mt-4 p-4 bg-light rounded shadow-sm">
-                    <h4 class="fw-bold text-danger mb-4">
-                        Rate the students
-                    </h4>
+        <div class="d-flex pt-2 column-gap-3 align-items-center">
+            <div class="d-flex column-gap-3 flex-grow-1 text-decoration-none text-dark">
+                <div class="col-3">
+                    @if ($job->company === null)
+                    <img src="{{ asset('storage/images/company_logo/default.png') }}"
+                        class="rounded-circle shadow-sm mb-3 d-block mx-auto"
+                        width="50"
+                        height="50"
+                        style="object-fit: cover;">
+                    @else
+                    <img src="{{ asset('storage/images/company_logo/'.$job->company->logo) }}"
+                        class="rounded-circle shadow-sm mb-3 d-block mx-auto"
+                        width="50"
+                        height="50"
+                        style="object-fit: cover;">
+                    @endif
+                    <div class="text-center text-muted small">
+                        {{ __('homepage.Published') }} {{$time->calculateTime($job->created_at)}}
+                    </div>
+                    @if ($job->status === JobStatusesEnum::ACTIVE->value)
+                    <div class="d-flex align-items-center justify-content-center p-1">
+                        <p class="bg-success text-white px-2 py-1 rounded fw-bold">ACTIVE</p>
+                    </div>
+                    @elseif ($job->status === JobStatusesEnum::PROMISED->value)
+                    <div class="d-flex align-items-center justify-content-center p-1">
+                        <p class="bg-warning text-white px-2 py-1 rounded fw-bold">PROMISED</p>
+                    </div>
+                    @elseif ($job->status === JobStatusesEnum::FINISHED->value)
+                    <div class="d-flex align-items-center justify-content-center p-1">
+                        <p class="bg-danger text-white px-2 py-1 rounded fw-bold">FINISHED</p>
+                    </div>
+                    @endif
+                </div>
 
-                    @foreach ($job->applications as $application)
-                        @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
-                            @if ($application->user->ratings->contains('job_id',$job->id))
-                            @php
-                                $studentRating = $application->user->ratings
-                                    ->where('job_id', $job->id)
-                                    ->first();
-                            @endphp
+                <div class="col">
+                    <h3 class="text-danger fw-bold my-2">
+                        {{$job->title}}
+                    </h3>
+                    <div class="d-flex justify-content-between column-gap-4">
 
-                            <div class="bg-white rounded shadow-sm p-4 mb-4">
+                        <div class="m-2 column-gap-3">
+                            <div class="d-flex column-gap-2 mb-2">
+                                <img src="{{ asset('storage/images/icons/location.svg') }}" style="width: 20px;">
+                                <p>{{$job->location->city}}</p>
+                            </div>
+                            <div class="d-flex column-gap-2">
+                                @if ($job->type === JobTypesEnum::JOB->value)
+                                <img src="{{ asset('storage/images/icons/sand-watch.svg') }}" style="width: 20px;">
+                                <p>{{$job->duration}}</p>
+                                @else
+                                <img src="{{ asset('storage/images/icons/group.svg') }}" style="width: 20px;">
+                                <p>{{$job->employee_amount}}</p>
+                                @endif
+                            </div>
+                        </div>
 
-                                <div class="row">
+                        @if ($job->type === JobTypesEnum::JOB->value)
+                        <div class="m-2 column-gap-3">
+                            <div class="d-flex column-gap-2 mb-2">
+                                <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
+                                <p>{{$job->start_date}}</p>
+                            </div>
+                            <div class="d-flex column-gap-2">
+                                <img src="{{ asset('storage/images/icons/watch.svg') }}" style="width: 20px;">
+                                <p>{{$job->weekly_hours}} / {{ __('homepage.week') }}</p>
+                            </div>
+                        </div>
+                        @else
+                        <div class="d-flex m-2 column-gap-3">
+                            <div>
+                                <img src="{{ asset('storage/images/icons/calendar.svg') }}" style="width: 20px;">
+                            </div>
+                            <div>
+                                <div class="fw-bold text-center">{{Carbon::parse($job->start_date)->dayOfMonth}}</div>
+                                <div class="text-danger text-center">{{Carbon::parse($job->start_date)->shortEnglishDayOfWeek;}}</div>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-center">{{Carbon::parse($job->start_date)->format('F')}}</div>
+                                <div class="text-center">{{Carbon::parse($job->start_date)->year}}</div>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-center">{{Carbon::parse($job->from)->format('H:i')}}
+                                    - {{Carbon::parse($job->to)->format('H:i')}}</div>
+                                <div class="text-center">{{$time->durationHours($job->from,$job->to)}} {{ __('homepage.hours') }}</div>
+                            </div>
+                        </div>
+                        @endif
 
-                                    {{-- Student --}}
-                                    <div class="d-flex flex-column col-md-4 text-center border-end align-items-center justify-content-center">
-                                        <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
-                                            class="rounded shadow-sm mb-3"
-                                            width="110"
-                                            height="110"
-                                            style="object-fit: cover;">
+                        <div>
+                            <h1 class="h1">{{$job->wage}}</h1>
+                            <p>e{{ __('homepage.euro per hour') }}</p>
+                        </div>
 
-                                        <h5 class="fw-bold mb-1">
-                                            {{ $application->user->firstName }}
-                                            {{ $application->user->lastName }}
-                                        </h5>
+                    </div>
+                </div>
+            </div>
+            @if ($job->status === JobStatusesEnum::ACTIVE->value)
+            <div class="d-flex flex-column align-items-center gap-2 ms-3">
+                <a href="{{ route('job.edit',['job' => $job->id]) }}"
+                    class="btn btn-success btn-sm">
+                    {{__('myAds.EDIT')}}
+                </a>
+                <form action="{{route('job.delete',['job' => $job->id])}}" method="post" class="m-0">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        {{__('profile.DELETE')}}
+                    </button>
+                </form>
+            </div>
+            @endif
 
-                                        <small class="text-muted d-block mb-3">
-                                            {{ $application->user->location->city ?? '' }}
-                                        </small>
+        </div>
 
-                                        {{-- Average rating --}}
-                                        <div class="d-flex justify-content-center">
-                                            <x-user-rating :rating="$application->user->average_rating" />
-                                        </div>
-                                    </div>
+        <div class="d-flex align-items-center justify-content-around p-3"
+            style="background-color: blanchedalmond;">
+            <h3 class="m-0 text-danger">
+                {{Application::getNumberOfUnseenApplications($job->applications)}} {{__('myAds.NEW!')}}
+            </h3>
+            <p>{{__('myAds.Total applications')}} ({{$job->applications->count()}})</p>
+            <a href="{{route('application.index',['job' => $job->id])}}"
+                class="btn btn-warning btn-sm">
+                {{__('myAds.APPLICATIONS')}}
+            </a>
+        </div>
+
+        @if ($job->status !== JobStatusesEnum::ACTIVE->value)
+        <div class="mt-4 p-4 bg-light rounded shadow-sm">
+            <h4 class="fw-bold text-danger mb-4">
+                Rate the students
+            </h4>
+
+            @foreach ($job->applications as $application)
+            @if ($application->accept_status === ApplicationAcceptStatusesEnum::APPROVED->value)
+            @if ($application->user->ratings->contains('job_id',$job->id))
+            @php
+            $studentRating = $application->user->ratings
+            ->where('job_id', $job->id)
+            ->first();
+            @endphp
+
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+
+                <div class="row">
+
+                    {{-- Student --}}
+                    <div class="d-flex flex-column col-md-4 text-center border-end align-items-center justify-content-center">
+                        <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
+                            class="rounded shadow-sm mb-3"
+                            width="110"
+                            height="110"
+                            style="object-fit: cover;">
+
+                        <h5 class="fw-bold mb-1">
+                            {{ $application->user->firstName }}
+                            {{ $application->user->lastName }}
+                        </h5>
+
+                        <small class="text-muted d-block mb-3">
+                            {{ $application->user->location->city ?? '' }}
+                        </small>
+
+                        {{-- Average rating --}}
+                        <div class="d-flex justify-content-center">
+                            <x-user-rating :rating="$application->user->average_rating" />
+                        </div>
+                    </div>
 
 
-                                    {{-- Employer rating --}}
-                                    <div class="col-md-8 ps-md-5 mt-4 mt-md-0">
+                    {{-- Employer rating --}}
+                    <div class="col-md-8 ps-md-5 mt-4 mt-md-0">
 
-                                        <div class="mb-3">
-                                            <span class="text-uppercase text-muted small fw-bold">
-                                                {{__('myAds.My Rating')}}
-                                            </span>
+                        <div class="mb-3">
+                            <span class="text-uppercase text-muted small fw-bold">
+                                {{__('myAds.My Rating')}}
+                            </span>
 
-                                            <div class="d-flex align-items-center gap-2 mt-2">
+                            <div class="d-flex align-items-center gap-2 mt-2">
 
-                                                <span class="fs-4 fw-bold text-danger">
-                                                    {{ $studentRating?->score ?? '-' }}
-                                                </span>
+                                <span class="fs-4 fw-bold text-danger">
+                                    {{ $studentRating?->score ?? '-' }}
+                                </span>
 
-                                                <span class="text-muted">
-                                                    / 5
-                                                </span>
-
-                                            </div>
-                                        </div>
-
-
-                                        {{-- Comment --}}
-                                        @if ($studentRating?->comment)
-
-                                            <div class="border-top pt-3">
-
-                                                <span class="text-uppercase text-muted small fw-bold">
-                                                    {{__('myAds.My Comment')}}My Comment
-                                                </span>
-
-                                                <div class="bg-light rounded p-3 mt-2">
-                                                    <p class="mb-0 text-dark">
-                                                        "{{ $studentRating->comment }}"
-                                                    </p>
-                                                </div>
-
-                                            </div>
-
-                                        @else
-
-                                            <div class="border-top pt-3">
-                                                <span class="text-muted small">
-                                                   {{__('myAds.No comment was added.')}} 
-                                                </span>
-                                            </div>
-
-                                        @endif
-
-                                    </div>
-
-                                </div>
+                                <span class="text-muted">
+                                    / 5
+                                </span>
 
                             </div>
-                            @else
-                                <form action="{{route('rating.store')}}" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
-                                    @csrf
+                        </div>
 
-                                    <input type="hidden" name="user_id" value="{{$application->user_id}}">
-                                    <input type="hidden" name="job_id" value="{{$application->job_id}}">
-                                    <div class="row align-items-center">
 
-                                        {{-- Student --}}
-                                        <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
-                                            <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
-                                                class="rounded shadow-sm mb-2"
-                                                width="110"
-                                                height="110"
-                                                style="object-fit: cover;">
+                        {{-- Comment --}}
+                        @if ($studentRating?->comment)
 
-                                            <h5 class="fw-bold mb-1">
-                                                {{ $application->user->firstName }}
-                                                {{ $application->user->lastName }}
-                                            </h5>
+                        <div class="border-top pt-3">
 
-                                            <small class="text-muted">
-                                                {{ $application->user->location->city ?? '' }}
-                                            </small>
-                                        </div>
+                            <span class="text-uppercase text-muted small fw-bold">
+                                {{__('myAds.My Comment')}}My Comment
+                            </span>
 
-                                        <livewire:rating-livewire />
+                            <div class="bg-light rounded p-3 mt-2">
+                                <p class="mb-0 text-dark">
+                                    "{{ $studentRating->comment }}"
+                                </p>
+                            </div>
 
-                                        <div class="col-md-4">
-                                            <label class="fw-bold mb-2">
-                                                {{__('myAds.Comment')}} 
-                                            </label>
+                        </div>
 
-                                            <textarea name="comment"
-                                                    class="form-control"
-                                                    rows="4"
-                                                    placeholder="{{__('myAds.Write a comment...')}}"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="text-end mt-3 pt-3 border-top">
-                                        <button type="submit"
-                                                class="btn btn-danger px-4 fw-bold">
-                                            {{__('myAds.Submit rating')}} 
-                                        </button>
-                                    </div>
-                                </form>
-                            @endif
-                                    
+                        @else
+
+                        <div class="border-top pt-3">
+                            <span class="text-muted small">
+                                {{__('myAds.No comment was added.')}}
+                            </span>
+                        </div>
+
                         @endif
-                    @endforeach
+
+                    </div>
+
                 </div>
+
+            </div>
+            @else
+            <form action="{{route('rating.store')}}" method="post" class="bg-white rounded shadow-sm p-4 mb-3">
+                @csrf
+
+                <input type="hidden" name="user_id" value="{{$application->user_id}}">
+                <input type="hidden" name="job_id" value="{{$application->job_id}}">
+                <div class="row align-items-center">
+
+                    {{-- Student --}}
+                    <div class="d-flex flex-column col-md-4 text-center border-end align-items-center">
+                        <img src="{{ asset('storage/images/user_avatar/'.$application->user->profile_picture) }}"
+                            class="rounded shadow-sm mb-2"
+                            width="110"
+                            height="110"
+                            style="object-fit: cover;">
+
+                        <h5 class="fw-bold mb-1">
+                            {{ $application->user->firstName }}
+                            {{ $application->user->lastName }}
+                        </h5>
+
+                        <small class="text-muted">
+                            {{ $application->user->location->city ?? '' }}
+                        </small>
+                    </div>
+
+                    <livewire:rating-livewire />
+
+                    <div class="col-md-4">
+                        <label class="fw-bold mb-2">
+                            {{__('myAds.Comment')}}
+                        </label>
+
+                        <textarea name="comment"
+                            class="form-control"
+                            rows="4"
+                            placeholder="{{__('myAds.Write a comment...')}}"></textarea>
+                    </div>
+                </div>
+                <div class="text-end mt-3 pt-3 border-top">
+                    <button type="submit"
+                        class="btn btn-danger px-4 fw-bold">
+                        {{__('myAds.Submit rating')}}
+                    </button>
+                </div>
+            </form>
             @endif
+
+            @endif
+            @endforeach
         </div>
+        @endif
+    </div>
     @endforeach
     @endif
-   
-@endsection
+
+    @endsection

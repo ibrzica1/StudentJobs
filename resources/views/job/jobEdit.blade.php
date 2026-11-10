@@ -1,22 +1,23 @@
 @extends("layout")
 
 @section("pageTitle")
-    Job Edit
+Job Edit
 @endsection
 
 @section("content")
-<?php 
+<?php
+
 use App\Models\Job;
 use App\Enums\JobTypesEnum;
 ?>
-<x-error-message/>
+<x-error-message />
 @if ($job->type === JobTypesEnum::JOB)
-    
-    @include('job.partials.job-edit-form')
+
+@include('job.partials.job-edit-form')
 
 @elseif ($job->type === JobTypesEnum::HELPER_JOB)
 
-    @include('job.partials.helper-job-edit-form')
+@include('job.partials.helper-job-edit-form')
 
 @endif
 @endsection

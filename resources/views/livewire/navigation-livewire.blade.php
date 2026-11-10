@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 use App\Enums\JobCategories;
 use App\Enums\LocalizationEnum;
 use App\Enums\JobTypesEnum;
@@ -9,68 +10,67 @@ use App\Models\Localization;
 
 <nav class="relative bg-white shadow-sm py-0 px-3">
     <div class="flex justify-between items-center w-full">
-        
+
         <button class="p-3 border-0 transition-colors hover:bg-[#f4bdbd] rounded"
-                wire:click="$wire.toggleMenu">
-            <img src="{{ asset('storage/images/icons/menu-bar.png') }}" 
-                 alt="Menu"
-                 class="w-8 h-8 object-contain">
+            wire:click="$wire.toggleMenu">
+            <img src="{{ asset('storage/images/icons/menu-bar.png') }}"
+                alt="Menu"
+                class="w-8 h-8 object-contain">
         </button>
 
-        <div class="absolute top-full left-0 bg-white rounded-br-[10px] z-50 shadow" 
-             wire:show="showMenu"
-             wire:click.outside="showMenu = false"
-             style="width:300px">
-                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For employers')}}</div>
-                <a href="{{route('job.categories',['jobType' => JobTypesEnum::HELPER_JOB->value])}}" 
+        <div class="absolute top-full left-0 bg-white rounded-br-[10px] z-50 shadow"
+            wire:show="showMenu"
+            wire:click.outside="showMenu = false"
+            style="width:300px">
+            <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For employers')}}</div>
+            <a href="{{route('job.categories',['jobType' => JobTypesEnum::HELPER_JOB->value])}}"
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Post a helper job')}}</a>
-                <a href="{{route('job.categories',['jobType' => JobTypesEnum::JOB->value])}}" 
+            <a href="{{route('job.categories',['jobType' => JobTypesEnum::JOB->value])}}"
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
-                transition-colors text-gray-800 my-2 text-secondary"
-                >{{__('navigation.Post a internship job')}}</a>
-                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For students')}}</div>
-                <a href="{{route('homepage.type',['type' => JobTypesEnum::HELPER_JOB->value])}}" 
+                transition-colors text-gray-800 my-2 text-secondary">{{__('navigation.Post a internship job')}}</a>
+            <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.For students')}}</div>
+            <a href="{{route('homepage.type',['type' => JobTypesEnum::HELPER_JOB->value])}}"
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Find helper job')}}</a>
-                <a href="{{route('homepage.type',['type' => JobTypesEnum::JOB->value])}}" 
+            <a href="{{route('homepage.type',['type' => JobTypesEnum::JOB->value])}}"
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
                 {{__('navigation.Find internship job')}}</a>
-                <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.Categories')}}</div>
-                @foreach (JobCategories::cases() as $category)
-                <a href="{{route('homepage.category',['category' => $category->value])}}" 
+            <div class="py-4 px-5 bg-[#f4bdbd] fw-bold">{{__('navigation.Categories')}}</div>
+            @foreach (JobCategories::cases() as $category)
+            <a href="{{route('homepage.category',['category' => $category->value])}}"
                 class="block px-4 py-2 hover:bg-gray-200 rounded 
                 transition-colors text-gray-800 my-2 text-secondary">
-                {{__("enums.$category->value")}}</a>   
-                @endforeach
+                {{__("enums.$category->value")}}</a>
+            @endforeach
         </div>
-        
+
         <a href="/" class="p-0 m-0">
-            <img src="{{ asset('storage/images/icons/PageLogo.png') }}" 
-                 alt="Logo"
-                 class="h-[85px] object-contain">
+            <img src="{{ asset('storage/images/icons/PageLogo.png') }}"
+                alt="Logo"
+                class="h-[85px] object-contain">
         </a>
 
         <div class="flex items-center justify-between">
-        <div class="flex items-center justify-between gap-3
+            <div class="flex items-center justify-between gap-3
             bg-secondary-subtle py-2 px-2 mx-3 
             border-top-4 shadow-sm  rounded-5">
-            <div class="flex relative items-center justify-between border p-1 
+                <div class="flex relative items-center justify-between border p-1 
                 shadow-sm bg-danger-subtle px-2 gap-2 rounded-5 locale-switcher-red"
-                wire:click="$wire.toggleLocale"
-                role="button">
-                <img src="{{ asset('storage/images/icons/'.$locale.'.png') }}" style="width: 20px;">
-                <p class="text-center">{{$locale}}</p>
+                    wire:click="$wire.toggleLocale"
+                    role="button">
+                    <img src="{{ asset('storage/images/icons/'.$locale.'.png') }}" style="width: 20px;">
+                    <p class="text-center">{{$locale}}</p>
 
-                <div class="absolute top-9 left-0 py-2 bg-white px-2 z-50
+                    <div class="absolute top-9 left-0 py-2 bg-white px-2 z-50
                        bg-secondary-subtle gap-2 rounded"
-                       wire:show="showLocale"
-                       wire:click.outside="showLocale = false"
-                       style="width: 100px;">
-                    @foreach (LocalizationEnum::cases() as $locale)
+                        wire:show="showLocale"
+                        wire:click.outside="showLocale = false"
+                        style="width: 100px;">
+                        @foreach (LocalizationEnum::cases() as $locale)
                         <div class="flex items-center justify-between p-2 
                             rounded-5 locale-switcher-red"
                             wire:click.stop="$wire.setLocale('{{$locale->value}}')"
@@ -78,72 +78,72 @@ use App\Models\Localization;
                             <img src="{{ asset('storage/images/icons/'.$locale->value.'.png') }}" style="width: 20px;">
                             <p>{{$locale->value}}</p>
                         </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <button class="bg-success-subtle p-2 rounded-5 shadow-sm locale-switcher-green"
+                <button class="bg-success-subtle p-2 rounded-5 shadow-sm locale-switcher-green"
                     wire:click="$wire.updateLocale">
-                <img src="{{ asset('storage/images/icons/change.png') }}" style="width: 14px;">
-            </button>
-        </div>
-        <!-- Profile Button -->
-        <button class="p-3 border-0 transition-colors hover:bg-[#c4eccd] rounded"
+                    <img src="{{ asset('storage/images/icons/change.png') }}" style="width: 14px;">
+                </button>
+            </div>
+            <!-- Profile Button -->
+            <button class="p-3 border-0 transition-colors hover:bg-[#c4eccd] rounded"
                 wire:click="$wire.toggleProfile">
-            <img src="{{ asset('storage/images/icons/home.png') }}" 
-                 alt="Home"
-                 class="w-8 h-8 object-contain">
-        </button>
+                <img src="{{ asset('storage/images/icons/home.png') }}"
+                    alt="Home"
+                    class="w-8 h-8 object-contain">
+            </button>
 
-        <!-- Profile Dropdown -->
-        <div class="absolute top-full right-0 px-3 py-4 bg-white rounded-bl-[10px] z-50 shadow"
-             wire:show="showProfile"
-             wire:click.outside="showProfile = false"
-             style="width:300px">
-             @if ($user)
+            <!-- Profile Dropdown -->
+            <div class="absolute top-full right-0 px-3 py-4 bg-white rounded-bl-[10px] z-50 shadow"
+                wire:show="showProfile"
+                wire:click.outside="showProfile = false"
+                style="width:300px">
+                @if ($user)
                 @if ($user->role === UserRolesEnum::EMPLOYER->value)
-                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
-                    <a href="{{ route('job.my-ads',['status'=>'all']) }}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{ route('job.my-ads',['status'=>'all']) }}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Ads')}}</a>
-                    <a href="{{route('bill.index')}}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{route('bill.index')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Bills')}}</a>
-                    <form action="{{ route('logout') }}" method="POST" class="">
-                        @csrf
-                        <button href="{{route('logout')}}" class="block text-start p-2 px-4 hover:bg-gray-200 rounded 
+                <form action="{{ route('logout') }}" method="POST" class="">
+                    @csrf
+                    <button href="{{route('logout')}}" class="block text-start p-2 px-4 hover:bg-gray-200 rounded 
                         w-100 transition-colors text-red-600">
-                            {{__('navigation.Logout')}}</button>
-                    </form>
+                        {{__('navigation.Logout')}}</button>
+                </form>
                 @elseif ($user->role === UserRolesEnum::STUDENT->value)
-                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
-                    <a href="{{route('application.my-applications')}}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{route('application.my-applications')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.My Applications')}}</a>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
-                            {{__('navigation.Logout')}}</button>
-                    </form>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
+                        {{__('navigation.Logout')}}</button>
+                </form>
                 @elseif ($user->role === UserRolesEnum::ADMIN->value)
-                    <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{route('profile.edit')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Profile & Account')}}</a>
-                    <a href="{{route('admin.dashboard')}}" class="block p-2 px-4 hover:bg-gray-200 
+                <a href="{{route('admin.dashboard')}}" class="block p-2 px-4 hover:bg-gray-200 
                     rounded transition-colors text-gray-800">{{__('navigation.Admin Dashboard')}}</a>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
-                            {{__('navigation.Logout')}}</button>
-                    </form>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button href="{{route('logout')}}" class="block p-2 px-4 hover:bg-gray-200 rounded transition-colors text-red-600">
+                        {{__('navigation.Logout')}}</button>
+                </form>
                 @endif
-             @else
+                @else
                 <a href="{{route('login')}}" class="block p-2 px-4 hover:bg-gray-200 
                 rounded transition-colors text-gray-800">{{__('navigation.Login')}}</a>
                 <a href="{{route('register')}}" class="block p-2 px-4 hover:bg-gray-200 
                 rounded transition-colors text-gray-800">{{__('navigation.Register')}}</a>
-             @endif
-            
-            
+                @endif
+
+
+            </div>
         </div>
-    </div>
     </div>
 </nav>
 
@@ -152,13 +152,16 @@ use App\Models\Localization;
         transition: background-color 0.2s ease;
         cursor: pointer;
     }
+
     .locale-switcher-red:hover {
         background-color: #f4bdbd !important;
     }
+
     .locale-switcher-green {
         transition: background-color 0.2s ease;
         cursor: pointer;
     }
+
     .locale-switcher-green:hover {
         background-color: #a3cfbb !important;
     }

@@ -1,8 +1,9 @@
 <?php
+
 use Carbon\Carbon;
 ?>
 @push('styles')
-    @vite(['resources/css/jobEditForm.css'])
+@vite(['resources/css/jobEditForm.css'])
 @endpush
 
 <div class="container-fluid bg-light py-5">
@@ -13,8 +14,8 @@ use Carbon\Carbon;
                 <div class="card-body p-5">
 
                     <h2 class="text-end fw-bold mb-4">
-                    {{__('jobCreate.Update /')}} 
-                    <span class="text-primary">{{__('helperJobCreate.Helper')}}</span>
+                        {{__('jobCreate.Update /')}}
+                        <span class="text-primary">{{__('helperJobCreate.Helper')}}</span>
                     </h2>
                     <hr class="mb-4">
 
@@ -22,11 +23,12 @@ use Carbon\Carbon;
                         @csrf
                         @method('PATCH')
                         @if($errors->any())
-                            <div class="alert alert-danger">{{$errors->first()}}</div>
+                        <div class="alert alert-danger">{{$errors->first()}}</div>
                         @endif
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">
-                            {{__('helperJobCreate.Booking details')}}</h6>
+                            {{__('helperJobCreate.Booking details')}}
+                        </h6>
 
                         <input type="hidden" name="category" value="">
                         <div class="mb-3">
@@ -34,38 +36,38 @@ use Carbon\Carbon;
                                 {{__('helperJobCreate.Title / Your booking')}}</label>
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
-                                    <input type="text" name="title" class="form-control custom-input"
+                                <input type="text" name="title" class="form-control custom-input"
                                     value="{{$job->title}}" required>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">{{__('helperJobCreate.Location')}}</label>
-                            <livewire:location-search :job="$job"/>
+                            <livewire:location-search :job="$job" />
                         </div>
 
                         <div class="mb-3">
                             <label for="address" class="form-label">{{__('helperJobCreate.Address')}}</label>
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/street.svg') }}" style="width: 20px;"></span>
-                                <input type="text" name="address" id="address" class="form-control custom-input" 
-                                value="{{$job->address}}">
+                                <input type="text" name="address" id="address" class="form-control custom-input"
+                                    value="{{$job->address}}">
                             </div>
                         </div>
 
-                        
+
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('helperJobCreate.How many moving helpers?')}}</label>
-                            <input type="number" name="employee_amount" 
-                            class="form-control custom-input"
-                            value="{{$job->employee_amount}}">
+                            <input type="number" name="employee_amount"
+                                class="form-control custom-input"
+                                value="{{$job->employee_amount}}">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('helperJobCreate.Helper wage per person')}}</label>
-                            <livewire:wage-range :job="$job"/>
+                            <livewire:wage-range :job="$job" />
                         </div>
 
                         <div class="row">
@@ -73,47 +75,48 @@ use Carbon\Carbon;
                                 <label class="form-label">
                                     {{__('helperJobCreate.Deployment date')}}</label>
                                 <input type="date" name="start_date" class="form-control custom-input"
-                                value="{{$job->start_date}}">
+                                    value="{{$job->start_date}}">
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">
                                     {{__('helperJobCreate.From')}}</label>
                                 <input type="time" name="from" class="form-control custom-input"
-                                value="{{Carbon::parse($job->from)->format('H:i')}}">
+                                    value="{{Carbon::parse($job->from)->format('H:i')}}">
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">
                                     {{__('helperJobCreate.To')}}</label>
                                 <input type="time" name="to" class="form-control custom-input"
-                                value="{{Carbon::parse($job->to)->format('H:i')}}">
+                                    value="{{Carbon::parse($job->to)->format('H:i')}}">
                             </div>
                         </div>
 
                         <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">
-                            {{__('helperJobCreate.Job Details')}}</h6>
+                            {{__('helperJobCreate.Job Details')}}
+                        </h6>
 
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('helperJobCreate.Description')}}</label>
                             <textarea name="description" class="form-control custom-input" rows="3">
-{{$job->description}}
+                            {{$job->description}}
                             </textarea>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('helperJobCreate.Tasks')}}</label>
-                                <textarea name="tasks" class="form-control custom-input" rows="8">
-{{$job->tasks}}
-                                </textarea>
+                            <textarea name="tasks" class="form-control custom-input" rows="8">
+                            {{$job->tasks}}
+                            </textarea>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">
                                 {{__('helperJobCreate.Expectation')}}</label>
-                                <textarea name="expectation" class="form-control custom-input" rows="8">
-{{$job->expectation}}
-                                </textarea>
+                            <textarea name="expectation" class="form-control custom-input" rows="8">
+                            {{$job->expectation}}
+                            </textarea>
                         </div>
 
                         <div class="mt-4">

@@ -1,19 +1,20 @@
 @extends("layout")
 
 @section("pageTitle")
-    My Applications
+My Applications
 @endsection
 
 @section("content")
+
 <body class=" bg-body-secondary">
-    <x-error-message/>
+    <x-error-message />
 
     <img src="{{ !empty($user->profile_picture) && file_exists(storage_path('app/public/images/user_avatar/'.$user->profile_picture)) 
                         ? asset('storage/images/user_avatar/'.$user->profile_picture) 
                         : asset('storage/images/user_avatar/avatar-default.png') }}"
-                        class="rounded shadow-sm mb-3 d-block mx-auto m-3"
-                        style="width: 180px; height: 180px; object-fit: cover;">
-                
+        class="rounded shadow-sm mb-3 d-block mx-auto m-3"
+        style="width: 180px; height: 180px; object-fit: cover;">
+
     <h5 class="fw-bold mb-1 text-center">
         {{ $user->firstName }}
         {{ $user->lastName }}
@@ -21,7 +22,7 @@
 
     <x-user-rating :rating="$user->average_rating" />
 
-@foreach ($user->ratings as $rating)
+    @foreach ($user->ratings as $rating)
     <div class="bg-white rounded shadow-sm p-4 mb-4 m-3">
         <div class="row align-items-center">
 
@@ -30,26 +31,26 @@
                 <img src="{{ !empty($rating->job->employer->profile_picture) && file_exists(storage_path('app/public/images/user_avatar/'.$rating->job->employer->profile_picture)) 
                     ? asset('storage/images/user_avatar/'.$rating->job->employer->profile_picture) 
                     : asset('storage/images/user_avatar/avatar-default.png') }}"
-                     class="rounded shadow-sm mb-3 d-block mx-auto"
-                     style="width: 110px; height: 110px; object-fit: cover;">
+                    class="rounded shadow-sm mb-3 d-block mx-auto"
+                    style="width: 110px; height: 110px; object-fit: cover;">
 
                 <h5 class="fw-bold mb-1">
                     @if ($rating->job)
-                        {{ $rating->job->employer->firstName }}
-                        {{ $rating->job->employer->lastName }}
+                    {{ $rating->job->employer->firstName }}
+                    {{ $rating->job->employer->lastName }}
                     @else
-                        {{__('ratingIndex.Employer was deleted')}}
+                    {{__('ratingIndex.Employer was deleted')}}
                     @endif
-                    
+
                 </h5>
 
                 <small class="text-muted d-block mb-3">
                     @if ($rating->job)
-                        {{ $rating->job->employer->location->city ?? '' }}
+                    {{ $rating->job->employer->location->city ?? '' }}
                     @else
-                        {{__('ratingIndex.No location')}}
+                    {{__('ratingIndex.No location')}}
                     @endif
-                    
+
                 </small>
             </div>
 
@@ -74,28 +75,28 @@
 
                 {{-- Comment --}}
                 @if ($rating?->comment)
-                    <div class="border-top pt-3">
-                        <span class="text-uppercase text-muted small fw-bold">
-                            {{ __('myAds.Comment') }}
-                        </span>
-                        <div class="bg-light rounded p-3 mt-2">
-                            <p class="mb-0 text-dark">
-                                "{{ $rating->comment }}"
-                            </p>
-                        </div>
+                <div class="border-top pt-3">
+                    <span class="text-uppercase text-muted small fw-bold">
+                        {{ __('myAds.Comment') }}
+                    </span>
+                    <div class="bg-light rounded p-3 mt-2">
+                        <p class="mb-0 text-dark">
+                            "{{ $rating->comment }}"
+                        </p>
                     </div>
+                </div>
                 @else
-                    <div class="border-top pt-3">
-                        <span class="text-muted small">
-                            {{ __('myAds.No comment was added.') }} 
-                        </span>
-                    </div>
+                <div class="border-top pt-3">
+                    <span class="text-muted small">
+                        {{ __('myAds.No comment was added.') }}
+                    </span>
+                </div>
                 @endif
 
             </div>
 
         </div>
     </div>
-@endforeach
+    @endforeach
 </body>
 @endsection

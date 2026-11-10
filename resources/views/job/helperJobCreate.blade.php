@@ -4,11 +4,12 @@
 
 @section("content")
 
-<?php 
+<?php
+
 use App\Models\Job;
 ?>
 @push('styles')
-    @vite(['resources/css/jobCreate.css'])
+@vite(['resources/css/jobCreate.css'])
 @endpush
 
 <div class="container-fluid bg-light py-5">
@@ -19,17 +20,18 @@ use App\Models\Job;
                 <div class="card-body p-5">
 
                     <h2 class="text-end fw-bold mb-4">
-                       {{__('helperJobCreate.New Job')}} / 
-                       <span class="text-primary">{{__('helperJobCreate.Helper')}}</span>
+                        {{__('helperJobCreate.New Job')}} /
+                        <span class="text-primary">{{__('helperJobCreate.Helper')}}</span>
                     </h2>
                     <hr class="mb-4">
 
                     <form action="{{route('job.helper.store')}}" method="post">
                         @csrf
-                        <x-error-message/> 
+                        <x-error-message />
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">
-                            {{__('helperJobCreate.Booking details')}}</h6>
+                            {{__('helperJobCreate.Booking details')}}
+                        </h6>
 
                         <input type="hidden" name="category" value="{{$category}}">
                         <div class="mb-3">
@@ -38,13 +40,13 @@ use App\Models\Job;
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/title.svg') }}" style="width: 20px;"></span>
                                 @if (isset($category))
-                                    <input type="text" name="title" 
+                                <input type="text" name="title"
                                     value="{{__('enums.job_categories.'.$category)}} {{__('helperJobCreate.helper needed')}}"
                                     class="form-control custom-input">
                                 @else
-                                    <div class="flex-grow-1">
-                                        <livewire:helper-type-search />
-                                    </div>
+                                <div class="flex-grow-1">
+                                    <livewire:helper-type-search />
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -58,12 +60,12 @@ use App\Models\Job;
                             <label for="address" class="form-label">{{__('helperJobCreate.Address')}}</label>
                             <div class="input-group">
                                 <span class="input-group-text"><img src="{{ asset('storage/images/icons/street.svg') }}" style="width: 20px;"></span>
-                                <input type="text" name="address" id="address" class="form-control custom-input" 
-                                placeholder="{{__('helperJobCreate.Street address, house number (optional)')}}">
+                                <input type="text" name="address" id="address" class="form-control custom-input"
+                                    placeholder="{{__('helperJobCreate.Street address, house number (optional)')}}">
                             </div>
                         </div>
 
-                        
+
                         <div class="mb-3">
                             <label class="form-label">
                                 {{__('helperJobCreate.How many moving helpers?')}}</label>
@@ -95,7 +97,8 @@ use App\Models\Job;
                         </div>
 
                         <h6 class="text-uppercase text-muted fw-bold mt-4 mb-3">
-                            {{__('helperJobCreate.Job Details')}}</h6>
+                            {{__('helperJobCreate.Job Details')}}
+                        </h6>
 
                         <div class="mb-3">
                             <label class="form-label">
@@ -107,11 +110,11 @@ use App\Models\Job;
                             <label class="form-label">
                                 {{__('helperJobCreate.Tasks')}}</label>
                             @if (isset($category))
-                                <textarea name="tasks" class="form-control custom-input" rows="8">
-                                {{__("enums.tasks.$category")}}
-                                </textarea>
+                            <textarea name="tasks" class="form-control custom-input" rows="8">
+                            {{__("enums.tasks.$category")}}
+                            </textarea>
                             @else
-                               <textarea name="tasks" class="form-control custom-input" rows="3"></textarea>
+                            <textarea name="tasks" class="form-control custom-input" rows="3"></textarea>
                             @endif
                         </div>
 
@@ -119,13 +122,13 @@ use App\Models\Job;
                             <label class="form-label">
                                 {{__('helperJobCreate.Expectation')}}</label>
                             @if (isset($category))
-                                <textarea name="expectation" class="form-control custom-input" rows="8">
-                                {{__("enums.expectations.$category")}}
-                                </textarea>
+                            <textarea name="expectation" class="form-control custom-input" rows="8">
+                            {{__("enums.expectations.$category")}}
+                            </textarea>
                             @else
-                                <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
+                            <textarea name="expectation" class="form-control custom-input" rows="3"></textarea>
                             @endif
-                            
+
                         </div>
 
                         <div class="mt-4">

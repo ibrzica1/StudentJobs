@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="UTF-8">
     <title>{{ __('jobBillPdf.Invoice') }} {{ $bill->bill_number }}</title>
     @push('styles')
-        @vite(['resources/css/billJobAdd.css'])
+    @vite(['resources/css/billJobAdd.css'])
     @endpush
 </head>
+
 <body>
-    <?php 
+    <?php
+
     use App\Models\Bill;
     use App\Services\MoneyService;
     use App\Enums\BillPricesEnum;
@@ -117,4 +120,5 @@
         </div>
     </div>
 </body>
+
 </html>

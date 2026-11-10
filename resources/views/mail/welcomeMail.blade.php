@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{__('mail.Welcome to StudentJobs')}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{__('mail.Welcome to StudentJobs')}}</title>
 </head>
+
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, Helvetica, sans-serif;">
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4; padding:40px 0;">
@@ -24,10 +26,10 @@
                     <tr>
                         <td style="padding:40px 40px 24px 40px; text-align:center;">
                             <h1 style="margin:0 0 16px 0; font-size:26px; color:#212529; font-weight:700;">
-                               {{__('mail.Welcome')}} , {{ $user->firstName }}! 👋
+                                {{__('mail.Welcome')}} , {{ $user->firstName }}! 👋
                             </h1>
                             <p style="margin:0; font-size:16px; line-height:1.6; color:#6c757d;">
-                               {{__('mail.Were thrilled to have you on board. Your StudentJobs account is ready to go — start exploring opportunities or post your first job today.')}} 
+                                {{__('mail.Were thrilled to have you on board. Your StudentJobs account is ready to go — start exploring opportunities or post your first job today.')}}
                             </p>
                         </td>
                     </tr>
@@ -36,7 +38,7 @@
                     <tr>
                         <td style="padding:0 40px 32px 40px; text-align:center;">
                             <a href="{{ route('homepage') }}"
-                               style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
+                                style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
                                 {{__('mail.Get Started')}}
                             </a>
                         </td>
@@ -76,10 +78,10 @@
                                                     <div style="width:36px; height:36px; background-color:#fdeaea; border-radius:8px; text-align:center; line-height:36px; font-size:18px;">📄</div>
                                                 </td>
                                                 <td style="vertical-align:top;">
-                                                    <a href="{{ route('profile.edit') }}" 
-                                                    style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">{{__('mail.Complete your profile')}}</a>
-                                                    <a href="{{ route('profile.edit') }}" 
-                                                    style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">{{__('mail.Add your details, CV, and preferences to stand out to employers.')}}</p>
+                                                    <a href="{{ route('profile.edit') }}"
+                                                        style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#212529;">{{__('mail.Complete your profile')}}</a>
+                                                    <a href="{{ route('profile.edit') }}"
+                                                        style="margin:0; font-size:14px; color:#6c757d; line-height:1.5;">{{__('mail.Add your details, CV, and preferences to stand out to employers.')}}</p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -108,4 +110,5 @@
     </table>
 
 </body>
+
 </html>

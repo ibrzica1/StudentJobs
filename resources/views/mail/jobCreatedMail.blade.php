@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{__('mail.Job Posted Successfully')}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{__('mail.Job Posted Successfully')}}</title>
 </head>
+
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, Helvetica, sans-serif;">
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4; padding:40px 0;">
@@ -88,7 +90,7 @@
                     <tr>
                         <td style="padding:0 40px 40px 40px; text-align:center;">
                             <a href="{{ route('job.show', ['job' => $job->id]) }}"
-                               style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
+                                style="display:inline-block; background-color:#f00505; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:14px 36px; border-radius:8px;">
                                 {{__('mail.View Your Listing')}}
                             </a>
                         </td>
@@ -108,8 +110,8 @@
                                 {{__('mail.What happens next?')}}
                             </p>
                             <p style="margin:0; font-size:14px; line-height:1.6; color:#6c757d;">
-                               {{__('mail.Students matching your criteria will be able to view and apply to this job. You will be notified as soon as someone applies. You can edit or remove this listing anytime from your')}}  
-                               <a href="{{ route('job.my-ads') }}" style="color:#f00505; text-decoration:none; font-weight:600;">{{__('mail.My Ads')}}</a>{{__('mail.page')}}.
+                                {{__('mail.Students matching your criteria will be able to view and apply to this job. You will be notified as soon as someone applies. You can edit or remove this listing anytime from your')}}
+                                <a href="{{ route('job.my-ads') }}" style="color:#f00505; text-decoration:none; font-weight:600;">{{__('mail.My Ads')}}</a>{{__('mail.page')}}.
                             </p>
                         </td>
                     </tr>
@@ -121,7 +123,7 @@
                                 &copy; {{ date('Y') }} {{__('mail.StudentJobs. All rights reserved.')}}
                             </p>
                             <p style="margin:0; font-size:13px; color:#adb5bd;">
-                               {{__('mail.You are receiving this email because you posted a job on StudentJobs.')}} 
+                                {{__('mail.You are receiving this email because you posted a job on StudentJobs.')}}
                             </p>
                         </td>
                     </tr>
@@ -133,4 +135,5 @@
     </table>
 
 </body>
+
 </html>
