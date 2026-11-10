@@ -26,9 +26,7 @@ use App\Models\Job;
 
                     <form action="{{route('job.helper.store')}}" method="post">
                         @csrf
-                        @if($errors->any())
-                            <div class="alert alert-danger">{{$errors->first()}}</div>
-                        @endif
+                        <x-error-message/> 
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">
                             {{__('helperJobCreate.Booking details')}}</h6>

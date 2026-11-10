@@ -9,6 +9,7 @@
 use App\Models\Job;
 use App\Enums\JobTypesEnum;
 ?>
+<x-error-message/>
 @if ($job->type === JobTypesEnum::JOB)
     
     @include('job.partials.job-edit-form')

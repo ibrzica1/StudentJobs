@@ -33,6 +33,7 @@ use App\Enums\JobTypesEnum;
 </style>
 
 <body class="bg-body-secondary">
+<x-error-message/>
 <div class="container">
     <div class="d-flex justify-content-center align-items-center
                 mt-4 mb-1 ">

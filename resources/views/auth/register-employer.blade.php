@@ -20,9 +20,7 @@
                     <hr class="mb-4">
 
                     <form method="POST" action="{{ route('store.employer') }}" enctype="multipart/form-data">
-                        @if($errors->any())
-                            <p>Error: {{$errors->first()}}</p>
-                        @endif
+                        <x-error-message/>
                         @csrf
 
                         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3">Account Information</h6>

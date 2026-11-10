@@ -16,9 +16,7 @@
         $time = new TimeService();
     ?>
     <body class="bg-body-secondary">
-    @if($errors->any())
-        <div class="alert alert-danger">{{$errors->first()}}</div>
-    @endif
+    <x-error-message/>
 
     <div>
         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">

@@ -11,6 +11,7 @@
 
 ?>
 <body class="bg-body-secondary">
+    <x-error-message/>
 <div class="container d-flex column-gap-3 mt-4">
 
     <div class="col-3 bg-white p-3 rounded shadow h-100">

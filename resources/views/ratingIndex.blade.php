@@ -6,7 +6,7 @@
 
 @section("content")
 <body class=" bg-body-secondary">
-    
+    <x-error-message/>
 
     <img src="{{ !empty($user->profile_picture) && file_exists(storage_path('app/public/images/user_avatar/'.$user->profile_picture)) 
                         ? asset('storage/images/user_avatar/'.$user->profile_picture) 

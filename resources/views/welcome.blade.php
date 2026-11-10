@@ -15,9 +15,7 @@
 ?>
 <body class="bg-body-secondary">
 
-@if($errors->any())
-    <div class="alert alert-danger text-center">{{$errors->first()}}</div>
-@endif
+<x-error-message/>
 
 <livewire:select-category/>
 

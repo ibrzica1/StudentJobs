@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+<x-error-message/>
 <div class="container-fluid bg-light min-vh-100 d-flex justify-content-center align-items-center py-5">
 
     <div class="bg-white shadow rounded-4 p-5 my-1" style="min-width: 450px;">

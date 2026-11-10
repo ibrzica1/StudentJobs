@@ -11,6 +11,7 @@
 ?>
 
 <body class="bg-body-secondary">
+<x-error-message/>
 <div class="container p-5">
 
 <div class="container row bg-white p-2 rounded shadow h-100 mw-75">

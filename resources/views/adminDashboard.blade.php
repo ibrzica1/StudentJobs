@@ -11,9 +11,7 @@
     
     <body class="bg-body-secondary">
 
-    @if($errors->any())
-        <div class="alert alert-danger text-center">{{$errors->first()}}</div>
-    @endif
+    <x-error-message/>
 
     <div class="d-flex container row mt-3 mx-2 gap-2">
         <div class="d-flex flex-column align-items-center  p-2 rounded gap-3 border-end border-2

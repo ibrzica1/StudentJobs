@@ -15,6 +15,7 @@ use App\Enums\BillStatusesEnum;
 @endpush
 
 <body class="bg-body-secondary">
+    <x-error-message/>
 <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
     {{__('myBills.My Bills')}}
 </h6>

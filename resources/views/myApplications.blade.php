@@ -18,14 +18,12 @@
     @vite(['resources/css/myApplications.css'])
 @endpush
 
+<x-error-message/>
     <div>
         <h6 class="text-uppercase text-muted fw-bold mt-3 mb-3 mx-4 my-5">
             {{__('myApplication.My Applications')}}
         </h6>
-
-        
     </div>
-    
 
     @if ($applications->isEmpty())
         <div class="container">

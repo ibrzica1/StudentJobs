@@ -20,6 +20,7 @@
 </style>
 
 <div class="container-fluid bg-light py-5 min-vh-100 d-flex align-items-center">
+    <x-error-message/>
     <div class="row justify-content-center w-100">
         <div class="col-md-6 col-lg-4">
 

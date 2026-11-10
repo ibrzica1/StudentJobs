@@ -11,9 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
 
-        @if($errors->any())
-            <div class="alert alert-danger text-center">{{$errors->first()}}</div>
-        @endif
+        <x-error-message/>
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-5">
 
