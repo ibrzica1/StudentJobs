@@ -11,10 +11,18 @@ Student is entering Account Information(Email, Password), Personal Details (Name
 Contact Details (City, Street, House Number, Telephone) and Profile Picture (optional).
 Employer is entering Account Information(Email, Password),  Personal Details (Name, Surname),
 Company Data (Company Name, City, Street, House Number, Telephone Number and Company Logo).
-Employer can create job postings. He can clickon create helper job or create intership job.
+Employer can create job postings. He can click on create helper job or create intership job.
 After clicking he is redirected on the category page where he can choose which category the 
 job is babysitting, moving, IT, construction, ect...
 If category is selected form for creating a job will be partially autofilled with some data.
+When job create form is submited, job created event is triggered, sending email to user and 
+creating bill for the job.
+Bill is paid with the bank transfer and admin can change bill status from unpaid to paid on the
+admin dashboard.
+Admin dashboard contains unpaid bills column and statistcs column.
+Statistics column is showing visits today, visits this month, total visits, new jobs today, jobs this month.
+When user is loggedin cache under the key todays date is increased by 1. When the day ends cache value
+is stored in ratings table.
 Homepage is displaying active job posts, posts are paginated 12 per page.
 You can search job posts by category 
 By clicking on the job post, it will show that post with all the job information
@@ -38,9 +46,19 @@ So when the user is entering his city while registering, there will be city sugg
 CACHING
 
 For the latest jobs on index page I use pagination, 
-so I cache every page that has been clicked under cache key
+I cache every page that has been clicked under cache key
 latest_jobs_ $pageNumber for 120 seconds.
 For my ads I used cache with key my_ads for 120 seconds.
+
+INTERFACE
+
+Interface is implemented for each model repository and is registered in Repository Service Provider.
+Interface for storing file registered in app service provider
+Interface for PDF creating registered in app service provider
+
+QUEUE
+
+Queues are implemented in sending emails with redis.
 
 LOCALIZATION
 
