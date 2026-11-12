@@ -15,8 +15,8 @@ class SendStudentInfoMailListener
         //
     }
 
-    public function handle(ApplicationAcceptedEvent $event): void
+    /* public function handle(ApplicationAcceptedEvent $event): void
     {
         SendStudentInfoMailJob::dispatch($event->application);
-    }
+    } */
 }

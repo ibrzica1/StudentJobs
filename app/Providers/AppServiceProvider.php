@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::subscribe(ForgetCacheMyAds::class);
-        Gate::define('can-apply', function(Job $job) {
+        Gate::define('can-apply', function(User $user, Job $job) {
             $appRepo = new ApplicationRepository();
             return $appRepo->applicationDoesntExist($job);
         });
